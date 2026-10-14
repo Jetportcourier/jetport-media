@@ -30,7 +30,7 @@ Clips reales: escena {"tipo": "clip", "dur": 3, "archivo": "material/clip.mp4", 
   "globo": "texto" dibuja un globo de diálogo blanco (para que la presentadora 'hable'); "globo_y" ajusta la altura.
   (Las fotos y videos del avatar en referencias/ son SOLO referencia del dueño: NO usarlos en los videos.)
 Cierre: al final de cada video se agrega solo un cierre animado de 2,6 s (círculo blanco que se abre, logo
-  con rebote, lema y fundido). Opcional "lema" en una escena {"tipo": "cierre", "dur": 2.6}; "cierre": false lo quita.
+  con rebote, lema y fundido). Hay 3 variantes que se rotan solas: "circulo", "barrido" y "persiana". Opcional "lema" en una escena {"tipo": "cierre", "dur": 2.6}; "cierre": false lo quita.
 Transiciones: cualquier escena puede llevar "transicion": "zoom" (golpe de zoom + destello),
   "barrido" (deslizamiento rápido) o "ninguna". Si no se indica, se alternan zoom y barrido automáticamente.
 Marca: generador/logo_horizontal.png (logo oficial) va en el pie de todos los cuadros, SIEMPRE sobre tarjeta blanca.\n  generador/logo_vertical.png es la versión vertical, también sobre blanco.
@@ -490,11 +490,30 @@ def esc_cierre(L, e, lt, a):
     """Final animado: círculo blanco que se abre, logo con rebote y lema; evita que el video acabe en seco."""
     global _LOGO_V
     dur = float(e["dur"])
-    r = ease(lt / 0.55) * math.hypot(W, H) * 0.6
     d = ImageDraw.Draw(L)
-    d.ellipse([W / 2 - r, H / 2 - r, W / 2 + r, H / 2 + r], fill=(255, 255, 255, 255))
+    k = ease(lt / 0.55)
+    variante = e.get("variante", "circulo")
+    if variante == "barrido":                           # franja blanca diagonal que barre la pantalla
+        x = k * W * 1.55
+        d.polygon([(-W * 2, 0), (x, 0), (x - W * 0.45, H), (-W * 2, H)], fill=(255, 255, 255, 255))
+        if k >= 1: d.rectangle([0, 0, W, H], fill=(255, 255, 255, 255))
+        borde = Image.new("RGBA", (W, H), (0, 0, 0, 0))
+        if k < 1:
+            ImageDraw.Draw(borde).polygon([(x, 0), (x + 40, 0), (x - W * 0.45 + 40, H), (x - W * 0.45, H)], fill=rgba(ORANGE, 0.9))
+        L.alpha_composite(borde)
+    elif variante == "persiana":                        # franjas que se cierran una tras otra
+        n = 8
+        for i in range(n):
+            ki = ease((lt - i * 0.04) / 0.4)
+            hh = H / n
+            d.rectangle([0, i * hh, W * ki, (i + 1) * hh + 1] if i % 2 == 0 else [W * (1 - ki), i * hh, W, (i + 1) * hh + 1],
+                        fill=(255, 255, 255, 255))
+    else:                                               # círculo que se abre desde el centro
+        r = k * math.hypot(W, H) * 0.6
+        d.ellipse([W / 2 - r, H / 2 - r, W / 2 + r, H / 2 + r], fill=(255, 255, 255, 255))
+        r = r if variante == "circulo" else r
     anillos = Image.new("RGBA", (W, H), (0, 0, 0, 0)); da = ImageDraw.Draw(anillos)
-    for k in range(3):                                  # anillos naranja/azul que acompañan la apertura
+    for k in range(3 if variante == "circulo" else 0):  # anillos naranja/azul que acompañan la apertura
         rr = r * (1 + 0.06 * (k + 1)); al = max(0.0, 1 - lt / 0.7) * (0.6 - 0.15 * k)
         if al > 0:
             da.ellipse([W / 2 - rr, H / 2 - rr, W / 2 + rr, H / 2 + rr], outline=rgba(ORANGE if k % 2 == 0 else (30, 99, 200), al), width=10)
@@ -544,7 +563,9 @@ def build(guion):
     escenas, t = [], 0.0
     lista = list(guion["escenas"])
     if guion.get("cierre", True) and not any(e["tipo"] == "cierre" for e in lista):
-        lista.append({"tipo": "cierre", "dur": 2.6, "transicion": "ninguna"})   # final animado automático
+        variantes = ["circulo", "barrido", "persiana"]           # se rotan según la música para no repetir
+        lista.append({"tipo": "cierre", "dur": 2.6, "transicion": "ninguna",
+                      "variante": variantes[int(guion.get("musica_semilla", 0)) % 3]})
     for e in lista:
         escenas.append((t, t + float(e["dur"]), e)); t += float(e["dur"])
     return escenas, t
