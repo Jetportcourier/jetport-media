@@ -19,7 +19,10 @@ El guion es un JSON:
 Cada escena puede llevar "fondo": "avion" | "ruta" | "tienda" | "cajas" (escenario ilustrado animado:
 aviones y nubes, mapa Miami→Lima, toldo de tienda con carteles de oferta, cajas en cinta, bolsas de compras).
 Si se omite, se rotan automáticamente.
-Reglas de contenido: nunca poner el domicilio fiscal; la ubicación pública es "Los Olivos, Lima".
+La escena "cta" admite "modo": "seguir" (por defecto: Síguenos @jetportcourier) o "escribenos"
+(Escríbenos "INFO"; opcionales "linea1", "palabra", "sub").
+Reglas: NUNCA poner números de teléfono/WhatsApp en los videos ni en los textos de las publicaciones.
+Otras reglas de contenido: nunca poner el domicilio fiscal; la ubicación pública es "Los Olivos, Lima".
 """
 import json, math, os, subprocess, sys, tempfile
 from PIL import Image, ImageDraw, ImageFont
@@ -253,6 +256,8 @@ def _caja(L, top, texto, lt, a):
         text(L, (W/2, top + 115 + i * s * 1.25 + dy), ln, f, WHITE, a * p)
 
 def esc_cta(L, e, lt, a):
+    if e.get("modo") == "escribenos":
+        return esc_cta_escribenos(L, e, lt, a)
     p, dy = appear(lt, 0.0)
     text(L, (W/2, 560 + dy), e.get("linea1", "Síguenos"), font("Black", 130), WHITE, a * p)
     text(L, (W/2, 700 + dy), e.get("linea2", "para más tips"), font("Black", 100), ORANGE, a * p)
@@ -265,6 +270,20 @@ def esc_cta(L, e, lt, a):
     p, dy = appear(lt, 1.2)
     text(L, (W/2, 1290 + dy), "USA y China → Perú", font("Medium", 50), SOFT, a * p)
     text(L, (W/2, 1360 + dy), "Los Olivos, Lima", font("Medium", 50), SOFT, a * p)
+
+def esc_cta_escribenos(L, e, lt, a):
+    """Cierre que invita a escribir (sin números de contacto): 'Escríbenos INFO'."""
+    p, dy = appear(lt, 0.0)
+    block(L, 520 + dy, e.get("linea1", "¿Quieres traer tus compras?"), "Black", 88, WHITE, a * p, max_lines=2)
+    p, dy = appear(lt, 0.4)
+    text(L, (W/2, 790 + dy), "Escríbenos", font("Black", 120), ORANGE, a * p)
+    p, dy = appear(lt, 0.8)
+    pulse = 1 + 0.04 * math.sin(lt * 6); bw, bh = 300 * pulse, 90 * pulse
+    pill(L, [W/2 - bw, 1010 - bh + dy, W/2 + bw, 1010 + bh + dy], WHITE, a * p, 90)
+    text(L, (W/2, 1010 + dy), e.get("palabra", "INFO"), font("Black", 110), NAVY, a * p)
+    p, dy = appear(lt, 1.2)
+    block(L, 1190 + dy, e.get("sub", "por mensaje o en los comentarios y te ayudamos"), "Bold", 52, SOFT, a * p, max_lines=2)
+    text(L, (W/2, 1380 + dy), "@jetportcourier", font("Bold", 52), WHITE, a * p)
 
 TIPOS = {"titulo": esc_titulo, "punto": esc_punto, "texto": esc_texto, "cta": esc_cta}
 
