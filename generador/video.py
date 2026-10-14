@@ -21,11 +21,16 @@ aviones y nubes, mapa Miami→Lima, toldo de tienda con carteles de oferta, caja
 Si se omite, se rotan automáticamente.
 La escena "cta" admite "modo": "seguir" (por defecto: Síguenos @jetportcourier) o "escribenos"
 (Escríbenos "INFO"; opcionales "linea1", "palabra", "sub").
+Clips reales: escena {"tipo": "clip", "dur": 3, "archivo": "material/clip.mp4", "inicio": 2.0,
+  "texto": "POV: llegó tu pedido de Amazon", "resaltado": "📦", "posicion": "arriba|centro|abajo"}
+  usa el video real como fondo (recortado a vertical, con acercamiento lento) y texto estilo TikTok.
+Transiciones: cualquier escena puede llevar "transicion": "zoom" (por defecto: golpe de zoom + destello),
+  "barrido" (deslizamiento rápido) o "ninguna".
 Reglas: NUNCA poner números de teléfono/WhatsApp en los videos ni en los textos de las publicaciones.
 Otras reglas de contenido: nunca poner el domicilio fiscal; la ubicación pública es "Los Olivos, Lima".
 """
 import json, math, os, subprocess, sys, tempfile
-from PIL import Image, ImageDraw, ImageFont
+from PIL import Image, ImageDraw, ImageFont, ImageFilter
 
 W, H, FPS = 1080, 1920, 30
 FONT_DIR = "/usr/share/fonts/opentype/inter/"
@@ -285,7 +290,88 @@ def esc_cta_escribenos(L, e, lt, a):
     block(L, 1190 + dy, e.get("sub", "por mensaje o en los comentarios y te ayudamos"), "Bold", 52, SOFT, a * p, max_lines=2)
     text(L, (W/2, 1380 + dy), "@jetportcourier", font("Bold", 52), WHITE, a * p)
 
-TIPOS = {"titulo": esc_titulo, "punto": esc_punto, "texto": esc_texto, "cta": esc_cta}
+# ---------- clips reales (material/ del repositorio) ----------
+class Clip:
+    """Lee un video real recortado a 1080x1920 (rellena la pantalla) a 30 fps.
+    En vista previa saca un solo cuadro; al renderizar lee los cuadros en orden con ffmpeg."""
+    def __init__(self, ruta, inicio, dur):
+        self.ruta, self.inicio, self.dur = ruta, float(inicio), float(dur)
+        self.proc, self.ultimo = None, None
+        self.vf = f"scale={W}:{H}:force_original_aspect_ratio=increase,crop={W}:{H},fps={FPS}"
+
+    def cuadro_suelto(self, lt):
+        out = subprocess.run(["ffmpeg", "-loglevel", "error", "-ss", str(self.inicio + lt), "-i", self.ruta,
+                              "-frames:v", "1", "-vf", self.vf, "-f", "rawvideo", "-pix_fmt", "rgb24", "-"],
+                             capture_output=True).stdout
+        return Image.frombytes("RGB", (W, H), out[: W * H * 3]) if len(out) >= W * H * 3 else Image.new("RGB", (W, H))
+
+    def siguiente(self):
+        if self.proc is None:
+            self.proc = subprocess.Popen(["ffmpeg", "-loglevel", "error", "-ss", str(self.inicio), "-i", self.ruta,
+                                          "-t", str(self.dur + 0.5), "-vf", self.vf, "-an", "-f", "rawvideo",
+                                          "-pix_fmt", "rgb24", "-"], stdout=subprocess.PIPE,
+                                         stderr=subprocess.DEVNULL)
+        buf = self.proc.stdout.read(W * H * 3)
+        if len(buf) == W * H * 3:
+            self.ultimo = Image.frombytes("RGB", (W, H), buf)
+        return self.ultimo or Image.new("RGB", (W, H))
+
+_clips = {}
+MODO_PREVIA = False
+
+def fondo_clip(i, e, lt):
+    if i not in _clips:
+        _clips[i] = Clip(e["archivo"], e.get("inicio", 0), e["dur"])
+    img = _clips[i].cuadro_suelto(lt) if MODO_PREVIA else _clips[i].siguiente()
+    z = 1.0 + 0.06 * min(lt / max(float(e["dur"]), 0.1), 1.0)       # acercamiento lento (efecto Ken Burns)
+    cw, ch = int(W / z), int(H / z)
+    img = img.crop(((W - cw) // 2, (H - ch) // 2, (W + cw) // 2, (H + ch) // 2)).resize((W, H), Image.BILINEAR)
+    sombra = Image.new("RGBA", (W, H), (0, 0, 0, 0)); d = ImageDraw.Draw(sombra)
+    for y in range(0, 760, 8):                                        # degradado oscuro arriba para leer el texto
+        d.rectangle([0, y, W, y + 8], fill=(0, 0, 0, int(150 * (1 - y / 760))))
+    for y in range(H - 520, H, 8):                                    # y abajo para la marca
+        d.rectangle([0, y, W, y + 8], fill=(0, 0, 0, int(140 * (y - (H - 520)) / 520)))
+    img = img.convert("RGBA"); img.alpha_composite(sombra); return img
+
+def texto_borde(L, xy, s, f, color, a, borde=8):
+    ImageDraw.Draw(L).text(xy, s, font=f, fill=rgba(color, a), anchor="mm",
+                           stroke_width=borde, stroke_fill=rgba((0, 0, 0), a))
+
+def esc_clip(L, e, lt, a):
+    """Escena sobre video real con texto estilo TikTok (blanco con borde negro)."""
+    pos = {"arriba": 330, "centro": 860, "abajo": 1380}[e.get("posicion", "arriba")]
+    p = ease((lt - 0.15) / 0.3)
+    escala = 1 + 0.25 * (1 - p)                                       # el texto entra "de golpe"
+    f, lines, s = fit(e.get("texto", ""), "Black", int(84 * escala), W - 140, 4)
+    y = pos
+    for ln in lines:
+        texto_borde(L, (W / 2, y), ln, f, WHITE, a * p, borde=9); y += s * 1.15
+    if e.get("resaltado"):
+        p2 = ease((lt - 0.6) / 0.3)
+        f2, l2, s2 = fit(e["resaltado"], "Black", 96, W - 200, 2)
+        y += 30
+        for ln in l2:
+            tw = f2.getlength(ln)
+            pill(L, [W/2 - tw/2 - 34, y - s2 * 0.62, W/2 + tw/2 + 34, y + s2 * 0.62], ORANGE, a * p2, 24)
+            text(L, (W / 2, y), ln, f2, WHITE, a * p2); y += s2 * 1.3
+
+TIPOS = {"titulo": esc_titulo, "punto": esc_punto, "texto": esc_texto, "cta": esc_cta, "clip": esc_clip}
+
+def transicion(img, lt, tipo):
+    """Efecto al entrar en una escena: 'zoom' (golpe de zoom + destello), 'barrido' o 'ninguna'."""
+    if tipo == "ninguna" or lt > 0.3: return img
+    k = ease(lt / 0.25)
+    if tipo == "barrido":
+        dx = int((1 - k) * W * 0.35)
+        img2 = img.filter(ImageFilter.GaussianBlur(14 * (1 - k))) if k < 1 else img
+        base = Image.new("RGBA", (W, H), (0, 0, 0, 255)); base.alpha_composite(img2, (dx, 0)); img = base
+    else:
+        z = 1 + 0.14 * (1 - k); cw, ch = int(W / z), int(H / z)
+        img = img.crop(((W - cw) // 2, (H - ch) // 2, (W + cw) // 2, (H + ch) // 2)).resize((W, H), Image.BILINEAR)
+    fl = max(0.0, 0.55 * (1 - lt / 0.18))
+    if fl > 0:
+        img = Image.blend(img, Image.new("RGBA", (W, H), (255, 255, 255, 255)), fl)
+    return img
 
 def build(guion):
     escenas, t = [], 0.0
@@ -297,26 +383,35 @@ def frame(escenas, total, t):
     idx, t_esc = 0, t
     for i, (s, e_, _) in enumerate(escenas):
         if s <= t: idx, t_esc = i, t - s
-    img = fondo(t, idx, t_esc); L = Image.new("RGBA", (W, H), (0, 0, 0, 0))
-    d = ImageDraw.Draw(L); off = (t * 120) % 400
-    for k in range(-2, 7):
-        x0 = k * 400 + off - 600
-        d.polygon([(x0, 0), (x0 + 60, 0), (x0 + 760, H), (x0 + 700, H)], fill=(255, 255, 255, 10))
-    for i, (s, e_, e) in enumerate(escenas):
-        if s <= t <= e_:
-            a = 1.0 if (t <= e_ - 0.3 or e_ >= total) else (e_ - t) / 0.3
-            a_in = ease((t - s) / 0.35) if i > 0 else 1.0
-            escenario(L, e.get("fondo") or ORDEN_ESCENARIOS[i % len(ORDEN_ESCENARIOS)], t, a * a_in)
-            TIPOS[e["tipo"]](L, e, t - s, a)
+    s0, e0, esc = escenas[idx]
+    es_clip = esc["tipo"] == "clip"
+    img = fondo_clip(idx, esc, t_esc) if es_clip else fondo(t, idx, t_esc)
+    L = Image.new("RGBA", (W, H), (0, 0, 0, 0))
+    if not es_clip:
+        d = ImageDraw.Draw(L); off = (t * 120) % 400
+        for k in range(-2, 7):
+            x0 = k * 400 + off - 600
+            d.polygon([(x0, 0), (x0 + 60, 0), (x0 + 760, H), (x0 + 700, H)], fill=(255, 255, 255, 10))
+    a = 1.0 if (t <= e0 - 0.3 or e0 >= total) else (e0 - t) / 0.3
+    if es_clip and esc.get("transicion", "zoom") != "ninguna":
+        a = 1.0                                   # en clips el corte lo marca la transición, sin fundido
+    if not es_clip:
+        a_in = ease(t_esc / 0.35) if idx > 0 else 1.0
+        escenario(L, esc.get("fondo") or ORDEN_ESCENARIOS[idx % len(ORDEN_ESCENARIOS)], t, a * a_in)
+    TIPOS[esc["tipo"]](L, esc, t_esc, a)
     progress(L, t, total)
     text(L, (W/2, H - 120), "JETPORT COURIER", font("Black", 44), WHITE)
     ImageDraw.Draw(L).rectangle([W/2 - 60, H - 85, W/2 + 60, H - 79], fill=rgba(ORANGE, 1))
-    img.alpha_composite(L); return img.convert("RGB")
+    img.alpha_composite(L)
+    if idx > 0:
+        img = transicion(img, t_esc, esc.get("transicion", "zoom"))
+    return img.convert("RGB")
 
 def main():
     guion = json.load(open(sys.argv[1], encoding="utf-8")); out = sys.argv[2]
     escenas, total = build(guion)
     if len(sys.argv) > 3:
+        global MODO_PREVIA; MODO_PREVIA = True
         frame(escenas, total, float(sys.argv[3])).save(out); return
     tmp = tempfile.mkdtemp()
     wav, muda = os.path.join(tmp, "m.wav"), os.path.join(tmp, "v.mp4")
@@ -329,6 +424,8 @@ def main():
     for i in range(int(total * FPS)):
         p.stdin.write(frame(escenas, total, i / FPS).tobytes())
     p.stdin.close(); p.wait()
+    for c in _clips.values():
+        if c.proc: c.proc.kill()
     subprocess.run(["ffmpeg", "-y", "-loglevel", "error", "-i", muda, "-i", wav, "-map", "0:v", "-map", "1:a",
                     "-c:v", "copy", "-c:a", "aac", "-b:a", "192k", "-shortest", "-movflags", "+faststart", out], check=True)
 
