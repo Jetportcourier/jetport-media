@@ -339,20 +339,27 @@ def bloque_redes(L, top, lt, inicio, a):
         icono(L, red, int(x0 + 36), int(y + dy * 0.3), 34, a * p)
         text(L, (x0 + 100, y + dy * 0.3), usuario, f, color, a * p, "lm")
 
+# Estilo del logo en el pie: "tarjeta" (sobre tarjeta blanca), "transparente" (sin fondo)
+# o "contorno" (sin fondo, con un borde blanco suave para que no se pierda en fondos azules).
+LOGO_ESTILO = "tarjeta"
+_LOGOS = {}
+
 def marca_pie(L):
-    """Logo oficial SIEMPRE sobre tarjeta blanca (pedido del dueño: que resalten sus colores)."""
-    global _LOGO_PIE
-    if LOGO is not None:
-        if _LOGO_PIE is None:
-            h = 104; w = int(LOGO.width * h / LOGO.height)
-            _LOGO_PIE = LOGO.resize((w, h), Image.LANCZOS)
-        w, h = _LOGO_PIE.size
-        x, y = int(W / 2 - w / 2), H - 112 - h // 2
+    aqui = os.path.dirname(os.path.abspath(__file__))
+    archivo = {"tarjeta": "logo_horizontal.png", "transparente": "logo_horizontal_transparente.png",
+               "contorno": "logo_horizontal_contorno.png"}.get(LOGO_ESTILO, "logo_horizontal.png")
+    ruta = os.path.join(aqui, archivo)
+    if not os.path.exists(ruta):
+        text(L, (W/2, H - 120), "JETPORT COURIER", font("Black", 44), WHITE); return
+    if archivo not in _LOGOS:
+        im = Image.open(ruta).convert("RGBA")
+        h = 104 if LOGO_ESTILO == "tarjeta" else 128
+        _LOGOS[archivo] = im.resize((int(im.width * h / im.height), h), Image.LANCZOS)
+    lg = _LOGOS[archivo]; w, h = lg.size
+    x, y = int(W / 2 - w / 2), H - 112 - h // 2
+    if LOGO_ESTILO == "tarjeta":
         ImageDraw.Draw(L).rounded_rectangle([x - 26, y - 14, x + w + 26, y + h + 14], 30, fill=(255, 255, 255, 255))
-        L.alpha_composite(_LOGO_PIE, (x, y))
-    else:
-        text(L, (W/2, H - 120), "JETPORT COURIER", font("Black", 44), WHITE)
-        ImageDraw.Draw(L).rectangle([W/2 - 60, H - 85, W/2 + 60, H - 79], fill=rgba(ORANGE, 1))
+    L.alpha_composite(lg, (x, y))
 
 def esc_cta(L, e, lt, a):
     if e.get("modo") == "escribenos":
@@ -526,7 +533,8 @@ def frame(escenas, total, t):
 
 def main():
     guion = json.load(open(sys.argv[1], encoding="utf-8")); out = sys.argv[2]
-    global ESTILO_CAJA; ESTILO_CAJA = guion.get("estilo_caja", ESTILO_CAJA)
+    global ESTILO_CAJA, LOGO_ESTILO
+    ESTILO_CAJA = guion.get("estilo_caja", ESTILO_CAJA); LOGO_ESTILO = guion.get("logo", LOGO_ESTILO)
     escenas, total = build(guion)
     if len(sys.argv) > 3:
         global MODO_PREVIA; MODO_PREVIA = True
