@@ -26,6 +26,10 @@ Clips reales: escena {"tipo": "clip", "dur": 3, "archivo": "material/clip.mp4", 
   usa el video real como fondo (recortado a vertical, con acercamiento lento) y texto estilo TikTok.
 Transiciones: cualquier escena puede llevar "transicion": "zoom" (por defecto: golpe de zoom + destello),
   "barrido" (deslizamiento rápido) o "ninguna".
+Marca: si existe generador/logo.png (PNG con fondo transparente) se usa como marca en el pie de todos los cuadros.
+La escena "cta" muestra las redes oficiales (TikTok @jetport_courier, Instagram @jetportcourier,
+  Facebook Jetport Courier, jpcourier.com).
+Música: "musica_semilla" de 0 a 119 elige estilo, acordes, tono y velocidad (ver musica.py); usa una distinta en cada video.
 Reglas: NUNCA poner números de teléfono/WhatsApp en los videos ni en los textos de las publicaciones.
 Otras reglas de contenido: nunca poner el domicilio fiscal; la ubicación pública es "Los Olivos, Lima".
 """
@@ -260,21 +264,69 @@ def _caja(L, top, texto, lt, a):
     for i, ln in enumerate(lines):
         text(L, (W/2, top + 115 + i * s * 1.25 + dy), ln, f, WHITE, a * p)
 
+# ---------- redes sociales y logo ----------
+REDES = [("tiktok", "@jetport_courier"), ("instagram", "@jetportcourier"),
+         ("facebook", "Jetport Courier"), ("web", "jpcourier.com")]
+_RUTA_LOGO = os.path.join(os.path.dirname(os.path.abspath(__file__)), "logo.png")
+LOGO = Image.open(_RUTA_LOGO).convert("RGBA") if os.path.exists(_RUTA_LOGO) else None
+
+def icono(L, red, cx, cy, r, a):
+    d = ImageDraw.Draw(L)
+    if red == "instagram":
+        for i in range(r * 2, 0, -2):                     # degradado tipo Instagram
+            k = i / (r * 2); c = (int(250 * k + 130 * (1 - k)), int(60 * k + 50 * (1 - k)), int(120 * k + 200 * (1 - k)))
+            d.rounded_rectangle([cx - i / 2, cy - i / 2, cx + i / 2, cy + i / 2], int(i * 0.28), fill=rgba(c, a))
+        d.rounded_rectangle([cx - r * .55, cy - r * .55, cx + r * .55, cy + r * .55], int(r * .32), outline=rgba(WHITE, a), width=max(3, r // 9))
+        d.ellipse([cx - r * .26, cy - r * .26, cx + r * .26, cy + r * .26], outline=rgba(WHITE, a), width=max(3, r // 9))
+        d.ellipse([cx + r * .3, cy - r * .42, cx + r * .42, cy - r * .3], fill=rgba(WHITE, a))
+    elif red == "facebook":
+        d.ellipse([cx - r, cy - r, cx + r, cy + r], fill=rgba((24, 119, 242), a))
+        text(L, (cx + r * .06, cy + r * .12), "f", font("Black", int(r * 1.5)), WHITE, a)
+    elif red == "tiktok":
+        d.rounded_rectangle([cx - r, cy - r, cx + r, cy + r], int(r * .35), fill=rgba((10, 10, 14), a))
+        for dx, dy, c in [(-3, -2, (37, 244, 238)), (3, 2, (254, 44, 85)), (0, 0, (255, 255, 255))]:
+            x, y = cx + dx * r / 30, cy + dy * r / 30
+            d.ellipse([x - r * .5, y + r * .05, x - r * .05, y + r * .5], outline=rgba(c, a), width=max(3, r // 8))
+            d.line([x - r * .07, y + r * .28, x - r * .07, y - r * .55], fill=rgba(c, a), width=max(3, r // 8))
+            d.arc([x - r * .07, y - r * .75, x + r * .45, y - r * .25], 180, 270, fill=rgba(c, a), width=max(3, r // 8))
+    else:
+        d.ellipse([cx - r, cy - r, cx + r, cy + r], fill=rgba(ORANGE, a))
+        d.ellipse([cx - r * .6, cy - r * .6, cx + r * .6, cy + r * .6], outline=rgba(WHITE, a), width=max(3, r // 10))
+        d.ellipse([cx - r * .25, cy - r * .6, cx + r * .25, cy + r * .6], outline=rgba(WHITE, a), width=max(3, r // 10))
+        d.line([cx - r * .6, cy, cx + r * .6, cy], fill=rgba(WHITE, a), width=max(3, r // 10))
+
+def bloque_redes(L, top, lt, inicio, a):
+    """Lista de redes con ícono y usuario, apareciendo una por una."""
+    f = font("Bold", 50)
+    ancho = max(f.getlength(u) for _, u in REDES) + 110
+    x0 = W / 2 - ancho / 2
+    pill(L, [x0 - 40, top - 20, x0 + ancho + 40, top + len(REDES) * 105 + 5], WHITE, 0.10 * a, 36)
+    for i, (red, usuario) in enumerate(REDES):
+        p, dy = appear(lt, inicio + i * 0.15)
+        y = top + 45 + i * 105
+        icono(L, red, int(x0 + 36), int(y + dy * 0.3), 34, a * p)
+        text(L, (x0 + 100, y + dy * 0.3), usuario, f, WHITE, a * p, "lm")
+
+def marca_pie(L):
+    if LOGO is not None:
+        h = 110; w = int(LOGO.width * h / LOGO.height)
+        lg = LOGO.resize((w, h), Image.LANCZOS)
+        L.alpha_composite(lg, (int(W / 2 - w / 2), H - 120 - h // 2))
+    else:
+        text(L, (W/2, H - 120), "JETPORT COURIER", font("Black", 44), WHITE)
+        ImageDraw.Draw(L).rectangle([W/2 - 60, H - 85, W/2 + 60, H - 79], fill=rgba(ORANGE, 1))
+
 def esc_cta(L, e, lt, a):
     if e.get("modo") == "escribenos":
         return esc_cta_escribenos(L, e, lt, a)
     p, dy = appear(lt, 0.0)
-    text(L, (W/2, 560 + dy), e.get("linea1", "Síguenos"), font("Black", 130), WHITE, a * p)
-    text(L, (W/2, 700 + dy), e.get("linea2", "para más tips"), font("Black", 100), ORANGE, a * p)
-    p, dy = appear(lt, 0.4)
-    text(L, (W/2, 870 + dy), e.get("sub", "de compras internacionales"), font("Bold", 56), SOFT, a * p)
-    p, dy = appear(lt, 0.8)
-    pulse = 1 + 0.03 * math.sin(lt * 6); bw, bh = 400 * pulse, 80 * pulse
-    pill(L, [W/2 - bw, 1080 - bh + dy, W/2 + bw, 1080 + bh + dy], ORANGE, a * p, 80)
-    text(L, (W/2, 1080 + dy), "@jetportcourier", font("Black", 76), WHITE, a * p)
-    p, dy = appear(lt, 1.2)
-    text(L, (W/2, 1290 + dy), "USA y China → Perú", font("Medium", 50), SOFT, a * p)
-    text(L, (W/2, 1360 + dy), "Los Olivos, Lima", font("Medium", 50), SOFT, a * p)
+    text(L, (W/2, 430 + dy), e.get("linea1", "Síguenos"), font("Black", 130), WHITE, a * p)
+    text(L, (W/2, 570 + dy), e.get("linea2", "para más tips"), font("Black", 100), ORANGE, a * p)
+    p, dy = appear(lt, 0.3)
+    text(L, (W/2, 700 + dy), e.get("sub", "de compras internacionales"), font("Bold", 56), SOFT, a * p)
+    bloque_redes(L, 820, lt, 0.5, a)
+    p, dy = appear(lt, 1.3)
+    text(L, (W/2, 1330 + dy), "USA y China → Perú · Los Olivos, Lima", font("Medium", 44), SOFT, a * p)
 
 def esc_cta_escribenos(L, e, lt, a):
     """Cierre que invita a escribir (sin números de contacto): 'Escríbenos INFO'."""
@@ -287,8 +339,11 @@ def esc_cta_escribenos(L, e, lt, a):
     pill(L, [W/2 - bw, 1010 - bh + dy, W/2 + bw, 1010 + bh + dy], WHITE, a * p, 90)
     text(L, (W/2, 1010 + dy), e.get("palabra", "INFO"), font("Black", 110), NAVY, a * p)
     p, dy = appear(lt, 1.2)
-    block(L, 1190 + dy, e.get("sub", "por mensaje o en los comentarios y te ayudamos"), "Bold", 52, SOFT, a * p, max_lines=2)
-    text(L, (W/2, 1380 + dy), "@jetportcourier", font("Bold", 52), WHITE, a * p)
+    block(L, 1170 + dy, e.get("sub", "por mensaje o en los comentarios y te ayudamos"), "Bold", 50, SOFT, a * p, max_lines=2)
+    p, dy = appear(lt, 1.5)
+    for i, (red, _) in enumerate(REDES):
+        icono(L, red, int(W / 2 + (i - 1.5) * 120), 1345 + dy, 40, a * p)
+    text(L, (W/2, 1430 + dy), "Jetport Courier en todas las redes", font("Bold", 42), WHITE, a * p)
 
 # ---------- clips reales (material/ del repositorio) ----------
 class Clip:
@@ -400,8 +455,7 @@ def frame(escenas, total, t):
         escenario(L, esc.get("fondo") or ORDEN_ESCENARIOS[idx % len(ORDEN_ESCENARIOS)], t, a * a_in)
     TIPOS[esc["tipo"]](L, esc, t_esc, a)
     progress(L, t, total)
-    text(L, (W/2, H - 120), "JETPORT COURIER", font("Black", 44), WHITE)
-    ImageDraw.Draw(L).rectangle([W/2 - 60, H - 85, W/2 + 60, H - 79], fill=rgba(ORANGE, 1))
+    marca_pie(L)
     img.alpha_composite(L)
     if idx > 0:
         img = transicion(img, t_esc, esc.get("transicion", "zoom"))

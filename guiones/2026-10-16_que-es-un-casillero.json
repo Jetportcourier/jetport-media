@@ -1,12 +1,57 @@
 {
-  "musica_semilla": 1,
+  "musica_semilla": 22,
   "escenas": [
-    {"tipo": "titulo", "dur": 3.8, "arriba": "¿QUÉ ES UN CASILLERO?", "lineas": ["y cómo te ayuda a comprar", "en USA desde Perú"], "sub": "Te lo explicamos en 30 segundos"},
-    {"tipo": "texto", "dur": 5.5, "etiqueta": "LO BÁSICO", "titulo": "Es tu dirección propia en Estados Unidos", "texto": "Muchas tiendas no envían a Perú, pero sí envían a una dirección dentro de USA."},
-    {"tipo": "punto", "dur": 5.5, "numero": "1", "etiqueta": "PASO", "titulo": "Te registras y recibes tu dirección", "texto": "Usas esa dirección como destino de envío en Amazon, eBay, Walmart o cualquier tienda."},
-    {"tipo": "punto", "dur": 5.5, "numero": "2", "etiqueta": "PASO", "titulo": "Tu compra llega a nuestro almacén", "texto": "La recibimos en Miami, la registramos con tu código de cliente y la preparamos para viajar."},
-    {"tipo": "punto", "dur": 5.5, "numero": "3", "etiqueta": "PASO", "titulo": "Viaja a Perú y la recibes en Lima", "texto": "Nos encargamos del transporte y del trámite de aduana para que no te preocupes."},
-    {"tipo": "texto", "dur": 5.0, "etiqueta": "DATO ÚTIL", "titulo": "También puedes comprar en China", "texto": "Con un casillero en China puedes traer productos de tiendas chinas de la misma forma."},
-    {"tipo": "cta", "dur": 4.5}
+    {
+      "tipo": "titulo",
+      "dur": 3.8,
+      "arriba": "¿QUÉ ES UN CASILLERO?",
+      "lineas": [
+        "y cómo te ayuda a comprar",
+        "en USA desde Perú"
+      ],
+      "sub": "Te lo explicamos en 30 segundos"
+    },
+    {
+      "tipo": "texto",
+      "dur": 5.5,
+      "etiqueta": "LO BÁSICO",
+      "titulo": "Es tu dirección propia en Estados Unidos",
+      "texto": "Muchas tiendas no envían a Perú, pero sí envían a una dirección dentro de USA."
+    },
+    {
+      "tipo": "punto",
+      "dur": 5.5,
+      "numero": "1",
+      "etiqueta": "PASO",
+      "titulo": "Te registras y recibes tu dirección",
+      "texto": "Usas esa dirección como destino de envío en Amazon, eBay, Walmart o cualquier tienda."
+    },
+    {
+      "tipo": "punto",
+      "dur": 5.5,
+      "numero": "2",
+      "etiqueta": "PASO",
+      "titulo": "Tu compra llega a nuestro almacén",
+      "texto": "La recibimos en Miami, la registramos con tu código de cliente y la preparamos para viajar."
+    },
+    {
+      "tipo": "punto",
+      "dur": 5.5,
+      "numero": "3",
+      "etiqueta": "PASO",
+      "titulo": "Viaja a Perú y la recibes en Lima",
+      "texto": "Nos encargamos del transporte y del trámite de aduana para que no te preocupes."
+    },
+    {
+      "tipo": "texto",
+      "dur": 5.0,
+      "etiqueta": "DATO ÚTIL",
+      "titulo": "También puedes comprar en China",
+      "texto": "Con un casillero en China puedes traer productos de tiendas chinas de la misma forma."
+    },
+    {
+      "tipo": "cta",
+      "dur": 4.5
+    }
   ]
 }
