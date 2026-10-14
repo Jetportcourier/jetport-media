@@ -26,13 +26,17 @@ Clips reales: escena {"tipo": "clip", "dur": 3, "archivo": "material/clip.mp4", 
   usa el video real como fondo (recortado a vertical, con acercamiento lento) y texto estilo TikTok.
   Opcionales: "recorte": [x, y, ancho, alto] para quitar franjas negras o subtítulos quemados del original;
   "con_audio": true para usar la voz del clip (la música baja de volumen); "subtitulos": [[desde, hasta, "frase"]].
-  Avatar de la marca (presentadora virtual): clips en material/avatar_*.mp4 (ver material/LEEME.md).
+  También acepta FOTOS (.png/.jpg) como "archivo": se muestran con acercamiento lento.
+  "globo": "texto" dibuja un globo de diálogo blanco (para que la presentadora 'hable'); "globo_y" ajusta la altura.
+  Avatar de la marca (presentadora virtual "Jetport"): material/avatar_foto_oficina.jpg (recorte [190, 0, 576, 1024], así no se ve el logo mal escrito de la pared)
+  y material/avatar_foto_estudio.png (recorte [200, 60, 640, 964]). Ver material/LEEME.md.
 Transiciones: cualquier escena puede llevar "transicion": "zoom" (por defecto: golpe de zoom + destello),
   "barrido" (deslizamiento rápido) o "ninguna".
 Marca: generador/logo_horizontal.png (logo oficial) va en el pie de todos los cuadros, SIEMPRE sobre tarjeta blanca.\n  generador/logo_vertical.png es la versión vertical, también sobre blanco.
 La escena "cta" muestra las redes oficiales (TikTok @jetport_courier, Instagram @jetportcourier,
   Facebook Jetport Courier, jpcourier.com).
 Música: "musica_semilla" de 0 a 119 elige estilo, acordes, tono y velocidad (ver musica.py); usa una distinta en cada video.
+Los emojis NO se ven dentro del video (se quitan solos): úsalos solo en el texto de la publicación.
 Reglas: NUNCA poner números de teléfono/WhatsApp en los videos ni en los textos de las publicaciones.
 Otras reglas de contenido: nunca poner el domicilio fiscal; la ubicación pública es "Los Olivos, Lima".
 """
@@ -99,6 +103,11 @@ def rgba(c, a): return c + (int(255 * max(0, min(1, a))),)
 def appear(t, start, dur=0.45):
     e = ease((t - start) / dur); return e, int((1 - e) * 60)
 
+def limpiar(texto):
+    """Quita emojis y símbolos que la fuente no tiene (en el video saldrían como cuadritos)."""
+    t = "".join(c for c in str(texto) if ord(c) < 0x2190 or c in "→←")
+    return " ".join(t.split())
+
 def wrap(texto, f, maxw):
     words, lines, cur = texto.split(), [], ""
     for w in words:
@@ -110,12 +119,14 @@ def wrap(texto, f, maxw):
 
 def fit(texto, weight, size, maxw, max_lines, min_size=40):
     """Reduce el tamaño hasta que el texto quepa en max_lines líneas."""
+    texto = limpiar(texto)
     while True:
         f = font(weight, size); lines = wrap(texto, f, maxw)
         if len(lines) <= max_lines or size <= min_size: return f, lines, size
         size -= 4
 
 def text(L, xy, s, f, fill, a=1.0, anchor="mm"):
+    s = limpiar(s) if s not in ("→",) else s
     ImageDraw.Draw(L).text(xy, s, font=f, fill=rgba(fill, a), anchor=anchor)
 
 def block(L, y, texto, weight, size, color, a, maxw=W - 2 * MARGIN, max_lines=3, gap=1.18):
@@ -364,16 +375,17 @@ class Clip:
         self.proc, self.ultimo = None, None
         pre = f"crop={recorte[2]}:{recorte[3]}:{recorte[0]}:{recorte[1]}," if recorte else ""
         self.vf = pre + f"scale={W}:{H}:force_original_aspect_ratio=increase,crop={W}:{H},fps={FPS}"
+        self.loop = ["-loop", "1"] if ruta.lower().endswith((".png", ".jpg", ".jpeg", ".webp")) else []
 
     def cuadro_suelto(self, lt):
-        out = subprocess.run(["ffmpeg", "-loglevel", "error", "-ss", str(self.inicio + lt), "-i", self.ruta,
+        out = subprocess.run(["ffmpeg", "-loglevel", "error"] + self.loop + ["-ss", str(self.inicio + lt), "-i", self.ruta,
                               "-frames:v", "1", "-vf", self.vf, "-f", "rawvideo", "-pix_fmt", "rgb24", "-"],
                              capture_output=True).stdout
         return Image.frombytes("RGB", (W, H), out[: W * H * 3]) if len(out) >= W * H * 3 else Image.new("RGB", (W, H))
 
     def siguiente(self):
         if self.proc is None:
-            self.proc = subprocess.Popen(["ffmpeg", "-loglevel", "error", "-ss", str(self.inicio), "-i", self.ruta,
+            self.proc = subprocess.Popen(["ffmpeg", "-loglevel", "error"] + self.loop + ["-ss", str(self.inicio), "-i", self.ruta,
                                           "-t", str(self.dur + 0.5), "-vf", self.vf, "-an", "-f", "rawvideo",
                                           "-pix_fmt", "rgb24", "-"], stdout=subprocess.PIPE,
                                          stderr=subprocess.DEVNULL)
@@ -403,6 +415,20 @@ def texto_borde(L, xy, s, f, color, a, borde=8):
     ImageDraw.Draw(L).text(xy, s, font=f, fill=rgba(color, a), anchor="mm",
                            stroke_width=borde, stroke_fill=rgba((0, 0, 0), a))
 
+def _globo(L, frase, lt, a, y_top):
+    """Globo de diálogo blanco (la presentadora 'habla'), aparece con un pequeño rebote."""
+    p = ease((lt - 0.25) / 0.35)
+    if p <= 0: return
+    f, lines, sz = fit(frase, "Bold", 58, W - 300, 4)
+    hgt = 70 + len(lines) * sz * 1.22
+    x0, x1 = 110, W - 110
+    y0 = y_top + (1 - p) * 40
+    d = ImageDraw.Draw(L)
+    d.rounded_rectangle([x0, y0, x1, y0 + hgt], 44, fill=(255, 255, 255, int(245 * a * p)))
+    d.polygon([(W / 2 - 40, y0 + 2), (W / 2 + 30, y0 + 2), (W / 2 - 10, y0 - 50)], fill=(255, 255, 255, int(245 * a * p)))
+    for i, ln in enumerate(lines):
+        text(L, (W / 2, y0 + 35 + sz * 0.62 + i * sz * 1.22), ln, f, NAVY, a * p)
+
 def esc_clip(L, e, lt, a):
     """Escena sobre video real con texto estilo TikTok (blanco con borde negro).
     "subtitulos": [[desde, hasta, "texto"], ...] muestra subtítulos abajo (para videos con voz)."""
@@ -412,6 +438,8 @@ def esc_clip(L, e, lt, a):
             y = 1500 - (len(lines) - 1) * sz * 0.6
             for ln in lines:
                 texto_borde(L, (W / 2, y), ln, f, (255, 214, 64), a, borde=8); y += sz * 1.15
+    if e.get("globo"):
+        _globo(L, e["globo"], lt, a, e.get("globo_y", 1230))
     pos = {"arriba": 330, "centro": 860, "abajo": 1380}[e.get("posicion", "arriba")]
     p = ease((lt - 0.15) / 0.3)
     escala = 1 + 0.25 * (1 - p)                                       # el texto entra "de golpe"
