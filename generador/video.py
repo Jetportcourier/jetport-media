@@ -24,9 +24,12 @@ La escena "cta" admite "modo": "seguir" (por defecto: Síguenos @jetportcourier)
 Clips reales: escena {"tipo": "clip", "dur": 3, "archivo": "material/clip.mp4", "inicio": 2.0,
   "texto": "POV: llegó tu pedido de Amazon", "resaltado": "📦", "posicion": "arriba|centro|abajo"}
   usa el video real como fondo (recortado a vertical, con acercamiento lento) y texto estilo TikTok.
+  Opcionales: "recorte": [x, y, ancho, alto] para quitar franjas negras o subtítulos quemados del original;
+  "con_audio": true para usar la voz del clip (la música baja de volumen); "subtitulos": [[desde, hasta, "frase"]].
+  Avatar de la marca (presentadora virtual): clips en material/avatar_*.mp4 (ver material/LEEME.md).
 Transiciones: cualquier escena puede llevar "transicion": "zoom" (por defecto: golpe de zoom + destello),
   "barrido" (deslizamiento rápido) o "ninguna".
-Marca: si existe generador/logo.png (PNG con fondo transparente) se usa como marca en el pie de todos los cuadros.
+Marca: generador/logo_horizontal.png (logo oficial) va en el pie de todos los cuadros, SIEMPRE sobre tarjeta blanca.\n  generador/logo_vertical.png es la versión vertical, también sobre blanco.
 La escena "cta" muestra las redes oficiales (TikTok @jetport_courier, Instagram @jetportcourier,
   Facebook Jetport Courier, jpcourier.com).
 Música: "musica_semilla" de 0 a 119 elige estilo, acordes, tono y velocidad (ver musica.py); usa una distinta en cada video.
@@ -267,8 +270,9 @@ def _caja(L, top, texto, lt, a):
 # ---------- redes sociales y logo ----------
 REDES = [("tiktok", "@jetport_courier"), ("instagram", "@jetportcourier"),
          ("facebook", "Jetport Courier"), ("web", "jpcourier.com")]
-_RUTA_LOGO = os.path.join(os.path.dirname(os.path.abspath(__file__)), "logo.png")
+_RUTA_LOGO = os.path.join(os.path.dirname(os.path.abspath(__file__)), "logo_horizontal.png")
 LOGO = Image.open(_RUTA_LOGO).convert("RGBA") if os.path.exists(_RUTA_LOGO) else None
+_LOGO_PIE = None
 
 def icono(L, red, cx, cy, r, a):
     d = ImageDraw.Draw(L)
@@ -308,10 +312,16 @@ def bloque_redes(L, top, lt, inicio, a):
         text(L, (x0 + 100, y + dy * 0.3), usuario, f, WHITE, a * p, "lm")
 
 def marca_pie(L):
+    """Logo oficial SIEMPRE sobre tarjeta blanca (pedido del dueño: que resalten sus colores)."""
+    global _LOGO_PIE
     if LOGO is not None:
-        h = 110; w = int(LOGO.width * h / LOGO.height)
-        lg = LOGO.resize((w, h), Image.LANCZOS)
-        L.alpha_composite(lg, (int(W / 2 - w / 2), H - 120 - h // 2))
+        if _LOGO_PIE is None:
+            h = 104; w = int(LOGO.width * h / LOGO.height)
+            _LOGO_PIE = LOGO.resize((w, h), Image.LANCZOS)
+        w, h = _LOGO_PIE.size
+        x, y = int(W / 2 - w / 2), H - 112 - h // 2
+        ImageDraw.Draw(L).rounded_rectangle([x - 26, y - 14, x + w + 26, y + h + 14], 30, fill=(255, 255, 255, 255))
+        L.alpha_composite(_LOGO_PIE, (x, y))
     else:
         text(L, (W/2, H - 120), "JETPORT COURIER", font("Black", 44), WHITE)
         ImageDraw.Draw(L).rectangle([W/2 - 60, H - 85, W/2 + 60, H - 79], fill=rgba(ORANGE, 1))
@@ -349,10 +359,11 @@ def esc_cta_escribenos(L, e, lt, a):
 class Clip:
     """Lee un video real recortado a 1080x1920 (rellena la pantalla) a 30 fps.
     En vista previa saca un solo cuadro; al renderizar lee los cuadros en orden con ffmpeg."""
-    def __init__(self, ruta, inicio, dur):
+    def __init__(self, ruta, inicio, dur, recorte=None):
         self.ruta, self.inicio, self.dur = ruta, float(inicio), float(dur)
         self.proc, self.ultimo = None, None
-        self.vf = f"scale={W}:{H}:force_original_aspect_ratio=increase,crop={W}:{H},fps={FPS}"
+        pre = f"crop={recorte[2]}:{recorte[3]}:{recorte[0]}:{recorte[1]}," if recorte else ""
+        self.vf = pre + f"scale={W}:{H}:force_original_aspect_ratio=increase,crop={W}:{H},fps={FPS}"
 
     def cuadro_suelto(self, lt):
         out = subprocess.run(["ffmpeg", "-loglevel", "error", "-ss", str(self.inicio + lt), "-i", self.ruta,
@@ -376,7 +387,7 @@ MODO_PREVIA = False
 
 def fondo_clip(i, e, lt):
     if i not in _clips:
-        _clips[i] = Clip(e["archivo"], e.get("inicio", 0), e["dur"])
+        _clips[i] = Clip(e["archivo"], e.get("inicio", 0), e["dur"], e.get("recorte"))
     img = _clips[i].cuadro_suelto(lt) if MODO_PREVIA else _clips[i].siguiente()
     z = 1.0 + 0.06 * min(lt / max(float(e["dur"]), 0.1), 1.0)       # acercamiento lento (efecto Ken Burns)
     cw, ch = int(W / z), int(H / z)
@@ -393,7 +404,14 @@ def texto_borde(L, xy, s, f, color, a, borde=8):
                            stroke_width=borde, stroke_fill=rgba((0, 0, 0), a))
 
 def esc_clip(L, e, lt, a):
-    """Escena sobre video real con texto estilo TikTok (blanco con borde negro)."""
+    """Escena sobre video real con texto estilo TikTok (blanco con borde negro).
+    "subtitulos": [[desde, hasta, "texto"], ...] muestra subtítulos abajo (para videos con voz)."""
+    for desde, hasta, frase in e.get("subtitulos", []):
+        if desde <= lt < hasta:
+            f, lines, sz = fit(frase, "Black", 64, W - 160, 3)
+            y = 1500 - (len(lines) - 1) * sz * 0.6
+            for ln in lines:
+                texto_borde(L, (W / 2, y), ln, f, (255, 214, 64), a, borde=8); y += sz * 1.15
     pos = {"arriba": 330, "centro": 860, "abajo": 1380}[e.get("posicion", "arriba")]
     p = ease((lt - 0.15) / 0.3)
     escala = 1 + 0.25 * (1 - p)                                       # el texto entra "de golpe"
@@ -480,8 +498,23 @@ def main():
     p.stdin.close(); p.wait()
     for c in _clips.values():
         if c.proc: c.proc.kill()
-    subprocess.run(["ffmpeg", "-y", "-loglevel", "error", "-i", muda, "-i", wav, "-map", "0:v", "-map", "1:a",
-                    "-c:v", "copy", "-c:a", "aac", "-b:a", "192k", "-shortest", "-movflags", "+faststart", out], check=True)
+    voces = [(s0, e) for s0, _, e in escenas if e["tipo"] == "clip" and e.get("con_audio")]
+    entradas = ["-i", muda, "-i", wav]
+    if not voces:
+        filtro, mapa = None, "1:a"
+    else:
+        partes = ["[1:a]volume=0.22[mus]"]; etiquetas = ["[mus]"]
+        for k, (s0, e) in enumerate(voces):
+            entradas += ["-ss", str(e.get("inicio", 0)), "-t", str(e["dur"]), "-i", e["archivo"]]
+            ms = int(s0 * 1000)
+            partes.append(f"[{k + 2}:a]aresample=44100,volume=1.6,adelay={ms}|{ms}[v{k}]"); etiquetas.append(f"[v{k}]")
+        partes.append("".join(etiquetas) + f"amix=inputs={len(etiquetas)}:duration=first:normalize=0,alimiter=limit=0.95[a]")
+        filtro, mapa = ";".join(partes), "[a]"
+    cmd = ["ffmpeg", "-y", "-loglevel", "error"] + entradas
+    if filtro: cmd += ["-filter_complex", filtro]
+    cmd += ["-map", "0:v", "-map", mapa, "-c:v", "copy", "-c:a", "aac", "-b:a", "192k", "-shortest",
+            "-movflags", "+faststart", out]
+    subprocess.run(cmd, check=True)
 
 if __name__ == "__main__":
     main()
