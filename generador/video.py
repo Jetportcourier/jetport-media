@@ -10,7 +10,7 @@ El guion es un JSON:
   "escenas": [
     {"tipo": "titulo", "dur": 3.5, "arriba": "3 ERRORES", "lineas": ["al comprar en USA", "desde Perú"], "sub": "¿Cuál cometiste tú?"},
     {"tipo": "punto",  "dur": 5,   "numero": "1", "etiqueta": "ERROR", "titulo": "No revisar los productos restringidos",
-                       "texto": "Baterías sueltas, perfumes o inflamables pueden quedar retenidos en aduana."},
+                       "texto": "Baterías de litio sueltas o líquidos inflamables pueden quedar retenidos en aduana."},
     {"tipo": "texto",  "dur": 5,   "etiqueta": "¿SABÍAS QUE?", "titulo": "Un casillero es tu dirección en USA",
                        "texto": "Compras en cualquier tienda online y la envías a nuestro almacén en Miami."},
     {"tipo": "cta",    "dur": 4}
