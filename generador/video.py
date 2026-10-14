@@ -29,6 +29,8 @@ Clips reales: escena {"tipo": "clip", "dur": 3, "archivo": "material/clip.mp4", 
   También acepta FOTOS (.png/.jpg) como "archivo": se muestran con acercamiento lento.
   "globo": "texto" dibuja un globo de diálogo blanco (para que la presentadora 'hable'); "globo_y" ajusta la altura.
   (Las fotos y videos del avatar en referencias/ son SOLO referencia del dueño: NO usarlos en los videos.)
+Cierre: al final de cada video se agrega solo un cierre animado de 2,6 s (círculo blanco que se abre, logo
+  con rebote, lema y fundido). Opcional "lema" en una escena {"tipo": "cierre", "dur": 2.6}; "cierre": false lo quita.
 Transiciones: cualquier escena puede llevar "transicion": "zoom" (golpe de zoom + destello),
   "barrido" (deslizamiento rápido) o "ninguna". Si no se indica, se alternan zoom y barrido automáticamente.
 Marca: generador/logo_horizontal.png (logo oficial) va en el pie de todos los cuadros, SIEMPRE sobre tarjeta blanca.\n  generador/logo_vertical.png es la versión vertical, también sobre blanco.
@@ -483,7 +485,44 @@ def esc_clip(L, e, lt, a):
             pill(L, [W/2 - tw/2 - 34, y - s2 * 0.62, W/2 + tw/2 + 34, y + s2 * 0.62], ORANGE, a * p2, 24)
             text(L, (W / 2, y), ln, f2, WHITE, a * p2); y += s2 * 1.3
 
-TIPOS = {"titulo": esc_titulo, "punto": esc_punto, "texto": esc_texto, "cta": esc_cta, "clip": esc_clip}
+_LOGO_V = None
+def esc_cierre(L, e, lt, a):
+    """Final animado: círculo blanco que se abre, logo con rebote y lema; evita que el video acabe en seco."""
+    global _LOGO_V
+    dur = float(e["dur"])
+    r = ease(lt / 0.55) * math.hypot(W, H) * 0.6
+    d = ImageDraw.Draw(L)
+    d.ellipse([W / 2 - r, H / 2 - r, W / 2 + r, H / 2 + r], fill=(255, 255, 255, 255))
+    anillos = Image.new("RGBA", (W, H), (0, 0, 0, 0)); da = ImageDraw.Draw(anillos)
+    for k in range(3):                                  # anillos naranja/azul que acompañan la apertura
+        rr = r * (1 + 0.06 * (k + 1)); al = max(0.0, 1 - lt / 0.7) * (0.6 - 0.15 * k)
+        if al > 0:
+            da.ellipse([W / 2 - rr, H / 2 - rr, W / 2 + rr, H / 2 + rr], outline=rgba(ORANGE if k % 2 == 0 else (30, 99, 200), al), width=10)
+    L.alpha_composite(anillos)
+    if _LOGO_V is None:
+        ruta = os.path.join(os.path.dirname(os.path.abspath(__file__)), "logo_vertical.png")
+        _LOGO_V = Image.open(ruta).convert("RGBA") if os.path.exists(ruta) else None
+    p = max(0.0, (lt - 0.35) / 0.5)
+    if _LOGO_V is not None and p > 0:
+        rebote = 1 + 0.12 * math.sin(min(p, 1) * math.pi) * (1 - min(p, 1)) * 2 if p < 1 else 1.0
+        esc = min(p, 1) ** 0.6 * rebote
+        h = int(620 * esc)
+        if h > 10:
+            lg = _LOGO_V.resize((int(_LOGO_V.width * h / _LOGO_V.height), h), Image.LANCZOS)
+            L.alpha_composite(lg, (int(W / 2 - lg.width / 2), int(820 - h / 2)))
+    capa = Image.new("RGBA", (W, H), (0, 0, 0, 0))     # texto en capa aparte para mezclarlo bien sobre el blanco
+    p2, dy = appear(lt, 0.9)
+    if p2 > 0.01:
+        text(capa, (W / 2, 1260 + dy), e.get("lema", "Tus compras de USA y China, en Perú"), font("Bold", 50), NAVY, p2)
+    p3, dy3 = appear(lt, 1.2)
+    if p3 > 0.01:
+        text(capa, (W / 2, 1345 + dy3), "@jetport_courier  ·  @jetportcourier", font("Medium", 40), (90, 110, 140), p3)
+    L.alpha_composite(capa)
+    fin = max(0.0, (lt - (dur - 0.45)) / 0.45)          # fundido a blanco al final
+    if fin > 0:
+        L.alpha_composite(Image.new("RGBA", (W, H), (255, 255, 255, int(255 * min(fin, 1)))))
+
+TIPOS = {"cierre": esc_cierre, "titulo": esc_titulo, "punto": esc_punto, "texto": esc_texto, "cta": esc_cta, "clip": esc_clip}
 
 def transicion(img, lt, tipo):
     """Efecto al entrar en una escena: 'zoom' (golpe de zoom + destello), 'barrido' o 'ninguna'."""
@@ -503,7 +542,10 @@ def transicion(img, lt, tipo):
 
 def build(guion):
     escenas, t = [], 0.0
-    for e in guion["escenas"]:
+    lista = list(guion["escenas"])
+    if guion.get("cierre", True) and not any(e["tipo"] == "cierre" for e in lista):
+        lista.append({"tipo": "cierre", "dur": 2.6, "transicion": "ninguna"})   # final animado automático
+    for e in lista:
         escenas.append((t, t + float(e["dur"]), e)); t += float(e["dur"])
     return escenas, t
 
@@ -523,12 +565,16 @@ def frame(escenas, total, t):
     a = 1.0 if (t <= e0 - 0.3 or e0 >= total) else (e0 - t) / 0.3
     if es_clip and esc.get("transicion", "zoom") != "ninguna":
         a = 1.0                                   # en clips el corte lo marca la transición, sin fundido
-    if not es_clip:
+    es_cierre = esc["tipo"] == "cierre"
+    if not es_clip and not es_cierre:
         a_in = ease(t_esc / 0.35) if idx > 0 else 1.0
         escenario(L, esc.get("fondo") or ORDEN_ESCENARIOS[idx % len(ORDEN_ESCENARIOS)], t, a * a_in)
-    TIPOS[esc["tipo"]](L, esc, t_esc, a)
-    progress(L, t, total)
-    marca_pie(L)
+    if es_cierre:
+        TIPOS["cierre"](L, esc, t_esc, 1.0)
+    else:
+        TIPOS[esc["tipo"]](L, esc, t_esc, a)
+        progress(L, t, total)
+        marca_pie(L)
     img.alpha_composite(L)
     if idx > 0:   # si el guion no la define, se alternan zoom y barrido para no repetir
         img = transicion(img, t_esc, esc.get("transicion", "zoom" if idx % 2 else "barrido"))
