@@ -29,8 +29,8 @@ Clips reales: escena {"tipo": "clip", "dur": 3, "archivo": "material/clip.mp4", 
   También acepta FOTOS (.png/.jpg) como "archivo": se muestran con acercamiento lento.
   "globo": "texto" dibuja un globo de diálogo blanco (para que la presentadora 'hable'); "globo_y" ajusta la altura.
   (Las fotos y videos del avatar en referencias/ son SOLO referencia del dueño: NO usarlos en los videos.)
-Transiciones: cualquier escena puede llevar "transicion": "zoom" (por defecto: golpe de zoom + destello),
-  "barrido" (deslizamiento rápido) o "ninguna".
+Transiciones: cualquier escena puede llevar "transicion": "zoom" (golpe de zoom + destello),
+  "barrido" (deslizamiento rápido) o "ninguna". Si no se indica, se alternan zoom y barrido automáticamente.
 Marca: generador/logo_horizontal.png (logo oficial) va en el pie de todos los cuadros, SIEMPRE sobre tarjeta blanca.\n  generador/logo_vertical.png es la versión vertical, también sobre blanco.
 La escena "cta" muestra las redes oficiales (TikTok @jetport_courier, Instagram @jetportcourier,
   Facebook Jetport Courier, jpcourier.com).
@@ -269,7 +269,7 @@ def esc_texto(L, e, lt, a):
 
 # Estilo de los recuadros (TIP y redes): "blanco" (tarjeta blanca sólida), "oscuro" (azul oscuro sólido con
 # borde naranja) o "cristal" (oscuro translúcido con borde blanco). Se elige en el guion con "estilo_caja".
-ESTILO_CAJA = "blanco"
+ESTILO_CAJA = "blanco"       # aprobado por el dueño
 
 def tarjeta(L, box, a, r=40):
     """Dibuja el fondo del recuadro según el estilo y devuelve el color del texto que va encima."""
@@ -342,7 +342,7 @@ def bloque_redes(L, top, lt, inicio, a):
 # Estilo del logo en el pie: "tarjeta" (sobre tarjeta blanca), "transparente" (sin fondo)
 # o "contorno" (sin fondo, con un borde blanco suave para que no se pierda en fondos azules).
 LOGO_ESTILO = "tarjeta"
-LOGO_OPACIDAD = 1.0          # opacidad de la tarjeta blanca del logo (1.0 = blanco sólido)
+LOGO_OPACIDAD = 0.85         # opacidad de la tarjeta blanca del logo (aprobado por el dueño: 85%)
 _LOGOS = {}
 
 def marca_pie(L):
@@ -530,8 +530,8 @@ def frame(escenas, total, t):
     progress(L, t, total)
     marca_pie(L)
     img.alpha_composite(L)
-    if idx > 0:
-        img = transicion(img, t_esc, esc.get("transicion", "zoom"))
+    if idx > 0:   # si el guion no la define, se alternan zoom y barrido para no repetir
+        img = transicion(img, t_esc, esc.get("transicion", "zoom" if idx % 2 else "barrido"))
     return img.convert("RGB")
 
 def main():
