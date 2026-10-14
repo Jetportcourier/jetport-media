@@ -16,6 +16,9 @@ El guion es un JSON:
     {"tipo": "cta",    "dur": 4}
   ]
 }
+Cada escena puede llevar "fondo": "avion" | "ruta" | "tienda" | "cajas" (escenario ilustrado animado:
+aviones y nubes, mapa Miami→Lima, toldo de tienda con carteles de oferta, cajas en cinta, bolsas de compras).
+Si se omite, se rotan automáticamente.
 Reglas de contenido: nunca poner el domicilio fiscal; la ubicación pública es "Los Olivos, Lima".
 """
 import json, math, os, subprocess, sys, tempfile
@@ -113,6 +116,95 @@ def plane(L, cx, cy, s, a):
     d.polygon([(cx + .1*s, cy + .05*s), (cx - .25*s, cy + .75*s), (cx - .05*s, cy + .75*s), (cx + .45*s, cy)], fill=c)
     d.polygon([(cx - .85*s, cy), (cx - 1.05*s, cy - .35*s), (cx - .92*s, cy - .35*s), (cx - .6*s, cy)], fill=c)
 
+# ---------- escenarios ilustrados (franja superior 40-300 px e inferior 1460-1770 px, sin tapar el texto) ----------
+CARTON = (205, 150, 92); CARTON_OSC = (160, 110, 62); CINTA = (232, 206, 150)
+
+def _nubes(L, t, a):
+    d = ImageDraw.Draw(L)
+    for i, (x0, y, s, v) in enumerate([(0, 120, 1.0, 40), (500, 230, 0.7, 25), (900, 90, 0.8, 32)]):
+        x = (x0 + t * v) % (W + 400) - 200
+        for dx, dy, r in [(0, 0, 48), (45, -22, 58), (100, 0, 46), (55, 12, 40)]:
+            d.ellipse([x + dx * s - r * s, y + dy * s - r * s, x + dx * s + r * s, y + dy * s + r * s], fill=rgba(WHITE, 0.13 * a))
+
+def _avion_ruta(L, t, a):
+    _nubes(L, t, a)
+    d = ImageDraw.Draw(L)
+    x = (t * 260) % (W + 600) - 300; y = 180 + 30 * math.sin(t * 1.5)
+    for k in range(1, 14):                                  # estela punteada
+        xx = x - 70 - k * 38
+        if xx > -20: d.ellipse([xx - 6, y - 6, xx + 6, y + 6], fill=rgba(WHITE, 0.35 * a * (1 - k / 14)))
+    plane(L, x, y, 85, 0.9 * a)
+
+def _ruta_mapa(L, t, a):
+    d = ImageDraw.Draw(L)
+    x1, x2, yb = 150, W - 150, 250
+    pts = [(x1 + (x2 - x1) * u, yb - 170 * math.sin(math.pi * u)) for u in [i / 60 for i in range(61)]]
+    for i in range(0, 60, 2): d.line([pts[i], pts[i + 1]], fill=rgba(WHITE, 0.45 * a), width=6)
+    for (px, py), nombre in [((x1, yb), "MIAMI"), ((x2, yb), "LIMA")]:
+        d.ellipse([px - 16, py - 16, px + 16, py + 16], fill=rgba(ORANGE, a))
+        text(L, (px, py + 42), nombre, font("Black", 34), WHITE, 0.8 * a)
+    u = (t * 0.35) % 1; i = int(u * 60)
+    px, py = pts[i]; qx, qy = pts[min(i + 1, 60)]
+    ang = math.atan2(qy - py, qx - px)
+    pl = Image.new("RGBA", (260, 260), (0, 0, 0, 0)); plane(pl, 130, 130, 60, a)
+    pl = pl.rotate(-math.degrees(ang), resample=Image.BICUBIC)
+    L.alpha_composite(pl, (int(px - 130), int(py - 130)))
+
+def _dibujar_caja(d, x, y, w, h, a, etiqueta=True):
+    d.rectangle([x, y, x + w, y + h], fill=rgba(CARTON, a), outline=rgba(CARTON_OSC, a), width=4)
+    d.rectangle([x + w / 2 - w * 0.09, y, x + w / 2 + w * 0.09, y + h], fill=rgba(CINTA, a))
+    if etiqueta and w > 110:
+        d.rectangle([x + w * 0.62, y + h * 0.55, x + w * 0.92, y + h * 0.85], fill=rgba(WHITE, a))
+        for k in range(3):
+            yy = y + h * (0.61 + k * 0.08)
+            d.line([x + w * 0.66, yy, x + w * 0.88, yy], fill=rgba(NAVY, a), width=3)
+
+def _cajas_cinta(L, t, a):
+    d = ImageDraw.Draw(L)
+    yb = 1740
+    d.rounded_rectangle([-20, yb, W + 20, yb + 28], 14, fill=rgba((40, 44, 60), 0.85 * a))
+    for k in range(-1, 20):                                 # rodillos que avanzan
+        xx = (k * 70 + t * 120) % (W + 70) - 35
+        d.ellipse([xx - 9, yb + 5, xx + 9, yb + 23], fill=rgba((120, 125, 140), a))
+    for i, (w, h) in enumerate([(170, 140), (130, 110), (200, 160), (150, 120), (120, 100)]):
+        x = (i * 290 + t * 120) % (W + 600) - 300
+        _dibujar_caja(d, x, yb - h, w, h, 0.95 * a)
+
+def _bolsas(L, t, a):
+    d = ImageDraw.Draw(L)
+    colores = [ORANGE, (255, 255, 255), (80, 200, 255), (255, 214, 64), (236, 72, 153)]
+    for i, c in enumerate(colores):
+        w, h = 140 + (i % 2) * 30, 170 + (i % 3) * 20
+        x = 70 + i * 200; y = 1760 - h - 10 * abs(math.sin(t * 2.2 + i))
+        d.arc([x + w * 0.25, y - 60, x + w * 0.75, y + 50], 180, 360, fill=rgba(c, a), width=9)
+        d.rounded_rectangle([x, y, x + w, y + h], 14, fill=rgba(c, 0.92 * a))
+        d.rounded_rectangle([x, y, x + w, y + h], 14, outline=rgba((0, 0, 0), 0.12 * a), width=3)
+
+def _tienda(L, t, a):
+    d = ImageDraw.Draw(L)
+    n, wseg = 9, W / 9
+    for i in range(n):                                      # toldo a rayas con ondas
+        c = ORANGE if i % 2 == 0 else WHITE
+        x = i * wseg
+        d.rectangle([x, 30, x + wseg, 150], fill=rgba(c, 0.85 * a))
+        d.pieslice([x, 110, x + wseg, 190], 0, 180, fill=rgba(c, 0.85 * a))
+    for i, emo in enumerate(["SALE", "-50%", "OFERTA", "NEW"]):
+        x = 140 + i * 260; y = 240 + 8 * math.sin(t * 3 + i)
+        d.rounded_rectangle([x - 90, y - 32, x + 90, y + 32], 16, fill=rgba((236, 72, 153) if i % 2 else (255, 214, 64), 0.9 * a))
+        text(L, (x, y), emo, font("Black", 36), NAVY2 if i % 2 == 0 else WHITE, a)
+
+ESCENARIOS = {
+    "avion": (_avion_ruta, _cajas_cinta),
+    "ruta": (_ruta_mapa, _cajas_cinta),
+    "tienda": (_tienda, _bolsas),
+    "cajas": (_avion_ruta, _bolsas),
+}
+ORDEN_ESCENARIOS = ["avion", "tienda", "ruta", "cajas"]
+
+def escenario(L, nombre, t, a):
+    arriba, abajo = ESCENARIOS[nombre]
+    arriba(L, t, a); abajo(L, t, a)
+
 def pill(L, box, color, a=1.0, r=40):
     ImageDraw.Draw(L).rounded_rectangle(box, r, fill=rgba(color, a))
 
@@ -191,9 +283,11 @@ def frame(escenas, total, t):
     for k in range(-2, 7):
         x0 = k * 400 + off - 600
         d.polygon([(x0, 0), (x0 + 60, 0), (x0 + 760, H), (x0 + 700, H)], fill=(255, 255, 255, 10))
-    for s, e_, e in escenas:
+    for i, (s, e_, e) in enumerate(escenas):
         if s <= t <= e_:
             a = 1.0 if (t <= e_ - 0.3 or e_ >= total) else (e_ - t) / 0.3
+            a_in = ease((t - s) / 0.35) if i > 0 else 1.0
+            escenario(L, e.get("fondo") or ORDEN_ESCENARIOS[i % len(ORDEN_ESCENARIOS)], t, a * a_in)
             TIPOS[e["tipo"]](L, e, t - s, a)
     progress(L, t, total)
     text(L, (W/2, H - 120), "JETPORT COURIER", font("Black", 44), WHITE)

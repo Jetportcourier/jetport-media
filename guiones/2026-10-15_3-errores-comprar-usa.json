@@ -1,0 +1,10 @@
+{
+  "musica_semilla": 0,
+  "escenas": [
+    {"tipo": "titulo", "dur": 3.8, "fondo": "avion", "arriba": "3 ERRORES", "lineas": ["al comprar en USA", "desde Perú"], "sub": "¿Cuál cometiste tú?"},
+    {"tipo": "punto", "dur": 5.5, "fondo": "cajas", "numero": "1", "etiqueta": "ERROR", "titulo": "No revisar los productos restringidos", "texto": "Baterías sueltas, perfumes o inflamables pueden quedar retenidos en aduana. Revisa la lista antes de comprar."},
+    {"tipo": "punto", "dur": 5.5, "fondo": "tienda", "numero": "2", "etiqueta": "ERROR", "titulo": "No planificar el monto de tu compra", "texto": "Hasta US$ 200 no pagas impuestos de importación. Calcula tu total antes de pagar."},
+    {"tipo": "punto", "dur": 5.5, "fondo": "ruta", "numero": "3", "etiqueta": "ERROR", "titulo": "Escribir mal la dirección del casillero", "texto": "Siempre pon tu código de cliente junto a tu nombre para que ubiquemos tu paquete rápido."},
+    {"tipo": "cta", "dur": 4.5, "fondo": "avion"}
+  ]
+}
