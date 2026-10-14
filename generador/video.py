@@ -342,23 +342,26 @@ def bloque_redes(L, top, lt, inicio, a):
 # Estilo del logo en el pie: "tarjeta" (sobre tarjeta blanca), "transparente" (sin fondo)
 # o "contorno" (sin fondo, con un borde blanco suave para que no se pierda en fondos azules).
 LOGO_ESTILO = "tarjeta"
+LOGO_OPACIDAD = 1.0          # opacidad de la tarjeta blanca del logo (1.0 = blanco sólido)
 _LOGOS = {}
 
 def marca_pie(L):
     aqui = os.path.dirname(os.path.abspath(__file__))
-    archivo = {"tarjeta": "logo_horizontal.png", "transparente": "logo_horizontal_transparente.png",
+    archivo = {"tarjeta": "logo_horizontal_transparente.png", "transparente": "logo_horizontal_transparente.png",
                "contorno": "logo_horizontal_contorno.png"}.get(LOGO_ESTILO, "logo_horizontal.png")
     ruta = os.path.join(aqui, archivo)
     if not os.path.exists(ruta):
         text(L, (W/2, H - 120), "JETPORT COURIER", font("Black", 44), WHITE); return
     if archivo not in _LOGOS:
         im = Image.open(ruta).convert("RGBA")
-        h = 104 if LOGO_ESTILO == "tarjeta" else 128
+        h = 84 if LOGO_ESTILO == "tarjeta" else 128
         _LOGOS[archivo] = im.resize((int(im.width * h / im.height), h), Image.LANCZOS)
     lg = _LOGOS[archivo]; w, h = lg.size
-    x, y = int(W / 2 - w / 2), H - 112 - h // 2
+    # la tarjeta va DEBAJO de la línea de la cinta transportadora (y = 1768), sin chocar con ella
+    x, y = int(W / 2 - w / 2), (H - 70 - h // 2) if LOGO_ESTILO == "tarjeta" else (H - 112 - h // 2)
     if LOGO_ESTILO == "tarjeta":
-        ImageDraw.Draw(L).rounded_rectangle([x - 26, y - 14, x + w + 26, y + h + 14], 30, fill=(255, 255, 255, 255))
+        ImageDraw.Draw(L).rounded_rectangle([x - 24, y - 12, x + w + 24, y + h + 12], 26,
+                                            fill=(255, 255, 255, int(255 * LOGO_OPACIDAD)))
     L.alpha_composite(lg, (x, y))
 
 def esc_cta(L, e, lt, a):
@@ -535,6 +538,7 @@ def main():
     guion = json.load(open(sys.argv[1], encoding="utf-8")); out = sys.argv[2]
     global ESTILO_CAJA, LOGO_ESTILO
     ESTILO_CAJA = guion.get("estilo_caja", ESTILO_CAJA); LOGO_ESTILO = guion.get("logo", LOGO_ESTILO)
+    global LOGO_OPACIDAD; LOGO_OPACIDAD = float(guion.get("logo_opacidad", LOGO_OPACIDAD))
     escenas, total = build(guion)
     if len(sys.argv) > 3:
         global MODO_PREVIA; MODO_PREVIA = True
