@@ -267,15 +267,33 @@ def esc_texto(L, e, lt, a):
     y = block(L, 600 + dy, e["titulo"], "Black", 88, WHITE, a * p, max_lines=4)
     _caja(L, max(y + 40, 1010), e.get("texto", ""), lt, a)
 
+# Estilo de los recuadros (TIP y redes): "blanco" (tarjeta blanca sólida), "oscuro" (azul oscuro sólido con
+# borde naranja) o "cristal" (oscuro translúcido con borde blanco). Se elige en el guion con "estilo_caja".
+ESTILO_CAJA = "blanco"
+
+def tarjeta(L, box, a, r=40):
+    """Dibuja el fondo del recuadro según el estilo y devuelve el color del texto que va encima."""
+    d = ImageDraw.Draw(L)
+    if ESTILO_CAJA == "blanco":
+        d.rounded_rectangle([box[0] + 6, box[1] + 10, box[2] + 6, box[3] + 10], r, fill=(0, 0, 0, int(70 * a)))
+        d.rounded_rectangle(box, r, fill=rgba(WHITE, 0.97 * a))
+        d.rounded_rectangle([box[0], box[1], box[0] + 14, box[3]], 7, fill=rgba(ORANGE, a))
+        return NAVY
+    if ESTILO_CAJA == "oscuro":
+        d.rounded_rectangle(box, r, fill=rgba((8, 22, 56), 0.92 * a), outline=rgba(ORANGE, a), width=5)
+        return WHITE
+    d.rounded_rectangle(box, r, fill=(0, 0, 0, int(120 * a)), outline=rgba(WHITE, 0.55 * a), width=3)
+    return WHITE
+
 def _caja(L, top, texto, lt, a):
     if not texto: return
     p, dy = appear(lt, 0.8)
     f, lines, s = fit(texto, "Medium", 54, W - 2 * MARGIN - 80, 5)
     hgt = 110 + len(lines) * s * 1.25
-    pill(L, [MARGIN, top + dy, W - MARGIN, top + hgt + dy], WHITE, a * p * 0.09, 40)
+    color = tarjeta(L, [MARGIN, top + dy, W - MARGIN, top + hgt + dy], a * p)
     text(L, (MARGIN + 50, top + 50 + dy), "TIP", font("Black", 44), ORANGE, a * p, "lm")
     for i, ln in enumerate(lines):
-        text(L, (W/2, top + 115 + i * s * 1.25 + dy), ln, f, WHITE, a * p)
+        text(L, (W/2, top + 115 + i * s * 1.25 + dy), ln, f, color, a * p)
 
 # ---------- redes sociales y logo ----------
 REDES = [("tiktok", "@jetport_courier"), ("instagram", "@jetportcourier"),
@@ -314,12 +332,12 @@ def bloque_redes(L, top, lt, inicio, a):
     f = font("Bold", 50)
     ancho = max(f.getlength(u) for _, u in REDES) + 110
     x0 = W / 2 - ancho / 2
-    pill(L, [x0 - 40, top - 20, x0 + ancho + 40, top + len(REDES) * 105 + 5], WHITE, 0.10 * a, 36)
+    color = tarjeta(L, [x0 - 40, top - 20, x0 + ancho + 40, top + len(REDES) * 105 + 5], a, 36)
     for i, (red, usuario) in enumerate(REDES):
         p, dy = appear(lt, inicio + i * 0.15)
         y = top + 45 + i * 105
         icono(L, red, int(x0 + 36), int(y + dy * 0.3), 34, a * p)
-        text(L, (x0 + 100, y + dy * 0.3), usuario, f, WHITE, a * p, "lm")
+        text(L, (x0 + 100, y + dy * 0.3), usuario, f, color, a * p, "lm")
 
 def marca_pie(L):
     """Logo oficial SIEMPRE sobre tarjeta blanca (pedido del dueño: que resalten sus colores)."""
@@ -508,6 +526,7 @@ def frame(escenas, total, t):
 
 def main():
     guion = json.load(open(sys.argv[1], encoding="utf-8")); out = sys.argv[2]
+    global ESTILO_CAJA; ESTILO_CAJA = guion.get("estilo_caja", ESTILO_CAJA)
     escenas, total = build(guion)
     if len(sys.argv) > 3:
         global MODO_PREVIA; MODO_PREVIA = True
