@@ -2,17 +2,14 @@
   "musica_semilla": 22,
   "escenas": [
     {
-      "tipo": "clip",
-      "dur": 4.2,
-      "archivo": "material/avatar_foto_oficina.jpg",
-      "recorte": [
-        190,
-        0,
-        576,
-        1024
+      "tipo": "titulo",
+      "dur": 3.8,
+      "arriba": "¿QUÉ ES UN CASILLERO?",
+      "lineas": [
+        "y cómo te ayuda a comprar",
+        "en USA desde Perú"
       ],
-      "texto": "¿Qué es un casillero?",
-      "globo": "¡Hola! En 30 segundos te explico cómo comprar en USA desde Perú"
+      "sub": "Te lo explicamos en 30 segundos"
     },
     {
       "tipo": "texto",

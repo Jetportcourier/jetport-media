@@ -2,17 +2,15 @@
   "musica_semilla": 13,
   "escenas": [
     {
-      "tipo": "clip",
-      "dur": 4,
-      "archivo": "material/avatar_foto_oficina.jpg",
-      "recorte": [
-        190,
-        0,
-        576,
-        1024
+      "tipo": "titulo",
+      "dur": 3.8,
+      "fondo": "avion",
+      "arriba": "3 ERRORES",
+      "lineas": [
+        "al comprar en USA",
+        "desde Perú"
       ],
-      "texto": "3 ERRORES al comprar en USA desde Perú",
-      "globo": "¡Hola! Te cuento los errores que casi todos cometen. ¿Cuál cometiste tú?"
+      "sub": "¿Cuál cometiste tú?"
     },
     {
       "tipo": "punto",

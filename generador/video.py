@@ -28,8 +28,7 @@ Clips reales: escena {"tipo": "clip", "dur": 3, "archivo": "material/clip.mp4", 
   "con_audio": true para usar la voz del clip (la música baja de volumen); "subtitulos": [[desde, hasta, "frase"]].
   También acepta FOTOS (.png/.jpg) como "archivo": se muestran con acercamiento lento.
   "globo": "texto" dibuja un globo de diálogo blanco (para que la presentadora 'hable'); "globo_y" ajusta la altura.
-  Avatar de la marca (presentadora virtual "Jetport"): material/avatar_foto_oficina.jpg (recorte [190, 0, 576, 1024], así no se ve el logo mal escrito de la pared)
-  y material/avatar_foto_estudio.png (recorte [200, 60, 640, 964]). Ver material/LEEME.md.
+  (Las fotos y videos del avatar en referencias/ son SOLO referencia del dueño: NO usarlos en los videos.)
 Transiciones: cualquier escena puede llevar "transicion": "zoom" (por defecto: golpe de zoom + destello),
   "barrido" (deslizamiento rápido) o "ninguna".
 Marca: generador/logo_horizontal.png (logo oficial) va en el pie de todos los cuadros, SIEMPRE sobre tarjeta blanca.\n  generador/logo_vertical.png es la versión vertical, también sobre blanco.
