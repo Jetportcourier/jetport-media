@@ -1,0 +1,71 @@
+{
+  "musica_semilla": 47,
+  "escenas": [
+    {
+      "tipo": "titulo",
+      "dur": 3.8,
+      "arriba": "¿ESA OFERTA ES REAL?",
+      "lineas": [
+        "5 tips para comprar seguro",
+        "en tiendas de USA"
+      ],
+      "sub": "Que no te pase a ti",
+      "fondo": "tienda"
+    },
+    {
+      "tipo": "punto",
+      "dur": 5.2,
+      "numero": "1",
+      "etiqueta": "TIP",
+      "titulo": "Compra en tiendas conocidas",
+      "texto": "Amazon, Walmart, Best Buy o la web oficial de la marca. Desconfía de páginas que no conoces.",
+      "fondo": "tienda"
+    },
+    {
+      "tipo": "punto",
+      "dur": 5.2,
+      "numero": "2",
+      "etiqueta": "TIP",
+      "titulo": "Revisa bien la dirección web",
+      "texto": "Busca el candado y fíjate que el nombre esté bien escrito. Las copias falsas cambian una letra."
+    },
+    {
+      "tipo": "punto",
+      "dur": 5.2,
+      "numero": "3",
+      "etiqueta": "TIP",
+      "titulo": "Mira quién vende el producto",
+      "texto": "En Amazon y eBay revisa la calificación del vendedor y las opiniones de otros compradores."
+    },
+    {
+      "tipo": "punto",
+      "dur": 5.2,
+      "numero": "4",
+      "etiqueta": "TIP",
+      "titulo": "Si es demasiado barato, sospecha",
+      "texto": "Un precio mucho más bajo que en todas las demás tiendas suele ser una señal de alerta.",
+      "fondo": "tienda"
+    },
+    {
+      "tipo": "punto",
+      "dur": 5.2,
+      "numero": "5",
+      "etiqueta": "TIP",
+      "titulo": "Paga con medios que te protegen",
+      "texto": "Usa tarjeta o PayPal. Nunca hagas transferencias directas a desconocidos.",
+      "fondo": "cajas"
+    },
+    {
+      "tipo": "texto",
+      "dur": 4.8,
+      "etiqueta": "Y PARA TRAERLO",
+      "titulo": "Envíalo a tu casillero en Miami",
+      "texto": "Nosotros lo recibimos y lo traemos a Perú por ti.",
+      "fondo": "avion"
+    },
+    {
+      "tipo": "cta",
+      "dur": 4.5
+    }
+  ]
+}
