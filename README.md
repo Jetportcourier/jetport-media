@@ -5,7 +5,7 @@ Facebook "Jetport Courier"). Metricool descarga los videos desde aquí para publ
 
 ## Carpetas
 - `generador/video.py` — crea videos verticales 1080x1920 a partir de un guion JSON (instrucciones al inicio del archivo).
-- `generador/musica.py` — música original sin derechos de autor (4 estilos, 120 combinaciones según la semilla).
+- `generador/musica.py` — música original sin derechos de autor, siempre alegre (4 estilos, 120 combinaciones según la semilla).
 - `generador/logo_*.png` — logo oficial (horizontal, vertical, transparente, con contorno).
 - `guiones/` — guion de cada video (AAAA-MM-DD_tema.json, fecha = día de publicación).
 - `videos/` — videos finales (.mp4).

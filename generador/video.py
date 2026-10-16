@@ -19,6 +19,10 @@ El guion es un JSON:
 Cada escena puede llevar "fondo": "avion" | "ruta" | "tienda" | "cajas" (escenario ilustrado animado:
 aviones y nubes, mapa Miami→Lima, toldo de tienda con carteles de oferta, cajas en cinta, bolsas de compras).
 Si se omite, se rotan automáticamente.
+Fondos variados (por defecto): además del degradado, cada escena usa un fondo distinto que llama la atención:
+  "rayos", "confeti", "ciudad" (atardecer con edificios y palmeras), "patron" (cajas y aviones), "burbujas",
+  "puntos" o "degradado". Se rotan solos (inicio distinto según musica_semilla, nunca dos escenas seguidas iguales).
+  Fíjalo por escena con "estilo_fondo": "confeti", o por video con "fondos": ["rayos", "ciudad", ...].
 La escena "cta" admite "modo": "seguir" (por defecto: Síguenos @jetportcourier) o "escribenos"
 (Escríbenos "INFO"; opcionales "linea1", "palabra", "sub").
 Clips reales: escena {"tipo": "clip", "dur": 3, "archivo": "material/clip.mp4", "inicio": 2.0,
@@ -87,17 +91,169 @@ _GLOW_NARANJA.putalpha(_GLOW_NARANJA.getchannel("A").point(lambda v: int(v * 0.4
 _GLOW_CIAN = _brillo(460, (80, 200, 255))
 _GLOW_CIAN.putalpha(_GLOW_CIAN.getchannel("A").point(lambda v: int(v * 0.30)))
 
-def fondo(t, idx, t_escena):
-    """Fondo animado: degradado que gira despacio, transición suave entre escenas y destellos de luz."""
-    c1, c2 = PALETAS[idx % len(PALETAS)]
-    if idx > 0 and t_escena < 0.5:            # mezcla con la paleta anterior al entrar en la escena
-        p1, p2 = PALETAS[(idx - 1) % len(PALETAS)]; k = ease(t_escena / 0.5)
-        c1 = tuple(int(p1[i] * (1 - k) + c1[i] * k) for i in range(3))
-        c2 = tuple(int(p2[i] * (1 - k) + c2[i] * k) for i in range(3))
+# ---------- fondos variados (pedido del dueño 16/10/2026: no solo degradados de color; variar siempre) ----------
+# Tipos: "degradado" (el original), "rayos" (rayos de sol pop que giran), "confeti" (confeti y estrellas que caen),
+# "ciudad" (atardecer con edificios y palmeras de Miami), "patron" (patrón de cajas y aviones que se desliza),
+# "burbujas" (luces de colores desenfocadas), "puntos" (trama pop de puntos con ondas).
+# Cada escena puede llevar "estilo_fondo"; si no, se rotan solos empezando en un punto distinto según la
+# musica_semilla, sin repetir el mismo tipo en dos escenas seguidas. El guion puede fijar "fondos": [lista].
+TIPOS_FONDO = ["rayos", "confeti", "ciudad", "patron", "burbujas", "puntos", "degradado"]
+_cache_fondo = {}
+
+def _oscurecer(img, k=0.30):
+    """Velo oscuro suave en la zona del texto para que siempre se lea bien."""
+    if "velo" not in _cache_fondo:
+        yy = np.linspace(0, 1, H, dtype=np.float32)
+        a = (k * 255 * np.exp(-((yy - 0.5) / 0.32) ** 2)).astype(np.uint8)
+        capa = Image.new("RGBA", (W, H), (5, 12, 35, 0)); capa.putalpha(Image.fromarray(np.repeat(a[:, None], W, 1)))
+        _cache_fondo["velo"] = capa
+    img.alpha_composite(_cache_fondo["velo"]); return img
+
+def _f_degradado(t, idx, c1, c2):
     img = _gradiente(c1, c2, 1.1 + 0.25 * math.sin(t * 0.6)).convert("RGBA")
     img.alpha_composite(_GLOW_NARANJA, (int(W * 0.75 + 160 * math.sin(t * 0.7)) - 520, int(H * 0.18 + 120 * math.cos(t * 0.5)) - 520))
     img.alpha_composite(_GLOW_CIAN, (int(W * 0.15 + 140 * math.cos(t * 0.6)) - 460, int(H * 0.82 + 100 * math.sin(t * 0.8)) - 460))
     return img
+
+def _f_rayos(t, idx, c1, c2):
+    sw, sh = W // 3, H // 3
+    im = Image.new("RGB", (sw, sh), c1); d = ImageDraw.Draw(im)
+    cx, cy, R, n = sw / 2, sh * 0.42, sh * 1.2, 18
+    giro = t * 0.25
+    for i in range(n):
+        a0 = giro + i * 2 * math.pi / n; a1 = a0 + math.pi / n
+        d.polygon([(cx, cy), (cx + R * math.cos(a0), cy + R * math.sin(a0)), (cx + R * math.cos(a1), cy + R * math.sin(a1))], fill=c2)
+    img = im.resize((W, H), Image.BILINEAR).convert("RGBA")
+    img.alpha_composite(_GLOW_NARANJA, (W // 2 - 520, int(H * 0.42) - 520))
+    return _oscurecer(img, 0.28)
+
+def _f_confeti(t, idx, c1, c2):
+    img = _gradiente(c1, c2, 0.9).convert("RGBA")
+    d = ImageDraw.Draw(img)
+    cols = [(255, 214, 64), (255, 122, 26), (80, 200, 255), (236, 72, 153), (120, 230, 140)]
+    r = np.random.default_rng(idx * 7 + 3)
+    for k in range(60):
+        x0, v, fase, tam = r.random() * W, 90 + r.random() * 160, r.random() * 10, 10 + r.random() * 16
+        y = (r.random() * (H + 200) + t * v) % (H + 200) - 100
+        x = x0 + 40 * math.sin(t * 1.5 + fase)
+        ang = t * 3 + fase; w2 = tam * abs(math.cos(ang)) + 3
+        c = cols[k % len(cols)]
+        if 520 < y < 1000 and 120 < x < W - 120: continue      # deja libre la zona de títulos
+        if k % 5 == 0:                                          # estrellitas
+            pts = [(x + (tam if j % 2 == 0 else tam * 0.45) * math.cos(ang + j * math.pi / 5),
+                    y + (tam if j % 2 == 0 else tam * 0.45) * math.sin(ang + j * math.pi / 5)) for j in range(10)]
+            d.polygon(pts, fill=c + (230,))
+        else:
+            d.rectangle([x - w2, y - tam * 0.45, x + w2, y + tam * 0.45], fill=c + (215,))
+    return _oscurecer(img, 0.22)
+
+def _f_ciudad(t, idx, c1, c2):
+    key = ("ciudad", c1, c2)
+    if key not in _cache_fondo:
+        cielo = _gradiente((120, 40, 160), (255, 120, 80), 1.57).convert("RGBA")      # atardecer
+        cielo = Image.blend(cielo, _gradiente(c1, c2, 1.57).convert("RGBA"), 0.2)
+        sil = Image.new("RGBA", (W, H), (0, 0, 0, 0)); d = ImageDraw.Draw(sil)
+        r = np.random.default_rng(5); x = -20
+        while x < W:                                            # edificios
+            w2 = int(70 + r.random() * 90); h2 = int(180 + r.random() * 380)
+            d.rectangle([x, 1500 - h2, x + w2, H], fill=(28, 20, 70, 235))
+            for yy in range(1500 - h2 + 30, 1480, 46):          # ventanas encendidas
+                for xx in range(x + 14, x + w2 - 14, 30):
+                    if r.random() < 0.45: d.rectangle([xx, yy, xx + 12, yy + 18], fill=(255, 214, 120, 150))
+            x += w2 + 8
+        for px in (90, 960):                                    # palmeras
+            d.line([px, 1500, px + 30, 1180], fill=(20, 14, 50, 255), width=22)
+            for k in range(7):
+                a0 = math.pi * (1.05 + k * 0.15)
+                d.line([px + 30, 1180, px + 30 + 190 * math.cos(a0), 1180 + 110 * math.sin(a0) + 60], fill=(20, 14, 50, 255), width=16)
+        d.rectangle([0, 1500, W, H], fill=(20, 14, 50, 255))
+        _cache_fondo[key] = (cielo, sil)
+    cielo, sil = _cache_fondo[key]
+    img = cielo.copy(); d = ImageDraw.Draw(img)
+    sy = 1290 + 20 * math.sin(t * 0.4)
+    for rr, al in ((260, 50), (200, 90), (150, 255)):           # sol con halo
+        d.ellipse([W / 2 - rr, sy - rr, W / 2 + rr, sy + rr], fill=(255, 210, 90, al))
+    img.alpha_composite(sil)
+    return _oscurecer(img, 0.30)
+
+def _f_patron(t, idx, c1, c2):
+    key = ("patron", c1, c2)
+    if key not in _cache_fondo:
+        T = 270
+        tile = Image.new("RGBA", (T, T), (0, 0, 0, 0)); d = ImageDraw.Draw(tile)
+        _dibujar_caja(d, 30, 40, 90, 70, 0.30, etiqueta=False)
+        plane(tile, 195, 190, 45, 0.20)
+        d.ellipse([190, 40, 214, 64], fill=(255, 214, 64, 70)); d.ellipse([40, 190, 58, 208], fill=(255, 255, 255, 60))
+        grande = Image.new("RGBA", (W + T, H + T), (0, 0, 0, 0))
+        for yy in range(0, H + T, T):
+            for xx in range(0, W + T, T): grande.alpha_composite(tile, (xx, yy))
+        _cache_fondo[key] = (_gradiente(c1, c2, 1.0).convert("RGBA"), grande, T)
+    base, grande, T = _cache_fondo[key]
+    img = base.copy(); o = int(t * 45) % T
+    img.alpha_composite(grande.crop((T - o, o, T - o + W, o + H)))
+    return _oscurecer(img, 0.25)
+
+def _f_burbujas(t, idx, c1, c2):
+    sw, sh = W // 4, H // 4
+    im = _gradiente(c1, c2, 1.3).resize((sw, sh)).convert("RGBA")
+    capa = Image.new("RGBA", (sw, sh), (0, 0, 0, 0)); d = ImageDraw.Draw(capa)
+    cols = [(255, 122, 26), (80, 200, 255), (236, 72, 153), (255, 214, 64), (255, 255, 255)]
+    r = np.random.default_rng(idx * 11 + 1)
+    for k in range(16):
+        rad = 20 + r.random() * 55
+        x = (r.random() * sw + 18 * math.sin(t * 0.5 + k)) % sw
+        y = (r.random() * sh - t * (6 + r.random() * 10)) % (sh + 100) - 50
+        d.ellipse([x - rad, y - rad, x + rad, y + rad], fill=cols[k % 5] + (70,))
+    capa = capa.filter(ImageFilter.GaussianBlur(5))
+    im.alpha_composite(capa)
+    return _oscurecer(im.resize((W, H), Image.BILINEAR), 0.25)
+
+def _f_puntos(t, idx, c1, c2):
+    key = ("puntos", c1, c2)
+    if key not in _cache_fondo:
+        sw, sh = W // 2, H // 2
+        yy, xx = np.mgrid[0:sh, 0:sw].astype(np.float32)
+        _cache_fondo[key] = (_gradiente(c1, c2, 0.6).convert("RGBA"), xx, yy)
+    base, xx, yy = _cache_fondo[key]
+    paso = 27.0
+    gx = (xx % paso) - paso / 2; gy = (yy % paso) - paso / 2
+    onda = 0.5 + 0.5 * np.sin((xx * 0.012 + yy * 0.02) - t * 2.2)
+    rad = 2.5 + 7.5 * onda
+    a = np.clip((rad - np.hypot(gx, gy)) * 1.5, 0, 1) * 60
+    capa = Image.new("RGBA", (W // 2, H // 2), (255, 255, 255, 0)); capa.putalpha(Image.fromarray(a.astype(np.uint8)))
+    img = base.copy(); img.alpha_composite(capa.resize((W, H), Image.BILINEAR))
+    img.alpha_composite(_GLOW_NARANJA, (int(W * 0.8 + 120 * math.sin(t * 0.6)) - 520, int(H * 0.2) - 520))
+    return _oscurecer(img, 0.22)
+
+FONDOS = {"degradado": _f_degradado, "rayos": _f_rayos, "confeti": _f_confeti, "ciudad": _f_ciudad,
+          "patron": _f_patron, "burbujas": _f_burbujas, "puntos": _f_puntos}
+# paletas vivas extra para los fondos nuevos (sin naranja dominante para que los títulos naranjas resalten)
+PALETAS_VIVAS = [
+    ((88, 24, 140), (200, 40, 120)),   # morado → fucsia
+    ((0, 92, 151), (20, 170, 170)),    # azul → turquesa
+    ((30, 60, 190), (110, 50, 200)),   # azul rey → violeta
+    ((150, 20, 90), (60, 20, 120)),    # frambuesa → uva
+    ((10, 110, 120), (30, 70, 180)),   # verde mar → azul
+]
+TIPO_FONDO_ESCENA = {}       # idx de escena -> tipo, lo llena build()
+
+def _fondo_tipo(t, idx):
+    tipo = TIPO_FONDO_ESCENA.get(idx, "degradado")
+    if tipo == "degradado":
+        c1, c2 = PALETAS[idx % len(PALETAS)]
+    else:
+        c1, c2 = PALETAS_VIVAS[(idx + SEMILLA) % len(PALETAS_VIVAS)]
+    return FONDOS[tipo](t, idx, c1, c2)
+
+def fondo(t, idx, t_escena):
+    """Fondo animado de la escena; al entrar se funde con el fondo de la escena anterior."""
+    img = _fondo_tipo(t, idx)
+    if idx > 0 and t_escena < 0.45:
+        prev = _fondo_tipo(t, idx - 1)
+        img = Image.blend(prev, img, ease(t_escena / 0.45))
+    return img
+
+SEMILLA = 0
 
 def ease(x): x = max(0.0, min(1.0, x)); return 1 - (1 - x) ** 3
 def rgba(c, a): return c + (int(255 * max(0, min(1, a))),)
@@ -566,7 +722,13 @@ def build(guion):
         variantes = ["circulo", "barrido", "persiana"]           # se rotan según la música para no repetir
         lista.append({"tipo": "cierre", "dur": 2.6, "transicion": "ninguna",
                       "variante": variantes[int(guion.get("musica_semilla", 0)) % 3]})
-    for e in lista:
+    global SEMILLA; SEMILLA = int(guion.get("musica_semilla", 0))
+    rot = guion.get("fondos") or TIPOS_FONDO
+    ini = SEMILLA % len(rot); previo = None
+    for i, e in enumerate(lista):
+        tipo = e.get("estilo_fondo") or rot[(ini + i) % len(rot)]
+        if tipo == previo and not e.get("estilo_fondo"): tipo = rot[(ini + i + 1) % len(rot)]
+        TIPO_FONDO_ESCENA[i] = tipo; previo = tipo
         escenas.append((t, t + float(e["dur"]), e)); t += float(e["dur"])
     return escenas, t
 

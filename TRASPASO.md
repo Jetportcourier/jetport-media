@@ -39,8 +39,10 @@ revisa y aprueba. Etapa actual: GANAR AUDIENCIA → videos SIN PRECIOS.
   Facebook Jetport Courier, jpcourier.com) o "Escríbenos INFO".
 - Cierre animado automático de 2,6 s al final de todo video (que no acabe en seco): 3 variantes que rotan
   (círculo, barrido diagonal, persiana) + logo con rebote + lema "Tus compras de USA y China, en Perú" + fundido a blanco.
-- Música original sin derechos de autor, variada: 4 estilos (electrónico, reguetón/dembow, house con piano, lo-fi).
-  No repetir estilo de un día al siguiente.
+- Música original sin derechos de autor, SIEMPRE ALEGRE y con emoción (pedido 16/10): 4 estilos en tono mayor con
+  aplausos y melodía (electro-pop, reguetón/dembow, house con piano, tropical/cumbia-pop). No repetir estilo de un día al siguiente.
+- Fondos VARIADOS (pedido 16/10): no solo degradados. Rotan solos rayos, confeti, ciudad al atardecer, patrón de cajas
+  y aviones, burbujas de luz, puntos pop y degradado; nunca dos escenas seguidas iguales y cada video empieza distinto.
 - Emojis: solo en la descripción (dentro del video se quitan solos porque la fuente no los tiene).
 
 ## 5. Descripciones y hashtags (pedido expreso del dueño)

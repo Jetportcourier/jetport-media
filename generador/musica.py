@@ -2,10 +2,12 @@
 
 Uso: python3 musica.py salida.wav segundos [semilla]
 
-La semilla elige el ESTILO, los ACORDES, el TONO y la VELOCIDAD, así cada video suena distinto:
-  estilo = semilla % 4  ->  0 electrónico (126-130 bpm), 1 reguetón/dembow (92-98 bpm),
-                            2 house con piano (120-124 bpm), 3 lo-fi relajado (82-88 bpm)
-  acordes = (semilla // 4) % 6     tono = transposición de -2 a +2 semitonos según la semilla
+La semilla elige el ESTILO, los ACORDES, el TONO, la VELOCIDAD y la MELODÍA, así cada video suena distinto:
+  estilo = semilla % 4  ->  0 electro-pop festivo (128-132 bpm), 1 reguetón/dembow alegre (96-100 bpm),
+                            2 house con piano (122-126 bpm), 3 tropical / cumbia-pop (104-108 bpm)
+  acordes = (semilla // 4) % 6 (todas progresiones en tono MAYOR)   tono = 0 a +4 semitonos según la semilla
+Pedido del dueño (16/10/2026): la música siempre debe sonar ALEGRE y con EMOCIÓN. Por eso todos los estilos
+van en tono mayor, con aplausos, melodía pegajosa y subida de energía; el lo-fi lento se reemplazó por tropical.
 Con semillas de 0 a 119 no se repite ninguna combinación.
 """
 import sys
@@ -21,19 +23,20 @@ mix = np.zeros((N, 2))
 rng = np.random.default_rng(SEED)
 
 ESTILO = SEED % 4
-BPM = {0: 126, 1: 92, 2: 120, 3: 82}[ESTILO] + (SEED % 3) * 2
+BPM = {0: 128, 1: 96, 2: 122, 3: 104}[ESTILO] + (SEED % 3) * 2
 STEP = 60 / BPM / 4                       # una semicorchea
-TRANSP = (SEED // 24) % 5 - 2
+TRANSP = (SEED // 24) % 5                 # 0 a +4: tonos más brillantes
 
-PROGS = [  # (acordes en notas MIDI, raíces del bajo)
-    ([[57, 60, 64], [53, 57, 60], [48, 52, 55], [55, 59, 62]], [45, 41, 48, 43]),  # Am F C G
-    ([[50, 53, 57], [58, 62, 65], [53, 57, 60], [48, 52, 55]], [38, 46, 41, 36]),  # Dm Bb F C
-    ([[52, 55, 59], [48, 52, 55], [55, 59, 62], [50, 54, 57]], [40, 36, 43, 38]),  # Em C G D
-    ([[48, 52, 55], [55, 59, 62], [57, 60, 64], [53, 57, 60]], [36, 43, 45, 41]),  # C G Am F
-    ([[53, 57, 60], [55, 59, 62], [52, 55, 59], [57, 60, 64]], [41, 43, 40, 45]),  # F G Em Am
-    ([[50, 53, 57], [55, 59, 62], [48, 52, 55], [57, 60, 64]], [38, 43, 36, 45]),  # Dm G C Am
+PROGS = [  # (acordes en notas MIDI, raíces del bajo, tónica de la escala) — todas en tono mayor
+    ([[48, 52, 55], [55, 59, 62], [57, 60, 64], [53, 57, 60]], [36, 43, 45, 41], 60),  # C G Am F
+    ([[55, 59, 62], [50, 54, 57], [52, 55, 59], [48, 52, 55]], [43, 38, 40, 36], 55),  # G D Em C
+    ([[48, 52, 55], [53, 57, 60], [55, 59, 62], [53, 57, 60]], [36, 41, 43, 41], 60),  # C F G F
+    ([[50, 54, 57], [55, 59, 62], [57, 61, 64], [55, 59, 62]], [38, 43, 45, 43], 62),  # D G A G
+    ([[53, 57, 60], [55, 59, 62], [52, 55, 59], [57, 60, 64]], [41, 43, 40, 45], 60),  # F G Em Am (emotivo)
+    ([[48, 52, 55], [57, 60, 64], [53, 57, 60], [55, 59, 62]], [36, 45, 41, 43], 60),  # C Am F G
 ]
-chords, roots = PROGS[(SEED // 4) % len(PROGS)]
+chords, roots, TONICA = PROGS[(SEED // 4) % len(PROGS)]
+TONICA += TRANSP
 chords = [[m + TRANSP for m in c] for c in chords]; roots = [r + TRANSP for r in roots]
 
 def add(sig, t0, gain=1.0, pan=0.0):
@@ -78,6 +81,37 @@ def sub(freq, n, r=0.3):
     t = np.arange(n) / SR
     return np.sin(2 * np.pi * freq * t) * env(n, 0.004, r)
 
+def clap():
+    n = int(0.22 * SR); t = np.arange(n) / SR
+    ruido = hp(rng.standard_normal(n), 1100)
+    golpes = sum(np.exp(-np.maximum(t - d, 0) * 60) * (t >= d) for d in (0, 0.011, 0.022))
+    return ruido * golpes * 0.5 * np.exp(-t * 14)
+
+def shaker():
+    n = int(0.06 * SR); return hp(rng.standard_normal(n), 6000) * env(n, 0.012, 0.025)
+
+def pluck(freq, n, r=0.18):          # sonido brillante tipo marimba / sintetizador alegre
+    t = np.arange(n) / SR
+    s = np.sin(2 * np.pi * freq * t) + 0.5 * np.sin(2 * np.pi * freq * 4.0 * t) * np.exp(-t * 18) \
+        + 0.25 * np.sign(np.sin(2 * np.pi * freq * t)) * np.exp(-t * 9)
+    return s * env(n, 0.002, r)
+
+# melodía pegajosa en pentatónica mayor (siempre suena alegre); motivo de 2 compases que se repite
+PENTA = [0, 2, 4, 7, 9]
+ESCALA = [TONICA + 12 * o + g for o in (0, 1) for g in PENTA] + [TONICA + 24]
+_pos = sorted(rng.choice([0, 2, 3, 4, 6, 8, 10, 11, 12, 14], size=6, replace=False).tolist())
+MOTIVO, _i = [], int(rng.integers(2, 6))
+for k, sp in enumerate(_pos + [16 + x for x in _pos[:5]]):
+    _i = int(np.clip(_i + rng.choice([-2, -1, 1, 1, 2]), 0, len(ESCALA) - 1))
+    MOTIVO.append((sp, ESCALA[_i], 2 if k % 3 else 3))
+
+def melodia(bar, t0, at, gain, timbre="pluck"):
+    for sp, m, largo in MOTIVO:
+        if (sp // 16) != bar % 2: continue
+        n = int(largo * STEP * SR)
+        sig = pluck(note(m), n, 0.22) if timbre == "pluck" else keys(note(m), n, 0.3)
+        add(sig, at(sp % 16), gain, 0.15)
+
 bars = int(dur / (16 * STEP)) + 1
 for bar in range(bars):
     t0 = bar * 16 * STEP
@@ -99,6 +133,9 @@ for bar in range(bars):
             n = int(STEP * SR); add(lp(saw(note(arp[s % 4] + 12), n), 3500) * env(n, 0.002, 0.07), at(s), 0.16, 0.4 if s % 2 else -0.4)
         n = int(16 * STEP * SR)
         add(sum(lp(saw(note(m), n), 1500) for m in ch) / 3 * np.minimum(np.arange(n) / (0.3 * SR), 1), t0, 0.08)
+        if full:
+            for s in (4, 12): add(clap(), at(s), 0.32, -0.1)
+            if bar >= 2: melodia(bar, t0, at, 0.2)
 
     elif ESTILO == 1:                                 # reguetón / dembow
         for s in (0, 4, 8, 12):
@@ -111,9 +148,9 @@ for bar in range(bars):
         for s in (0, 3, 6, 10, 12):                   # acordes cortos sincopados
             n = int(1.5 * STEP * SR)
             add(sum(lp(saw(note(m + 12), n), 2500) for m in ch) / 3 * env(n, 0.002, 0.08), at(s), 0.22, 0.2)
-        if bar % 2 == 1:                              # pequeña melodía
-            for k, s in enumerate((0, 2, 4, 7)):
-                n = int(2 * STEP * SR); add(keys(note(ch[k % 3] + 24), n, 0.25), at(s), 0.14, -0.3)
+        if full:
+            for s in (3, 11): add(clap(), at(s), 0.22, -0.2)
+            melodia(bar, t0, at, 0.2)
 
     elif ESTILO == 2:                                 # house con piano
         for s in (0, 4, 8, 12):
@@ -126,27 +163,27 @@ for bar in range(bars):
         for s in (0, 3, 6, 10):                       # acordes de piano
             n = int(3 * STEP * SR)
             add(sum(keys(note(m + 12), n, 0.35) for m in ch) / 3, at(s), 0.3, -0.15)
+        if full:
+            for s in (4, 12): add(clap(), at(s), 0.3, 0.1)
+            if bar >= 2: melodia(bar, t0, at, 0.18, "keys")
 
-    else:                                             # lo-fi relajado
-        swing = STEP * 0.18
-        for s in (0, 7, 10):
-            if full: add(lp(kick(70, 8), 900), at(s), 0.75)
-        for s in (4, 12):
-            if full: add(lp(snare(900, 0.09), 4000), at(s), 0.3)
-        for s in range(0, 16, 2): add(lp(hat(), 9000), at(s) + (swing if (s // 2) % 2 else 0), 0.09)
-        n = int(16 * STEP * SR)
-        add(lp(sum(keys(note(m), n, 1.6) for m in ch + [ch[1] + 12]) / 4, 2200), t0, 0.45)
-        n = int(8 * STEP * SR)
-        for s in (0, 8): add(sub(note(root - 12), n, 0.6), at(s), 0.45)
-        for k, s in enumerate((2, 5, 9, 13)):
-            n = int(3 * STEP * SR); add(lp(keys(note(ch[(k + bar) % 3] + 24), n, 0.4), 3000), at(s), 0.1, 0.3)
+    else:                                             # tropical / cumbia-pop alegre
+        for s in (0, 8):
+            if full: add(kick(95, 8), at(s), 0.85)
+        for s in range(16):                           # shaker / güiro con acento
+            add(shaker(), at(s), 0.13 if s % 4 == 2 else 0.06, 0.35)
+        if full:
+            for s in (4, 12): add(clap(), at(s), 0.3, -0.1)
+            for s in (6, 14): add(snare(2200, 0.03), at(s), 0.12, 0.3)   # timbal
+        for s, m in ((0, root), (6, root + 7), (8, root), (12, root + 7), (14, root + 4)):   # bajo de cumbia
+            n = int(2 * STEP * SR); add(sub(note(m - 12 + 12), n, 0.18), at(s), 0.5 if full else 0.3)
+        for s in (2, 6, 10, 14):                      # acordes en contratiempo (marimba)
+            n = int(2 * STEP * SR)
+            add(sum(pluck(note(m + 12), n, 0.12) for m in ch) / 3, at(s), 0.24, -0.25)
+        if full: melodia(bar, t0, at, 0.22)
 
-if ESTILO == 3:                                       # crepitar de vinilo
-    ruido = rng.standard_normal(N) * (rng.random(N) > 0.9993) * 0.6 + lp(rng.standard_normal(N), 3000) * 0.012
-    mix[:, 0] += ruido; mix[:, 1] += ruido
-else:                                                 # subida de ruido al inicio
-    n = int(16 * STEP * SR)
-    add(hp(rng.standard_normal(n), 2000) * np.linspace(0, 1, n) ** 2, 0, 0.1)
+n = int(16 * STEP * SR)                               # subida de ruido al inicio (crea emoción)
+add(hp(rng.standard_normal(n), 2000) * np.linspace(0, 1, n) ** 2, 0, 0.1)
 
 fade = int(1.2 * SR)
 mix[-fade:] *= np.linspace(1, 0, fade)[:, None]
