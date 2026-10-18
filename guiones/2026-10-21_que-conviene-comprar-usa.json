@@ -1,0 +1,13 @@
+{
+  "musica_semilla": 103,
+  "fondos": ["ciudad", "burbujas", "confeti", "patron", "rayos", "puntos"],
+  "escenas": [
+    {"tipo": "titulo", "dur": 3.8, "arriba": "¿QUÉ TRAER DE USA?", "lineas": ["5 cosas que", "más conviene comprar"], "sub": "La 4 sorprende a muchos", "fondo": "tienda"},
+    {"tipo": "punto", "dur": 5, "numero": "1", "etiqueta": "CONVIENE", "titulo": "Zapatillas de marca", "texto": "Modelos que acá no llegan o llegan mucho después.", "fondo": "tienda"},
+    {"tipo": "punto", "dur": 5, "numero": "2", "etiqueta": "CONVIENE", "titulo": "Ropa en temporada de ofertas", "texto": "Las tiendas de USA tienen rebajas fuertes varias veces al año."},
+    {"tipo": "punto", "dur": 5, "numero": "3", "etiqueta": "CONVIENE", "titulo": "Accesorios de tecnología", "texto": "Audífonos, relojes inteligentes, cargadores y fundas.", "fondo": "cajas"},
+    {"tipo": "punto", "dur": 5.2, "numero": "4", "etiqueta": "CONVIENE", "titulo": "Perfumes originales", "texto": "Sí se pueden traer: hasta 4 unidades como uso personal."},
+    {"tipo": "punto", "dur": 5, "numero": "5", "etiqueta": "CONVIENE", "titulo": "Juguetes y coleccionables", "texto": "Más variedad y lanzamientos antes que en otros lugares.", "fondo": "avion"},
+    {"tipo": "cta", "dur": 4.5}
+  ]
+}

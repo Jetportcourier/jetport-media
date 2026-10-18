@@ -1,0 +1,13 @@
+{
+  "musica_semilla": 50,
+  "fondos": ["patron", "confeti", "puntos", "burbujas", "ciudad", "rayos"],
+  "escenas": [
+    {"tipo": "titulo", "dur": 3.8, "arriba": "¿PAQUETE RETENIDO?", "lineas": ["4 tips para que", "no te pase en aduana"], "sub": "Guarda este video", "fondo": "cajas"},
+    {"tipo": "punto", "dur": 5.2, "numero": "1", "etiqueta": "TIP", "titulo": "Guarda tu factura", "texto": "Ten a la mano el comprobante de compra con el precio real que pagaste."},
+    {"tipo": "punto", "dur": 5.2, "numero": "2", "etiqueta": "TIP", "titulo": "Declara el valor real", "texto": "Poner un valor menor puede causar retrasos y problemas.", "fondo": "ruta"},
+    {"tipo": "punto", "dur": 5.2, "numero": "3", "etiqueta": "TIP", "titulo": "Tus datos, bien escritos", "texto": "Tu nombre y documento deben coincidir en la compra y en el casillero."},
+    {"tipo": "punto", "dur": 5.2, "numero": "4", "etiqueta": "TIP", "titulo": "Revisa los restringidos", "texto": "Baterías de litio sueltas, aerosoles y líquidos inflamables pueden quedar retenidos.", "fondo": "avion"},
+    {"tipo": "texto", "dur": 4.6, "etiqueta": "¿DUDAS?", "titulo": "Consúltanos antes de comprar", "texto": "Te ayudamos a revisar si tu producto puede viajar.", "fondo": "cajas"},
+    {"tipo": "cta", "dur": 4.5, "modo": "escribenos"}
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "musica_semilla": 58,
+  "fondos": ["rayos", "patron", "burbujas", "ciudad", "puntos", "confeti"],
+  "escenas": [
+    {"tipo": "titulo", "dur": 3.8, "arriba": "¿TU CAJA PESA AIRE?", "lineas": ["Qué es el", "peso volumétrico"], "sub": "Y por qué te conviene saberlo", "fondo": "cajas"},
+    {"tipo": "texto", "dur": 5.2, "etiqueta": "¿SABÍAS QUE?", "titulo": "No solo cuenta lo que pesa", "texto": "En envíos aéreos también cuenta el espacio que ocupa tu caja en el avión.", "fondo": "avion"},
+    {"tipo": "punto", "dur": 5.4, "numero": "1", "etiqueta": "FÓRMULA", "titulo": "Largo x ancho x alto", "texto": "Mide tu caja en centímetros y multiplica las tres medidas."},
+    {"tipo": "punto", "dur": 5.4, "numero": "2", "etiqueta": "FÓRMULA", "titulo": "Divide entre 5000", "texto": "Una caja de 50×40×30 cm equivale a 12 kg, aunque pese solo 3 kg.", "fondo": "cajas"},
+    {"tipo": "punto", "dur": 5.2, "numero": "3", "etiqueta": "DATO", "titulo": "Se toma el mayor", "texto": "En envíos desde China se compara el peso real con el volumétrico y se usa el mayor.", "fondo": "ruta"},
+    {"tipo": "texto", "dur": 5.2, "etiqueta": "TIP", "titulo": "Productos ligeros y grandes", "texto": "Almohadas, peluches o cajas vacías: revisa sus medidas antes de comprar."},
+    {"tipo": "cta", "dur": 4.5}
+  ]
+}

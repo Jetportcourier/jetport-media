@@ -1,0 +1,13 @@
+{
+  "musica_semilla": 84,
+  "fondos": ["puntos", "rayos", "ciudad", "confeti", "burbujas", "patron"],
+  "escenas": [
+    {"tipo": "titulo", "dur": 3.8, "arriba": "MITO O VERDAD", "lineas": ["Lo que te dijeron", "de comprar en USA"], "sub": "¿Cuál creías tú?", "fondo": "avion"},
+    {"tipo": "punto", "dur": 5.2, "numero": "1", "etiqueta": "MITO", "titulo": "\"Amazon no envía a Perú\"", "texto": "Con un casillero compras con tu dirección en Miami y te lo traemos.", "fondo": "tienda"},
+    {"tipo": "punto", "dur": 5.2, "numero": "2", "etiqueta": "MITO", "titulo": "\"Siempre pagas impuestos\"", "texto": "Las compras de hasta 200 dólares normalmente no pagan impuestos de importación."},
+    {"tipo": "punto", "dur": 5.2, "numero": "3", "etiqueta": "MITO", "titulo": "\"Los perfumes no se pueden\"", "texto": "Sí se pueden traer: hasta 4 unidades como uso personal.", "fondo": "cajas"},
+    {"tipo": "punto", "dur": 5.2, "numero": "4", "etiqueta": "VERDAD", "titulo": "Hay productos restringidos", "texto": "Por ejemplo baterías de litio sueltas, aerosoles o líquidos inflamables.", "fondo": "ruta"},
+    {"tipo": "texto", "dur": 4.6, "etiqueta": "CONCLUSIÓN", "titulo": "Es más fácil de lo que crees", "texto": "Solo necesitas tu casillero y comprar con cuidado."},
+    {"tipo": "cta", "dur": 4.5}
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "musica_semilla": 65,
+  "fondos": ["confeti", "ciudad", "rayos", "puntos", "patron", "burbujas"],
+  "escenas": [
+    {"tipo": "titulo", "dur": 3.8, "arriba": "BLACK FRIDAY 2026", "lineas": ["¿Ya sabes cuándo es", "y cómo aprovecharlo?"], "sub": "Faltan pocas semanas", "fondo": "tienda"},
+    {"tipo": "texto", "dur": 5, "etiqueta": "FECHA", "titulo": "Viernes 27 de noviembre", "texto": "Y el lunes 30 de noviembre es el Cyber Monday, con ofertas online.", "fondo": "tienda"},
+    {"tipo": "punto", "dur": 5.2, "numero": "1", "etiqueta": "PREPÁRATE", "titulo": "Arma tu lista desde ya", "texto": "Elige qué quieres y mira sus precios de hoy para saber si la oferta es real."},
+    {"tipo": "punto", "dur": 5.2, "numero": "2", "etiqueta": "PREPÁRATE", "titulo": "Ten tu casillero listo", "texto": "Tu dirección en Miami debe estar lista antes del gran día.", "fondo": "ruta"},
+    {"tipo": "punto", "dur": 5.2, "numero": "3", "etiqueta": "PREPÁRATE", "titulo": "Muchas ofertas empiezan antes", "texto": "Varias tiendas adelantan descuentos días antes. Revisa con tiempo.", "fondo": "tienda"},
+    {"tipo": "texto", "dur": 4.8, "etiqueta": "OJO", "titulo": "Compra solo en tiendas seguras", "texto": "Las ofertas falsas se multiplican en estas fechas.", "fondo": "cajas"},
+    {"tipo": "cta", "dur": 4.5, "modo": "escribenos"}
+  ]
+}
