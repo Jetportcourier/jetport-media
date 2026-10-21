@@ -13,6 +13,7 @@
 | 2026-10-22 12:07 (extra) | Corto real: "Solo pedí UNA cosita de Amazon" | corto real humor (15 s) | 61 (dembow) | barrido | paquetes_uhaul_01 0–3,2; paquetes_almacen_02 1–4,2 y 6–9 | PROGRAMADO |
 | 2026-10-23 12:07 (extra) | Corto real: "¿Ya llegó lo mío?" | corto real humor (15,6 s) | 72 (electro-pop) | círculo | carga_van_03 0–3,6 y 4–7; presentadora_almacen_05 0,5–3,9 | PROGRAMADO |
 
+| 2026-10-26 (prueba, sin programar) | Corto real: "Yo cuando me avisan que mi paquete ya llegó" (selfie con filtro) | corto real humor (16,6 s) | 89 (dembow) | persiana | foto_selfie_beso_18; camion_sacos_07 0,5–3,1; presentadora_senala_13 0,3–3,3; presentadora_caja_16 0,6–3,6 | PRUEBA, esperando visto bueno |
 Pruebas iniciales (no publicadas): videos/jetport_anuncio_1.mp4 (con tarifas, descartado: etapa sin precios) y
 videos/jetport_tips_1.mp4 (primera versión de "3 errores", estilo antiguo).
 
