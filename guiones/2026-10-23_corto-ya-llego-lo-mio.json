@@ -1,0 +1,9 @@
+{
+  "musica_semilla": 72,
+  "escenas": [
+    {"tipo": "clip", "dur": 3.6, "archivo": "material/carga_van_03.mp4", "inicio": 0.0, "texto": "Cuando llega la van con las compras de USA", "posicion": "arriba", "transicion": "ninguna"},
+    {"tipo": "clip", "dur": 3.0, "archivo": "material/carga_van_03.mp4", "inicio": 4.0, "texto": "Nosotros a toda velocidad", "posicion": "arriba", "transicion": "zoom"},
+    {"tipo": "clip", "dur": 3.4, "archivo": "material/presentadora_almacen_05.mp4", "inicio": 0.5, "texto": "Y tú escribiendo: ¿ya llegó lo mío?", "posicion": "arriba", "transicion": "barrido"},
+    {"tipo": "cta", "dur": 3}
+  ]
+}

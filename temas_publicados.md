@@ -10,6 +10,8 @@
 | 2026-10-21 19:07 | 5 cosas que más conviene traer de USA | didáctico (curiosidades) | 103 (tropical) | barrido | — | PROGRAMADO (aprobado) |
 | 2026-10-22 19:07 | Mito o verdad: comprar en USA | mitos y verdades | 84 (electro-pop) | círculo | — | PROGRAMADO (aprobado) |
 | 2026-10-23 19:07 | 4 tips para evitar retenciones en aduana | didáctico (tips) | 50 (house con piano) | persiana | — | PROGRAMADO (aprobado) |
+| 2026-10-22 12:07 (extra) | Corto real: "Solo pedí UNA cosita de Amazon" | corto real humor (15 s) | 61 (dembow) | barrido | paquetes_uhaul_01 0–3,2; paquetes_almacen_02 1–4,2 y 6–9 | PROGRAMADO |
+| 2026-10-23 12:07 (extra) | Corto real: "¿Ya llegó lo mío?" | corto real humor (15,6 s) | 72 (electro-pop) | círculo | carga_van_03 0–3,6 y 4–7; presentadora_almacen_05 0,5–3,9 | PROGRAMADO |
 
 Pruebas iniciales (no publicadas): videos/jetport_anuncio_1.mp4 (con tarifas, descartado: etapa sin precios) y
 videos/jetport_tips_1.mp4 (primera versión de "3 errores", estilo antiguo).
