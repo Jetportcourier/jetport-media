@@ -5,11 +5,11 @@
 | 2026-10-15 10:07 | 3 errores al comprar en USA desde Perú | didáctico (tips) | 13 (dembow) | círculo | — | PUBLICADO en TikTok, Instagram y Facebook |
 | 2026-10-16 19:07 | ¿Qué es un casillero y cómo funciona? | didáctico | 22 (house) | círculo | — | PROGRAMADO (aprobado por el dueño) |
 | 2026-10-17 19:07 (sábado, extra) | 5 tips para comprar seguro en tiendas de USA | didáctico (tips), fondos variados | 47 (tropical) | persiana | — | PROGRAMADO (aprobado por el dueño, v2) |
-| 2026-10-19 19:07 | ¿Qué es el peso volumétrico? | didáctico (tips) | 58 (house con piano) | barrido | — | BORRADOR |
-| 2026-10-20 19:07 | Black Friday 2026: cuándo es y cómo prepararte | fechas de descuento | 65 (dembow alegre) | persiana | — | BORRADOR |
-| 2026-10-21 19:07 | 5 cosas que más conviene traer de USA | didáctico (curiosidades) | 103 (tropical) | barrido | — | BORRADOR |
-| 2026-10-22 19:07 | Mito o verdad: comprar en USA | mitos y verdades | 84 (electro-pop) | círculo | — | BORRADOR |
-| 2026-10-23 19:07 | 4 tips para evitar retenciones en aduana | didáctico (tips) | 50 (house con piano) | persiana | — | BORRADOR |
+| 2026-10-24 18:07 (movido del lun 19) | ¿Qué es el peso volumétrico? | didáctico (tips) | 58 (house con piano) | barrido | — | PROGRAMADO (aprobado) |
+| 2026-10-25 19:07 (movido del mar 20) | Black Friday 2026: cuándo es y cómo prepararte | fechas de descuento | 65 (dembow alegre) | persiana | — | PROGRAMADO (aprobado) |
+| 2026-10-21 19:07 | 5 cosas que más conviene traer de USA | didáctico (curiosidades) | 103 (tropical) | barrido | — | PROGRAMADO (aprobado) |
+| 2026-10-22 19:07 | Mito o verdad: comprar en USA | mitos y verdades | 84 (electro-pop) | círculo | — | PROGRAMADO (aprobado) |
+| 2026-10-23 19:07 | 4 tips para evitar retenciones en aduana | didáctico (tips) | 50 (house con piano) | persiana | — | PROGRAMADO (aprobado) |
 
 Pruebas iniciales (no publicadas): videos/jetport_anuncio_1.mp4 (con tarifas, descartado: etapa sin precios) y
 videos/jetport_tips_1.mp4 (primera versión de "3 errores", estilo antiguo).
