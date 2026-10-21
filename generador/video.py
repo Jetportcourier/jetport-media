@@ -884,7 +884,7 @@ def main():
         for k, (s0, e) in enumerate(voces):
             entradas += ["-ss", str(e.get("inicio", 0)), "-t", str(e["dur"]), "-i", e["archivo"]]
             ms = int(s0 * 1000)
-            partes.append(f"[{k + 2}:a]aresample=44100,volume=1.6,adelay={ms}|{ms}[v{k}]"); etiquetas.append(f"[v{k}]")
+            partes.append(f"[{k + 2}:a]aresample=44100,highpass=f=90,dynaudnorm=f=150:g=15,volume=1.3,adelay={ms}|{ms}[v{k}]"); etiquetas.append(f"[v{k}]")
         partes.append("".join(etiquetas) + f"amix=inputs={len(etiquetas)}:duration=first:normalize=0,alimiter=limit=0.95[a]")
         filtro, mapa = ";".join(partes), "[a]"
     cmd = ["ffmpeg", "-y", "-loglevel", "error"] + entradas

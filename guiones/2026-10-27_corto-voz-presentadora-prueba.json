@@ -1,0 +1,9 @@
+{
+  "musica_semilla": 94,
+  "escenas": [
+    {"tipo": "clip", "dur": 4.4, "archivo": "material/presentadora_senala_13.mp4", "inicio": 0.0, "con_audio": true, "texto": "Así llegan tus compras de USA", "posicion": "arriba", "transicion": "ninguna"},
+    {"tipo": "clip", "dur": 3.6, "archivo": "material/presentadora_caja_16.mp4", "inicio": 0.0, "con_audio": true, "texto": "", "transicion": "glitch"},
+    {"tipo": "clip", "dur": 3.2, "archivo": "material/presentadora_caja_20.mp4", "inicio": 0.0, "con_audio": true, "texto": "", "transicion": "sacudida"},
+    {"tipo": "cta", "dur": 3, "transicion": "destello"}
+  ]
+}
