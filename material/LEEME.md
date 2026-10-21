@@ -40,3 +40,12 @@ Lote 21/10/2026 (54 archivos; originales en la carpeta compartida material/2026-
 fotos de sobres/cajas de cerca con etiquetas First Class (nombres de clientes y dirección legibles), 2 fotos repetidas
 del rincón, video de unboxing borroso con etiquetas, y tomas de la presentadora sosteniendo sobres (acerca etiquetas
 con nombre y código). El resto de tomas de la presentadora son repetidas de las guardadas.
+
+VOZ (decisión del dueño 21/10/2026): la chica de las tomas presentadora_* es la esposa del dueño y se puede usar su voz
+("con_audio": true) solo sobre su propia toma. Aún NO está escrito qué dice en cada toma (no se pudo transcribir aquí):
+cuando el dueño lo diga, anotarlo en esta tabla para poner subtítulos.
+| Toma | Qué dice (completar) |
+|---|---|
+| presentadora_senala_13 | |
+| presentadora_caja_16 | |
+| presentadora_caja_20 | |
