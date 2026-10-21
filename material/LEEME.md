@@ -49,3 +49,6 @@ cuando el dueño lo diga, anotarlo en esta tabla para poner subtítulos.
 | presentadora_senala_13 | |
 | presentadora_caja_16 | |
 | presentadora_caja_20 | |
+
+CALIDAD (dueño 21/10/2026): las tomas presentadora_* (lote 21/10) se ven muy mal en pantalla completa y el dueño rechazó
+los cortos hechos con ellas. NO usarlas hasta que lleguen tomas en HD; si hace falta una, máximo 1,5 s y sin acercar.
