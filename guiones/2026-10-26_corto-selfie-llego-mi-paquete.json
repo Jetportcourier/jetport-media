@@ -4,7 +4,7 @@
     {"tipo": "clip", "dur": 2.4, "archivo": "material/foto_selfie_beso_18.jpg", "texto": "Yo cuando me avisan que mi paquete ya llegó a Lima", "posicion": "arriba", "transicion": "ninguna"},
     {"tipo": "clip", "dur": 2.6, "archivo": "material/camion_sacos_07.mp4", "inicio": 0.5, "texto": "Mientras tanto, mi paquete:", "posicion": "abajo", "transicion": "zoom"},
     {"tipo": "clip", "dur": 3.0, "archivo": "material/presentadora_senala_13.mp4", "inicio": 0.3, "texto": "¿Todo eso es mío?", "posicion": "arriba", "transicion": "barrido"},
-    {"tipo": "clip", "dur": 3.0, "archivo": "material/presentadora_caja_16.mp4", "inicio": 0.6, "texto": "Tu cosita de USA, lista para ti", "posicion": "arriba", "transicion": "zoom"},
+    {"tipo": "clip", "dur": 3.0, "archivo": "material/presentadora_caja_16.mp4", "inicio": 0.6, "texto": "Tu cajita de USA, lista para ti", "posicion": "arriba", "transicion": "zoom"},
     {"tipo": "cta", "dur": 3}
   ]
 }
