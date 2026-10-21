@@ -1,9 +1,37 @@
 {
   "musica_semilla": 61,
   "escenas": [
-    {"tipo": "clip", "dur": 3.2, "archivo": "material/paquetes_uhaul_01.mp4", "inicio": 0.0, "texto": "Yo: solo pedí UNA cosita de Amazon", "posicion": "arriba", "transicion": "ninguna"},
-    {"tipo": "clip", "dur": 3.2, "archivo": "material/paquetes_almacen_02.mp4", "inicio": 1.0, "texto": "Mi casillero en Miami:", "posicion": "arriba", "transicion": "zoom"},
-    {"tipo": "clip", "dur": 3.0, "archivo": "material/paquetes_almacen_02.mp4", "inicio": 6.0, "texto": "Tranqui, nosotros te lo traemos a Perú", "posicion": "abajo", "transicion": "barrido"},
-    {"tipo": "cta", "dur": 3}
+    {
+      "tipo": "clip",
+      "dur": 3.2,
+      "archivo": "material/paquetes_uhaul_01.mp4",
+      "inicio": 0.0,
+      "texto": "Yo: solo pedí UNA cosita de Amazon",
+      "posicion": "arriba",
+      "transicion": "ninguna"
+    },
+    {
+      "tipo": "clip",
+      "dur": 3.2,
+      "archivo": "material/paquetes_almacen_02.mp4",
+      "inicio": 1.0,
+      "texto": "Mi casillero en Miami:",
+      "posicion": "arriba",
+      "transicion": "glitch"
+    },
+    {
+      "tipo": "clip",
+      "dur": 3.0,
+      "archivo": "material/paquetes_almacen_02.mp4",
+      "inicio": 6.0,
+      "texto": "Tranqui, nosotros te lo traemos a Perú",
+      "posicion": "abajo",
+      "transicion": "giro"
+    },
+    {
+      "tipo": "cta",
+      "dur": 3,
+      "transicion": "destello"
+    }
   ]
 }

@@ -35,8 +35,12 @@ Clips reales: escena {"tipo": "clip", "dur": 3, "archivo": "material/clip.mp4", 
   (Las fotos y videos del avatar en referencias/ son SOLO referencia del dueño: NO usarlos en los videos.)
 Cierre: al final de cada video se agrega solo un cierre animado de 2,6 s (círculo blanco que se abre, logo
   con rebote, lema y fundido). Hay 3 variantes que se rotan solas: "circulo", "barrido" y "persiana". Opcional "lema" en una escena {"tipo": "cierre", "dur": 2.6}; "cierre": false lo quita.
-Transiciones: cualquier escena puede llevar "transicion": "zoom" (golpe de zoom + destello),
-  "barrido" (deslizamiento rápido) o "ninguna". Si no se indica, se alternan zoom y barrido automáticamente.
+Transiciones: cualquier escena puede llevar "transicion": "zoom" (golpe de zoom + destello), "barrido"
+  (deslizamiento lateral), "deslizar" (entra desde abajo), "giro", "sacudida" (temblor + colores separados),
+  "glitch" (falla digital), "destello" (flash blanco fuerte) o "ninguna". Si no se indica: en escenas "clip" se
+  rotan todas (zoom, glitch, giro, deslizar, sacudida, destello, barrido); en las demás se alternan zoom y barrido.
+  Cada transición suena con un "whoosh" ("whoosh": false en el guion lo quita). Los clips llevan además un
+  "pulso" (golpe de zoom suave en cada tiempo de la música); "pulso": false en la escena lo quita.
 Marca: generador/logo_horizontal.png (logo oficial) va en el pie de todos los cuadros, SIEMPRE sobre tarjeta blanca.\n  generador/logo_vertical.png es la versión vertical, también sobre blanco.
 La escena "cta" muestra las redes oficiales (TikTok @jetport_courier, Instagram @jetportcourier,
   Facebook Jetport Courier, jpcourier.com).
@@ -699,21 +703,102 @@ def esc_cierre(L, e, lt, a):
 
 TIPOS = {"cierre": esc_cierre, "titulo": esc_titulo, "punto": esc_punto, "texto": esc_texto, "cta": esc_cta, "clip": esc_clip}
 
+TRANS_DUR = 0.32
+# Orden en que se rotan las transiciones en escenas "clip" cuando el guion no indica una (más dinámico)
+TRANS_CLIPS = ["zoom", "glitch", "giro", "deslizar", "sacudida", "destello", "barrido"]
+
+def _zoom(img, z, cx=0.5, cy=0.5):
+    cw, ch = int(W / z), int(H / z)
+    x0 = int(max(0, min(W - cw, cx * W - cw / 2))); y0 = int(max(0, min(H - ch, cy * H - ch / 2)))
+    return img.crop((x0, y0, x0 + cw, y0 + ch)).resize((W, H), Image.BILINEAR)
+
+def _rgb_split(img, d):
+    r, g, b, a = img.split()
+    r = r.transform(img.size, Image.AFFINE, (1, 0, -d, 0, 1, 0)); b = b.transform(img.size, Image.AFFINE, (1, 0, d, 0, 1, 0))
+    return Image.merge("RGBA", (r, g, b, a))
+
 def transicion(img, lt, tipo):
-    """Efecto al entrar en una escena: 'zoom' (golpe de zoom + destello), 'barrido' o 'ninguna'."""
-    if tipo == "ninguna" or lt > 0.3: return img
-    k = ease(lt / 0.25)
+    """Efecto al entrar en una escena. Tipos: 'zoom' (golpe de zoom + destello), 'barrido' (deslizamiento lateral
+    con desenfoque), 'deslizar' (entra desde abajo), 'giro' (gira y se endereza), 'sacudida' (temblor de cámara con
+    colores separados), 'glitch' (franjas desplazadas tipo falla digital), 'destello' (flash blanco fuerte y zoom
+    hacia afuera) o 'ninguna'. Cada transición lleva un 'whoosh' en el audio."""
+    if tipo == "ninguna" or lt > TRANS_DUR + 0.05: return img
+    k = ease(lt / TRANS_DUR); q = 1 - k
     if tipo == "barrido":
-        dx = int((1 - k) * W * 0.35)
-        img2 = img.filter(ImageFilter.GaussianBlur(14 * (1 - k))) if k < 1 else img
+        dx = int(q * W * 0.45)
+        img2 = img.filter(ImageFilter.BoxBlur(int(22 * q))) if q > 0.02 else img
         base = Image.new("RGBA", (W, H), (0, 0, 0, 255)); base.alpha_composite(img2, (dx, 0)); img = base
-    else:
-        z = 1 + 0.14 * (1 - k); cw, ch = int(W / z), int(H / z)
-        img = img.crop(((W - cw) // 2, (H - ch) // 2, (W + cw) // 2, (H + ch) // 2)).resize((W, H), Image.BILINEAR)
-    fl = max(0.0, 0.55 * (1 - lt / 0.18))
+    elif tipo == "deslizar":
+        dy = int(q * H * 0.4)
+        img2 = img.filter(ImageFilter.BoxBlur(int(22 * q))) if q > 0.02 else img
+        base = Image.new("RGBA", (W, H), (0, 0, 0, 255)); base.alpha_composite(img2, (0, dy)); img = base
+    elif tipo == "giro":
+        ang = 18 * q * (1 if int(lt * 1000) >= 0 else -1)
+        img = _zoom(img, 1 + 0.35 * q).rotate(ang, Image.BILINEAR, fillcolor=(0, 0, 0, 255))
+        if q > 0.05: img = img.filter(ImageFilter.GaussianBlur(8 * q))
+    elif tipo == "sacudida":
+        amp = 46 * q; f = lt * 60
+        img = _zoom(img, 1.08, 0.5 + amp * math.sin(f * 1.7) / W, 0.5 + amp * math.cos(f * 2.3) / H)
+        if q > 0.05: img = _rgb_split(img, int(28 * q))
+    elif tipo == "glitch":
+        if q > 0.04:
+            img = _rgb_split(img, int(36 * q)); out = img.copy()
+            import random; rnd = random.Random(int(lt * 1000))
+            for _ in range(9):
+                y = rnd.randrange(0, H - 60); hgt = rnd.randrange(30, 160); dx = int(rnd.uniform(-160, 160) * q)
+                out.paste(img.crop((0, y, W, y + hgt)), (dx, y))
+            img = out
+        img = _zoom(img, 1 + 0.06 * q)
+    elif tipo == "destello":
+        img = _zoom(img, 1 + 0.22 * q)
+    else:                                                               # zoom
+        img = _zoom(img, 1 + 0.18 * q)
+    pico = {"destello": 0.95, "zoom": 0.55, "sacudida": 0.35, "glitch": 0.0}.get(tipo, 0.25)
+    fl = max(0.0, pico * (1 - lt / 0.2))
     if fl > 0:
         img = Image.blend(img, Image.new("RGBA", (W, H), (255, 255, 255, 255)), fl)
     return img
+
+def bpm(semilla):
+    """Mismo tempo que musica.py, para que los 'pulsos' de los clips caigan en el ritmo."""
+    return {0: 128, 1: 96, 2: 122, 3: 104}[semilla % 4] + (semilla % 3) * 2
+
+def pulso(img, t):
+    """Golpe de zoom suave en cada tiempo de la música (da energía a los clips reales)."""
+    beat = 60 / bpm(SEMILLA); fase = (t % beat) / beat
+    fuerza = 0.045 if int(t / beat) % 2 == 0 else 0.025
+    z = 1 + fuerza * max(0.0, 1 - fase / 0.35) ** 2
+    return _zoom(img, z) if z > 1.001 else img
+
+def tipo_transicion(idx, esc):
+    if esc.get("transicion"): return esc["transicion"]
+    if esc["tipo"] == "clip": return TRANS_CLIPS[(idx + SEMILLA) % len(TRANS_CLIPS)]
+    return "zoom" if idx % 2 else "barrido"
+
+def whoosh(wav, tiempos):
+    """Mezcla un 'whoosh' (y un golpe grave en destello/sacudida/zoom) en cada transición de la música."""
+    import numpy as np
+    from scipy.io import wavfile
+    from scipy.signal import butter, lfilter
+    sr, m = wavfile.read(wav); m = m.astype(np.float32); esc = 32767.0 if m.dtype != np.float32 else 1.0
+    if np.abs(m).max() > 2: esc = 32767.0
+    else: esc = 1.0
+    rng = np.random.default_rng(5)
+    for t, tipo in tiempos:
+        n = int(0.42 * sr); x = rng.standard_normal(n)
+        env = np.concatenate([np.linspace(0, 1, int(n * 0.6)) ** 2, np.linspace(1, 0, n - int(n * 0.6)) ** 1.5])
+        b, a = butter(2, [900 / (sr / 2), 5200 / (sr / 2)], "band"); w = lfilter(b, a, x) * env * 0.33
+        if tipo in ("destello", "sacudida", "zoom"):
+            tt = np.arange(int(0.25 * sr)) / sr
+            golpe = np.sin(2 * np.pi * (90 - 50 * tt / 0.25) * tt) * np.exp(-tt * 14) * 0.55
+            w2 = np.zeros(n); i0 = int(n * 0.6); w2[i0:i0 + len(golpe)] = golpe[: n - i0]; w = w + w2
+        i = int((t - 0.42 * 0.6) * sr)
+        if i < 0: w = w[-i:]; i = 0
+        j = min(len(m), i + len(w)); w = w[: j - i] * esc
+        if m.ndim == 2: m[i:j] += w[:, None]
+        else: m[i:j] += w
+    m = np.clip(m, -esc, esc)
+    wavfile.write(wav, sr, m.astype(np.int16) if esc > 2 else m.astype(np.float32))
 
 def build(guion):
     escenas, t = [], 0.0
@@ -739,6 +824,8 @@ def frame(escenas, total, t):
     s0, e0, esc = escenas[idx]
     es_clip = esc["tipo"] == "clip"
     img = fondo_clip(idx, esc, t_esc) if es_clip else fondo(t, idx, t_esc)
+    if es_clip and esc.get("pulso", True) and t_esc > TRANS_DUR:
+        img = pulso(img, t)
     L = Image.new("RGBA", (W, H), (0, 0, 0, 0))
     if not es_clip:
         d = ImageDraw.Draw(L); off = (t * 120) % 400
@@ -746,7 +833,7 @@ def frame(escenas, total, t):
             x0 = k * 400 + off - 600
             d.polygon([(x0, 0), (x0 + 60, 0), (x0 + 760, H), (x0 + 700, H)], fill=(255, 255, 255, 10))
     a = 1.0 if (t <= e0 - 0.3 or e0 >= total) else (e0 - t) / 0.3
-    if es_clip and esc.get("transicion", "zoom") != "ninguna":
+    if es_clip and tipo_transicion(idx, esc) != "ninguna":
         a = 1.0                                   # en clips el corte lo marca la transición, sin fundido
     es_cierre = esc["tipo"] == "cierre"
     if not es_clip and not es_cierre:
@@ -759,8 +846,8 @@ def frame(escenas, total, t):
         progress(L, t, total)
         marca_pie(L)
     img.alpha_composite(L)
-    if idx > 0:   # si el guion no la define, se alternan zoom y barrido para no repetir
-        img = transicion(img, t_esc, esc.get("transicion", "zoom" if idx % 2 else "barrido"))
+    if idx > 0:   # si el guion no la define: clips rotan TRANS_CLIPS; las demás alternan zoom y barrido
+        img = transicion(img, t_esc, tipo_transicion(idx, esc))
     return img.convert("RGB")
 
 def main():
@@ -783,6 +870,9 @@ def main():
     for i in range(int(total * FPS)):
         p.stdin.write(frame(escenas, total, i / FPS).tobytes())
     p.stdin.close(); p.wait()
+    if guion.get("whoosh", True):
+        whoosh(wav, [(s0, tipo_transicion(i, e)) for i, (s0, _, e) in enumerate(escenas)
+                     if i > 0 and tipo_transicion(i, e) != "ninguna" and e["tipo"] != "cierre"])
     for c in _clips.values():
         if c.proc: c.proc.kill()
     voces = [(s0, e) for s0, _, e in escenas if e["tipo"] == "clip" and e.get("con_audio")]
