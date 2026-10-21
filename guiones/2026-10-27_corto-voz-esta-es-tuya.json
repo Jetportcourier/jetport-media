@@ -1,0 +1,11 @@
+{
+  "musica_semilla": 100,
+  "escenas": [
+    {"tipo": "clip", "dur": 2.0, "archivo": "material/piso_paquetes_09.mp4", "inicio": 1.0, "texto": "Cuando llegan TODOS los pedidos de USA juntos", "posicion": "arriba", "transicion": "ninguna"},
+    {"tipo": "clip", "dur": 2.5, "archivo": "material/presentadora_senala_14.mp4", "inicio": 1.5, "con_audio": true, "texto": "Yo repartiendo como:", "posicion": "arriba", "transicion": "destello"},
+    {"tipo": "clip", "dur": 1.8, "archivo": "material/presentadora_caja_19.mp4", "inicio": 1.2, "con_audio": true, "texto": "Esta es tuya", "posicion": "arriba", "transicion": "sacudida"},
+    {"tipo": "clip", "dur": 1.6, "archivo": "material/presentadora_caja_20.mp4", "inicio": 1.6, "con_audio": true, "texto": "Esta también", "posicion": "arriba", "transicion": "glitch"},
+    {"tipo": "clip", "dur": 1.9, "archivo": "material/presentadora_caja_22.mp4", "inicio": 1.8, "con_audio": true, "texto": "¡Y ESTA TAMBIÉN!", "posicion": "arriba", "transicion": "giro"},
+    {"tipo": "cta", "dur": 2.6, "modo": "escribenos", "transicion": "destello"}
+  ]
+}
