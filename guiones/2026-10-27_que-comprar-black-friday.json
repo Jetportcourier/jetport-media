@@ -1,0 +1,13 @@
+{
+  "musica_semilla": 110,
+  "fondos": ["rayos", "patron", "confeti", "ciudad", "burbujas", "puntos"],
+  "escenas": [
+    {"tipo": "titulo", "dur": 3.8, "arriba": "BLACK FRIDAY", "lineas": ["¿Qué conviene comprar", "en las ofertas de USA?"], "sub": "5 ideas para tu lista", "fondo": "tienda"},
+    {"tipo": "punto", "dur": 4.8, "numero": "1", "etiqueta": "IDEA", "titulo": "Tecnología", "texto": "Audífonos, relojes inteligentes y accesorios suelen tener grandes descuentos.", "fondo": "tienda"},
+    {"tipo": "punto", "dur": 4.8, "numero": "2", "etiqueta": "IDEA", "titulo": "Zapatillas y ropa de marca", "texto": "Las tiendas oficiales rematan temporadas pasadas."},
+    {"tipo": "punto", "dur": 4.8, "numero": "3", "etiqueta": "IDEA", "titulo": "Juguetes para Navidad", "texto": "Compra con tiempo y tenlos listos para las fiestas.", "fondo": "ruta"},
+    {"tipo": "punto", "dur": 4.8, "numero": "4", "etiqueta": "IDEA", "titulo": "Perfumes y cuidado personal", "texto": "Sí se pueden traer: hasta 4 unidades para uso personal."},
+    {"tipo": "punto", "dur": 4.8, "numero": "5", "etiqueta": "IDEA", "titulo": "Cosas para el hogar", "texto": "Pequeños electrodomésticos y artículos de cocina.", "fondo": "cajas"},
+    {"tipo": "cta", "dur": 4.5}
+  ]
+}

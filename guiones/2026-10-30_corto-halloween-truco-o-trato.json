@@ -1,0 +1,10 @@
+{
+  "musica_semilla": 113,
+  "escenas": [
+    {"tipo": "clip", "dur": 2.0, "archivo": "material/foto_uhaul_02.jpg", "texto": "Halloween versión comprador online:", "posicion": "arriba", "transicion": "ninguna"},
+    {"tipo": "clip", "dur": 2.2, "archivo": "material/paquetes_uhaul_01.mp4", "inicio": 0.5, "texto": "¿Truco o trato?", "posicion": "centro", "transicion": "glitch"},
+    {"tipo": "clip", "dur": 2.6, "archivo": "material/carga_van_03.mp4", "inicio": 0.5, "texto": "Trato: tus compras de USA llegando a Lima", "posicion": "arriba", "transicion": "destello"},
+    {"tipo": "clip", "dur": 2.0, "archivo": "material/foto_van_cargada_09.jpg", "texto": "Cero sustos", "posicion": "arriba", "transicion": "sacudida"},
+    {"tipo": "cta", "dur": 3, "transicion": "destello"}
+  ]
+}

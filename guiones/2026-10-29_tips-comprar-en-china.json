@@ -1,0 +1,13 @@
+{
+  "musica_semilla": 111,
+  "fondos": ["ciudad", "confeti", "puntos", "rayos", "patron", "burbujas"],
+  "escenas": [
+    {"tipo": "titulo", "dur": 3.8, "arriba": "¿COMPRAS EN CHINA?", "lineas": ["5 tips para que", "no te lleves sorpresas"], "sub": "Guarda este video", "fondo": "cajas"},
+    {"tipo": "punto", "dur": 5, "numero": "1", "etiqueta": "TIP", "titulo": "Revisa bien las tallas", "texto": "Las tallas asiáticas suelen ser más pequeñas. Mira la tabla de medidas."},
+    {"tipo": "punto", "dur": 5, "numero": "2", "etiqueta": "TIP", "titulo": "Lee reseñas con fotos", "texto": "Las fotos de otros compradores muestran el producto real.", "fondo": "tienda"},
+    {"tipo": "punto", "dur": 5, "numero": "3", "etiqueta": "TIP", "titulo": "Ojo con el peso volumétrico", "texto": "Una caja grande y liviana se cobra por su tamaño, no solo por su peso.", "fondo": "cajas"},
+    {"tipo": "punto", "dur": 5, "numero": "4", "etiqueta": "TIP", "titulo": "Compra con tiempo", "texto": "El envío desde China suele tardar más que desde USA. Planifica tus regalos.", "fondo": "ruta"},
+    {"tipo": "punto", "dur": 5, "numero": "5", "etiqueta": "TIP", "titulo": "Evita los restringidos", "texto": "Baterías de litio sueltas, aerosoles y líquidos inflamables pueden traer problemas.", "fondo": "avion"},
+    {"tipo": "cta", "dur": 4.5, "modo": "escribenos"}
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "musica_semilla": 109,
+  "escenas": [
+    {"tipo": "clip", "dur": 2.6, "archivo": "material/camion_sacos_07.mp4", "inicio": 0.3, "texto": "Cuando llega el camión con las compras de Miami", "posicion": "abajo", "transicion": "ninguna"},
+    {"tipo": "clip", "dur": 2.0, "archivo": "material/sacos_almacen_08.mp4", "inicio": 0.3, "texto": "Nosotros:", "posicion": "arriba", "transicion": "sacudida"},
+    {"tipo": "clip", "dur": 2.2, "archivo": "material/foto_companero_desempaca_15.jpg", "texto": "Modo turbo activado", "posicion": "arriba", "transicion": "giro"},
+    {"tipo": "clip", "dur": 2.4, "archivo": "material/foto_companero_desempaca_14.jpg", "texto": "Separando cada paquete con cariño", "posicion": "arriba", "transicion": "deslizar"},
+    {"tipo": "cta", "dur": 3, "transicion": "destello"}
+  ]
+}

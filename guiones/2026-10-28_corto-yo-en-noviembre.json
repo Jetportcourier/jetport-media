@@ -1,0 +1,10 @@
+{
+  "musica_semilla": 108,
+  "escenas": [
+    {"tipo": "clip", "dur": 2.4, "archivo": "material/piso_paquetes_10.mp4", "inicio": 0.5, "texto": "Yo en noviembre: solo voy a mirar las ofertas", "posicion": "arriba", "transicion": "ninguna"},
+    {"tipo": "clip", "dur": 2.2, "archivo": "material/piso_paquetes_11.mp4", "inicio": 2.0, "texto": "Yo en diciembre:", "posicion": "arriba", "transicion": "sacudida"},
+    {"tipo": "clip", "dur": 2.0, "archivo": "material/piso_paquetes_12.mp4", "inicio": 1.0, "texto": "¿Todo esto es mío?", "posicion": "arriba", "transicion": "glitch"},
+    {"tipo": "clip", "dur": 2.4, "archivo": "material/foto_paquetes_piso_16.jpg", "texto": "Sí, y llegó completito a Lima", "posicion": "arriba", "transicion": "giro"},
+    {"tipo": "cta", "dur": 3, "modo": "escribenos", "transicion": "destello"}
+  ]
+}
