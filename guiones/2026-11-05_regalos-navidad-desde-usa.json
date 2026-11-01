@@ -1,0 +1,12 @@
+{
+  "musica_semilla": 119,
+  "fondos": ["burbujas", "ciudad", "rayos", "confeti", "patron", "puntos"],
+  "escenas": [
+    {"tipo": "titulo", "dur": 3.8, "arriba": "NAVIDAD 2026", "lineas": ["Regalos desde USA", "sin correr al final"], "sub": "4 tips para que lleguen a tiempo", "fondo": "avion"},
+    {"tipo": "punto", "dur": 5, "numero": "1", "etiqueta": "TIP", "titulo": "Haz tu lista desde ya", "texto": "Anota a quién le regalas y qué quieres. Así compras rápido cuando salgan las ofertas."},
+    {"tipo": "punto", "dur": 5, "numero": "2", "etiqueta": "TIP", "titulo": "Aprovecha las fechas clave", "texto": "Black Friday es el 27/11 y Cyber Monday el 30/11. Buen momento para regalos.", "fondo": "tienda"},
+    {"tipo": "punto", "dur": 5, "numero": "3", "etiqueta": "TIP", "titulo": "No lo dejes para la última semana", "texto": "El envío y la aduana toman unos días. Compra con margen y duerme tranquilo.", "fondo": "ruta"},
+    {"tipo": "punto", "dur": 5, "numero": "4", "etiqueta": "TIP", "titulo": "Ojo con lo restringido", "texto": "Evita baterías de litio sueltas, aerosoles y líquidos inflamables.", "fondo": "cajas"},
+    {"tipo": "cta", "dur": 4.5, "modo": "escribenos"}
+  ]
+}

@@ -21,6 +21,11 @@
 | 2026-10-28 19:07 | Corto real: "Yo en noviembre / yo en diciembre" | corto real humor (12 s + cierre) | 108 (electro-pop) | círculo | piso_paquetes_10 0,5–2,9; piso_paquetes_11 2–4,2; piso_paquetes_12 1–3; foto_paquetes_piso_16 | PROGRAMADO |
 | 2026-10-29 19:07 | Comprar en China: 5 tips | didáctico (tips) | 111 (tropical) | círculo | — | PROGRAMADO |
 | 2026-10-30 19:07 | Corto real: "Halloween: ¿truco o trato?" | corto real humor (11,8 s + cierre) | 113 (dembow) | persiana | foto_uhaul_02; paquetes_uhaul_01 0,5–2,7; carga_van_03 0,5–3,1; foto_van_cargada_09 | PROGRAMADO |
+| 2026-11-02 19:07 | Corto real: "Lunes: hoy va a ser un día tranquilo" | corto real humor (12,1 s + cierre) | 117 (dembow) | círculo | foto_cajas_rincon_17; foto_camion_sacos_11; sacos_cajas_almacen_06 0,5–3; foto_almacen_05 | PROGRAMADO |
+| 2026-11-03 19:07 | Black Friday: ¿esa oferta es real? 5 señales | didáctico (fechas de descuento) | 114 (house con piano) | círculo | — | PROGRAMADO |
+| 2026-11-04 19:07 | Corto real: "POV: eres mi compra de Amazon" | corto real humor (12,2 s + cierre) | 112 (electro-pop) | barrido | foto_camion_07; foto_camion_sacos_12; paquetes_almacen_02 7–9,6; foto_balanza_04 | PROGRAMADO |
+| 2026-11-05 19:07 | Regalos de Navidad desde USA: 4 tips | didáctico (tips) | 119 (tropical) | persiana | — | PROGRAMADO |
+| 2026-11-06 19:07 | Corto real: "Viernes: ¿llega para el finde?" | corto real humor (10,4 s + cierre) | 105 (dembow) | círculo | foto_camion_sacos_13; sacos_cajas_almacen_06 4–6,4; foto_almacen_03 | PROGRAMADO |
 Pruebas iniciales (no publicadas): videos/jetport_anuncio_1.mp4 (con tarifas, descartado: etapa sin precios) y
 videos/jetport_tips_1.mp4 (primera versión de "3 errores", estilo antiguo).
 

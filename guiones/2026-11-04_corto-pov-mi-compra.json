@@ -1,0 +1,10 @@
+{
+  "musica_semilla": 112,
+  "escenas": [
+    {"tipo": "clip", "dur": 2.4, "archivo": "material/foto_camion_07.jpg", "texto": "POV: eres mi compra de Amazon", "posicion": "arriba", "transicion": "ninguna"},
+    {"tipo": "clip", "dur": 2.2, "archivo": "material/foto_camion_sacos_12.jpg", "texto": "Viajas bien empacadito con tus amigos", "posicion": "arriba", "transicion": "deslizar"},
+    {"tipo": "clip", "dur": 2.6, "archivo": "material/paquetes_almacen_02.mp4", "inicio": 1.0, "texto": "Llegas a Lima y te ordenan", "posicion": "arriba", "transicion": "glitch"},
+    {"tipo": "clip", "dur": 2.4, "archivo": "material/foto_balanza_04.jpg", "texto": "Te pesan... ¡y directo a mis manos!", "posicion": "arriba", "transicion": "sacudida"},
+    {"tipo": "cta", "dur": 3, "modo": "escribenos", "transicion": "destello"}
+  ]
+}

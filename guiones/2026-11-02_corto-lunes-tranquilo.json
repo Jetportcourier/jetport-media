@@ -1,0 +1,10 @@
+{
+  "musica_semilla": 117,
+  "escenas": [
+    {"tipo": "clip", "dur": 2.4, "archivo": "material/foto_cajas_rincon_17.jpg", "texto": "Lunes 8 a.m.: hoy va a ser un día tranquilo", "posicion": "arriba", "transicion": "ninguna"},
+    {"tipo": "clip", "dur": 2.2, "archivo": "material/foto_camion_sacos_11.jpg", "texto": "8:05 a.m.: llegó el camión", "posicion": "arriba", "transicion": "sacudida"},
+    {"tipo": "clip", "dur": 2.5, "archivo": "material/sacos_cajas_almacen_06.mp4", "inicio": 0.5, "texto": "Y siguen llegando...", "posicion": "arriba", "transicion": "glitch"},
+    {"tipo": "clip", "dur": 2.4, "archivo": "material/foto_almacen_05.jpg", "texto": "Todo ordenado y listo para entregar", "posicion": "arriba", "transicion": "giro"},
+    {"tipo": "cta", "dur": 3, "transicion": "destello"}
+  ]
+}

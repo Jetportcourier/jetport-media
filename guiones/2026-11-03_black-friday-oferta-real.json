@@ -1,0 +1,13 @@
+{
+  "musica_semilla": 114,
+  "fondos": ["confeti", "rayos", "patron", "puntos", "ciudad", "burbujas"],
+  "escenas": [
+    {"tipo": "titulo", "dur": 3.8, "arriba": "BLACK FRIDAY 27/11", "lineas": ["¿Esa oferta", "es real?"], "sub": "5 señales para saberlo", "fondo": "tienda"},
+    {"tipo": "punto", "dur": 5, "numero": "1", "etiqueta": "SEÑAL", "titulo": "Mira el precio desde hoy", "texto": "Anota cuánto cuesta ahora. Si en Black Friday 'baja' al mismo precio, no es oferta."},
+    {"tipo": "punto", "dur": 5, "numero": "2", "etiqueta": "SEÑAL", "titulo": "Descuentos demasiado buenos", "texto": "Un 90% de descuento en una web desconocida es una alerta.", "fondo": "tienda"},
+    {"tipo": "punto", "dur": 5, "numero": "3", "etiqueta": "SEÑAL", "titulo": "Revisa quién lo vende", "texto": "En Amazon fíjate en 'vendido por'. Prefiere tiendas oficiales o vendedores con buenas reseñas."},
+    {"tipo": "punto", "dur": 5, "numero": "4", "etiqueta": "SEÑAL", "titulo": "Reseñas con fotos reales", "texto": "Las opiniones con fotos de compradores valen más que las estrellas solas.", "fondo": "cajas"},
+    {"tipo": "punto", "dur": 5, "numero": "5", "etiqueta": "SEÑAL", "titulo": "Cuenta el envío a Perú", "texto": "Una oferta buena sigue siéndolo cuando sumas el traslado hasta Lima.", "fondo": "avion"},
+    {"tipo": "cta", "dur": 4.5}
+  ]
+}

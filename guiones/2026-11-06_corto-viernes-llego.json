@@ -1,0 +1,9 @@
+{
+  "musica_semilla": 105,
+  "escenas": [
+    {"tipo": "clip", "dur": 2.6, "archivo": "material/foto_camion_sacos_13.jpg", "texto": "Viernes: ¿y si mi paquete no llega para el finde?", "posicion": "arriba", "transicion": "ninguna"},
+    {"tipo": "clip", "dur": 2.4, "archivo": "material/sacos_cajas_almacen_06.mp4", "inicio": 4.0, "texto": "JP Courier: tranqui, ya está aquí", "posicion": "arriba", "transicion": "glitch"},
+    {"tipo": "clip", "dur": 2.4, "archivo": "material/foto_almacen_03.jpg", "texto": "Plan del finde: abrir cajas", "posicion": "arriba", "transicion": "giro"},
+    {"tipo": "cta", "dur": 3, "transicion": "destello"}
+  ]
+}
