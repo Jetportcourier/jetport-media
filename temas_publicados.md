@@ -26,6 +26,8 @@
 | 2026-11-04 19:07 | Corto real: "POV: eres mi compra de Amazon" | corto real humor (12,2 s + cierre) | 112 (electro-pop) | barrido | foto_camion_07; foto_camion_sacos_12; sacos_almacen_08 0,3–2,9; foto_balanza_04 | PROGRAMADO |
 | 2026-11-05 19:07 | Regalos de Navidad desde USA: 4 tips | didáctico (tips) | 119 (tropical) | persiana | — | PROGRAMADO |
 | 2026-11-06 19:07 | Corto real: "Viernes: ¿llega para el finde?" | corto real humor (10,4 s + cierre) | 105 (dembow) | círculo | foto_camion_sacos_13; sacos_cajas_almacen_06 4–6,4; foto_almacen_03 | PROGRAMADO |
+| 2026-11-03 12:07 | Extra animado: "Hola, soy tu paquete" (Paqui) | corto animado (11 s + cta + cierre) | 118 (house) | persiana | ninguno (animación) | PROGRAMADO |
+| 2026-11-07 12:07 | Extra fotos con zoom: "Lo que vive tu paquete" | corto real zoom/Polaroid (12,2 s + cta + cierre) | 116 (electro-pop) | barrido | foto_uhaul_02, foto_van_cargada_09, foto_camion_sacos_12, foto_companero_desempaca_14, foto_balanza_04 | PROGRAMADO |
 Pruebas iniciales (no publicadas): videos/jetport_anuncio_1.mp4 (con tarifas, descartado: etapa sin precios) y
 videos/jetport_tips_1.mp4 (primera versión de "3 errores", estilo antiguo).
 
