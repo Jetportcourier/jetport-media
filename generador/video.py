@@ -31,6 +31,13 @@ Clips reales: escena {"tipo": "clip", "dur": 3, "archivo": "material/clip.mp4", 
   Opcionales: "recorte": [x, y, ancho, alto] para quitar franjas negras o subtítulos quemados del original;
   "con_audio": true para usar la voz del clip (la música baja de volumen); "subtitulos": [[desde, hasta, "frase"]].
   También acepta FOTOS (.png/.jpg) como "archivo": se muestran con acercamiento lento.
+  "camara": movimiento de cámara (Ken Burns) en fotos/clips: "lento" (defecto), "acercar", "alejar", "paneo_der",
+  "paneo_izq", "subir", "bajar", "diagonal", o lista [zoom0, zoom1, cx0, cy0, cx1, cy1].
+  "estilo": "polaroid" muestra la foto como tarjeta inclinada con borde blanco sobre fondo desenfocado
+  (disimula fotos de baja calidad); opcionales "pie" (texto en el borde) y "angulo".
+Cortos animados: {"tipo": "anim", "escena": "hola|vuelo|aduana|llegada", "dur": 2.6, "texto": ..., "resaltado": ...}
+  con "Paqui", la cajita animada (generador/personajes.py). "aduana" admite "cambio" + "texto_despues".
+  Usa "estilo_fondo" para el fondo. Ejemplo: guiones/muestra_animado-paqui.json.
   "globo": "texto" dibuja un globo de diálogo blanco (para que la presentadora 'hable'); "globo_y" ajusta la altura.
   (Las fotos y videos del avatar en referencias/ son SOLO referencia del dueño: NO usarlos en los videos.)
 Cierre: al final de cada video se agrega solo un cierre animado de 2,6 s (círculo blanco que se abre, logo
@@ -586,13 +593,65 @@ class Clip:
 _clips = {}
 MODO_PREVIA = False
 
+# Movimientos de cámara para fotos y clips ("camara" en la escena). (zoom inicial, zoom final, centro x/y inicial, final)
+CAMARAS = {
+    "lento":      (1.00, 1.06, .5, .5, .5, .5),     # el de siempre: acercamiento muy suave
+    "acercar":    (1.00, 1.28, .5, .5, .5, .45),
+    "alejar":     (1.30, 1.00, .5, .42, .5, .5),
+    "paneo_der":  (1.28, 1.28, .2, .5, .8, .5),     # recorre la foto de izquierda a derecha
+    "paneo_izq":  (1.28, 1.28, .8, .5, .2, .5),
+    "subir":      (1.25, 1.25, .5, .9, .5, .1),     # recorre de abajo hacia arriba (pilas de cajas)
+    "bajar":      (1.25, 1.25, .5, .1, .5, .9),
+    "diagonal":   (1.05, 1.32, .3, .75, .65, .35),
+}
+
+def _suave(x):
+    x = max(0.0, min(1.0, x)); return 0.5 - 0.5 * math.cos(math.pi * x)
+
+def camara(img, e, lt):
+    """Zoom y paneo durante la escena. "camara": nombre de CAMARAS o lista propia [z0, z1, cx0, cy0, cx1, cy1]."""
+    c = e.get("camara", "lento")
+    z0, z1, x0, y0, x1, y1 = CAMARAS[c] if isinstance(c, str) else c
+    k = _suave(lt / max(float(e["dur"]), 0.1))
+    z = z0 + (z1 - z0) * k
+    cw, ch = W / z, H / z
+    cx = min(max((x0 + (x1 - x0) * k) * W, cw / 2), W - cw / 2)
+    cy = min(max((y0 + (y1 - y0) * k) * H, ch / 2), H - ch / 2)
+    return img.transform((W, H), Image.EXTENT, (cx - cw / 2, cy - ch / 2, cx + cw / 2, cy + ch / 2), Image.BICUBIC)
+
+def polaroid(img, e, lt):
+    """La foto como tarjeta tipo Polaroid inclinada sobre un fondo desenfocado de la misma foto.
+    Disimula fotos de baja calidad. Opcionales: "pie" (texto escrito en el borde blanco), "angulo" (grados)."""
+    fondo_b = img.resize((W // 8, H // 8), Image.BILINEAR).filter(ImageFilter.GaussianBlur(4)).resize((W, H), Image.BILINEAR)
+    fondo_b = Image.blend(fondo_b, Image.new("RGB", (W, H), NAVY2), 0.45).convert("RGBA")
+    fw, fh, borde, pie = 780, 940, 30, 120
+    foto = img.resize((fw, int(fw * H / W)), Image.BICUBIC)
+    foto = foto.crop((0, (foto.height - fh) // 2, fw, (foto.height - fh) // 2 + fh))
+    card = Image.new("RGBA", (fw + 2 * borde, fh + borde + pie), (255, 255, 255, 255))
+    card.paste(foto, (borde, borde))
+    if e.get("pie"):
+        f, lines, sz = fit(limpiar(e["pie"]), "Black", 54, fw, 1)
+        ImageDraw.Draw(card).text((card.width / 2, fh + borde + pie / 2), lines[0] if lines else "", font=f, fill=NAVY, anchor="mm")
+    p = ease(lt / 0.45)
+    ang = e.get("angulo", -5) + 14 * (1 - p)
+    esc = 0.75 + 0.25 * p
+    card = card.resize((int(card.width * esc), int(card.height * esc)), Image.BICUBIC)
+    sombra = Image.new("RGBA", (card.width + 80, card.height + 80), (0, 0, 0, 0))
+    ImageDraw.Draw(sombra).rectangle([40, 40, 40 + card.width, 40 + card.height], fill=(0, 0, 0, 150))
+    sombra = sombra.filter(ImageFilter.GaussianBlur(18)).rotate(ang, Image.BICUBIC, expand=True)
+    card = card.rotate(ang, Image.BICUBIC, expand=True)
+    cy = 1060 + 8 * math.sin(lt * 2.2)
+    fondo_b.alpha_composite(sombra, (int(W / 2 - sombra.width / 2 + 14), int(cy - sombra.height / 2 + 22)))
+    fondo_b.alpha_composite(card, (int(W / 2 - card.width / 2), int(cy - card.height / 2)))
+    return fondo_b.convert("RGB")
+
 def fondo_clip(i, e, lt):
     if i not in _clips:
         _clips[i] = Clip(e["archivo"], e.get("inicio", 0), e["dur"], e.get("recorte"))
     img = _clips[i].cuadro_suelto(lt) if MODO_PREVIA else _clips[i].siguiente()
-    z = 1.0 + 0.06 * min(lt / max(float(e["dur"]), 0.1), 1.0)       # acercamiento lento (efecto Ken Burns)
-    cw, ch = int(W / z), int(H / z)
-    img = img.crop(((W - cw) // 2, (H - ch) // 2, (W + cw) // 2, (H + ch) // 2)).resize((W, H), Image.BILINEAR)
+    img = camara(img, e, lt)                                          # zoom / paneo (efecto Ken Burns)
+    if e.get("estilo") == "polaroid":
+        img = polaroid(img, e, lt)
     sombra = Image.new("RGBA", (W, H), (0, 0, 0, 0)); d = ImageDraw.Draw(sombra)
     for y in range(0, 760, 8):                                        # degradado oscuro arriba para leer el texto
         d.rectangle([0, y, W, y + 8], fill=(0, 0, 0, int(150 * (1 - y / 760))))
@@ -644,6 +703,129 @@ def esc_clip(L, e, lt, a):
             tw = f2.getlength(ln)
             pill(L, [W/2 - tw/2 - 34, y - s2 * 0.62, W/2 + tw/2 + 34, y + s2 * 0.62], ORANGE, a * p2, 24)
             text(L, (W / 2, y), ln, f2, WHITE, a * p2); y += s2 * 1.3
+
+# ---------- cortos animados: escena {"tipo": "anim", "escena": "hola|vuelo|aduana|llegada", "texto": ...} ----------
+# Protagonista: "Paqui", la cajita de Jetport (personajes.py). Texto igual que en las escenas "clip"
+# ("texto", "resaltado", "posicion"); "texto_despues" + "cambio" (segundos) cambian el texto a mitad de escena.
+import random as _random
+import personajes as pj
+
+_SUELO = 1340
+
+def _nube(L, x, y, s, alfa):
+    capa = Image.new("RGBA", (int(260 * s), int(130 * s)), (0, 0, 0, 0)); d = ImageDraw.Draw(capa)
+    for dx, dy, r in [(60, 80, 45), (110, 55, 58), (170, 75, 46), (125, 92, 40)]:
+        d.ellipse([(dx - r) * s, (dy - r) * s, (dx + r) * s, (dy + r) * s], fill=(255, 255, 255, int(255 * alfa)))
+    L.alpha_composite(capa, (int(x), int(y)))
+
+def _impacto(L, cx, cy, k):
+    """Rayitas de golpe al aterrizar (k de 0 a 1)."""
+    if not 0 < k < 1: return
+    d = ImageDraw.Draw(L)
+    for i in range(7):
+        ang = math.pi + math.pi * i / 6
+        r0, r1 = 230 + 120 * k, 300 + 170 * k
+        d.line([(cx + r0 * math.cos(ang), cy + 0.5 * r0 * math.sin(ang)), (cx + r1 * math.cos(ang), cy + 0.5 * r1 * math.sin(ang))],
+               fill=(255, 255, 255, int(255 * (1 - k))), width=12)
+
+def _a_hola(L, e, lt):
+    s, cx, T = 400, W / 2, 0.5
+    if lt < T:
+        y = _SUELO - (1 - (lt / T) ** 2) * 1600; sx, sy, expr, br = 0.9, 1.12, "sorpresa", (150, 150)
+    else:
+        q = lt - T; sq = math.exp(-q * 6) * math.cos(q * 26)
+        y = _SUELO; sx, sy = 1 + 0.2 * sq, 1 - 0.2 * sq; expr = "feliz"
+        br = (25, 140 + 28 * math.sin(lt * 14)) if lt > 0.9 else (60, 60)
+    pj.sombra(L, cx, _SUELO - 8, s * 1.4 * (0.4 + 0.6 * min(1, lt / T)))
+    _impacto(L, cx, _SUELO - 60, (lt - T) / 0.4)
+    pj.pegar(L, pj.caja(s, lt, expr, br, mirar=(0.3, 0.3)), cx, y, sx, sy)
+
+_AVION = {}
+def _a_vuelo(L, e, lt):
+    rnd = _random.Random(4)
+    for i in range(7):                                                # nubes de fondo
+        x = (rnd.randrange(0, W + 600) - lt * (300 + 120 * (i % 3))) % (W + 600) - 400
+        _nube(L, x, rnd.randrange(450, 1700), 0.9 + 0.5 * (i % 3), 0.55)
+    d = ImageDraw.Draw(L)
+    for i in range(10):                                               # líneas de velocidad
+        x = (rnd.randrange(0, W + 800) - lt * 1800) % (W + 800) - 400
+        y = rnd.randrange(600, 1600)
+        d.line([(x, y), (x + 220, y)], fill=(255, 255, 255, 170), width=6)
+    if "av" not in _AVION: _AVION["av"] = pj.avion(940)
+    av = _AVION["av"]; sc = 940 / 300
+    k = ease(lt / 0.7)
+    cx = -520 + (W / 2 + 520) * k; cy = 1210 + 24 * math.sin(lt * 3.2)
+    ang = 3 * math.sin(lt * 2.6) + 10 * (1 - k)
+    im = av.rotate(ang, Image.BICUBIC, expand=True)
+    a_r = math.radians(ang)
+    dx, dy = (165 - 155) * sc, (60 - 80) * sc                       # la caja va sentada sobre el fuselaje
+    bx = cx + dx * math.cos(a_r) + dy * math.sin(a_r); by = cy - dx * math.sin(a_r) + dy * math.cos(a_r)
+    caja = pj.caja(250, lt, "abierta", (160 + 15 * math.sin(lt * 16), 160 + 15 * math.sin(lt * 16 + 2)), mirar=(0.6, 0))
+    pj.pegar(L, caja, bx, by + 40, ang=ang)
+    L.alpha_composite(im, (int(cx - im.width / 2), int(cy - im.height / 2)))
+    for i in range(2):                                                # nubes que pasan por delante
+        x = (W + 300 + i * 900) - (lt * 1500) % (W + 1800)
+        _nube(L, x, 1500 + i * 120, 1.6, 0.9)
+
+def _lupa(L, lx, ly, r):
+    zona = L.crop((int(lx - r / 1.5), int(ly - r / 1.5), int(lx + r / 1.5), int(ly + r / 1.5))).resize((2 * r, 2 * r), Image.BICUBIC)
+    mask = Image.new("L", (2 * r, 2 * r), 0); ImageDraw.Draw(mask).ellipse([0, 0, 2 * r, 2 * r], fill=255)
+    vidrio = Image.new("RGBA", (2 * r, 2 * r), (200, 235, 255, 70)); vidrio.alpha_composite(zona)
+    L.paste(vidrio, (int(lx - r), int(ly - r)), mask)
+    d = ImageDraw.Draw(L)
+    hx, hy = lx + r * 0.72, ly + r * 0.72
+    d.line([(hx, hy), (hx + 150, hy + 150)], fill=NAVY + (255,), width=40)
+    d.ellipse([lx - r, ly - r, lx + r, ly + r], outline=NAVY + (255,), width=22)
+    d.arc([lx - r * 0.7, ly - r * 0.7, lx + r * 0.7, ly + r * 0.7], 200, 250, fill=(255, 255, 255, 230), width=12)
+
+def _a_aduana(L, e, lt):
+    s, c = 400, float(e.get("cambio", 1.7))
+    pj.sombra(L, W / 2, _SUELO - 8, s * 1.4)
+    if lt < c:
+        lx = W / 2 + 230 * math.cos(lt * 3.1); ly = 1080 + 150 * math.sin(lt * 4.6)
+        mir = ((lx - W / 2) / 230, (ly - 1080) / 150)
+        pj.pegar(L, pj.caja(s, lt, "nervioso", (10, 10), mirar=mir), W / 2 + 7 * math.sin(lt * 45), _SUELO)
+        _lupa(L, lx, ly, 150)
+    else:
+        q = lt - c
+        y = _SUELO - 190 * math.sin(math.pi * min(1, q / 0.55))
+        pj.pegar(L, pj.caja(s, lt, "feliz", (160, 160)), W / 2, y)
+        p = min(1, q / 0.35); r = 120 * (p * (1 + 0.25 * math.sin(p * math.pi)))
+        if r > 1:                                                     # sello verde con check
+            d = ImageDraw.Draw(L); x0, y0 = 820, 820
+            d.ellipse([x0 - r, y0 - r, x0 + r, y0 + r], fill=(34, 180, 90, 255), outline=(255, 255, 255, 255), width=12)
+            d.line([(x0 - r * .45, y0), (x0 - r * .1, y0 + r * .35), (x0 + r * .5, y0 - r * .35)], fill=(255, 255, 255, 255), width=int(r * .2), joint="curve")
+
+def _a_llegada(L, e, lt):
+    s = 380
+    rnd = _random.Random(9); d = ImageDraw.Draw(L)
+    colores = [ORANGE, (255, 214, 64), (80, 200, 255), (236, 72, 153), (255, 255, 255), (60, 220, 120)]
+    for i in range(70):                                               # explosión de confeti
+        ang = rnd.uniform(-math.pi * 0.95, -math.pi * 0.05); v = rnd.uniform(900, 1900)
+        x = W / 2 + math.cos(ang) * v * lt * 0.8; y = 1100 + math.sin(ang) * v * lt + 1300 * lt * lt
+        if y > H: continue
+        a = lt * 9 + i; w2 = 16
+        d.polygon([(x + w2 * math.cos(a), y + w2 * math.sin(a)), (x - w2 * math.sin(a), y + w2 * 0.5 * math.cos(a)),
+                   (x - w2 * math.cos(a), y - w2 * math.sin(a)), (x + w2 * math.sin(a), y - w2 * 0.5 * math.cos(a))], fill=colores[i % 6])
+    for i in range(6):                                                # corazones que suben
+        k = (lt * 0.7 + i / 6) % 1
+        pj._corazon(d, W / 2 + (i - 2.5) * 140 + 30 * math.sin(lt * 4 + i), 1300 - k * 750, 34 * (1 - k * 0.5), (235, 40, 80))
+    ph = (lt / 0.5) % 1
+    y = _SUELO - 150 * math.sin(math.pi * ph)
+    sq = 0.14 * max(0, 1 - min(ph, 1 - ph) / 0.12)
+    pj.sombra(L, W / 2, _SUELO - 8, s * 1.4 * (1 - 0.3 * math.sin(math.pi * ph)))
+    pj.pegar(L, pj.caja(s, lt, "enamorado", (150 + 20 * math.sin(lt * 15), 150 - 20 * math.sin(lt * 15)), piernas=lt * 12),
+             W / 2, y, 1 + sq, 1 - sq)
+
+ANIMACIONES = {"hola": _a_hola, "vuelo": _a_vuelo, "aduana": _a_aduana, "llegada": _a_llegada}
+
+def esc_anim(L, e, lt, a):
+    ANIMACIONES[e.get("escena", "hola")](L, e, lt)
+    c = e.get("cambio")
+    if e.get("texto_despues") and c is not None and lt >= float(c):
+        esc_clip(L, dict(e, texto=e["texto_despues"], resaltado=e.get("resaltado_despues"), globo=None), lt - float(c), a)
+    else:
+        esc_clip(L, e, lt, a)
 
 _LOGO_V = None
 def esc_cierre(L, e, lt, a):
@@ -701,7 +883,7 @@ def esc_cierre(L, e, lt, a):
     if fin > 0:
         L.alpha_composite(Image.new("RGBA", (W, H), (255, 255, 255, int(255 * min(fin, 1)))))
 
-TIPOS = {"cierre": esc_cierre, "titulo": esc_titulo, "punto": esc_punto, "texto": esc_texto, "cta": esc_cta, "clip": esc_clip}
+TIPOS = {"cierre": esc_cierre, "titulo": esc_titulo, "punto": esc_punto, "texto": esc_texto, "cta": esc_cta, "clip": esc_clip, "anim": esc_anim}
 
 TRANS_DUR = 0.32
 # Orden en que se rotan las transiciones en escenas "clip" cuando el guion no indica una (más dinámico)
@@ -836,7 +1018,7 @@ def frame(escenas, total, t):
     if es_clip and tipo_transicion(idx, esc) != "ninguna":
         a = 1.0                                   # en clips el corte lo marca la transición, sin fundido
     es_cierre = esc["tipo"] == "cierre"
-    if not es_clip and not es_cierre:
+    if not es_clip and not es_cierre and esc["tipo"] != "anim":
         a_in = ease(t_esc / 0.35) if idx > 0 else 1.0
         escenario(L, esc.get("fondo") or ORDEN_ESCENARIOS[idx % len(ORDEN_ESCENARIOS)], t, a * a_in)
     if es_cierre:

@@ -1,0 +1,14 @@
+{
+  "musica_semilla": 118,
+  "escenas": [
+    {"tipo": "anim", "escena": "hola", "dur": 2.6, "estilo_fondo": "rayos", "transicion": "ninguna",
+     "texto": "Hola, soy tu paquete de USA", "resaltado": "¡Ya voy!"},
+    {"tipo": "anim", "escena": "vuelo", "dur": 2.8, "estilo_fondo": "degradado", "transicion": "barrido",
+     "texto": "Miami a Lima en modo turbo"},
+    {"tipo": "anim", "escena": "aduana", "dur": 3.0, "estilo_fondo": "puntos", "transicion": "zoom",
+     "texto": "Pasando por aduana...", "cambio": 1.7, "texto_despues": "¡Todo en regla!"},
+    {"tipo": "anim", "escena": "llegada", "dur": 2.6, "estilo_fondo": "confeti", "transicion": "destello",
+     "texto": "¡Llegué a Lima!", "resaltado": "¿Me abres?"},
+    {"tipo": "cta", "dur": 3, "transicion": "zoom"}
+  ]
+}

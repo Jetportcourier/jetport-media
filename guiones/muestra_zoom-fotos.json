@@ -1,0 +1,16 @@
+{
+  "musica_semilla": 116,
+  "escenas": [
+    {"tipo": "clip", "dur": 2.6, "archivo": "material/foto_uhaul_02.jpg", "camara": "subir",
+     "texto": "Lo que vive tu paquete antes de llegar a ti", "posicion": "arriba", "transicion": "ninguna"},
+    {"tipo": "clip", "dur": 2.4, "archivo": "material/foto_van_cargada_09.jpg", "camara": "acercar", "estilo": "polaroid",
+     "angulo": -5, "pie": "Viaje en grupo", "texto": "Viaja apretadito... pero seguro", "transicion": "giro"},
+    {"tipo": "clip", "dur": 2.4, "archivo": "material/foto_camion_sacos_12.jpg", "camara": "paneo_der",
+     "texto": "Llega bien protegido en su saquito", "transicion": "barrido"},
+    {"tipo": "clip", "dur": 2.4, "archivo": "material/foto_companero_desempaca_14.jpg", "camara": "alejar", "estilo": "polaroid",
+     "angulo": 4, "pie": "Con cariño", "texto": "Lo ordenamos uno por uno", "transicion": "destello"},
+    {"tipo": "clip", "dur": 2.4, "archivo": "material/foto_balanza_04.jpg", "camara": "diagonal",
+     "texto": "Se pesa... ¡y listo para ti!", "resaltado": "¡Llegó!", "transicion": "sacudida"},
+    {"tipo": "cta", "dur": 3, "transicion": "zoom"}
+  ]
+}
