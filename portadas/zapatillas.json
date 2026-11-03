@@ -1,0 +1,23 @@
+{
+ "num": 14,
+ "escena_n": 1,
+ "t": 6.6,
+ "titulo": [
+  [
+   "“SOLO SON UNAS",
+   "blanco"
+  ],
+  [
+   "ZAPATILLITAS”",
+   "amarillo"
+  ]
+ ],
+ "ocultar": [
+  "emoji"
+ ],
+ "abajo": [
+  "¡SON 3 PARES!",
+  "naranja"
+ ],
+ "guion": "guiones/2026-11-03_paqui-zapatillas.json"
+}

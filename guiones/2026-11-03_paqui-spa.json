@@ -1,0 +1,469 @@
+{
+ "musica_semilla": 102,
+ "escenas": [
+  {
+   "tipo": "anim",
+   "escena": "show",
+   "dur": 5.4,
+   "estilo_fondo": "patron",
+   "transicion": "ninguna",
+   "subt_cortos": true,
+   "voces": [
+    [
+     0.2,
+     "material/voces/spa/p1.mp3"
+    ]
+   ],
+   "lineas": [
+    [
+     0.2,
+     2.0,
+     "paqui",
+     "Ay no, ay no..."
+    ],
+    [
+     2.0,
+     5.0,
+     "paqui",
+     "¡Ahí viene! ¡Me van a *tirar*!"
+    ]
+   ],
+   "actores": [
+    {
+     "quien": "paqui",
+     "x": 540,
+     "y": 1470,
+     "s": 300,
+     "expr": "panico",
+     "mov": "tiembla",
+     "brazos": "agita",
+     "sudor": 3
+    }
+   ],
+   "props": [
+    {
+     "tipo": "emoji",
+     "e": "🤲",
+     "x": 540,
+     "y": 820,
+     "r": 260,
+     "anim": "cae",
+     "desde": 1.6
+    },
+    {
+     "tipo": "texto",
+     "texto": "¡GLUP!",
+     "x": 540,
+     "y": 620,
+     "tam": 110,
+     "desde": 0.2,
+     "tiembla": true,
+     "hasta": 1.8
+    }
+   ],
+   "sfx": [
+    [
+     0.1,
+     "boing"
+    ],
+    [
+     1.7,
+     "swish"
+    ]
+   ],
+   "sacudir": [
+    [
+     0.0,
+     0.5,
+     10
+    ],
+    [
+     2.0,
+     2.6,
+     12
+    ]
+   ]
+  },
+  {
+   "tipo": "anim",
+   "escena": "show",
+   "dur": 8.6,
+   "estilo_fondo": "burbujas",
+   "transicion": "sacudida",
+   "subt_cortos": true,
+   "voces": [
+    [
+     0.2,
+     "material/voces/spa/p2.mp3"
+    ]
+   ],
+   "lineas": [
+    [
+     0.2,
+     0.7,
+     "paqui",
+     "¿Eh?"
+    ],
+    [
+     0.95,
+     1.7,
+     "paqui",
+     "¿Me están..."
+    ],
+    [
+     2.0,
+     4.2,
+     "paqui",
+     "envolviendo con *cuidado*?"
+    ],
+    [
+     4.4,
+     6.0,
+     "paqui",
+     "¡*Burbujitas*!"
+    ],
+    [
+     6.0,
+     8.2,
+     "paqui",
+     "¡Y me ponen la etiqueta *derechita*!"
+    ]
+   ],
+   "actores": [
+    {
+     "quien": "paqui",
+     "x": 540,
+     "y": 1470,
+     "s": 300,
+     "expr": [
+      [
+       0,
+       "sorpresa"
+      ],
+      [
+       4.4,
+       "enamorado"
+      ],
+      [
+       6.0,
+       "feliz"
+      ]
+     ],
+     "mov": [
+      [
+       0,
+       "quieto"
+      ],
+      [
+       4.4,
+       "baila"
+      ]
+     ],
+     "brazos": [
+      [
+       0,
+       "normal"
+      ],
+      [
+       4.4,
+       "arriba"
+      ]
+     ]
+    }
+   ],
+   "props": [
+    {
+     "tipo": "emoji",
+     "e": "🤲",
+     "x": 540,
+     "y": 1330,
+     "r": 260,
+     "anim": "flota",
+     "desde": 0.3,
+     "hasta": 4.4,
+     "capa": "frente"
+    },
+    {
+     "tipo": "emoji",
+     "e": "🫧",
+     "x": 250,
+     "y": 900,
+     "r": 150,
+     "anim": "flota",
+     "desde": 4.4
+    },
+    {
+     "tipo": "emoji",
+     "e": "🫧",
+     "x": 820,
+     "y": 820,
+     "r": 170,
+     "anim": "flota",
+     "desde": 4.6
+    },
+    {
+     "tipo": "emoji",
+     "e": "🫧",
+     "x": 330,
+     "y": 700,
+     "r": 120,
+     "anim": "flota",
+     "desde": 4.8
+    },
+    {
+     "tipo": "emoji",
+     "e": "🏷",
+     "x": 800,
+     "y": 1100,
+     "r": 170,
+     "anim": "pop",
+     "desde": 6.1
+    }
+   ],
+   "sfx": [
+    [
+     4.4,
+     "pop"
+    ],
+    [
+     4.7,
+     "pop"
+    ],
+    [
+     6.1,
+     "ding"
+    ]
+   ]
+  },
+  {
+   "tipo": "anim",
+   "escena": "show",
+   "dur": 9.3,
+   "estilo_fondo": "rayos",
+   "transicion": "barrido",
+   "subt_cortos": true,
+   "voces": [
+    [
+     0.2,
+     "material/voces/spa/a1.mp3"
+    ],
+    [
+     4.0,
+     "material/voces/spa/p3.mp3"
+    ]
+   ],
+   "lineas": [
+    [
+     0.2,
+     1.4,
+     "amigo",
+     "Paqui..."
+    ],
+    [
+     1.7,
+     3.8,
+     "amigo",
+     "¿por qué tienes los *ojos cerrados*?"
+    ],
+    [
+     4.0,
+     5.5,
+     "paqui",
+     "Hermano..."
+    ],
+    [
+     5.9,
+     7.5,
+     "paqui",
+     "¿esto es un *courier*..."
+    ],
+    [
+     7.6,
+     9.1,
+     "paqui",
+     "o un *SPA*?"
+    ]
+   ],
+   "actores": [
+    {
+     "quien": "paqui",
+     "x": 330,
+     "y": 1470,
+     "s": 300,
+     "expr": "alivio",
+     "mov": "flota",
+     "brazos": [
+      [
+       0,
+       "cintura"
+      ],
+      [
+       5.9,
+       "habla"
+      ]
+     ]
+    },
+    {
+     "quien": "amigo",
+     "x": 790,
+     "y": 1470,
+     "s": 270,
+     "expr": [
+      [
+       0,
+       "sorpresa"
+      ],
+      [
+       7.6,
+       "risa"
+      ]
+     ],
+     "brazos": [
+      [
+       0,
+       "senala_izq"
+      ],
+      [
+       4.0,
+       "normal"
+      ]
+     ]
+    }
+   ],
+   "props": [
+    {
+     "tipo": "emoji",
+     "e": "🕯",
+     "x": 150,
+     "y": 1300,
+     "r": 120,
+     "anim": "pop",
+     "desde": 0.5
+    },
+    {
+     "tipo": "emoji",
+     "e": "🌸",
+     "x": 330,
+     "y": 1060,
+     "r": 120,
+     "anim": "flota",
+     "desde": 4.2
+    },
+    {
+     "tipo": "texto",
+     "texto": "SPA",
+     "x": 540,
+     "y": 760,
+     "tam": 150,
+     "desde": 7.6,
+     "estilo": "sello"
+    }
+   ],
+   "sfx": [
+    [
+     7.6,
+     "sello"
+    ]
+   ]
+  },
+  {
+   "tipo": "anim",
+   "escena": "show",
+   "dur": 7.0,
+   "estilo_fondo": "confeti",
+   "transicion": "destello",
+   "subt_cortos": true,
+   "voces": [
+    [
+     0.2,
+     "material/voces/spa/p4.mp3"
+    ]
+   ],
+   "lineas": [
+    [
+     0.2,
+     2.0,
+     "paqui",
+     "Tu compra, en *buenas manos*."
+    ],
+    [
+     2.3,
+     4.5,
+     "paqui",
+     "¿Cómo quieres que llegue tu *paquete*?"
+    ],
+    [
+     4.8,
+     6.6,
+     "paqui",
+     "*Comenta* y síguenos."
+    ]
+   ],
+   "actores": [
+    {
+     "quien": "paqui",
+     "x": 380,
+     "y": 1470,
+     "s": 300,
+     "expr": "feliz",
+     "mov": [
+      [
+       0,
+       "quieto"
+      ],
+      [
+       4.8,
+       "salta"
+      ]
+     ],
+     "brazos": [
+      [
+       0,
+       "habla"
+      ],
+      [
+       2.3,
+       "senala"
+      ],
+      [
+       4.8,
+       "arriba"
+      ]
+     ]
+    }
+   ],
+   "props": [
+    {
+     "tipo": "emoji",
+     "e": "🤲",
+     "x": 790,
+     "y": 880,
+     "r": 200,
+     "anim": "flota",
+     "desde": 0.3,
+     "hasta": 2.3
+    },
+    {
+     "tipo": "emoji",
+     "e": "💬",
+     "x": 790,
+     "y": 900,
+     "r": 200,
+     "anim": "late",
+     "desde": 2.4
+    }
+   ],
+   "sfx": [
+    [
+     2.4,
+     "pop"
+    ]
+   ]
+  },
+  {
+   "tipo": "cta",
+   "dur": 3,
+   "transicion": "zoom"
+  }
+ ]
+}

@@ -37,7 +37,8 @@ def texto(d, xy, s, tam, col, borde):
 def main(spec_path, salida):
     spec = json.load(open(spec_path))
     if "guion" in spec:                     # o tomar la escena N de un guion existente
-        spec["escena"] = json.load(open(spec["guion"]))["escenas"][spec.get("escena_n", 0)]
+        _g = json.load(open(spec["guion"])); spec["escena"] = _g["escenas"][spec.get("escena_n", 0)]
+        spec.setdefault("musica_semilla", _g.get("musica_semilla"))
     esc = dict(spec["escena"]); esc.setdefault("tipo", "anim"); esc.setdefault("escena", "show")
     esc.setdefault("dur", 3); esc["transicion"] = "ninguna"
     for k in ("lineas", "voces", "sfx"): esc.pop(k, None)
@@ -45,7 +46,7 @@ def main(spec_path, salida):
         esc["props"] = [p for p in esc.get("props", []) if p["tipo"] not in spec["ocultar"]]
     with tempfile.TemporaryDirectory() as tmp:
         g = os.path.join(tmp, "g.json"); png = os.path.join(tmp, "f.png")
-        json.dump({"cierre": False, "escenas": [esc]}, open(g, "w"), ensure_ascii=False)
+        json.dump({"cierre": False, "musica_semilla": spec.get("musica_semilla"), "escenas": [esc]}, open(g, "w"), ensure_ascii=False)
         subprocess.run([sys.executable, os.path.join(AQUI, "video.py"), g, png, str(spec.get("t", 0.8))],
                        check=True, stdout=subprocess.DEVNULL)
         im = Image.open(png).convert("RGB")

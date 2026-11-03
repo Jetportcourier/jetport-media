@@ -4,7 +4,7 @@
   {
    "tipo": "anim",
    "escena": "show",
-   "dur": 5.8,
+   "dur": 6.6,
    "estilo_fondo": "rayos",
    "transicion": "ninguna",
    "subt_cortos": true,
@@ -15,7 +15,7 @@
     ],
     [
      1.6,
-     "material/voces/entrevista/a1.mp3"
+     "material/voces/entrevista/a1v2.mp3"
     ]
    ],
    "lineas": [
@@ -27,15 +27,15 @@
     ],
     [
      1.6,
-     3.6,
+     3.3,
      "amigo",
      "B-b-buenos *días*..."
     ],
     [
-     3.6,
-     5.5,
+     3.3,
+     6.2,
      "amigo",
-     "vengo para ser *paquete*."
+     "soy un paquete que quiere viajar a *Lima*."
     ]
    ],
    "props": [
@@ -408,7 +408,7 @@
    "voces": [
     [
      0.1,
-     "material/voces/entrevista/p4.mp3"
+     "material/voces/entrevista/p4v2.mp3"
     ]
    ],
    "lineas": [
@@ -416,10 +416,10 @@
      0.1,
      1.2,
      "paqui",
-     "¡*CONTRATADO*!"
+     "¡*ACEPTADO*!"
     ],
     [
-     1.35,
+     1.4,
      3.6,
      "paqui",
      "Así da gusto pasar la *aduana*."
@@ -435,7 +435,7 @@
     },
     {
      "tipo": "texto",
-     "texto": "CONTRATADO",
+     "texto": "ACEPTADO",
      "estilo": "sello",
      "x": 560,
      "y": 780,

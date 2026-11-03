@@ -1,0 +1,23 @@
+{
+ "num": 15,
+ "escena_n": 1,
+ "t": 2.5,
+ "titulo": [
+  [
+   "¿QUÉ FUE,",
+   "blanco"
+  ],
+  [
+   "CAUSA?",
+   "amarillo"
+  ]
+ ],
+ "ocultar": [
+  "texto"
+ ],
+ "abajo": [
+  "¡TODO MOSTRO!",
+  "naranja"
+ ],
+ "guion": "guiones/2026-11-03_paqui-peruano.json"
+}

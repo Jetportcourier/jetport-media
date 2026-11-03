@@ -345,14 +345,22 @@
   {
    "tipo": "anim",
    "escena": "show",
-   "dur": 5.9,
+   "dur": 9.6,
    "estilo_fondo": "confeti",
    "transicion": "destello",
    "subt_cortos": true,
    "voces": [
     [
      0.2,
-     "material/voces/blackfriday/p5.mp3"
+     "material/voces/blackfriday/p5a.mp3"
+    ],
+    [
+     4.1,
+     "material/voces/blackfriday/p6.mp3"
+    ],
+    [
+     7.5,
+     "material/voces/blackfriday/p5b.mp3"
     ]
    ],
    "lineas": [
@@ -364,13 +372,19 @@
     ],
     [
      2.75,
-     3.8,
+     3.9,
      "paqui",
      "¿Qué vas a *comprar* tú?"
     ],
     [
      4.1,
-     5.7,
+     7.3,
+     "paqui",
+     "¡Y no olvides que podemos *consolidar* tus compras!"
+    ],
+    [
+     7.5,
+     9.3,
      "paqui",
      "*Comenta* y síguenos."
     ]
@@ -404,7 +418,31 @@
       255,
       214,
       64
+     ],
+     "hasta": 4.0
+    },
+    {
+     "tipo": "emoji",
+     "e": "📦",
+     "x": 790,
+     "y": 1000,
+     "r": 230,
+     "anim": "pop",
+     "desde": 4.1,
+     "texto": "¡TODO JUNTO!",
+     "color": [
+      255,
+      214,
+      64
      ]
+    },
+    {
+     "tipo": "cajas_caen",
+     "desde": 4.1,
+     "n": 6,
+     "cada": 0.12,
+     "capa": "atras",
+     "semilla": 3
     }
    ],
    "actores": [
@@ -439,6 +477,10 @@
    "sfx": [
     [
      0.2,
+     "tada"
+    ],
+    [
+     4.1,
      "tada"
     ]
    ]

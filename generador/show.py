@@ -188,6 +188,75 @@ def _maleta(L, x, y, s, lt, hablando, expr):
     d.polygon([(bx + s * 0.13, by - s * 0.08), (bx, by), (bx + s * 0.13, by + s * 0.08)], fill=(230, 60, 140, 255))
 
 
+PIEL, PELO, BLUSA = (241, 192, 152), (70, 40, 30), (40, 170, 190)
+
+
+def _mujer(L, x, y, s, lt, habla, expr, br, obj, k):
+    """Clienta dibujada (de la cintura para arriba). y = borde inferior del torso; s = escala (100 = cabeza de radio 95)."""
+    u = s / 100; d = ImageDraw.Draw(L); OUT = (60, 35, 30, 255)
+    hx, hy = x, y - 330 * u                                             # centro de la cabeza
+    # pelo largo por detrás
+    d.rounded_rectangle([hx - 120 * u, hy - 60 * u, hx + 120 * u, hy + 175 * u], int(60 * u), fill=PELO + (255,))
+    d.ellipse([hx - 118 * u, hy - 118 * u, hx + 118 * u, hy + 100 * u], fill=PELO + (255,))
+    # torso y cuello
+    d.rectangle([hx - 28 * u, hy + 70 * u, hx + 28 * u, hy + 130 * u], fill=PIEL + (255,))
+    d.rounded_rectangle([x - 165 * u, y - 215 * u, x + 165 * u, y + 60 * u], int(70 * u), fill=BLUSA + (255,), outline=OUT, width=max(3, int(5 * u)))
+    d.chord([hx - 40 * u, y - 240 * u, hx + 40 * u, y - 175 * u], 0, 180, fill=PIEL + (255,))
+    # brazos: hombros fijos, manos según el gesto
+    hombro_d, hombro_i = (x - 140 * u, y - 170 * u), (x + 140 * u, y - 170 * u)
+    if br == "sostiene": md, mi = (x - 230 * u, y - 330 * u), (x + 190 * u, y - 30 * u)
+    elif br == "arriba": md, mi = (x - 120 * u, y - 560 * u), (x + 150 * u, y - 520 * u)
+    elif br == "corta": md, mi = (x - 255 * u + 35 * u * math.sin(k * 16), y - 300 * u), (x + 190 * u, y - 30 * u)
+    elif br == "cubre": md, mi = (hx - 85 * u, hy + 35 * u), (hx + 85 * u, hy + 35 * u)
+    elif br == "aplaude":
+        z = 30 * u * abs(math.sin(k * 10)); md, mi = (x - 20 * u - z, y - 300 * u), (x + 20 * u + z, y - 300 * u)
+    else: md, mi = (x - 190 * u, y - 30 * u), (x + 190 * u, y - 30 * u)
+    for a_, b_ in ((hombro_d, md), (hombro_i, mi)):
+        d.line([a_, b_], fill=BLUSA + (255,), width=int(58 * u)); d.line([a_, b_], fill=BLUSA + (255,), width=int(58 * u))
+        d.ellipse([a_[0] - 29 * u, a_[1] - 29 * u, a_[0] + 29 * u, a_[1] + 29 * u], fill=BLUSA + (255,))
+    # cabeza
+    d.ellipse([hx - 95 * u, hy - 95 * u, hx + 95 * u, hy + 95 * u], fill=PIEL + (255,), outline=OUT, width=max(3, int(4 * u)))
+    d.chord([hx - 100 * u, hy - 105 * u, hx + 100 * u, hy + 10 * u], 180, 360, fill=PELO + (255,))      # flequillo
+    d.pieslice([hx - 60 * u, hy - 95 * u, hx + 120 * u, hy + 20 * u], 200, 300, fill=PELO + (255,))
+    # ojos
+    parp = (lt % 3.1) < 0.12
+    for s_ in (-1, 1):
+        ex, ey = hx + s_ * 38 * u, hy + 12 * u
+        if expr == "enamorado":
+            pegar_centro(L, emoji("❤", 46 * u), ex, ey); continue
+        if expr in ("risa", "verguenza") or parp:
+            d.arc([ex - 20 * u, ey - 12 * u, ex + 20 * u, ey + 16 * u], 200, 340, fill=OUT, width=max(3, int(5 * u))); continue
+        big = 1.25 if expr in ("sorpresa", "panico") else 1.0
+        d.ellipse([ex - 20 * u * big, ey - 25 * u * big, ex + 20 * u * big, ey + 25 * u * big], fill=WHITE + (255,), outline=OUT, width=max(2, int(3 * u)))
+        rp = 9 * u if expr in ("sorpresa", "panico") else 13 * u
+        d.ellipse([ex - rp, ey - rp + 3 * u, ex + rp, ey + rp + 3 * u], fill=(60, 35, 25, 255))
+        d.ellipse([ex - 4 * u, ey - 6 * u, ex + 2 * u, ey], fill=WHITE + (255,))
+        d.line([ex + s_ * 14 * u, ey - 24 * u * big, ex + s_ * 26 * u, ey - 34 * u * big], fill=OUT, width=max(2, int(4 * u)))   # pestaña
+    cejas = -48 if expr in ("sorpresa", "panico") else -40
+    for s_ in (-1, 1):
+        ex = hx + s_ * 38 * u
+        d.line([ex - 18 * u, hy + cejas * u + (4 * u if s_ < 0 else 0), ex + 18 * u, hy + cejas * u + (0 if s_ < 0 else 4 * u)], fill=PELO + (255,), width=max(3, int(6 * u)))
+    rub = (245, 130, 140) if expr == "verguenza" else (247, 165, 160)
+    for s_ in (-1, 1):
+        d.ellipse([hx + s_ * 62 * u - 16 * u, hy + 42 * u - 9 * u, hx + s_ * 62 * u + 16 * u, hy + 42 * u + 9 * u], fill=rub + (255,))
+    # boca
+    my = hy + 58 * u
+    if habla and (lt * 7.5) % 1 < 0.5:
+        d.ellipse([hx - 20 * u, my - 12 * u, hx + 20 * u, my + 20 * u], fill=(150, 40, 60, 255), outline=OUT, width=max(2, int(3 * u)))
+    elif expr in ("sorpresa", "panico"):
+        d.ellipse([hx - 13 * u, my - 10 * u, hx + 13 * u, my + 18 * u], fill=(150, 40, 60, 255), outline=OUT, width=max(2, int(3 * u)))
+    elif expr in ("risa", "enamorado", "feliz"):
+        d.chord([hx - 28 * u, my - 18 * u, hx + 28 * u, my + 22 * u], 0, 180, fill=(150, 40, 60, 255), outline=OUT, width=max(2, int(3 * u)))
+    else:
+        d.arc([hx - 22 * u, my - 16 * u, hx + 22 * u, my + 10 * u], 20, 160, fill=OUT, width=max(3, int(4 * u)))
+    # manos (encima de todo) y objeto en la mano derecha (lado izquierdo de la pantalla)
+    for m in (md, mi):
+        d.ellipse([m[0] - 26 * u, m[1] - 26 * u, m[0] + 26 * u, m[1] + 26 * u], fill=PIEL + (255,), outline=OUT, width=max(2, int(3 * u)))
+    if obj:
+        ang = -35 if obj == "🔪" else 0
+        pegar_centro(L, emoji(obj, 120 * u), md[0], md[1] - (40 * u if obj not in ("🔪", "✂") else 10 * u), ang)
+
+
 def _actor(L, e, a, lt):
     desde, hasta = a.get("desde", 0), a.get("hasta", 999)
     if not desde <= lt < hasta: return
@@ -235,6 +304,9 @@ def _actor(L, e, a, lt):
         im = im.resize((max(1, int(im.width * sx)), max(1, int(im.height * sy))), Image.BILINEAR)
         if a.get("sombra", True): pj.sombra(L, x, y - 6, s * 0.9)
         pegar_centro(L, im, x, y - im.height / 2, ang)
+        return
+    if quien == "mujer":                                               # brazos: abajo|sostiene|arriba|corta|cubre|aplaude; "obj": emoji en la mano
+        _mujer(L, x, y + (-5 * abs(math.sin(lt * 12)) if habla else 0), s, lt, habla, expr, br, paso(a.get("obj", ""), lt), k)
         return
     if quien == "maleta":
         if a.get("sombra", True): pj.sombra(L, x, y - 6, s * 1.3)

@@ -1,0 +1,482 @@
+{
+ "musica_semilla": 111,
+ "escenas": [
+  {
+   "tipo": "anim",
+   "escena": "show",
+   "dur": 5.0,
+   "estilo_fondo": "rayos",
+   "transicion": "ninguna",
+   "subt_cortos": true,
+   "voces": [
+    [
+     0.3,
+     "material/voces/celoso/c1.mp3"
+    ]
+   ],
+   "lineas": [
+    [
+     0.3,
+     2.4,
+     "clienta",
+     "¡Aaay, mis *audífonos* nuevos!"
+    ],
+    [
+     2.4,
+     4.7,
+     "clienta",
+     "¡Los *AMO*!"
+    ]
+   ],
+   "actores": [
+    {
+     "quien": "paqui",
+     "x": 300,
+     "y": 1470,
+     "s": 300,
+     "expr": [
+      [
+       0,
+       "feliz"
+      ],
+      [
+       1.2,
+       "sorpresa"
+      ]
+     ],
+     "mov": [
+      [
+       0,
+       "quieto"
+      ],
+      [
+       1.2,
+       "tiembla"
+      ]
+     ],
+     "brazos": [
+      [
+       0,
+       "arriba"
+      ],
+      [
+       1.2,
+       "normal"
+      ]
+     ]
+    },
+    {
+     "quien": "emoji",
+     "e": "🤩",
+     "x": 790,
+     "y": 1450,
+     "s": 250,
+     "mov": "pop",
+     "habla": "clienta"
+    }
+   ],
+   "props": [
+    {
+     "tipo": "emoji",
+     "e": "🎧",
+     "x": 790,
+     "y": 1150,
+     "r": 170,
+     "anim": "late",
+     "desde": 0.4
+    },
+    {
+     "tipo": "corazones",
+     "desde": 2.4,
+     "x": 790
+    }
+   ],
+   "sfx": [
+    [
+     0.3,
+     "tada"
+    ]
+   ]
+  },
+  {
+   "tipo": "anim",
+   "escena": "show",
+   "dur": 8.0,
+   "estilo_fondo": "puntos",
+   "transicion": "sacudida",
+   "subt_cortos": true,
+   "voces": [
+    [
+     0.2,
+     "material/voces/celoso/p1.mp3"
+    ]
+   ],
+   "lineas": [
+    [
+     0.2,
+     0.95,
+     "paqui",
+     "¿Y yo *qué*?"
+    ],
+    [
+     1.3,
+     3.6,
+     "paqui",
+     "¡Yo los traje desde *Miami*!"
+    ],
+    [
+     3.8,
+     5.6,
+     "paqui",
+     "Crucé el cielo..."
+    ],
+    [
+     5.6,
+     7.6,
+     "paqui",
+     "y me tiran al *sillón*..."
+    ]
+   ],
+   "actores": [
+    {
+     "quien": "paqui",
+     "x": 540,
+     "y": 1400,
+     "s": 300,
+     "expr": [
+      [
+       0,
+       "sorpresa"
+      ],
+      [
+       1.3,
+       "nervioso"
+      ],
+      [
+       3.8,
+       "llanto"
+      ]
+     ],
+     "mov": [
+      [
+       0,
+       "salta"
+      ],
+      [
+       1.3,
+       "quieto"
+      ],
+      [
+       3.8,
+       "vibra"
+      ]
+     ],
+     "brazos": [
+      [
+       0,
+       "agita"
+      ],
+      [
+       1.3,
+       "senala"
+      ],
+      [
+       3.8,
+       "normal"
+      ]
+     ],
+     "ang": [
+      [
+       0,
+       0
+      ],
+      [
+       3.8,
+       -12
+      ]
+     ]
+    }
+   ],
+   "props": [
+    {
+     "tipo": "emoji",
+     "e": "🛋",
+     "x": 540,
+     "y": 1560,
+     "r": 420,
+     "anim": "pop",
+     "desde": 0,
+     "capa": "atras"
+    },
+    {
+     "tipo": "emoji",
+     "e": "✈",
+     "x": 820,
+     "y": 760,
+     "r": 140,
+     "anim": "vuela",
+     "desde": 1.3,
+     "de": [
+      -200,
+      800
+     ],
+     "hasta": 3.8
+    }
+   ],
+   "sfx": [
+    [
+     0.2,
+     "boing"
+    ],
+    [
+     3.8,
+     "swish"
+    ]
+   ]
+  },
+  {
+   "tipo": "anim",
+   "escena": "show",
+   "dur": 4.3,
+   "estilo_fondo": "degradado",
+   "transicion": "barrido",
+   "subt_cortos": true,
+   "voces": [
+    [
+     0.2,
+     "material/voces/celoso/a1.mp3"
+    ]
+   ],
+   "lineas": [
+    [
+     0.2,
+     2.5,
+     "amigo",
+     "Así es este *trabajo*, hermano."
+    ],
+    [
+     2.8,
+     4.1,
+     "amigo",
+     "Así es."
+    ]
+   ],
+   "actores": [
+    {
+     "quien": "paqui",
+     "x": 330,
+     "y": 1470,
+     "s": 300,
+     "expr": "llanto",
+     "mov": "vibra",
+     "brazos": "normal"
+    },
+    {
+     "quien": "amigo",
+     "x": 760,
+     "y": 1470,
+     "s": 270,
+     "expr": "alivio",
+     "brazos": [
+      [
+       0,
+       "senala_izq"
+      ],
+      [
+       2.8,
+       "cintura"
+      ]
+     ]
+    }
+   ],
+   "props": [],
+   "sfx": []
+  },
+  {
+   "tipo": "anim",
+   "escena": "show",
+   "dur": 6.8,
+   "estilo_fondo": "confeti",
+   "transicion": "zoom",
+   "subt_cortos": true,
+   "voces": [
+    [
+     0.2,
+     "material/voces/celoso/c2.mp3"
+    ],
+    [
+     3.6,
+     "material/voces/celoso/p2.mp3"
+    ]
+   ],
+   "lineas": [
+    [
+     0.2,
+     3.4,
+     "clienta",
+     "¡Michi, mira! ¡Tu *casita* nueva!"
+    ],
+    [
+     3.6,
+     4.6,
+     "paqui",
+     "¿*Casita*?"
+    ],
+    [
+     4.6,
+     6.6,
+     "paqui",
+     "¡Soy *útil* otra vez!"
+    ]
+   ],
+   "actores": [
+    {
+     "quien": "paqui",
+     "x": 330,
+     "y": 1470,
+     "s": 300,
+     "expr": [
+      [
+       0,
+       "llanto"
+      ],
+      [
+       3.6,
+       "sorpresa"
+      ],
+      [
+       4.6,
+       "enamorado"
+      ]
+     ],
+     "mov": [
+      [
+       0,
+       "quieto"
+      ],
+      [
+       4.6,
+       "salta"
+      ]
+     ],
+     "brazos": [
+      [
+       0,
+       "normal"
+      ],
+      [
+       4.6,
+       "arriba"
+      ]
+     ]
+    },
+    {
+     "quien": "emoji",
+     "e": "🐱",
+     "x": 790,
+     "y": 1450,
+     "s": 230,
+     "mov": "pop",
+     "habla": "clienta",
+     "desde": 1.0
+    }
+   ],
+   "props": [
+    {
+     "tipo": "corazones",
+     "desde": 4.6,
+     "x": 450
+    }
+   ],
+   "sfx": [
+    [
+     1.0,
+     "pop"
+    ],
+    [
+     4.6,
+     "tada"
+    ]
+   ]
+  },
+  {
+   "tipo": "anim",
+   "escena": "show",
+   "dur": 3.8,
+   "estilo_fondo": "rayos",
+   "transicion": "destello",
+   "subt_cortos": true,
+   "voces": [
+    [
+     0.2,
+     "material/voces/celoso/p3.mp3"
+    ]
+   ],
+   "lineas": [
+    [
+     0.2,
+     1.6,
+     "paqui",
+     "¿Tú qué haces con tus *cajas*?"
+    ],
+    [
+     1.9,
+     3.6,
+     "paqui",
+     "*Comenta* y síguenos."
+    ]
+   ],
+   "actores": [
+    {
+     "quien": "paqui",
+     "x": 380,
+     "y": 1470,
+     "s": 300,
+     "expr": "feliz",
+     "mov": [
+      [
+       0,
+       "quieto"
+      ],
+      [
+       1.9,
+       "salta"
+      ]
+     ],
+     "brazos": [
+      [
+       0,
+       "habla"
+      ],
+      [
+       1.9,
+       "senala"
+      ]
+     ]
+    }
+   ],
+   "props": [
+    {
+     "tipo": "emoji",
+     "e": "💬",
+     "x": 790,
+     "y": 900,
+     "r": 200,
+     "anim": "late",
+     "desde": 1.9
+    }
+   ],
+   "sfx": [
+    [
+     1.9,
+     "pop"
+    ]
+   ]
+  },
+  {
+   "tipo": "cta",
+   "dur": 3,
+   "transicion": "zoom"
+  }
+ ]
+}

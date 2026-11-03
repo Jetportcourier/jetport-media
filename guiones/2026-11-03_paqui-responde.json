@@ -292,32 +292,48 @@
   {
    "tipo": "anim",
    "escena": "show",
-   "dur": 6.7,
+   "dur": 11.3,
    "estilo_fondo": "ciudad",
    "transicion": "barrido",
    "subt_cortos": true,
    "voces": [
     [
      0.2,
+     "material/voces/responde/p6.mp3"
+    ],
+    [
+     4.8,
      "material/voces/responde/p4.mp3"
     ]
    ],
    "lineas": [
     [
      0.2,
-     1.6,
+     2.5,
+     "paqui",
+     "Y apenas llego a tu *casillero en Miami*,"
+    ],
+    [
+     2.5,
+     4.5,
+     "paqui",
+     "ya puedes darme *seguimiento*."
+    ],
+    [
+     4.8,
+     6.199999999999999,
      "paqui",
      "Así sabes *dónde estoy*:"
     ],
     [
-     1.9,
-     4.9,
+     6.5,
+     9.5,
      "paqui",
      "en el *almacén*, en el *avión*, en *Lima*..."
     ],
     [
-     5.15,
-     6.3,
+     9.75,
+     10.899999999999999,
      "paqui",
      "¡y en tu *casa*!"
     ]
@@ -326,7 +342,7 @@
     {
      "tipo": "ruta",
      "pasos": [
-      "ALMACÉN",
+      "MIAMI",
       "AVIÓN",
       "LIMA",
       "🏠"
@@ -338,19 +354,23 @@
        0
       ],
       [
-       1.9,
+       4.6,
        0
       ],
       [
-       2.9,
+       6.5,
+       0
+      ],
+      [
+       7.5,
        0.33
       ],
       [
-       3.9,
+       8.5,
        0.66
       ],
       [
-       5.1,
+       9.7,
        1.0
       ]
      ]
@@ -361,8 +381,8 @@
      "x": 540,
      "y": 780,
      "r": 230,
-     "desde": 1.9,
-     "hasta": 2.9
+     "desde": 6.5,
+     "hasta": 7.5
     },
     {
      "tipo": "emoji",
@@ -370,8 +390,8 @@
      "x": 540,
      "y": 780,
      "r": 230,
-     "desde": 2.9,
-     "hasta": 3.9
+     "desde": 7.5,
+     "hasta": 8.5
     },
     {
      "tipo": "emoji",
@@ -379,8 +399,8 @@
      "x": 540,
      "y": 780,
      "r": 230,
-     "desde": 3.9,
-     "hasta": 5.1
+     "desde": 8.5,
+     "hasta": 9.7
     },
     {
      "tipo": "emoji",
@@ -388,8 +408,25 @@
      "x": 540,
      "y": 780,
      "r": 260,
-     "desde": 5.1,
+     "desde": 9.7,
      "anim": "late"
+    },
+    {
+     "tipo": "emoji",
+     "e": "📦",
+     "x": 540,
+     "y": 800,
+     "r": 220,
+     "desde": 0.3,
+     "hasta": 4.6,
+     "anim": "pop",
+     "texto": "CASILLERO MIAMI",
+     "tam": 54,
+     "color": [
+      255,
+      214,
+      64
+     ]
     }
    ],
    "actores": [
@@ -405,11 +442,15 @@
        "quieto"
       ],
       [
-       1.9,
+       4.6,
+       "quieto"
+      ],
+      [
+       6.5,
        "camina"
       ],
       [
-       5.1,
+       9.7,
        "salta"
       ]
      ],
@@ -419,7 +460,11 @@
        "habla"
       ],
       [
-       5.1,
+       4.6,
+       "habla"
+      ],
+      [
+       9.7,
        "arriba"
       ]
      ]
@@ -427,19 +472,23 @@
    ],
    "sfx": [
     [
-     1.9,
+     0.3,
      "pop"
     ],
     [
-     2.9,
+     6.5,
      "pop"
     ],
     [
-     3.9,
+     7.5,
      "pop"
     ],
     [
-     5.1,
+     8.5,
+     "pop"
+    ],
+    [
+     9.7,
      "tada"
     ]
    ]

@@ -1,0 +1,23 @@
+{
+ "num": 13,
+ "escena_n": 2,
+ "t": 8.0,
+ "titulo": [
+  [
+   "¿ESTO ES",
+   "blanco"
+  ],
+  [
+   "UN COURIER",
+   "blanco"
+  ],
+  [
+   "O UN SPA?",
+   "amarillo"
+  ]
+ ],
+ "ocultar": [
+  "texto"
+ ],
+ "guion": "guiones/2026-11-03_paqui-spa.json"
+}

@@ -1,0 +1,491 @@
+{
+ "musica_semilla": 105,
+ "escenas": [
+  {
+   "tipo": "anim",
+   "escena": "show",
+   "dur": 4.0,
+   "estilo_fondo": "ciudad",
+   "transicion": "ninguna",
+   "subt_cortos": true,
+   "voces": [
+    [
+     0.9,
+     "material/voces/zapatillas/c1.mp3"
+    ]
+   ],
+   "lineas": [
+    [
+     0.9,
+     3.6,
+     "clienta",
+     "Solo son unas *zapatillitas*..."
+    ]
+   ],
+   "actores": [
+    {
+     "quien": "paqui",
+     "x": 360,
+     "y": 1500,
+     "s": 500,
+     "expr": [
+      [
+       0,
+       "panico"
+      ],
+      [
+       0.6,
+       "forzada"
+      ]
+     ],
+     "mov": [
+      [
+       0,
+       "cae"
+      ],
+      [
+       0.6,
+       "vibra"
+      ]
+     ],
+     "brazos": "arriba",
+     "sudor": 3
+    },
+    {
+     "quien": "emoji",
+     "e": "😇",
+     "x": 860,
+     "y": 1500,
+     "s": 210,
+     "mov": "pop",
+     "habla": "clienta"
+    }
+   ],
+   "props": [],
+   "sfx": [
+    [
+     0.35,
+     "crash"
+    ]
+   ],
+   "sacudir": [
+    [
+     0.35,
+     0.9,
+     18
+    ]
+   ]
+  },
+  {
+   "tipo": "anim",
+   "escena": "show",
+   "dur": 11.5,
+   "estilo_fondo": "rayos",
+   "transicion": "sacudida",
+   "subt_cortos": true,
+   "voces": [
+    [
+     0.2,
+     "material/voces/zapatillas/p1.mp3"
+    ],
+    [
+     5.5,
+     "material/voces/zapatillas/p2.mp3"
+    ]
+   ],
+   "lineas": [
+    [
+     0.2,
+     2.3,
+     "paqui",
+     "¿Unas... *zapatillitas*?"
+    ],
+    [
+     2.5,
+     5.1,
+     "paqui",
+     "¡Ay, mi *espalda*!"
+    ],
+    [
+     5.5,
+     7.1,
+     "paqui",
+     "¡Son *TRES* pares!"
+    ],
+    [
+     7.4,
+     8.8,
+     "paqui",
+     "¡Cada uno con su *caja*!"
+    ],
+    [
+     9.1,
+     11.0,
+     "paqui",
+     "¡Y con *bolsa de regalo*!"
+    ]
+   ],
+   "actores": [
+    {
+     "quien": "paqui",
+     "x": 540,
+     "y": 1490,
+     "s": 440,
+     "expr": [
+      [
+       0,
+       "forzada"
+      ],
+      [
+       2.5,
+       "llanto"
+      ],
+      [
+       5.5,
+       "panico"
+      ]
+     ],
+     "mov": [
+      [
+       0,
+       "vibra"
+      ],
+      [
+       5.5,
+       "tiembla"
+      ]
+     ],
+     "brazos": [
+      [
+       0,
+       "cintura"
+      ],
+      [
+       5.5,
+       "agita"
+      ]
+     ],
+     "sudor": 3
+    }
+   ],
+   "props": [
+    {
+     "tipo": "emoji",
+     "e": "👟",
+     "x": 220,
+     "y": 760,
+     "r": 140,
+     "anim": "pop",
+     "desde": 5.6
+    },
+    {
+     "tipo": "emoji",
+     "e": "👟",
+     "x": 540,
+     "y": 720,
+     "r": 140,
+     "anim": "pop",
+     "desde": 6.0
+    },
+    {
+     "tipo": "emoji",
+     "e": "👟",
+     "x": 860,
+     "y": 760,
+     "r": 140,
+     "anim": "pop",
+     "desde": 6.4
+    },
+    {
+     "tipo": "emoji",
+     "e": "📦",
+     "x": 220,
+     "y": 930,
+     "r": 130,
+     "anim": "pop",
+     "desde": 7.5
+    },
+    {
+     "tipo": "emoji",
+     "e": "📦",
+     "x": 540,
+     "y": 890,
+     "r": 130,
+     "anim": "pop",
+     "desde": 7.7
+    },
+    {
+     "tipo": "emoji",
+     "e": "📦",
+     "x": 860,
+     "y": 930,
+     "r": 130,
+     "anim": "pop",
+     "desde": 7.9
+    },
+    {
+     "tipo": "emoji",
+     "e": "🛍",
+     "x": 540,
+     "y": 1070,
+     "r": 150,
+     "anim": "pop",
+     "desde": 9.2
+    }
+   ],
+   "sfx": [
+    [
+     2.5,
+     "boing"
+    ],
+    [
+     5.6,
+     "pop"
+    ],
+    [
+     6.0,
+     "pop"
+    ],
+    [
+     6.4,
+     "pop"
+    ],
+    [
+     7.5,
+     "pop"
+    ],
+    [
+     7.7,
+     "pop"
+    ],
+    [
+     7.9,
+     "pop"
+    ],
+    [
+     9.2,
+     "ding"
+    ]
+   ]
+  },
+  {
+   "tipo": "anim",
+   "escena": "show",
+   "dur": 6.8,
+   "estilo_fondo": "puntos",
+   "transicion": "barrido",
+   "subt_cortos": true,
+   "voces": [
+    [
+     0.2,
+     "material/voces/zapatillas/c2.mp3"
+    ],
+    [
+     3.7,
+     "material/voces/zapatillas/p3.mp3"
+    ]
+   ],
+   "lineas": [
+    [
+     0.2,
+     3.4,
+     "clienta",
+     "Es que las cajitas son *bonitas*..."
+    ],
+    [
+     3.7,
+     6.6,
+     "paqui",
+     "¡Las cajitas también *PESAN*, señora!"
+    ]
+   ],
+   "actores": [
+    {
+     "quien": "paqui",
+     "x": 340,
+     "y": 1470,
+     "s": 400,
+     "expr": [
+      [
+       0,
+       "forzada"
+      ],
+      [
+       3.7,
+       "panico"
+      ]
+     ],
+     "mov": [
+      [
+       0,
+       "vibra"
+      ],
+      [
+       3.7,
+       "salta"
+      ]
+     ],
+     "brazos": [
+      [
+       0,
+       "cintura"
+      ],
+      [
+       3.7,
+       "agita"
+      ]
+     ],
+     "sudor": 2
+    },
+    {
+     "quien": "emoji",
+     "e": [
+      [
+       0,
+       "🥰"
+      ],
+      [
+       3.7,
+       "😅"
+      ]
+     ],
+     "x": 840,
+     "y": 1450,
+     "s": 220,
+     "mov": "quieto",
+     "habla": "clienta"
+    }
+   ],
+   "props": [
+    {
+     "tipo": "emoji",
+     "e": "⚖",
+     "x": 840,
+     "y": 940,
+     "r": 180,
+     "anim": "late",
+     "desde": 3.8
+    }
+   ],
+   "sfx": [
+    [
+     3.8,
+     "beep"
+    ]
+   ],
+   "sacudir": [
+    [
+     3.7,
+     4.2,
+     10
+    ]
+   ]
+  },
+  {
+   "tipo": "anim",
+   "escena": "show",
+   "dur": 6.4,
+   "estilo_fondo": "confeti",
+   "transicion": "destello",
+   "subt_cortos": true,
+   "voces": [
+    [
+     0.2,
+     "material/voces/zapatillas/p4.mp3"
+    ]
+   ],
+   "lineas": [
+    [
+     0.2,
+     0.65,
+     "paqui",
+     "*Tip:*"
+    ],
+    [
+     0.8,
+     4.4,
+     "paqui",
+     "si no necesitas las cajas originales, *pregunta antes* de enviar."
+    ],
+    [
+     4.8,
+     6.2,
+     "paqui",
+     "¡*Síguenos*!"
+    ]
+   ],
+   "actores": [
+    {
+     "quien": "paqui",
+     "x": 380,
+     "y": 1470,
+     "s": 300,
+     "expr": [
+      [
+       0,
+       "feliz"
+      ],
+      [
+       4.8,
+       "feliz"
+      ]
+     ],
+     "mov": [
+      [
+       0,
+       "quieto"
+      ],
+      [
+       4.8,
+       "salta"
+      ]
+     ],
+     "brazos": [
+      [
+       0,
+       "senala"
+      ],
+      [
+       4.8,
+       "arriba"
+      ]
+     ],
+     "acc": [
+      "lentes"
+     ]
+    }
+   ],
+   "props": [
+    {
+     "tipo": "emoji",
+     "e": "💡",
+     "x": 790,
+     "y": 880,
+     "r": 190,
+     "anim": "pop",
+     "desde": 0.3
+    },
+    {
+     "tipo": "emoji",
+     "e": "👟",
+     "x": 790,
+     "y": 1080,
+     "r": 130,
+     "anim": "flota",
+     "desde": 1.2
+    }
+   ],
+   "sfx": [
+    [
+     0.3,
+     "ding"
+    ]
+   ]
+  },
+  {
+   "tipo": "cta",
+   "dur": 3,
+   "transicion": "zoom"
+  }
+ ]
+}

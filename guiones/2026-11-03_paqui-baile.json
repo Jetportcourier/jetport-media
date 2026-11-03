@@ -1,0 +1,226 @@
+{
+ "musica_semilla": 114,
+ "escenas": [
+  {
+   "tipo": "anim",
+   "escena": "show",
+   "dur": 10.6,
+   "estilo_fondo": "rayos",
+   "transicion": "ninguna",
+   "subt_cortos": true,
+   "voces": [
+    [
+     0.5,
+     "material/voces/baile/p1.mp3"
+    ],
+    [
+     2.4,
+     "material/voces/baile/a1.mp3"
+    ],
+    [
+     4.3,
+     "material/voces/baile/p2.mp3"
+    ],
+    [
+     6.199999999999999,
+     "material/voces/baile/a2.mp3"
+    ],
+    [
+     8.1,
+     "material/voces/baile/p3.mp3"
+    ]
+   ],
+   "lineas": [
+    [
+     0.5,
+     2.0,
+     "paqui",
+     "*COMPRAS*"
+    ],
+    [
+     2.4,
+     3.9,
+     "amigo",
+     "*PESAMOS*"
+    ],
+    [
+     4.3,
+     5.8,
+     "paqui",
+     "*VOLAMOS*"
+    ],
+    [
+     6.199999999999999,
+     7.699999999999999,
+     "amigo",
+     "*ADUANA*"
+    ],
+    [
+     8.1,
+     9.6,
+     "paqui",
+     "*A TU CASA*"
+    ]
+   ],
+   "actores": [
+    {
+     "quien": "paqui",
+     "x": 320,
+     "y": 1470,
+     "s": 300,
+     "mov": "baila",
+     "brazos": [
+      [
+       0,
+       "baile"
+      ],
+      [
+       2.4,
+       "arriba"
+      ],
+      [
+       4.3,
+       "baile"
+      ],
+      [
+       6.2,
+       "arriba"
+      ],
+      [
+       8.1,
+       "baile"
+      ]
+     ],
+     "expr": [
+      [
+       0,
+       "feliz"
+      ],
+      [
+       8.1,
+       "enamorado"
+      ]
+     ]
+    },
+    {
+     "quien": "amigo",
+     "x": 780,
+     "y": 1470,
+     "s": 270,
+     "mov": "baila",
+     "brazos": [
+      [
+       0,
+       "arriba"
+      ],
+      [
+       2.4,
+       "baile"
+      ],
+      [
+       4.3,
+       "arriba"
+      ],
+      [
+       6.2,
+       "baile"
+      ]
+     ],
+     "expr": [
+      [
+       0,
+       "feliz"
+      ],
+      [
+       8.1,
+       "risa"
+      ]
+     ]
+    }
+   ],
+   "props": [
+    {
+     "tipo": "emoji",
+     "e": "🛒",
+     "x": 540,
+     "y": 880,
+     "r": 260,
+     "anim": "pop",
+     "desde": 0.5,
+     "hasta": 2.35
+    },
+    {
+     "tipo": "emoji",
+     "e": "⚖",
+     "x": 540,
+     "y": 880,
+     "r": 260,
+     "anim": "pop",
+     "desde": 2.4,
+     "hasta": 4.25
+    },
+    {
+     "tipo": "emoji",
+     "e": "✈",
+     "x": 540,
+     "y": 880,
+     "r": 260,
+     "anim": "pop",
+     "desde": 4.3,
+     "hasta": 6.15
+    },
+    {
+     "tipo": "emoji",
+     "e": "🛃",
+     "x": 540,
+     "y": 880,
+     "r": 260,
+     "anim": "pop",
+     "desde": 6.199999999999999,
+     "hasta": 8.049999999999999
+    },
+    {
+     "tipo": "emoji",
+     "e": "🏠",
+     "x": 540,
+     "y": 880,
+     "r": 260,
+     "anim": "pop",
+     "desde": 8.1,
+     "hasta": 9.95
+    },
+    {
+     "tipo": "corazones",
+     "desde": 8.1,
+     "x": 540
+    }
+   ],
+   "sfx": [
+    [
+     0.5,
+     "pop"
+    ],
+    [
+     2.4,
+     "pop"
+    ],
+    [
+     4.3,
+     "pop"
+    ],
+    [
+     6.199999999999999,
+     "pop"
+    ],
+    [
+     8.1,
+     "pop"
+    ],
+    [
+     8.1,
+     "tada"
+    ]
+   ]
+  }
+ ]
+}

@@ -1,0 +1,20 @@
+{
+ "num": 12,
+ "escena_n": 0,
+ "t": 1.0,
+ "titulo": [
+  [
+   "LO QUE",
+   "blanco"
+  ],
+  [
+   "CALLAMOS LOS",
+   "blanco"
+  ],
+  [
+   "PAQUETES...",
+   "amarillo"
+  ]
+ ],
+ "guion": "guiones/2026-11-03_paqui-confesiones.json"
+}

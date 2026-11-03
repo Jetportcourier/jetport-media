@@ -5,16 +5,20 @@
  "t": 3.0,
  "titulo": [
   [
-   "VINE A",
+   "SOY UN PAQUETE",
    "blanco"
   ],
   [
-   "SER PAQUETE",
+   "QUE QUIERE VIAJAR",
    "blanco"
   ],
   [
-   "¿ME CONTRATAN?",
+   "A LIMA",
    "amarillo"
   ]
+ ],
+ "abajo": [
+  "¿ME ACEPTAN?",
+  "naranja"
  ]
 }

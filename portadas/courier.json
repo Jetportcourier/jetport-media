@@ -1,0 +1,23 @@
+{
+ "num": 18,
+ "escena_n": 0,
+ "t": 4.0,
+ "titulo": [
+  [
+   "¿CON QUÉ",
+   "blanco"
+  ],
+  [
+   "COURIER",
+   "blanco"
+  ],
+  [
+   "TRABAJAS?",
+   "amarillo"
+  ]
+ ],
+ "ocultar": [
+  "texto"
+ ],
+ "guion": "guiones/2026-11-03_paqui-courier.json"
+}

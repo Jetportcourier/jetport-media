@@ -1,0 +1,23 @@
+{
+ "num": 17,
+ "escena_n": 1,
+ "t": 5.0,
+ "titulo": [
+  [
+   "¿Y YO QUÉ?",
+   "blanco"
+  ],
+  [
+   "¡YO LOS TRAJE",
+   "blanco"
+  ],
+  [
+   "DE MIAMI!",
+   "amarillo"
+  ]
+ ],
+ "ocultar": [
+  "emoji"
+ ],
+ "guion": "guiones/2026-11-03_paqui-celoso.json"
+}

@@ -1,0 +1,442 @@
+{
+ "musica_semilla": 109,
+ "escenas": [
+  {
+   "tipo": "anim",
+   "escena": "show",
+   "dur": 3.4,
+   "estilo_fondo": "degradado",
+   "transicion": "ninguna",
+   "subt_cortos": true,
+   "voces": [
+    [
+     0.3,
+     "material/voces/abuelita/ab1.mp3"
+    ]
+   ],
+   "lineas": [
+    [
+     0.3,
+     3.2,
+     "abuelita",
+     "¿Llegará a tiempo el *regalo* de mi nieta?"
+    ]
+   ],
+   "actores": [
+    {
+     "quien": "emoji",
+     "e": "👵",
+     "x": 540,
+     "y": 1460,
+     "s": 300,
+     "mov": "quieto",
+     "habla": "abuelita"
+    }
+   ],
+   "props": [
+    {
+     "tipo": "ventana",
+     "x": 540,
+     "y": 880,
+     "w": 480,
+     "h": 480
+    },
+    {
+     "tipo": "emoji",
+     "e": "🎄",
+     "x": 170,
+     "y": 1380,
+     "r": 200,
+     "anim": "pop",
+     "desde": 0
+    }
+   ],
+   "sfx": [
+    [
+     0.1,
+     "ding"
+    ]
+   ]
+  },
+  {
+   "tipo": "anim",
+   "escena": "show",
+   "dur": 4.6,
+   "estilo_fondo": "degradado",
+   "transicion": "barrido",
+   "subt_cortos": true,
+   "voces": [
+    [
+     0.3,
+     "material/voces/abuelita/p1.mp3"
+    ]
+   ],
+   "lineas": [
+    [
+     0.3,
+     2.2,
+     "paqui",
+     "¡Aguante, *abuelita*!"
+    ],
+    [
+     2.2,
+     4.4,
+     "paqui",
+     "¡Ya voy *volando* desde USA!"
+    ]
+   ],
+   "actores": [
+    {
+     "quien": "paqui",
+     "x": 540,
+     "y": 1470,
+     "s": 300,
+     "expr": "feliz",
+     "mov": "tiembla",
+     "brazos": "arriba",
+     "acc": [
+      "gorro"
+     ]
+    }
+   ],
+   "props": [
+    {
+     "tipo": "bodega"
+    }
+   ],
+   "sfx": [
+    [
+     0.2,
+     "turbulencia"
+    ]
+   ],
+   "sacudir": [
+    [
+     0.2,
+     1.4,
+     8
+    ]
+   ]
+  },
+  {
+   "tipo": "anim",
+   "escena": "show",
+   "dur": 12.3,
+   "estilo_fondo": "confeti",
+   "transicion": "zoom",
+   "subt_cortos": true,
+   "voces": [
+    [
+     0.2,
+     "material/voces/abuelita/p2.mp3"
+    ],
+    [
+     3.7,
+     "material/voces/abuelita/ab2.mp3"
+    ],
+    [
+     7.1,
+     "material/voces/abuelita/p3.mp3"
+    ]
+   ],
+   "lineas": [
+    [
+     0.2,
+     3.3,
+     "paqui",
+     "¡Llegué! ¡Justo para *Navidad*!"
+    ],
+    [
+     3.7,
+     5.1,
+     "abuelita",
+     "¡Ay, mi *amor*!"
+    ],
+    [
+     5.4,
+     6.8,
+     "abuelita",
+     "¡Qué *lindo*!"
+    ],
+    [
+     7.1,
+     9.9,
+     "paqui",
+     "Tu nieta te manda un *abrazo* muy grande..."
+    ],
+    [
+     10.3,
+     12.0,
+     "paqui",
+     "¡y este *regalo*!"
+    ]
+   ],
+   "actores": [
+    {
+     "quien": "paqui",
+     "x": 340,
+     "y": 1470,
+     "s": 300,
+     "expr": [
+      [
+       0,
+       "feliz"
+      ],
+      [
+       3.7,
+       "enamorado"
+      ],
+      [
+       7.1,
+       "feliz"
+      ]
+     ],
+     "mov": [
+      [
+       0,
+       "cae"
+      ],
+      [
+       0.7,
+       "salta"
+      ],
+      [
+       1.5,
+       "quieto"
+      ]
+     ],
+     "brazos": [
+      [
+       0,
+       "arriba"
+      ],
+      [
+       3.7,
+       "normal"
+      ],
+      [
+       7.1,
+       "habla"
+      ],
+      [
+       10.3,
+       "arriba"
+      ]
+     ],
+     "acc": [
+      "gorro"
+     ]
+    },
+    {
+     "quien": "emoji",
+     "e": [
+      [
+       0,
+       "👵"
+      ],
+      [
+       3.7,
+       "🥹"
+      ],
+      [
+       10.4,
+       "🥰"
+      ]
+     ],
+     "x": 790,
+     "y": 1450,
+     "s": 260,
+     "mov": "quieto",
+     "habla": "abuelita"
+    }
+   ],
+   "props": [
+    {
+     "tipo": "corazones",
+     "desde": 3.7,
+     "x": 560
+    },
+    {
+     "tipo": "emoji",
+     "e": "🎄",
+     "x": 120,
+     "y": 1300,
+     "r": 170,
+     "anim": "pop",
+     "desde": 0
+    },
+    {
+     "tipo": "emoji",
+     "e": "🎁",
+     "x": 560,
+     "y": 900,
+     "r": 200,
+     "anim": "pop",
+     "desde": 10.3
+    }
+   ],
+   "sfx": [
+    [
+     0.3,
+     "pop"
+    ],
+    [
+     3.7,
+     "ding"
+    ],
+    [
+     10.3,
+     "tada"
+    ]
+   ]
+  },
+  {
+   "tipo": "anim",
+   "escena": "show",
+   "dur": 2.4,
+   "estilo_fondo": "confeti",
+   "transicion": "destello",
+   "subt_cortos": true,
+   "voces": [
+    [
+     0.2,
+     "material/voces/abuelita/ab3.mp3"
+    ]
+   ],
+   "lineas": [
+    [
+     0.2,
+     2.1,
+     "abuelita",
+     "¡Feliz *Navidad*!"
+    ]
+   ],
+   "actores": [
+    {
+     "quien": "paqui",
+     "x": 340,
+     "y": 1470,
+     "s": 300,
+     "expr": "enamorado",
+     "mov": "baila",
+     "brazos": "arriba",
+     "acc": [
+      "gorro"
+     ]
+    },
+    {
+     "quien": "emoji",
+     "e": "🥰",
+     "x": 790,
+     "y": 1450,
+     "s": 260,
+     "mov": "salta",
+     "habla": "abuelita"
+    }
+   ],
+   "props": [
+    {
+     "tipo": "fuegos",
+     "n": 6
+    }
+   ],
+   "sfx": [
+    [
+     0.2,
+     "fuegos"
+    ]
+   ]
+  },
+  {
+   "tipo": "anim",
+   "escena": "show",
+   "dur": 5.6,
+   "estilo_fondo": "rayos",
+   "transicion": "barrido",
+   "subt_cortos": true,
+   "voces": [
+    [
+     0.2,
+     "material/voces/abuelita/p4.mp3"
+    ]
+   ],
+   "lineas": [
+    [
+     0.2,
+     2.4,
+     "paqui",
+     "Que tu regalo también llegue a *tiempo*."
+    ],
+    [
+     2.6,
+     5.4,
+     "paqui",
+     "*Compra con anticipación* y síguenos."
+    ]
+   ],
+   "actores": [
+    {
+     "quien": "paqui",
+     "x": 380,
+     "y": 1470,
+     "s": 300,
+     "expr": "feliz",
+     "mov": [
+      [
+       0,
+       "quieto"
+      ],
+      [
+       2.6,
+       "salta"
+      ]
+     ],
+     "brazos": [
+      [
+       0,
+       "habla"
+      ],
+      [
+       2.6,
+       "senala"
+      ]
+     ],
+     "acc": [
+      "gorro"
+     ]
+    }
+   ],
+   "props": [
+    {
+     "tipo": "emoji",
+     "e": "🎁",
+     "x": 790,
+     "y": 880,
+     "r": 190,
+     "anim": "flota",
+     "desde": 0.3
+    },
+    {
+     "tipo": "emoji",
+     "e": "📅",
+     "x": 790,
+     "y": 1100,
+     "r": 150,
+     "anim": "pop",
+     "desde": 2.6
+    }
+   ],
+   "sfx": [
+    [
+     2.6,
+     "pop"
+    ]
+   ]
+  },
+  {
+   "tipo": "cta",
+   "dur": 3,
+   "transicion": "zoom"
+  }
+ ]
+}

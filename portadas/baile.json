@@ -1,0 +1,20 @@
+{
+ "num": 19,
+ "escena_n": 0,
+ "t": 1.0,
+ "titulo": [
+  [
+   "PAQUI BAILA",
+   "blanco"
+  ],
+  [
+   "LA TENDENCIA",
+   "amarillo"
+  ]
+ ],
+ "ocultar": [
+  "emoji",
+  "corazones"
+ ],
+ "guion": "guiones/2026-11-03_paqui-baile.json"
+}

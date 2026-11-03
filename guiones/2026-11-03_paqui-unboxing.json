@@ -168,9 +168,9 @@
    "actores": [
     {
      "quien": "paqui",
-     "x": 380,
-     "y": 1470,
-     "s": 300,
+     "x": 300,
+     "y": 1640,
+     "s": 280,
      "expr": [
       [
        0,
@@ -216,23 +216,60 @@
      "sudor": 3
     },
     {
-     "quien": "emoji",
-     "e": [
+     "quien": "mujer",
+     "x": 790,
+     "y": 1800,
+     "s": 125,
+     "habla": "clienta",
+     "sombra": false,
+     "expr": [
       [
        0,
-       "😅"
+       "feliz"
+      ],
+      [
+       5.1,
+       "verguenza"
       ],
       [
        7.5,
-       "🥺"
+       "feliz"
       ]
      ],
-     "x": 820,
-     "y": 1450,
-     "s": 250,
-     "desde": 5.0,
-     "mov": "pop",
-     "habla": "clienta"
+     "brazos": [
+      [
+       0,
+       "corta"
+      ],
+      [
+       5.0,
+       "cubre"
+      ],
+      [
+       7.5,
+       "abajo"
+      ]
+     ],
+     "obj": [
+      [
+       0,
+       "🔪"
+      ],
+      [
+       5.0,
+       ""
+      ]
+     ],
+     "mov": [
+      [
+       0,
+       "entra_der"
+      ],
+      [
+       0.6,
+       "quieto"
+      ]
+     ]
     }
    ],
    "props": [
@@ -247,16 +284,6 @@
       84
      ],
      "lado": -1
-    },
-    {
-     "tipo": "emoji",
-     "e": "🔪",
-     "x": 660,
-     "y": 1080,
-     "r": 190,
-     "anim": "corta",
-     "desde": 0.2,
-     "hasta": 5.0
     },
     {
      "tipo": "texto",
@@ -337,9 +364,9 @@
    "actores": [
     {
      "quien": "paqui",
-     "x": 360,
-     "y": 1470,
-     "s": 290,
+     "x": 300,
+     "y": 1640,
+     "s": 280,
      "expr": [
       [
        0,
@@ -379,32 +406,63 @@
      ]
     },
     {
-     "quien": "emoji",
-     "e": "🤩",
-     "x": 820,
-     "y": 1450,
-     "s": 250,
-     "desde": 5.5,
-     "mov": "pop",
-     "habla": "clienta"
+     "quien": "mujer",
+     "x": 790,
+     "y": 1800,
+     "s": 125,
+     "habla": "clienta",
+     "sombra": false,
+     "expr": [
+      [
+       0,
+       "feliz"
+      ],
+      [
+       5.6,
+       "enamorado"
+      ]
+     ],
+     "brazos": [
+      [
+       0,
+       "abajo"
+      ],
+      [
+       0.98,
+       "corta"
+      ],
+      [
+       3.2,
+       "sostiene"
+      ],
+      [
+       5.6,
+       "arriba"
+      ]
+     ],
+     "obj": [
+      [
+       0,
+       ""
+      ],
+      [
+       0.98,
+       "✂"
+      ],
+      [
+       3.2,
+       "🎧"
+      ]
+     ],
+     "mov": "quieto"
     }
    ],
    "props": [
     {
-     "tipo": "emoji",
-     "e": "✂",
-     "x": 760,
-     "y": 820,
-     "r": 200,
-     "anim": "pop",
-     "desde": 1.0,
-     "hasta": 5.5
-    },
-    {
      "tipo": "texto",
      "texto": "¡TIJERA!",
-     "x": 760,
-     "y": 1010,
+     "x": 780,
+     "y": 820,
      "tam": 80,
      "color": [
       255,
@@ -415,28 +473,19 @@
      "hasta": 5.5
     },
     {
-     "tipo": "emoji",
-     "e": "👍",
-     "x": 300,
-     "y": 760,
-     "r": 150,
-     "anim": "pop",
-     "desde": 3.3,
-     "hasta": 5.5
-    },
-    {
      "tipo": "corazones",
-     "desde": 5.7
+     "desde": 5.7,
+     "x": 700
     }
    ],
    "sfx": [
     [
      1.0,
-     "pop"
+     "swish"
     ],
     [
-     3.3,
-     "ding"
+     3.2,
+     "pop"
     ],
     [
      5.6,

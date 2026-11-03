@@ -1,0 +1,493 @@
+{
+ "musica_semilla": 100,
+ "escenas": [
+  {
+   "tipo": "anim",
+   "escena": "show",
+   "dur": 11.8,
+   "estilo_fondo": "puntos",
+   "transicion": "ninguna",
+   "subt_cortos": true,
+   "voces": [
+    [
+     0.3,
+     "material/voces/confesiones/p1.mp3"
+    ],
+    [
+     3.0,
+     "material/voces/confesiones/p2.mp3"
+    ],
+    [
+     8.6,
+     "material/voces/confesiones/a1.mp3"
+    ]
+   ],
+   "lineas": [
+    [
+     0.3,
+     2.5,
+     "paqui",
+     "Lo que *callamos* los paquetes..."
+    ],
+    [
+     3.0,
+     5.5,
+     "paqui",
+     "Que el cliente pidió *quince fundas*..."
+    ],
+    [
+     6.2,
+     8.3,
+     "paqui",
+     "para *UN* solo celular."
+    ],
+    [
+     8.6,
+     11.5,
+     "amigo",
+     "¡Y una tiene *brillitos*!"
+    ]
+   ],
+   "actores": [
+    {
+     "quien": "paqui",
+     "x": 330,
+     "y": 1470,
+     "s": 320,
+     "expr": [
+      [
+       0,
+       "nervioso"
+      ],
+      [
+       6.2,
+       "forzada"
+      ],
+      [
+       8.6,
+       "risa"
+      ]
+     ],
+     "mov": [
+      [
+       0,
+       "entra_izq"
+      ],
+      [
+       0.6,
+       "quieto"
+      ]
+     ],
+     "brazos": [
+      [
+       0,
+       "normal"
+      ],
+      [
+       0.6,
+       "senala_izq"
+      ],
+      [
+       3.0,
+       "habla"
+      ]
+     ]
+    },
+    {
+     "quien": "amigo",
+     "x": 790,
+     "y": 1470,
+     "s": 270,
+     "desde": 8.3,
+     "mov": [
+      [
+       8.3,
+       "entra_der"
+      ],
+      [
+       8.9,
+       "salta"
+      ]
+     ],
+     "expr": "risa",
+     "brazos": "agita"
+    }
+   ],
+   "props": [
+    {
+     "tipo": "emoji",
+     "e": "🤫",
+     "x": 760,
+     "y": 900,
+     "r": 200,
+     "anim": "pop",
+     "desde": 0.2,
+     "hasta": 2.9
+    },
+    {
+     "tipo": "emoji",
+     "e": "📱",
+     "x": 760,
+     "y": 880,
+     "r": 190,
+     "anim": "late",
+     "desde": 3.2,
+     "hasta": 8.3
+    },
+    {
+     "tipo": "texto",
+     "texto": "×15",
+     "x": 760,
+     "y": 1060,
+     "tam": 110,
+     "desde": 3.6,
+     "hasta": 8.3
+    },
+    {
+     "tipo": "emoji",
+     "e": "✨",
+     "x": 760,
+     "y": 860,
+     "r": 170,
+     "anim": "flota",
+     "desde": 8.7
+    }
+   ],
+   "sfx": [
+    [
+     0.2,
+     "swish"
+    ],
+    [
+     3.6,
+     "pop"
+    ],
+    [
+     8.7,
+     "risas"
+    ]
+   ]
+  },
+  {
+   "tipo": "anim",
+   "escena": "show",
+   "dur": 9.3,
+   "estilo_fondo": "burbujas",
+   "transicion": "barrido",
+   "subt_cortos": true,
+   "voces": [
+    [
+     0.3,
+     "material/voces/confesiones/p3.mp3"
+    ],
+    [
+     5.0,
+     "material/voces/confesiones/a2.mp3"
+    ]
+   ],
+   "lineas": [
+    [
+     0.3,
+     1.6,
+     "paqui",
+     "Que cuando nos *abren*..."
+    ],
+    [
+     2.1,
+     4.7,
+     "paqui",
+     "¡nos emocionamos más que el *cliente*!"
+    ],
+    [
+     5.0,
+     6.7,
+     "amigo",
+     "Que revisan el *tracking*..."
+    ],
+    [
+     7.1,
+     9.0,
+     "amigo",
+     "cada *cinco minutos*."
+    ]
+   ],
+   "actores": [
+    {
+     "quien": "paqui",
+     "x": 330,
+     "y": 1470,
+     "s": 300,
+     "expr": [
+      [
+       0,
+       "nervioso"
+      ],
+      [
+       2.1,
+       "enamorado"
+      ],
+      [
+       5.0,
+       "risa"
+      ]
+     ],
+     "mov": [
+      [
+       0,
+       "quieto"
+      ],
+      [
+       2.1,
+       "salta"
+      ],
+      [
+       4.8,
+       "quieto"
+      ]
+     ],
+     "brazos": [
+      [
+       0,
+       "habla"
+      ],
+      [
+       2.1,
+       "arriba"
+      ],
+      [
+       5.0,
+       "normal"
+      ]
+     ]
+    },
+    {
+     "quien": "amigo",
+     "x": 790,
+     "y": 1470,
+     "s": 270,
+     "expr": [
+      [
+       0,
+       "feliz"
+      ],
+      [
+       5.0,
+       "nervioso"
+      ]
+     ],
+     "brazos": [
+      [
+       0,
+       "normal"
+      ],
+      [
+       5.0,
+       "habla"
+      ]
+     ]
+    }
+   ],
+   "props": [
+    {
+     "tipo": "corazones",
+     "desde": 2.1,
+     "hasta": 4.9,
+     "x": 330
+    },
+    {
+     "tipo": "emoji",
+     "e": "⏱",
+     "x": 560,
+     "y": 880,
+     "r": 170,
+     "anim": "late",
+     "desde": 7.1
+    },
+    {
+     "tipo": "texto",
+     "texto": "5 MIN",
+     "x": 560,
+     "y": 1060,
+     "tam": 90,
+     "desde": 7.2
+    }
+   ],
+   "sfx": [
+    [
+     2.1,
+     "tada"
+    ],
+    [
+     7.1,
+     "beep"
+    ]
+   ]
+  },
+  {
+   "tipo": "anim",
+   "escena": "show",
+   "dur": 6.4,
+   "estilo_fondo": "ciudad",
+   "transicion": "deslizar",
+   "subt_cortos": true,
+   "voces": [
+    [
+     0.3,
+     "material/voces/confesiones/p4.mp3"
+    ]
+   ],
+   "lineas": [
+    [
+     0.3,
+     1.5,
+     "paqui",
+     "Y que *nosotros*..."
+    ],
+    [
+     1.9,
+     4.4,
+     "paqui",
+     "también queremos llegar *rápido a casa*."
+    ]
+   ],
+   "actores": [
+    {
+     "quien": "paqui",
+     "x": 540,
+     "y": 1470,
+     "s": 300,
+     "expr": [
+      [
+       0,
+       "nervioso"
+      ],
+      [
+       1.9,
+       "alivio"
+      ]
+     ],
+     "mov": "flota",
+     "brazos": [
+      [
+       0,
+       "habla"
+      ],
+      [
+       4.0,
+       "cintura"
+      ]
+     ]
+    }
+   ],
+   "props": [
+    {
+     "tipo": "emoji",
+     "e": "🏠",
+     "x": 820,
+     "y": 900,
+     "r": 180,
+     "anim": "flota",
+     "desde": 2.0
+    },
+    {
+     "tipo": "emoji",
+     "e": "✈",
+     "x": 260,
+     "y": 880,
+     "r": 150,
+     "anim": "vuela",
+     "desde": 1.9,
+     "de": [
+      -200,
+      800
+     ]
+    }
+   ],
+   "sfx": [
+    [
+     1.9,
+     "swish"
+    ]
+   ]
+  },
+  {
+   "tipo": "anim",
+   "escena": "show",
+   "dur": 4.8,
+   "estilo_fondo": "confeti",
+   "transicion": "destello",
+   "subt_cortos": true,
+   "voces": [
+    [
+     0.3,
+     "material/voces/confesiones/p5.mp3"
+    ]
+   ],
+   "lineas": [
+    [
+     0.3,
+     2.4,
+     "paqui",
+     "¿Qué otra cosa *callamos*?"
+    ],
+    [
+     2.7,
+     4.5,
+     "paqui",
+     "*Comenta* y síguenos."
+    ]
+   ],
+   "actores": [
+    {
+     "quien": "paqui",
+     "x": 380,
+     "y": 1470,
+     "s": 300,
+     "expr": "feliz",
+     "mov": [
+      [
+       0,
+       "quieto"
+      ],
+      [
+       2.7,
+       "salta"
+      ]
+     ],
+     "brazos": [
+      [
+       0,
+       "habla"
+      ],
+      [
+       2.7,
+       "senala"
+      ]
+     ]
+    }
+   ],
+   "props": [
+    {
+     "tipo": "emoji",
+     "e": "💬",
+     "x": 790,
+     "y": 900,
+     "r": 200,
+     "anim": "late",
+     "desde": 2.7
+    }
+   ],
+   "sfx": [
+    [
+     2.7,
+     "pop"
+    ]
+   ]
+  },
+  {
+   "tipo": "cta",
+   "dur": 3,
+   "transicion": "zoom"
+  }
+ ]
+}

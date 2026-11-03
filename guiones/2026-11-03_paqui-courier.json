@@ -1,0 +1,491 @@
+{
+ "musica_semilla": 113,
+ "escenas": [
+  {
+   "tipo": "anim",
+   "escena": "show",
+   "dur": 7.2,
+   "estilo_fondo": "puntos",
+   "transicion": "ninguna",
+   "subt_cortos": true,
+   "voces": [
+    [
+     0.2,
+     "material/voces/courier/p1.mp3"
+    ]
+   ],
+   "lineas": [
+    [
+     0.2,
+     2.9,
+     "paqui",
+     "Nos preguntan: ¿con qué *courier* trabajas?"
+    ],
+    [
+     3.2,
+     5.4,
+     "paqui",
+     "¡Con *Jetport Courier*, pues!"
+    ],
+    [
+     5.4,
+     7.0,
+     "paqui",
+     "Y así *trabajamos*:"
+    ]
+   ],
+   "actores": [
+    {
+     "quien": "paqui",
+     "x": 540,
+     "y": 1470,
+     "s": 300,
+     "expr": [
+      [
+       0,
+       "sorpresa"
+      ],
+      [
+       3.2,
+       "feliz"
+      ]
+     ],
+     "mov": [
+      [
+       0,
+       "quieto"
+      ],
+      [
+       3.2,
+       "salta"
+      ],
+      [
+       3.8,
+       "quieto"
+      ]
+     ],
+     "brazos": [
+      [
+       0,
+       "normal"
+      ],
+      [
+       3.2,
+       "cintura"
+      ]
+     ],
+     "sy": [
+      [
+       0,
+       1.0
+      ],
+      [
+       3.2,
+       1.08
+      ]
+     ]
+    }
+   ],
+   "props": [
+    {
+     "tipo": "comentario",
+     "texto": "¿Con qué courier trabajas?",
+     "x": 540,
+     "y": 720,
+     "w": 960,
+     "tam": 60,
+     "cola": "no",
+     "hasta": 3.2
+    },
+    {
+     "tipo": "texto",
+     "texto": "JETPORT COURIER",
+     "x": 540,
+     "y": 760,
+     "tam": 100,
+     "desde": 3.2,
+     "color": [
+      255,
+      122,
+      26
+     ]
+    }
+   ],
+   "sfx": [
+    [
+     0.2,
+     "ding"
+    ],
+    [
+     3.2,
+     "tada"
+    ]
+   ]
+  },
+  {
+   "tipo": "anim",
+   "escena": "show",
+   "dur": 14.0,
+   "estilo_fondo": "patron",
+   "transicion": "barrido",
+   "subt_cortos": true,
+   "voces": [
+    [
+     0.2,
+     "material/voces/courier/p2.mp3"
+    ],
+    [
+     4.8,
+     "material/voces/courier/p3.mp3"
+    ],
+    [
+     9.5,
+     "material/voces/courier/p4.mp3"
+    ]
+   ],
+   "lineas": [
+    [
+     0.2,
+     4.4,
+     "paqui",
+     "*Uno*: compras en tu tienda favorita de *USA* o *China*."
+    ],
+    [
+     4.8,
+     9.2,
+     "paqui",
+     "*Dos*: tu compra llega a nuestro *almacén* y la traemos en *avión*."
+    ],
+    [
+     9.5,
+     12.0,
+     "paqui",
+     "*Tres*: pasa la aduana en *Lima*..."
+    ],
+    [
+     12.0,
+     13.7,
+     "paqui",
+     "¡y te llega a *casa*!"
+    ]
+   ],
+   "actores": [
+    {
+     "quien": "paqui",
+     "x": 380,
+     "y": 1330,
+     "s": 280,
+     "expr": "feliz",
+     "mov": [
+      [
+       0,
+       "quieto"
+      ],
+      [
+       12.0,
+       "salta"
+      ]
+     ],
+     "brazos": [
+      [
+       0,
+       "senala"
+      ],
+      [
+       12.0,
+       "arriba"
+      ]
+     ]
+    }
+   ],
+   "props": [
+    {
+     "tipo": "texto",
+     "texto": "1",
+     "x": 800,
+     "y": 760,
+     "tam": 160,
+     "desde": 0.2,
+     "hasta": 4.7,
+     "color": [
+      255,
+      122,
+      26
+     ]
+    },
+    {
+     "tipo": "emoji",
+     "e": "🛒",
+     "x": 800,
+     "y": 960,
+     "r": 170,
+     "anim": "pop",
+     "desde": 0.5,
+     "hasta": 4.7
+    },
+    {
+     "tipo": "texto",
+     "texto": "2",
+     "x": 800,
+     "y": 760,
+     "tam": 160,
+     "desde": 4.8,
+     "hasta": 9.4,
+     "color": [
+      255,
+      122,
+      26
+     ]
+    },
+    {
+     "tipo": "emoji",
+     "e": "🏭",
+     "x": 800,
+     "y": 960,
+     "r": 170,
+     "anim": "pop",
+     "desde": 5.0,
+     "hasta": 7.2
+    },
+    {
+     "tipo": "emoji",
+     "e": "✈",
+     "x": 800,
+     "y": 960,
+     "r": 170,
+     "anim": "flota",
+     "desde": 7.2,
+     "hasta": 9.4
+    },
+    {
+     "tipo": "texto",
+     "texto": "3",
+     "x": 800,
+     "y": 760,
+     "tam": 160,
+     "desde": 9.5,
+     "color": [
+      255,
+      122,
+      26
+     ]
+    },
+    {
+     "tipo": "emoji",
+     "e": "🏙",
+     "x": 800,
+     "y": 960,
+     "r": 170,
+     "anim": "pop",
+     "desde": 9.6,
+     "hasta": 12.0
+    },
+    {
+     "tipo": "emoji",
+     "e": "🏠",
+     "x": 800,
+     "y": 960,
+     "r": 180,
+     "anim": "pop",
+     "desde": 12.0
+    },
+    {
+     "tipo": "ruta",
+     "pasos": [
+      "USA/CHINA",
+      "AVIÓN",
+      "LIMA",
+      "🏠"
+     ],
+     "y": 1700,
+     "progreso": [
+      [
+       0,
+       0
+      ],
+      [
+       4.8,
+       0.05
+      ],
+      [
+       9.0,
+       0.5
+      ],
+      [
+       12.0,
+       0.75
+      ],
+      [
+       13.0,
+       1.0
+      ]
+     ]
+    }
+   ],
+   "sfx": [
+    [
+     0.3,
+     "pop"
+    ],
+    [
+     4.9,
+     "pop"
+    ],
+    [
+     7.2,
+     "swish"
+    ],
+    [
+     9.6,
+     "pop"
+    ],
+    [
+     12.0,
+     "tada"
+    ]
+   ]
+  },
+  {
+   "tipo": "anim",
+   "escena": "show",
+   "dur": 2.3,
+   "estilo_fondo": "rayos",
+   "transicion": "zoom",
+   "subt_cortos": true,
+   "voces": [
+    [
+     0.2,
+     "material/voces/courier/a1.mp3"
+    ]
+   ],
+   "lineas": [
+    [
+     0.2,
+     2.1,
+     "amigo",
+     "¡Así de *fácil*!"
+    ]
+   ],
+   "actores": [
+    {
+     "quien": "paqui",
+     "x": 330,
+     "y": 1470,
+     "s": 300,
+     "expr": "feliz",
+     "mov": "baila",
+     "brazos": "baile"
+    },
+    {
+     "quien": "amigo",
+     "x": 790,
+     "y": 1470,
+     "s": 270,
+     "expr": "sorpresa",
+     "mov": "salta",
+     "brazos": "arriba"
+    }
+   ],
+   "props": [],
+   "sfx": [
+    [
+     0.2,
+     "ding"
+    ]
+   ]
+  },
+  {
+   "tipo": "anim",
+   "escena": "show",
+   "dur": 4.2,
+   "estilo_fondo": "confeti",
+   "transicion": "destello",
+   "subt_cortos": true,
+   "voces": [
+    [
+     0.2,
+     "material/voces/courier/p5.mp3"
+    ]
+   ],
+   "lineas": [
+    [
+     0.2,
+     2.6,
+     "paqui",
+     "¿Quieres más *información*?"
+    ],
+    [
+     2.8,
+     4.0,
+     "paqui",
+     "¡Escríbenos *INFO*!"
+    ]
+   ],
+   "actores": [
+    {
+     "quien": "paqui",
+     "x": 360,
+     "y": 1470,
+     "s": 300,
+     "expr": "feliz",
+     "mov": [
+      [
+       0,
+       "quieto"
+      ],
+      [
+       2.8,
+       "salta"
+      ]
+     ],
+     "brazos": [
+      [
+       0,
+       "habla"
+      ],
+      [
+       2.8,
+       "senala"
+      ]
+     ]
+    }
+   ],
+   "props": [
+    {
+     "tipo": "texto",
+     "texto": "INFO",
+     "x": 780,
+     "y": 900,
+     "tam": 150,
+     "desde": 2.8,
+     "estilo": "sello",
+     "color": [
+      255,
+      122,
+      26
+     ]
+    },
+    {
+     "tipo": "emoji",
+     "e": "💬",
+     "x": 780,
+     "y": 1150,
+     "r": 150,
+     "anim": "late",
+     "desde": 2.8
+    }
+   ],
+   "sfx": [
+    [
+     2.8,
+     "sello"
+    ]
+   ]
+  },
+  {
+   "tipo": "cta",
+   "dur": 3,
+   "transicion": "zoom"
+  }
+ ]
+}
