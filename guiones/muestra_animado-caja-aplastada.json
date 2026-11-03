@@ -1,0 +1,19 @@
+{
+ "musica_semilla": 104,
+ "escenas": [
+  {"tipo": "anim", "escena": "aplastado", "modo": "llega", "dur": 8.2, "estilo_fondo": "rayos", "transicion": "ninguna",
+   "voces": [[0.6, "material/voces/caja-aplastada/a1_quepaso.mp3"], [3.0, "material/voces/caja-aplastada/p1_saco.mp3"]],
+   "lineas": [[0.6, 2.8, "amigo", "¡¿PAQUI?! ¡¿Qué te pasó?!"], [3.0, 4.0, "paqui", "Auuuch..."], [4.0, 7.9, "paqui", "¡Vine en el fondo del saco!"]]},
+  {"tipo": "anim", "escena": "aplastado", "modo": "pizza", "dur": 6.6, "estilo_fondo": "puntos", "transicion": "sacudida",
+   "voces": [[0.2, "material/voces/caja-aplastada/a2_pizza.mp3"], [4.3, "material/voces/caja-aplastada/p2_norias.mp3"]],
+   "lineas": [[0.2, 4.1, "amigo", "¡Jajaja! ¡Pareces una pizza!"], [4.3, 6.4, "paqui", "¡Oye, no te rías!"]]},
+  {"tipo": "anim", "escena": "aplastado", "modo": "boing", "pop": 8.33, "dur": 11.5, "estilo_fondo": "burbujas", "transicion": "barrido",
+   "voces": [[0.2, "material/voces/caja-aplastada/a3_adentro.mp3"], [3.9, "material/voces/caja-aplastada/p3_boing.mp3"]],
+   "lineas": [[0.2, 3.6, "amigo", "Ya, ya... ¿Y lo que llevas adentro?"], [3.9, 6.8, "paqui", "¡Perfecto! Me empacaron bien reforzadito."],
+              [7.2, 8.3, "paqui", "Y miraaa..."], [8.3, 9.3, "paqui", "¡BOING!"], [9.3, 10.6, "paqui", "¡Como nuevo!"]]},
+  {"tipo": "anim", "escena": "aplastado", "modo": "feliz", "dur": 4.8, "estilo_fondo": "confeti", "transicion": "destello",
+   "voces": [[0.3, "material/voces/caja-aplastada/p4_cierre.mp3"]],
+   "lineas": [[0.3, 2.1, "paqui", "Tu compra llega enterita."], [2.1, 4.5, "paqui", "¡Síguenos en Jetport Courier!"]]},
+  {"tipo": "cta", "dur": 3, "transicion": "zoom"}
+ ]
+}

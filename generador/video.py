@@ -35,10 +35,11 @@ Clips reales: escena {"tipo": "clip", "dur": 3, "archivo": "material/clip.mp4", 
   "paneo_izq", "subir", "bajar", "diagonal", o lista [zoom0, zoom1, cx0, cy0, cx1, cy1].
   "estilo": "polaroid" muestra la foto como tarjeta inclinada con borde blanco sobre fondo desenfocado
   (disimula fotos de baja calidad); opcionales "pie" (texto en el borde) y "angulo".
-Cortos animados: {"tipo": "anim", "escena": "hola|vuelo|aduana|llegada|fila|lupa|sonrisa|rayosx|sello|duo", "dur": 2.6, "texto": ..., "resaltado": ...}
+Cortos animados: {"tipo": "anim", "escena": "hola|vuelo|aduana|llegada|fila|lupa|sonrisa|rayosx|sello|duo|aplastado", "dur": 2.6, "texto": ..., "resaltado": ...}
   con "Paqui", la cajita animada (generador/personajes.py). "aduana" y "rayosx" admiten "cambio" + "texto_despues"; "sello" admite "sello" (texto del sello).
   Diálogo hablado en "anim": "voces": [[segundo, "material/voces/x.mp3"], ...] mezcla cada voz (la música baja sola) y
   "lineas": [[desde, hasta, "paqui|amigo", "frase"], ...] pone la frase arriba y mueve la boca de quien habla.
+  "aplastado" (Paqui llega aplastado; modo llega | pizza | charla | boing con "pop" | feliz).
   "duo" (Paqui y su amigo) admite "modo": grito (el amigo entra gritando, para ganchos) | charla | verde (canal verde, Paqui se ríe) | rojo (canal rojo, el amigo llora) | abrazo.
   Usa "estilo_fondo" para el fondo. Ejemplo: guiones/muestra_animado-paqui.json.
   "globo": "texto" dibuja un globo de diálogo blanco (para que la presentadora 'hable'); "globo_y" ajusta la altura.
@@ -1003,6 +1004,83 @@ def _a_duo(L, e, lt):
     pj.pegar(L, pj.caja(s, lt, ep, bp, mirar=mp), xp, yp, sxp, 1.0, angp)
 
 ANIMACIONES["duo"] = _a_duo
+
+# --- "aplastado": Paqui llega aplastado (cae del cielo, ¡PLAF!) y vuelve a su forma con un ¡BOING! ---
+def _estrella(d, cx, cy, r, color):
+    pts = []
+    for i in range(10):
+        ang = -math.pi / 2 + i * math.pi / 5
+        rr = r if i % 2 == 0 else r * 0.45
+        pts.append((cx + rr * math.cos(ang), cy + rr * math.sin(ang)))
+    d.polygon(pts, fill=color, outline=(60, 40, 0, 255))
+
+def _a_aplastado(L, e, lt):
+    """modo: llega (cae y se aplasta, ¡PLAF!) | pizza (el amigo se ríe) | charla (aplastado conversando) |
+    boing (en "pop" segundos recupera la forma con rebote) | feliz (los dos contentos saltando)."""
+    modo = e.get("modo", "charla")
+    s, xp, xa = 290, 330, 800
+    SU = _SUELO + 60
+    d = ImageDraw.Draw(L)
+    ep, ea = "nervioso", "sorpresa"; bp, ba = (60, 60), (20, 20); mp, ma = (1, 0), (-1, 0)
+    yp = ya = SU; angp = 0.0; sx, sy = 1.5, 0.48; mareo = True
+    if modo == "llega":
+        caida = 0.38
+        if lt < caida:                                                            # cae del cielo
+            k = lt / caida
+            yp = -200 + (SU + 200) * k * k; sx, sy = 0.9, 1.15; ep = "panico"; mareo = False; bp = (160, 160)
+        else:
+            q = lt - caida
+            rebote = math.exp(-q * 7) * math.cos(q * 30)                          # aplastado que todavía vibra
+            sx, sy = 1.5 + 0.18 * rebote, 0.48 - 0.1 * rebote
+            ep = "panico" if q < 0.8 else "nervioso"
+            if q < 0.9:                                                           # ¡PLAF! + polvo
+                a_ = max(0, 1 - q / 0.9); z = 1 + q * 0.6
+                texto_borde(L, (W / 2, 640), "¡PLAF!", font("Black", int(190 * z)), (255, 230, 80), a_, borde=12)
+                for i in range(8):
+                    ang = i * math.pi / 4; r = 120 + 380 * min(1, q / 0.5)
+                    rr = 34 * (1 - q / 0.9)
+                    if rr > 1: d.ellipse([xp + r * math.cos(ang) - rr, SU - 20 + 0.35 * r * math.sin(ang) - rr,
+                                          xp + r * math.cos(ang) + rr, SU - 20 + 0.35 * r * math.sin(ang) + rr], fill=(235, 225, 210, 200))
+            ea = "panico" if q > 0.1 else "feliz"; ba = (160, 160) if q > 0.1 else (20, 20)
+            ya = SU - 40 * abs(math.sin(min(q, 0.6) * 10)) if q < 0.6 else SU
+    elif modo == "pizza":
+        ea = "risa"; ba = (160, 40 + 15 * math.sin(lt * 20)); ya = SU - 18 * abs(math.sin(lt * 18))
+        for i in range(3): _ja(L, xa - 60, SU - 420, lt, i)
+        ep = "forzada"; bp = (150, 20 + 20 * math.sin(lt * 8))
+    elif modo == "charla":
+        ep = "nervioso"; ea = "nervioso"; bp = (40, 120 + 20 * math.sin(lt * 6))
+    elif modo == "boing":
+        pop = float(e.get("pop", 2.0))
+        ep = "feliz"; ea = "sorpresa"; bp = (40, 120)
+        if lt >= pop:
+            q = lt - pop
+            rebote = math.exp(-q * 5) * math.cos(q * 22)
+            sx, sy = 1.0 - 0.35 * rebote, 1.0 + 0.45 * rebote; mareo = False
+            yp = SU - 260 * max(0, math.sin(min(q, 0.5) * math.pi / 0.5)) * (1 if q < 0.5 else 0)
+            ep = "risa" if q < 1.2 else "feliz"; bp = (160, 160); ea = "sorpresa" if q < 1.5 else "feliz"; ba = (160, 160) if q > 1.5 else (20, 20)
+            if q < 1.0:
+                texto_borde(L, (W / 2, 640), "¡BOING!", font("Black", int(170 * (1 + q * 0.4))), (120, 255, 140), 1 - q, borde=12)
+                for i in range(10):
+                    ang = i * math.pi / 5 + q; r = 150 + 420 * q
+                    _estrella(d, xp + r * math.cos(ang), yp - 150 + r * math.sin(ang), 26 * (1 - q), (255, 220, 60, int(255 * (1 - q))))
+    elif modo == "feliz":
+        sx, sy = 1.0, 1.0; mareo = False
+        ep = ea = "feliz"; bp = ba = (160, 160)
+        yp = SU - 90 * abs(math.sin(lt * 7)); ya = SU - 90 * abs(math.sin(lt * 7 + 0.6))
+    for desde, hasta, quien, *_ in e.get("lineas", []):                    # boca que se mueve al hablar
+        if desde <= lt < hasta and (lt * 7.5) % 1 < 0.5:
+            if quien == "paqui" and ep in ("feliz", "sorpresa", "nervioso", "forzada"): ep = "abierta"
+            if quien == "amigo" and ea in ("feliz", "sorpresa", "nervioso"): ea = "abierta"
+    pj.sombra(L, xp, SU - 8, s * 1.4 * max(1, sx * 0.8)); pj.sombra(L, xa, SU - 8, s * 1.3)
+    pj.pegar(L, pj.caja(s, lt, ea, ba, mirar=ma, color="amigo"), xa, ya, 0.92, 1.12)
+    pj.pegar(L, pj.caja(s, lt, ep, bp, mirar=mp), xp, yp, sx, sy, angp)
+    if mareo and (modo != "llega" or lt > 0.5):                               # estrellitas de mareo sobre Paqui
+        d = ImageDraw.Draw(L)
+        for i in range(3):
+            ang = lt * 4 + i * 2 * math.pi / 3
+            _estrella(d, xp + 150 * math.cos(ang), yp - s * sy - 150 + 26 * math.sin(ang), 30, (255, 220, 60, 255))
+
+ANIMACIONES["aplastado"] = _a_aplastado
 
 def esc_anim(L, e, lt, a):
     ANIMACIONES[e.get("escena", "hola")](L, e, lt)
