@@ -1,0 +1,8 @@
+{
+  "musica_semilla": 109,
+  "escenas": [
+    {"tipo": "clip", "dur": 8.0, "archivo": "material/sketch3d/clip1.mp4", "inicio": 0, "con_audio": true, "camara": [1.0, 1.0, 0.5, 0.5, 0.5, 0.5], "texto": "Cuando por fin llega tu compra de USA", "posicion": "arriba", "transicion": "ninguna"},
+    {"tipo": "clip", "dur": 4.4, "archivo": "material/sketch3d/clip2.mp4", "inicio": 0, "con_audio": true, "camara": [1.0, 1.0, 0.5, 0.5, 0.5, 0.5], "texto": "Y la mamá...", "posicion": "arriba", "transicion": "ninguna"},
+    {"tipo": "cta", "dur": 3, "transicion": "destello"}
+  ]
+}
