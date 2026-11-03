@@ -31,25 +31,42 @@
    "actores": [
     {
      "quien": "paqui",
-     "x": 540,
+     "x": 330,
      "y": 1470,
      "s": 300,
      "expr": "panico",
      "mov": "tiembla",
      "brazos": "agita",
      "sudor": 3
+    },
+    {
+     "quien": "mujer",
+     "x": 790,
+     "y": 1800,
+     "s": 125,
+     "ropa": "jetport",
+     "habla": "operaria",
+     "mov": "entra_der",
+     "desde": 0.3,
+     "expr": [
+      [
+       0,
+       "feliz"
+      ]
+     ],
+     "brazos": [
+      [
+       0,
+       "abajo"
+      ],
+      [
+       1.6,
+       "sostiene"
+      ]
+     ]
     }
    ],
    "props": [
-    {
-     "tipo": "emoji",
-     "e": "🤲",
-     "x": 540,
-     "y": 820,
-     "r": 260,
-     "anim": "cae",
-     "desde": 1.6
-    },
     {
      "tipo": "texto",
      "texto": "¡GLUP!",
@@ -67,6 +84,10 @@
      "boing"
     ],
     [
+     0.35,
+     "swish"
+    ],
+    [
      1.7,
      "swish"
     ]
@@ -81,6 +102,125 @@
      2.0,
      2.6,
      12
+    ]
+   ]
+  },
+  {
+   "tipo": "anim",
+   "escena": "show",
+   "dur": 5.3,
+   "estilo_fondo": "degradado",
+   "transicion": "giro",
+   "subt_cortos": true,
+   "voces": [
+    [
+     0.3,
+     "material/voces/spa/o1.mp3"
+    ]
+   ],
+   "lineas": [
+    [
+     0.3,
+     1.8,
+     "operaria",
+     "Tranquilo, *Paqui*..."
+    ],
+    [
+     2.15,
+     4.6,
+     "operaria",
+     "¡Aquí te tratamos con *cariño*!"
+    ]
+   ],
+   "actores": [
+    {
+     "quien": "paqui",
+     "x": 330,
+     "y": 1470,
+     "s": 300,
+     "expr": [
+      [
+       0,
+       "sorpresa"
+      ],
+      [
+       1.8,
+       "alivio"
+      ]
+     ],
+     "mov": [
+      [
+       0,
+       "tiembla"
+      ],
+      [
+       1.0,
+       "quieto"
+      ],
+      [
+       2.2,
+       "flota"
+      ]
+     ],
+     "brazos": "normal"
+    },
+    {
+     "quien": "mujer",
+     "x": 790,
+     "y": 1800,
+     "s": 125,
+     "ropa": "jetport",
+     "habla": "operaria",
+     "expr": [
+      [
+       0,
+       "feliz"
+      ],
+      [
+       4.3,
+       "risa"
+      ]
+     ],
+     "brazos": "masajea"
+    }
+   ],
+   "props": [
+    {
+     "tipo": "emoji",
+     "e": "💕",
+     "x": 330,
+     "y": 980,
+     "r": 150,
+     "anim": "late",
+     "desde": 2.2
+    },
+    {
+     "tipo": "emoji",
+     "e": "✨",
+     "x": 130,
+     "y": 1200,
+     "r": 110,
+     "anim": "pop",
+     "desde": 2.6
+    },
+    {
+     "tipo": "emoji",
+     "e": "✨",
+     "x": 560,
+     "y": 1050,
+     "r": 90,
+     "anim": "pop",
+     "desde": 3.0
+    }
+   ],
+   "sfx": [
+    [
+     2.2,
+     "ding"
+    ],
+    [
+     4.3,
+     "risas"
     ]
    ]
   },
@@ -132,7 +272,7 @@
    "actores": [
     {
      "quien": "paqui",
-     "x": 540,
+     "x": 330,
      "y": 1470,
      "s": 300,
      "expr": [
@@ -169,20 +309,47 @@
        "arriba"
       ]
      ]
+    },
+    {
+     "quien": "mujer",
+     "x": 790,
+     "y": 1800,
+     "s": 125,
+     "ropa": "jetport",
+     "habla": "operaria",
+     "expr": [
+      [
+       0,
+       "feliz"
+      ],
+      [
+       6.0,
+       "risa"
+      ]
+     ],
+     "brazos": [
+      [
+       0,
+       "envuelve"
+      ],
+      [
+       6.0,
+       "sostiene"
+      ]
+     ],
+     "obj": [
+      [
+       0,
+       "🫧"
+      ],
+      [
+       6.0,
+       "🏷"
+      ]
+     ]
     }
    ],
    "props": [
-    {
-     "tipo": "emoji",
-     "e": "🤲",
-     "x": 540,
-     "y": 1330,
-     "r": 260,
-     "anim": "flota",
-     "desde": 0.3,
-     "hasta": 4.4,
-     "capa": "frente"
-    },
     {
      "tipo": "emoji",
      "e": "🫧",
@@ -211,16 +378,27 @@
      "desde": 4.8
     },
     {
-     "tipo": "emoji",
-     "e": "🏷",
-     "x": 800,
-     "y": 1100,
-     "r": 170,
-     "anim": "pop",
-     "desde": 6.1
+     "tipo": "texto",
+     "texto": "¡ETIQUETA DERECHITA!",
+     "x": 540,
+     "y": 700,
+     "tam": 80,
+     "desde": 6.2
     }
    ],
    "sfx": [
+    [
+     0.6,
+     "pop"
+    ],
+    [
+     1.2,
+     "pop"
+    ],
+    [
+     1.9,
+     "pop"
+    ],
     [
      4.4,
      "pop"
@@ -231,6 +409,10 @@
     ],
     [
      6.1,
+     "sello"
+    ],
+    [
+     6.3,
      "ding"
     ]
    ]
@@ -357,12 +539,38 @@
      "tam": 150,
      "desde": 7.6,
      "estilo": "sello"
+    },
+    {
+     "tipo": "emoji",
+     "e": "🧖",
+     "x": 540,
+     "y": 560,
+     "r": 160,
+     "anim": "flota",
+     "desde": 0.4
+    },
+    {
+     "tipo": "emoji",
+     "e": "🎶",
+     "x": 160,
+     "y": 980,
+     "r": 110,
+     "anim": "flota",
+     "desde": 4.2
     }
    ],
    "sfx": [
     [
+     0.5,
+     "ding"
+    ],
+    [
      7.6,
      "sello"
+    ],
+    [
+     8.0,
+     "risas"
     ]
    ]
   },
@@ -430,33 +638,69 @@
        "arriba"
       ]
      ]
+    },
+    {
+     "quien": "mujer",
+     "x": 790,
+     "y": 1800,
+     "s": 125,
+     "ropa": "jetport",
+     "habla": "operaria",
+     "expr": [
+      [
+       0,
+       "feliz"
+      ],
+      [
+       4.8,
+       "risa"
+      ]
+     ],
+     "brazos": [
+      [
+       0,
+       "pulgar"
+      ],
+      [
+       4.8,
+       "aplaude"
+      ]
+     ],
+     "obj": [
+      [
+       0,
+       "👍"
+      ],
+      [
+       4.8,
+       ""
+      ]
+     ]
     }
    ],
    "props": [
     {
      "tipo": "emoji",
-     "e": "🤲",
-     "x": 790,
-     "y": 880,
-     "r": 200,
-     "anim": "flota",
-     "desde": 0.3,
-     "hasta": 2.3
-    },
-    {
-     "tipo": "emoji",
      "e": "💬",
-     "x": 790,
-     "y": 900,
-     "r": 200,
+     "x": 820,
+     "y": 820,
+     "r": 170,
      "anim": "late",
      "desde": 2.4
     }
    ],
    "sfx": [
     [
+     0.3,
+     "ding"
+    ],
+    [
      2.4,
      "pop"
+    ],
+    [
+     4.8,
+     "tada"
     ]
    ]
   },

@@ -3,14 +3,14 @@
 {"tipo": "anim", "escena": "show", "dur": 8, "estilo_fondo": "rayos",
  "actores": [ {"quien": "paqui"|"amigo"|"maleta"|"emoji", "x": 540, "y": 1470, "s": 290,
                "expr": "feliz" o [[0, "panico"], [2.1, "feliz"]],          (valores con tiempo: cambian en ese segundo)
-               "brazos": "normal|habla|arriba|agita|senala|taza|cintura" o [izq, der],
+               "brazos": "normal|habla|arriba|agita|senala|taza|cintura" o [izq, der]  (mujer: abajo|sostiene|arriba|corta|cubre|aplaude|masajea|envuelve|pulgar; "ropa": "jetport" = polo de la empresa),
                "mov": "quieto|salta|tiembla|baila|camina|flota|entra_der|entra_izq|cae|pop|sale_der|vibra",
                "sx": 1, "sy": 1, "ang": 0, "mirar": [1, 0], "color": "paqui",
                "acc": ["lentes", "corbata", "gorro", "cafe"], "desde": 0, "hasta": 99,
                "e": "😍" (solo para quien=emoji), "habla": "clienta" (para mover la boca/rebote con esa voz)} ],
  "props": [ {"tipo": "emoji|texto|cartel|burbuja|comentario|balanza|medidas|cajas_caen|fuegos|bodega|ruta|escritorio|corazones|destello",
              "desde": 0, "hasta": 99, "capa": "atras"|"frente", ...} ],
- "sacudir": [[desde, hasta, px]], "sfx": [[segundo, "ding|beep|boing|crash|pop|sello|turbulencia|fuegos|tada|swish|risas"]]}
+ "sacudir": [[desde, hasta, px]], "sfx": [[segundo, "ding|beep|boing|crash|pop|sello|turbulencia|fuegos|tada|swish|risas|cascabeles"]]}
 Números con tiempo: [[0, 300], [1.5, 700]] interpola suave entre puntos.
 """
 import math
@@ -188,12 +188,13 @@ def _maleta(L, x, y, s, lt, hablando, expr):
     d.polygon([(bx + s * 0.13, by - s * 0.08), (bx, by), (bx + s * 0.13, by + s * 0.08)], fill=(230, 60, 140, 255))
 
 
-PIEL, PELO, BLUSA = (241, 192, 152), (70, 40, 30), (40, 170, 190)
+PIEL, PELO, BLUSA_DEF = (241, 192, 152), (70, 40, 30), (40, 170, 190)
 
 
-def _mujer(L, x, y, s, lt, habla, expr, br, obj, k):
+def _mujer(L, x, y, s, lt, habla, expr, br, obj, k, ropa=None):
     """Clienta dibujada (de la cintura para arriba). y = borde inferior del torso; s = escala (100 = cabeza de radio 95)."""
     u = s / 100; d = ImageDraw.Draw(L); OUT = (60, 35, 30, 255)
+    BLUSA = (28, 58, 128) if ropa == "jetport" else BLUSA_DEF                 # "jetport": polo azul de la empresa
     hx, hy = x, y - 330 * u                                             # centro de la cabeza
     # pelo largo por detrás
     d.rounded_rectangle([hx - 120 * u, hy - 60 * u, hx + 120 * u, hy + 175 * u], int(60 * u), fill=PELO + (255,))
@@ -202,11 +203,22 @@ def _mujer(L, x, y, s, lt, habla, expr, br, obj, k):
     d.rectangle([hx - 28 * u, hy + 70 * u, hx + 28 * u, hy + 130 * u], fill=PIEL + (255,))
     d.rounded_rectangle([x - 165 * u, y - 215 * u, x + 165 * u, y + 60 * u], int(70 * u), fill=BLUSA + (255,), outline=OUT, width=max(3, int(5 * u)))
     d.chord([hx - 40 * u, y - 240 * u, hx + 40 * u, y - 175 * u], 0, 180, fill=PIEL + (255,))
+    if ropa == "jetport":                                               # cuello naranja y parche blanco con el avioncito
+        d.arc([hx - 48 * u, y - 250 * u, hx + 48 * u, y - 165 * u], 0, 180, fill=(255, 122, 26, 255), width=int(12 * u))
+        d.rounded_rectangle([x + 45 * u, y - 140 * u, x + 125 * u, y - 85 * u], int(10 * u), fill=(255, 255, 255, 255))
+        d.polygon([(x + 62 * u, y - 100 * u), (x + 110 * u, y - 125 * u), (x + 88 * u, y - 95 * u)], fill=(255, 122, 26, 255))
     # brazos: hombros fijos, manos según el gesto
     hombro_d, hombro_i = (x - 140 * u, y - 170 * u), (x + 140 * u, y - 170 * u)
     if br == "sostiene": md, mi = (x - 230 * u, y - 330 * u), (x + 190 * u, y - 30 * u)
     elif br == "arriba": md, mi = (x - 120 * u, y - 560 * u), (x + 150 * u, y - 520 * u)
     elif br == "corta": md, mi = (x - 255 * u + 35 * u * math.sin(k * 16), y - 300 * u), (x + 190 * u, y - 30 * u)
+    elif br == "masajea":                                               # masajito a quien está a su izquierda
+        md = (x - 330 * u + 30 * u * math.sin(k * 9), y - 500 * u + 22 * u * math.cos(k * 9))
+        mi = (x - 200 * u - 30 * u * math.sin(k * 9 + 1), y - 430 * u + 22 * u * math.cos(k * 9 + 1))
+    elif br == "envuelve":                                              # manos dando vueltas (envolviendo)
+        md = (x - 300 * u + 110 * u * math.cos(k * 6), y - 470 * u + 90 * u * math.sin(k * 6))
+        mi = (x - 300 * u - 110 * u * math.cos(k * 6), y - 470 * u - 90 * u * math.sin(k * 6))
+    elif br == "pulgar": md, mi = (x - 200 * u, y - 380 * u), (x + 190 * u, y - 30 * u)
     elif br == "cubre": md, mi = (hx - 85 * u, hy + 35 * u), (hx + 85 * u, hy + 35 * u)
     elif br == "aplaude":
         z = 30 * u * abs(math.sin(k * 10)); md, mi = (x - 20 * u - z, y - 300 * u), (x + 20 * u + z, y - 300 * u)
@@ -306,7 +318,7 @@ def _actor(L, e, a, lt):
         pegar_centro(L, im, x, y - im.height / 2, ang)
         return
     if quien == "mujer":                                               # brazos: abajo|sostiene|arriba|corta|cubre|aplaude; "obj": emoji en la mano
-        _mujer(L, x, y + (-5 * abs(math.sin(lt * 12)) if habla else 0), s, lt, habla, expr, br, paso(a.get("obj", ""), lt), k)
+        _mujer(L, x, y + (-5 * abs(math.sin(lt * 12)) if habla else 0), s, lt, habla, expr, br, paso(a.get("obj", ""), lt), k, a.get("ropa"))
         return
     if quien == "maleta":
         if a.get("sombra", True): pj.sombra(L, x, y - 6, s * 1.3)
@@ -667,6 +679,14 @@ def sfx_wav(lista, total, ruta, sr=44100):
         elif tipo == "swish":
             n = int(0.3 * sr); t = np.arange(n) / sr
             w = rng.standard_normal(n) * np.sin(np.pi * t / 0.3) * 0.35
+        elif tipo == "cascabeles":                      # cascabeles de trineo: golpecitos metálicos con brillo
+            w = np.zeros(int(2.4 * sr))
+            for j in range(16):
+                i0 = int((j * 0.15 + 0.02 * (j % 3)) * sr); b = np.zeros(int(0.35 * sr))
+                for f in (2350 + 90 * (j % 4), 3170 + 70 * (j % 3), 4410):
+                    b += tono(f, f, 0.35, dec=14, vol=0.07)
+                b[: int(0.01 * sr)] += ruido(0.01, 80, 0.15)
+                w[i0:i0 + len(b)] += b[: len(w) - i0]
         elif tipo == "risas":
             w = np.concatenate([tono(420 + 40 * (j % 2), 380, 0.13, dec=8, vol=0.35) for j in range(6)])
         else:

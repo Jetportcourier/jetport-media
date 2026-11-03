@@ -39,7 +39,7 @@ Cortos animados: {"tipo": "anim", "escena": "hola|vuelo|aduana|llegada|fila|lupa
   con "Paqui", la cajita animada (generador/personajes.py). "aduana" y "rayosx" admiten "cambio" + "texto_despues"; "sello" admite "sello" (texto del sello).
   Diálogo hablado en "anim": "voces": [[segundo, "material/voces/x.mp3"], ...] mezcla cada voz (la música baja sola) y
   "lineas": [[desde, hasta, "paqui|amigo", "frase"], ...] pone la frase arriba y mueve la boca de quien habla.
-  "copito" (Paqui y Copito, muñeco robot navideño en su caja de regalo; modo sorpresa con "sale" | charla | baile).
+  "copito" (Paqui y Copito, Papá Noel animatrónico con barba en su caja de regalo; modo sorpresa con "sale" | charla | baile).
   "subt_cortos": true en una escena anim con "lineas" muestra subtítulos de 1 a 3 palabras (palabra clave entre *asteriscos* sale en amarillo).
   "aplastado" (Paqui llega aplastado; modo llega | pizza | charla | boing con "pop" | feliz).
   "duo" (Paqui y su amigo) admite "modo": grito (el amigo entra gritando, para ganchos) | charla | verde (canal verde, Paqui se ríe) | rojo (canal rojo, el amigo llora) | abrazo.
@@ -1089,7 +1089,7 @@ def _a_aplastado(L, e, lt):
 ANIMACIONES["aplastado"] = _a_aplastado
 
 # --- subtítulos cortos estilo TikTok: 1 a 3 palabras a la vez, palabra clave entre *asteriscos* en amarillo ---
-_COLOR_QUIEN = {"paqui": (255, 170, 60), "amigo": (120, 200, 255), "copito": (140, 255, 170), "clienta": (255, 120, 200), "maleta": (210, 160, 255), "abuelita": (255, 150, 150)}
+_COLOR_QUIEN = {"paqui": (255, 170, 60), "amigo": (120, 200, 255), "copito": (140, 255, 170), "clienta": (255, 120, 200), "maleta": (210, 160, 255), "abuelita": (255, 150, 150), "operaria": (255, 200, 90)}
 
 def _trozos(frase):
     palabras = limpiar(frase).split()
@@ -1123,7 +1123,7 @@ def _subt_corto(L, quien, frase, t, dur, a):
     f = font("Black", int(118 * z))
     while sum(f.getlength(w.strip("*") + " ") for w in tr) > W - 120 and f.size > 60:
         f = font("Black", f.size - 6)
-    nombre = {"paqui": "PAQUI", "amigo": "SU AMIGO", "copito": "COPITO", "clienta": "LA CLIENTA", "maleta": "LA MALETA", "abuelita": "LA ABUELITA"}.get(quien, quien.upper())
+    nombre = {"paqui": "PAQUI", "amigo": "SU AMIGO", "copito": "COPITO", "clienta": "LA CLIENTA", "maleta": "LA MALETA", "abuelita": "LA ABUELITA", "operaria": "JETPORT"}.get(quien, quien.upper())
     texto_borde(L, (W / 2, 300), nombre, font("Black", 50), _COLOR_QUIEN.get(quien, (255, 255, 255)), a, borde=7)
     anchos = [f.getlength(w.strip("*")) for w in tr]; esp = f.getlength(" ")
     x = W / 2 - (sum(anchos) + esp * (len(tr) - 1)) / 2
@@ -1183,11 +1183,21 @@ def _copito_sprite(t, hablando=False, brazos=(30, 30), ojos="normal"):
             d.rounded_rectangle([*P(ex - 10, 148), *P(ex + 2, 164)], 5 * S, fill=(220, 250, 255, 255))
     for lado in (-1, 1):                                                       # cachetes
         d.ellipse([*P(cx + lado * 78 - 20, 196), *P(cx + lado * 78 + 20, 216)], fill=(255, 170, 180, 200))
+    # barba y bigote blancos de Papá Noel (debajo queda la boca animatrónica)
+    for paso_ in range(2):                                                     # nube de rizos: contorno y luego relleno
+        for i in range(13):
+            a = math.radians(10 + i * 160 / 12)
+            bx, by = cx + 96 * math.cos(a), 222 + 88 * math.sin(a)
+            r = 34 + 6 * (i % 2) + (4 if paso_ == 0 else 0)
+            d.ellipse([*P(bx - r, by - r), *P(bx + r, by + r)], fill=C if paso_ == 0 else (255, 255, 255, 255))
+        if paso_ == 1: d.ellipse([*P(cx - 95, 200), *P(cx + 95, 300)], fill=(255, 255, 255, 255))
+    for lado in (-1, 1):
+        d.ellipse([*P(cx + lado * 40 - 42, 190), *P(cx + lado * 40 + 42, 222)], fill=(255, 255, 255, 255), outline=C, width=3 * S)
     # boca de rejilla (mandíbula animatrónica)
     ab = 34 if hablando and (t * 8) % 1 < 0.5 else 10
-    d.rounded_rectangle([*P(cx - 48, 205), *P(cx + 48, 205 + ab)], 8 * S, fill=(50, 40, 60, 255), outline=C, width=3 * S)
+    d.rounded_rectangle([*P(cx - 48, 232), *P(cx + 48, 232 + ab)], 8 * S, fill=(50, 40, 60, 255), outline=C, width=3 * S)
     for i in range(1, 4):
-        d.line([P(cx - 48 + i * 24, 205), P(cx - 48 + i * 24, 205 + ab)], fill=(200, 200, 210, 255), width=2 * S)
+        d.line([P(cx - 48 + i * 24, 232), P(cx - 48 + i * 24, 232 + ab)], fill=(200, 200, 210, 255), width=2 * S)
     return im.resize((Wc // S, Hc // S), Image.LANCZOS)
 
 def _caja_regalo(L, cx, base, tapa_dy=0.0, tapa_ang=0.0, tapa=True, solo="todo"):
