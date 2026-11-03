@@ -35,8 +35,8 @@ Clips reales: escena {"tipo": "clip", "dur": 3, "archivo": "material/clip.mp4", 
   "paneo_izq", "subir", "bajar", "diagonal", o lista [zoom0, zoom1, cx0, cy0, cx1, cy1].
   "estilo": "polaroid" muestra la foto como tarjeta inclinada con borde blanco sobre fondo desenfocado
   (disimula fotos de baja calidad); opcionales "pie" (texto en el borde) y "angulo".
-Cortos animados: {"tipo": "anim", "escena": "hola|vuelo|aduana|llegada", "dur": 2.6, "texto": ..., "resaltado": ...}
-  con "Paqui", la cajita animada (generador/personajes.py). "aduana" admite "cambio" + "texto_despues".
+Cortos animados: {"tipo": "anim", "escena": "hola|vuelo|aduana|llegada|fila|lupa|sonrisa|rayosx|sello", "dur": 2.6, "texto": ..., "resaltado": ...}
+  con "Paqui", la cajita animada (generador/personajes.py). "aduana" y "rayosx" admiten "cambio" + "texto_despues"; "sello" admite "sello" (texto del sello).
   Usa "estilo_fondo" para el fondo. Ejemplo: guiones/muestra_animado-paqui.json.
   "globo": "texto" dibuja un globo de diálogo blanco (para que la presentadora 'hable'); "globo_y" ajusta la altura.
   (Las fotos y videos del avatar en referencias/ son SOLO referencia del dueño: NO usarlos en los videos.)
@@ -818,6 +818,111 @@ def _a_llegada(L, e, lt):
              W / 2, y, 1 + sq, 1 - sq)
 
 ANIMACIONES = {"hola": _a_hola, "vuelo": _a_vuelo, "aduana": _a_aduana, "llegada": _a_llegada}
+
+# --- escenas de humor "Paqui en aduana" (fila, lupa, sonrisa, rayosx, sello) ---
+def _nota(d, x, y, a=255):
+    d.ellipse([x - 16, y - 11, x + 16, y + 11], fill=(255, 255, 255, a))
+    d.line([(x + 13, y), (x + 13, y - 60)], fill=(255, 255, 255, a), width=7)
+    d.line([(x + 13, y - 60), (x + 36, y - 44)], fill=(255, 255, 255, a), width=7)
+
+def _a_fila(L, e, lt):
+    """Paqui entra caminando, silbando y mirando a los lados ("aquí no pasa nada")."""
+    s = 380; k = ease(lt / 1.1)
+    cx = -300 + (W / 2 + 300) * k
+    andando = lt < 1.1
+    y = _SUELO - (14 * abs(math.sin(lt * 11)) if andando else 0)
+    mir = (-1 if math.sin(lt * 2.6) < 0 else 1, -0.2)
+    d = ImageDraw.Draw(L)
+    for i in range(3):                                                # notitas del silbido
+        q = (lt * 0.9 + i / 3) % 1
+        _nota(d, cx + 230 + 80 * q + 25 * math.sin(lt * 5 + i), 1000 - 330 * q, int(255 * (1 - q)))
+    pj.sombra(L, cx, _SUELO - 8, s * 1.4)
+    pj.pegar(L, pj.caja(s, lt, "silbando", (8 + 6 * math.sin(lt * 11), 8 - 6 * math.sin(lt * 11)), mirar=mir,
+                        parpadeo=False, piernas=lt * 11 if andando else 0), cx, y, ang=4 * math.sin(lt * 11) if andando else 0)
+
+def _a_lupa(L, e, lt):
+    """Llega una lupa gigante y Paqui entra en pánico (tiembla, suda, grita)."""
+    s = 420
+    pj.sombra(L, W / 2, _SUELO - 8, s * 1.4)
+    amp = 4 + 10 * min(1, lt / 0.6)
+    pj.pegar(L, pj.caja(s, lt, "panico", (150 + 12 * math.sin(lt * 40), 150 - 12 * math.sin(lt * 40)), parpadeo=False),
+             W / 2 + amp * math.sin(lt * 55), _SUELO + 3 * math.sin(lt * 47), 1.0 + 0.03 * math.sin(lt * 30), 1.0)
+    k = ease(lt / 0.7)
+    _lupa(L, W + 300 - (W / 2 + 230) * k + 20 * math.sin(lt * 3), 1010 + 30 * math.sin(lt * 2.4), int(150 + 40 * k))
+
+def _a_sonrisa(L, e, lt):
+    """Primer plano: sonrisa forzada, tic en el ojo, sudor... y grillos."""
+    s = 560 + 40 * ease(lt / 1.5)
+    pj.pegar(L, pj.caja(int(s), lt, "forzada", (5, 5), parpadeo=False), W / 2, _SUELO + 60)
+    if lt > 0.7:
+        a = min(1, (lt - 0.7) / 0.3)
+        for i, (x, y) in enumerate([(230, 1500), (850, 1470)]):
+            dy = 6 * math.sin(lt * 20 + i)
+            texto_borde(L, (x, y + dy), "cri cri...", font("Bold", 50), (220, 230, 240), a * 0.95, borde=5)
+
+def _rayosx(L, x0, x1, s, cx, base):
+    """Dibuja la vista de rayos X (contorno de la caja y lo que hay dentro) entre x0 y x1."""
+    capa = Image.new("RGBA", (W, H), (0, 0, 0, 0)); d = ImageDraw.Draw(capa)
+    u = s / 100; ox = cx - 95 * u; oy = base - 175 * u
+    P = lambda x, y: (ox + x * u, oy + y * u)
+    d.rectangle([0, 0, W, H], fill=(8, 30, 40, 235))
+    for gx in range(0, W, 60): d.line([(gx, 0), (gx, H)], fill=(60, 255, 200, 40), width=2)
+    for gy in range(0, H, 60): d.line([(0, gy), (W, gy)], fill=(60, 255, 200, 40), width=2)
+    c = (120, 255, 230, 255)
+    d.rounded_rectangle([*P(40, 50), *P(140, 136)], int(4 * u), outline=c, width=6)
+    d.polygon([P(40, 50), P(58, 34), P(158, 34), P(140, 50)], outline=c, width=5)
+    d.line([P(140, 136), P(158, 120), P(158, 34)], fill=c, width=5)
+    blanco = (230, 255, 250, 255)
+    d.polygon([P(48, 120), P(52, 100), P(66, 100), P(72, 110), P(92, 114), P(94, 124), P(48, 124)], fill=blanco)   # zapatilla
+    d.polygon([P(100, 62), P(112, 58), P(118, 62), P(124, 58), P(136, 62), P(132, 72), P(127, 70), P(127, 92), P(109, 92), P(109, 70), P(104, 72)], fill=blanco)  # polo
+    d.arc([*P(56, 58), *P(86, 88)], 180, 360, fill=blanco, width=int(4 * u))                                     # audífonos
+    d.rounded_rectangle([*P(52, 72), *P(60, 88)], int(2 * u), fill=blanco); d.rounded_rectangle([*P(82, 72), *P(90, 88)], int(2 * u), fill=blanco)
+    d.rectangle([*P(102, 100), *P(126, 124)], outline=blanco, width=5)                                           # regalo con lazo
+    d.line([P(114, 100), P(114, 124)], fill=blanco, width=5)
+    d.ellipse([*P(106, 92), *P(114, 100)], outline=blanco, width=4); d.ellipse([*P(114, 92), *P(122, 100)], outline=blanco, width=4)
+    mask = Image.new("L", (W, H), 0); ImageDraw.Draw(mask).rectangle([x0, 380, x1, 1560], fill=255)
+    L.paste(capa, (0, 0), mask)
+    dd = ImageDraw.Draw(L)
+    dd.rectangle([x0 - 8, 380, x0 + 8, 1560], fill=(60, 255, 200, 255)); dd.rectangle([x1 - 8, 380, x1 + 8, 1560], fill=(60, 255, 200, 255))
+
+def _a_rayosx(L, e, lt):
+    """Escáner de rayos X: se ve lo que lleva Paqui y le da vergüenza."""
+    s = 420; c = float(e.get("cambio", 1.7))
+    expr = "panico" if lt < c else "verguenza"
+    pj.sombra(L, W / 2, _SUELO - 8, s * 1.4)
+    pj.pegar(L, pj.caja(s, lt, expr, (10, 10) if lt < c else (150, 150), parpadeo=False), W / 2 + (3 * math.sin(lt * 50) if lt < c else 0), _SUELO)
+    k = ease(min(1, lt / 1.4))
+    xc = -150 + (W / 2 + 150) * k
+    if lt < c + 0.1:
+        _rayosx(L, xc - 330, xc + 330, s, W / 2, _SUELO)
+
+def _a_sello(L, e, lt):
+    """Sello gigante de APROBADO que cae de golpe; Paqui se relaja y baila."""
+    s = 330; rnd = _random.Random(3); d = ImageDraw.Draw(L)
+    if lt > 0.35:
+        colores = [ORANGE, (255, 214, 64), (80, 200, 255), (236, 72, 153), (255, 255, 255), (60, 220, 120)]
+        q = lt - 0.35
+        for i in range(60):
+            ang = rnd.uniform(-math.pi * 0.95, -math.pi * 0.05); v = rnd.uniform(800, 1800)
+            x = W / 2 + math.cos(ang) * v * q * 0.8; y = 1150 + math.sin(ang) * v * q + 1300 * q * q
+            if y < H: d.rectangle([x - 10, y - 6, x + 10, y + 6], fill=colores[i % 6])
+    baile = lt > 0.9
+    expr = "alivio" if lt < 0.9 else "feliz"
+    hop = 60 * abs(math.sin(lt * 8)) if baile else 0
+    br = (150 + 30 * math.sin(lt * 8), 30 + 30 * math.sin(lt * 8)) if baile else (40, 40)
+    pj.sombra(L, W / 2, _SUELO - 8, s * 1.4)
+    pj.pegar(L, pj.caja(s, lt, expr, br, piernas=lt * 16 if baile else 0), W / 2, _SUELO - hop, ang=10 * math.sin(lt * 8) if baile else 0)
+    p = min(1, lt / 0.22)                                              # el sello cae de 3x a 1x
+    esc = 3 - 2 * p if p < 1 else 1 + 0.06 * math.exp(-(lt - 0.22) * 10) * math.cos((lt - 0.22) * 40)
+    st = Image.new("RGBA", (760, 230), (0, 0, 0, 0)); sd = ImageDraw.Draw(st)
+    verde = (34, 170, 80, 240)
+    sd.rounded_rectangle([8, 8, 752, 222], 30, outline=verde, width=16)
+    sd.text((380, 117), e.get("sello", "APROBADO"), font=font("Black", 128), fill=verde, anchor="mm")
+    st = st.resize((int(600 * esc), int(182 * esc)), Image.BICUBIC).rotate(-12 if p >= 1 else -12 - 20 * (1 - p), Image.BICUBIC, expand=True)
+    if esc < 2.6:
+        L.alpha_composite(st, (int(W / 2 - st.width / 2), int(640 - st.height / 2)))
+
+ANIMACIONES.update({"fila": _a_fila, "lupa": _a_lupa, "sonrisa": _a_sonrisa, "rayosx": _a_rayosx, "sello": _a_sello})
 
 def esc_anim(L, e, lt, a):
     ANIMACIONES[e.get("escena", "hola")](L, e, lt)

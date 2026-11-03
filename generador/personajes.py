@@ -34,8 +34,9 @@ def _brazo(d, u, x0, y0, ang, lado, largo=32):
     d.ellipse([x1 - r, y1 - r, x1 + r, y1 + r], fill=BLANCO, outline=CONTORNO, width=int(2.5 * u))
 
 
-def caja(s, t, expr="feliz", brazos=(20, 20), mirar=(0.0, 0.0), parpadeo=True, piernas=0.0):
-    """Sprite de la cajita. s = ancho del frente en px. expr: feliz, abierta, nervioso, sorpresa, enamorado.
+def caja(s, t, expr="feliz", brazos=(20, 20), mirar=(0.0, 0.0), parpadeo=True, piernas=0.0, sudor=0):
+    """Sprite de la cajita. s = ancho del frente en px. expr: feliz, abierta, nervioso, sorpresa, enamorado,
+    silbando, panico, forzada, verguenza, alivio. sudor = cantidad de gotas de sudor (0 = según la expresión).
     brazos = (izq, der) en grados. piernas = fase de caminar/saltar (0 = quietas)."""
     u = s * K / 100.0
     Wc, Hc = int(190 * u), int(175 * u)
@@ -61,22 +62,34 @@ def caja(s, t, expr="feliz", brazos=(20, 20), mirar=(0.0, 0.0), parpadeo=True, p
     d.polygon([P(117, 124), P(129, 118), P(124, 126)], fill=NARANJA)                # avioncito
     # cachetes
     for cx in (60, 120):
-        d.ellipse([*P(cx - 8, 98), *P(cx + 8, 106)], fill=(232, 140, 112))
+        if expr == "verguenza":
+            d.ellipse([*P(cx - 13, 92), *P(cx + 13, 108)], fill=(240, 80, 90))
+        else:
+            d.ellipse([*P(cx - 8, 98), *P(cx + 8, 106)], fill=(232, 140, 112))
     # ojos
     cierra = parpadeo and (t % 2.9) < 0.12
     for ex in (72, 108):
+        if expr in ("verguenza", "alivio"):                                       # ojos cerrados ^^ o felices
+            if expr == "verguenza":
+                d.arc([*P(ex - 10, 78), *P(ex + 10, 94)], 200, 340, fill=NAVY, width=int(4 * u))
+            else:
+                d.arc([*P(ex - 10, 72), *P(ex + 10, 88)], 20, 160, fill=NAVY, width=int(4 * u))
+            continue
+        if expr == "forzada" and ex == 72 and (t % 0.7) < 0.18:                     # tic en el ojo
+            d.line([P(ex - 11, 83), P(ex + 11, 83)], fill=NAVY, width=int(4 * u))
+            continue
         if expr == "enamorado":
             _corazon(d, ex * u, 82 * u, 13 * u * (1 + 0.12 * math.sin(t * 12)), (235, 40, 80))
         elif cierra:
             d.arc([*P(ex - 10, 76), *P(ex + 10, 90)], 200, 340, fill=NAVY, width=int(3.5 * u))
         else:
-            r = 13 if expr == "sorpresa" else 11
+            r = 15 if expr == "panico" else 13 if expr == "sorpresa" else 11
             d.ellipse([*P(ex - r, 82 - r * 1.15), *P(ex + r, 82 + r * 1.15)], fill=BLANCO, outline=NAVY, width=int(2.5 * u))
             px, py = ex + mirar[0] * 4, 84 + mirar[1] * 4
-            rp = 4.5 if expr == "sorpresa" else 6
+            rp = 3 if expr == "panico" else 4.5 if expr == "sorpresa" else 6
             d.ellipse([*P(px - rp, py - rp), *P(px + rp, py + rp)], fill=NAVY)
             d.ellipse([*P(px - 2.5 + 2, py - 4), *P(px + 2.5 + 2, py + 1)], fill=BLANCO)
-    if expr == "nervioso":                                                           # cejas preocupadas
+    if expr in ("nervioso", "forzada"):                                              # cejas preocupadas
         d.line([P(62, 70), P(80, 63)], fill=NAVY, width=int(3 * u)); d.line([P(118, 70), P(100, 63)], fill=NAVY, width=int(3 * u))
     # boca
     if expr in ("feliz", "enamorado"):
@@ -90,8 +103,27 @@ def caja(s, t, expr="feliz", brazos=(20, 20), mirar=(0.0, 0.0), parpadeo=True, p
     elif expr == "nervioso":
         pts = [P(76 + i * 4, 108 + (3 if i % 2 else -3)) for i in range(8)]
         d.line(pts, fill=NAVY, width=int(3 * u))
-        k = (t * 1.4) % 1                                                            # gota de sudor que cae
-        gx, gy = 136, 58 + 22 * k
+    elif expr == "silbando":                                                         # boquita de silbido
+        d.line([P(64, 66), P(80, 64)], fill=NAVY, width=int(3 * u)); d.line([P(100, 60), P(116, 64)], fill=NAVY, width=int(3 * u))
+        d.ellipse([*P(96, 102), *P(106, 112)], fill=(120, 25, 40), outline=NAVY, width=int(2.5 * u))
+    elif expr == "panico":                                                           # grito "¡aaah!"
+        d.line([P(60, 62), P(80, 56)], fill=NAVY, width=int(3 * u)); d.line([P(120, 62), P(100, 56)], fill=NAVY, width=int(3 * u))
+        h = 22 + 3 * math.sin(t * 30)
+        d.ellipse([*P(80, 98), *P(100, 98 + h)], fill=(120, 25, 40), outline=NAVY, width=int(2 * u))
+    elif expr == "forzada":                                                          # sonrisa forzada con dientes
+        d.rounded_rectangle([*P(70, 98), *P(110, 114)], int(5 * u), fill=BLANCO, outline=NAVY, width=int(2.5 * u))
+        d.line([P(70, 106), P(110, 106)], fill=NAVY, width=int(1.5 * u))
+        for x in range(76, 110, 6):
+            d.line([P(x, 98), P(x, 114)], fill=NAVY, width=int(1.5 * u))
+    elif expr == "verguenza":
+        d.arc([*P(82, 100), *P(98, 112)], 20, 160, fill=NAVY, width=int(3 * u))
+    elif expr == "alivio":
+        d.chord([*P(74, 94), *P(106, 124)], 0, 180, fill=(120, 25, 40), outline=NAVY, width=int(2 * u))
+        d.ellipse([*P(83, 110), *P(97, 121)], fill=(255, 120, 130))
+    gotas = sudor or {"nervioso": 1, "forzada": 2, "panico": 3}.get(expr, 0)
+    for g, (gx0, gy0) in enumerate([(136, 58), (46, 62), (128, 40)][:gotas]):     # gotas de sudor que caen
+        k = (t * 1.4 + g * 0.37) % 1
+        gx, gy = gx0, gy0 + 22 * k
         d.polygon([P(gx, gy - 9), P(gx - 6, gy + 2), P(gx + 6, gy + 2)], fill=(120, 200, 255))
         d.ellipse([*P(gx - 6, gy - 3), *P(gx + 6, gy + 8)], fill=(120, 200, 255))
     return img.resize((Wc // K, Hc // K), Image.LANCZOS)

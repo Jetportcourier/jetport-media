@@ -1,0 +1,16 @@
+{
+  "musica_semilla": 101,
+  "escenas": [
+    {"tipo": "anim", "escena": "fila", "dur": 2.5, "estilo_fondo": "burbujas", "transicion": "ninguna",
+     "texto": "Cuando no hiciste nada malo pero te toca pasar por aduana"},
+    {"tipo": "anim", "escena": "lupa", "dur": 2.2, "estilo_fondo": "rayos", "transicion": "sacudida",
+     "texto": "Aduana: a ver, a ver...", "resaltado": "¿Qué llevas ahí?"},
+    {"tipo": "anim", "escena": "sonrisa", "dur": 2.1, "estilo_fondo": "degradado", "transicion": "zoom",
+     "texto": "Yo: \"todo normal, jefe\""},
+    {"tipo": "anim", "escena": "rayosx", "dur": 3.1, "estilo_fondo": "puntos", "transicion": "glitch",
+     "texto": "Rayos X:", "cambio": 1.7, "texto_despues": "El regalo sorpresa ya no es sorpresa"},
+    {"tipo": "anim", "escena": "sello", "dur": 2.6, "estilo_fondo": "confeti", "transicion": "destello",
+     "texto": "¡Todo en regla!", "resaltado": "Ya puedo respirar"},
+    {"tipo": "cta", "dur": 3, "transicion": "zoom"}
+  ]
+}
