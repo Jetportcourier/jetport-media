@@ -39,7 +39,7 @@ Cortos animados: {"tipo": "anim", "escena": "hola|vuelo|aduana|llegada|fila|lupa
   con "Paqui", la cajita animada (generador/personajes.py). "aduana" y "rayosx" admiten "cambio" + "texto_despues"; "sello" admite "sello" (texto del sello).
   Diálogo hablado en "anim": "voces": [[segundo, "material/voces/x.mp3"], ...] mezcla cada voz (la música baja sola) y
   "lineas": [[desde, hasta, "paqui|amigo", "frase"], ...] pone la frase arriba y mueve la boca de quien habla.
-  "duo" (Paqui y su amigo) admite "modo": charla | verde (canal verde, Paqui se ríe) | rojo (canal rojo, el amigo llora) | abrazo.
+  "duo" (Paqui y su amigo) admite "modo": grito (el amigo entra gritando, para ganchos) | charla | verde (canal verde, Paqui se ríe) | rojo (canal rojo, el amigo llora) | abrazo.
   Usa "estilo_fondo" para el fondo. Ejemplo: guiones/muestra_animado-paqui.json.
   "globo": "texto" dibuja un globo de diálogo blanco (para que la presentadora 'hable'); "globo_y" ajusta la altura.
   (Las fotos y videos del avatar en referencias/ son SOLO referencia del dueño: NO usarlos en los videos.)
@@ -977,6 +977,13 @@ def _a_duo(L, e, lt):
         ep = "sorpresa"; mp = (1, 0.2)
         r = 60 + 160 * min(1, lt / 2.5)                                          # charco de lágrimas
         d.ellipse([xa - r, SU - 18, xa + r, SU + 22], fill=(110, 190, 255, 230))
+    elif modo == "grito":                                                          # gancho: el amigo entra gritando en pánico
+        k = ease(lt / 0.5)
+        xa = W + 200 - (W + 200 - 790) * k + 22 * math.sin(lt * 40)              # entra corriendo y tiembla
+        ya = SU - 60 * abs(math.sin(lt * 11))
+        ea = "panico"; ba = (170 + 15 * math.sin(lt * 25), 170 - 15 * math.sin(lt * 25)); anga = 6 * math.sin(lt * 30)
+        ep = "sorpresa"; mp = (1, 0); bp = (20, 20)
+        yp = SU - 25 * ease(min(1, lt / 0.25)) * (1 if lt < 0.5 else 0)        # Paqui da un saltito del susto
     elif modo == "abrazo":
         k = ease(lt / 0.6)
         xp = 300 + 120 * k; xa = 790 - 110 * k

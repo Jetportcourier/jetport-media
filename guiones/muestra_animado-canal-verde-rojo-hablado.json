@@ -1,23 +1,186 @@
 {
-  "musica_semilla": 107,
-  "escenas": [
-    {"tipo": "anim", "escena": "duo", "modo": "charla", "dur": 4.0, "estilo_fondo": "burbujas", "transicion": "ninguna",
-     "voces": [[0.3, "material/voces/canal-verde-rojo/p1_a.mp3"]],
-     "lineas": [[0.3, 3.6, "paqui", "¡Oye, causa! ¿Y tú qué canal obtuviste?"]]},
-    {"tipo": "anim", "escena": "duo", "modo": "verde", "dur": 6.0, "estilo_fondo": "rayos", "transicion": "zoom",
-     "voces": [[0.3, "material/voces/canal-verde-rojo/p2_a.mp3"]],
-     "lineas": [[0.3, 5.7, "paqui", "¡Yo obtuve canal VERDE! ¡Ni me abrieron, pasé directito!"]]},
-    {"tipo": "anim", "escena": "duo", "modo": "rojo", "dur": 6.5, "estilo_fondo": "puntos", "transicion": "sacudida",
-     "voces": [[0.3, "material/voces/canal-verde-rojo/a1_a.mp3"]],
-     "lineas": [[0.3, 6.1, "amigo", "Yo... obtuve canal ROJO. ¡Me revisaron todito!"]]},
-    {"tipo": "anim", "escena": "duo", "modo": "charla", "dur": 10.6, "estilo_fondo": "burbujas", "transicion": "barrido",
-     "voces": [[0.3, "material/voces/canal-verde-rojo/p3_b.mp3"], [6.9, "material/voces/canal-verde-rojo/a2_a.mp3"]],
-     "lineas": [[0.3, 4.1, "paqui", "Tranqui, compadre. El canal rojo solo es una revisión."],
-                [4.1, 6.6, "paqui", "Si todo está en regla, sigues tu camino."],
-                [6.9, 10.2, "amigo", "¿O sea que... igual llego a Lima?"]]},
-    {"tipo": "anim", "escena": "duo", "modo": "abrazo", "dur": 8.4, "estilo_fondo": "confeti", "transicion": "destello",
-     "voces": [[0.2, "material/voces/canal-verde-rojo/p4_a.mp3"]],
-     "lineas": [[0.2, 3.3, "paqui", "¡Claro que sí! ¡Los dos llegamos a Lima!"], [3.3, 8.1, "paqui", "Síguenos en Jetport Courier"]]},
-    {"tipo": "cta", "dur": 3, "transicion": "zoom"}
-  ]
+ "musica_semilla": 107,
+ "escenas": [
+  {
+   "tipo": "anim",
+   "escena": "duo",
+   "modo": "grito",
+   "dur": 4.9,
+   "estilo_fondo": "rayos",
+   "transicion": "ninguna",
+   "voces": [
+    [
+     0.05,
+     "material/voces/canal-verde-rojo/a0_grito.mp3"
+    ],
+    [
+     2.9,
+     "material/voces/canal-verde-rojo/p0_quepasa.mp3"
+    ]
+   ],
+   "lineas": [
+    [
+     0.05,
+     2.8,
+     "amigo",
+     "¡AAAAAH! ¡AUXILIOOO!"
+    ],
+    [
+     2.9,
+     4.7,
+     "paqui",
+     "¿Y a este qué le pasa?"
+    ]
+   ]
+  },
+  {
+   "tipo": "anim",
+   "escena": "duo",
+   "modo": "charla",
+   "dur": 3.8,
+   "estilo_fondo": "burbujas",
+   "transicion": "barrido",
+   "voces": [
+    [
+     0.3,
+     "material/voces/canal-verde-rojo/p1_a.mp3"
+    ]
+   ],
+   "lineas": [
+    [
+     0.3,
+     3.6,
+     "paqui",
+     "¡Oye, causa! ¿Y tú qué canal obtuviste?"
+    ]
+   ]
+  },
+  {
+   "tipo": "anim",
+   "escena": "duo",
+   "modo": "verde",
+   "dur": 6.0,
+   "estilo_fondo": "rayos",
+   "transicion": "zoom",
+   "voces": [
+    [
+     0.3,
+     "material/voces/canal-verde-rojo/p2_a.mp3"
+    ]
+   ],
+   "lineas": [
+    [
+     0.3,
+     5.7,
+     "paqui",
+     "¡Yo obtuve canal VERDE! ¡Ni me abrieron, pasé directito!"
+    ]
+   ]
+  },
+  {
+   "tipo": "anim",
+   "escena": "duo",
+   "modo": "rojo",
+   "dur": 6.5,
+   "estilo_fondo": "puntos",
+   "transicion": "sacudida",
+   "voces": [
+    [
+     0.3,
+     "material/voces/canal-verde-rojo/a1_a.mp3"
+    ]
+   ],
+   "lineas": [
+    [
+     0.3,
+     6.1,
+     "amigo",
+     "Yo... obtuve canal ROJO. ¡Me revisaron todito!"
+    ]
+   ]
+  },
+  {
+   "tipo": "anim",
+   "escena": "duo",
+   "modo": "charla",
+   "dur": 12.3,
+   "estilo_fondo": "burbujas",
+   "transicion": "barrido",
+   "voces": [
+    [
+     0.3,
+     "material/voces/canal-verde-rojo/p3_b.mp3"
+    ],
+    [
+     6.9,
+     "material/voces/canal-verde-rojo/a2_salir.mp3"
+    ]
+   ],
+   "lineas": [
+    [
+     0.3,
+     4.1,
+     "paqui",
+     "Tranqui, compadre. El canal rojo solo es una revisión."
+    ],
+    [
+     4.1,
+     6.6,
+     "paqui",
+     "Si todo está en regla, sigues tu camino."
+    ],
+    [
+     6.9,
+     10.2,
+     "amigo",
+     "¿O sea que... igual voy a salir?"
+    ],
+    [
+     10.2,
+     12.0,
+     "amigo",
+     "¿No me van a encerrar?"
+    ]
+   ]
+  },
+  {
+   "tipo": "anim",
+   "escena": "duo",
+   "modo": "abrazo",
+   "dur": 9.3,
+   "estilo_fondo": "confeti",
+   "transicion": "destello",
+   "voces": [
+    [
+     0.2,
+     "material/voces/canal-verde-rojo/p4_casa.mp3"
+    ]
+   ],
+   "lineas": [
+    [
+     0.2,
+     4.2,
+     "paqui",
+     "¡Claro que vas a salir! Solo te revisan y listo."
+    ],
+    [
+     4.2,
+     6.6,
+     "paqui",
+     "¡Los dos llegamos a casa!"
+    ],
+    [
+     6.6,
+     9.0,
+     "paqui",
+     "Síguenos en Jetport Courier"
+    ]
+   ]
+  },
+  {
+   "tipo": "cta",
+   "dur": 3,
+   "transicion": "zoom"
+  }
+ ]
 }
