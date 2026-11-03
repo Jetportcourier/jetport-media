@@ -1,0 +1,20 @@
+{
+ "num": 6,
+ "guion": "guiones/2026-11-03_paqui-senala.json",
+ "escena_n": 0,
+ "t": 6.0,
+ "titulo": [
+  [
+   "¿QUÉ SÍ",
+   "blanco"
+  ],
+  [
+   "PUEDES TRAER",
+   "blanco"
+  ],
+  [
+   "DE USA?",
+   "amarillo"
+  ]
+ ]
+}

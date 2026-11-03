@@ -1,0 +1,24 @@
+{
+ "num": 11,
+ "guion": "guiones/2026-11-03_paqui-unboxing.json",
+ "escena_n": 1,
+ "t": 1.5,
+ "titulo": [
+  [
+   "¡NO ME ABRAS",
+   "blanco"
+  ],
+  [
+   "CON",
+   "blanco"
+  ],
+  [
+   "CUCHILLO!",
+   "amarillo"
+  ]
+ ],
+ "ocultar": [
+  "cartel",
+  "texto"
+ ]
+}

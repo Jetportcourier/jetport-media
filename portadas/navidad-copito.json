@@ -1,0 +1,24 @@
+{
+ "num": 3,
+ "guion": "guiones/muestra_animado-navidad-copito.json",
+ "escena_n": 0,
+ "t": 5.0,
+ "titulo": [
+  [
+   "¡UN ROBOT",
+   "blanco"
+  ],
+  [
+   "SALIÓ DE",
+   "blanco"
+  ],
+  [
+   "MI CAJA!",
+   "amarillo"
+  ]
+ ],
+ "abajo": [
+  "¡JO JO JO!",
+  "naranja"
+ ]
+}

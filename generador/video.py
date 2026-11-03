@@ -35,13 +35,19 @@ Clips reales: escena {"tipo": "clip", "dur": 3, "archivo": "material/clip.mp4", 
   "paneo_izq", "subir", "bajar", "diagonal", o lista [zoom0, zoom1, cx0, cy0, cx1, cy1].
   "estilo": "polaroid" muestra la foto como tarjeta inclinada con borde blanco sobre fondo desenfocado
   (disimula fotos de baja calidad); opcionales "pie" (texto en el borde) y "angulo".
-Cortos animados: {"tipo": "anim", "escena": "hola|vuelo|aduana|llegada|fila|lupa|sonrisa|rayosx|sello|duo|aplastado", "dur": 2.6, "texto": ..., "resaltado": ...}
+Cortos animados: {"tipo": "anim", "escena": "hola|vuelo|aduana|llegada|fila|lupa|sonrisa|rayosx|sello|duo|aplastado|copito", "dur": 2.6, "texto": ..., "resaltado": ...}
   con "Paqui", la cajita animada (generador/personajes.py). "aduana" y "rayosx" admiten "cambio" + "texto_despues"; "sello" admite "sello" (texto del sello).
   Diálogo hablado en "anim": "voces": [[segundo, "material/voces/x.mp3"], ...] mezcla cada voz (la música baja sola) y
   "lineas": [[desde, hasta, "paqui|amigo", "frase"], ...] pone la frase arriba y mueve la boca de quien habla.
+  "copito" (Paqui y Copito, muñeco robot navideño en su caja de regalo; modo sorpresa con "sale" | charla | baile).
+  "subt_cortos": true en una escena anim con "lineas" muestra subtítulos de 1 a 3 palabras (palabra clave entre *asteriscos* sale en amarillo).
   "aplastado" (Paqui llega aplastado; modo llega | pizza | charla | boing con "pop" | feliz).
   "duo" (Paqui y su amigo) admite "modo": grito (el amigo entra gritando, para ganchos) | charla | verde (canal verde, Paqui se ríe) | rojo (canal rojo, el amigo llora) | abrazo.
   Usa "estilo_fondo" para el fondo. Ejemplo: guiones/muestra_animado-paqui.json.
+  "show" es un escenario libre para sketches hablados: actores (paqui, amigo, maleta o un emoji), utilería
+  (emoji, texto, cartel, burbuja, comentario, balanza, medidas, cajas_caen, fuegos, bodega, ruta, escritorio...),
+  "sacudir" y "sfx" (efectos sintetizados, sin derechos). Todo se arma desde el JSON: ver generador/show.py y
+  guiones/2026-11-03_paqui-*.json. Portadas "PAQUI #N": generador/portada.py con portadas/*.json.
   "globo": "texto" dibuja un globo de diálogo blanco (para que la presentadora 'hable'); "globo_y" ajusta la altura.
   (Las fotos y videos del avatar en referencias/ son SOLO referencia del dueño: NO usarlos en los videos.)
 Cierre: al final de cada video se agrega solo un cierre animado de 2,6 s (círculo blanco que se abre, logo
@@ -1082,14 +1088,219 @@ def _a_aplastado(L, e, lt):
 
 ANIMACIONES["aplastado"] = _a_aplastado
 
+# --- subtítulos cortos estilo TikTok: 1 a 3 palabras a la vez, palabra clave entre *asteriscos* en amarillo ---
+_COLOR_QUIEN = {"paqui": (255, 170, 60), "amigo": (120, 200, 255), "copito": (140, 255, 170), "clienta": (255, 120, 200), "maleta": (210, 160, 255), "abuelita": (255, 150, 150)}
+
+def _trozos(frase):
+    palabras = limpiar(frase).split()
+    trozos, act = [], []
+    chicas = {"de", "a", "en", "el", "la", "los", "las", "que", "y", "tu", "un", "una", "con", "por",
+              "para", "mi", "se", "te", "del", "al", "me", "lo", "le", "o", "es", "su", "no"}
+    for w in palabras:
+        act.append(w)
+        if w[-1:] in ".,!?…:" or w.endswith("*") and w[-2:-1] in ".,!?":
+            trozos.append(act); act = []
+        elif len(act) == 3:
+            if act[-1].strip("*¡¿").lower() in chicas:          # no cortar en "de", "la"...
+                trozos.append(act[:-1]); act = act[-1:]
+            else:
+                trozos.append(act); act = []
+    if act: trozos.append(act)
+    return trozos
+
+def _subt_corto(L, quien, frase, t, dur, a):
+    trozos = _trozos(frase)
+    pesos = [sum(len(w.strip("*")) for w in tr) + 3 for tr in trozos]
+    total = sum(pesos); acc = 0; idx = len(trozos) - 1; t0 = 0
+    for i, pw in enumerate(pesos):
+        fin = acc + pw / total * dur
+        if t < fin: idx = i; t0 = acc; break
+        acc = fin
+    else:
+        t0 = acc - pesos[-1] / total * dur
+    tr = trozos[idx]; k = t - t0
+    z = 1 + 0.28 * max(0, 1 - k / 0.14)                                     # entra de golpe
+    f = font("Black", int(118 * z))
+    while sum(f.getlength(w.strip("*") + " ") for w in tr) > W - 120 and f.size > 60:
+        f = font("Black", f.size - 6)
+    nombre = {"paqui": "PAQUI", "amigo": "SU AMIGO", "copito": "COPITO", "clienta": "LA CLIENTA", "maleta": "LA MALETA", "abuelita": "LA ABUELITA"}.get(quien, quien.upper())
+    texto_borde(L, (W / 2, 300), nombre, font("Black", 50), _COLOR_QUIEN.get(quien, (255, 255, 255)), a, borde=7)
+    anchos = [f.getlength(w.strip("*")) for w in tr]; esp = f.getlength(" ")
+    x = W / 2 - (sum(anchos) + esp * (len(tr) - 1)) / 2
+    for w, aw in zip(tr, anchos):
+        clave = w.startswith("*") or w.endswith("*") or w.rstrip(".,!?…").endswith("*")
+        texto_borde(L, (x + aw / 2, 420), w.replace("*", ""), f, (255, 214, 64) if clave else WHITE, a, borde=11)
+        x += aw + esp
+
+# --- "copito": Paqui y Copito, un muñeco animatrónico navideño (original) que sale de su caja de regalo ---
+def _copito_sprite(t, hablando=False, brazos=(30, 30), ojos="normal"):
+    S = 2; Wc, Hc = 380 * S, 560 * S
+    im = Image.new("RGBA", (Wc, Hc), (0, 0, 0, 0)); d = ImageDraw.Draw(im)
+    P = lambda x, y: (x * S, y * S)
+    C = (45, 45, 70, 255); lw = 5 * S
+    cx = 190
+    # brazos mecánicos (detrás del cuerpo)
+    for lado, ang in ((-1, brazos[0]), (1, brazos[1])):
+        x0, y0 = cx + lado * 95, 330
+        r = math.radians(ang)
+        x1, y1 = x0 + lado * 90 * math.cos(r), y0 - 90 * math.sin(r)
+        d.line([P(x0, y0), P(x1, y1)], fill=(150, 160, 175, 255), width=16 * S)
+        d.ellipse([*P(x0 - 14, y0 - 14), *P(x0 + 14, y0 + 14)], fill=(120, 130, 150, 255), outline=C, width=3 * S)
+        d.ellipse([*P(x1 - 26, y1 - 26), *P(x1 + 26, y1 + 26)], fill=(220, 40, 50, 255), outline=C, width=4 * S)   # guante
+    # cuerpo
+    d.rounded_rectangle([*P(cx - 100, 270), *P(cx + 100, 480)], 40 * S, fill=(240, 244, 252, 255), outline=C, width=lw)
+    for i, col in enumerate([(220, 40, 50), (40, 170, 80), (230, 180, 40)]):
+        y = 330 + i * 48
+        d.ellipse([*P(cx - 15, y - 15), *P(cx + 15, y + 15)], fill=col + (255,), outline=C, width=3 * S)
+    d.rectangle([*P(cx - 100, 455), *P(cx + 100, 480)], fill=(150, 160, 175, 255))     # base metálica
+    # bufanda
+    d.rounded_rectangle([*P(cx - 110, 250), *P(cx + 110, 290)], 18 * S, fill=(220, 40, 50, 255), outline=C, width=4 * S)
+    for i in range(5):
+        d.rectangle([*P(cx - 95 + i * 42, 252), *P(cx - 78 + i * 42, 288)], fill=(255, 255, 255, 255))
+    d.polygon([P(cx + 50, 285), P(cx + 85, 285), P(cx + 95, 360), P(cx + 60, 360)], fill=(220, 40, 50, 255), outline=C)
+    # cabeza
+    d.ellipse([*P(cx - 115, 50), *P(cx + 115, 270)], fill=(250, 252, 255, 255), outline=C, width=lw)
+    for lado in (-1, 1):                                                       # tornillos
+        d.ellipse([*P(cx + lado * 118 - 16, 150), *P(cx + lado * 118 + 16, 182)], fill=(150, 160, 175, 255), outline=C, width=3 * S)
+    # gorro navideño genérico
+    d.polygon([P(cx - 100, 95), P(cx + 100, 95), P(cx + 150, 0), P(cx + 40, 25)], fill=(220, 40, 50, 255), outline=C)
+    d.rounded_rectangle([*P(cx - 112, 80), *P(cx + 112, 112)], 16 * S, fill=(255, 255, 255, 255), outline=C, width=4 * S)
+    d.ellipse([*P(cx + 132, -14), *P(cx + 172, 26)], fill=(255, 255, 255, 255), outline=C, width=4 * S)
+    # antena con luz que parpadea
+    d.line([P(cx - 60, 85), P(cx - 90, 30)], fill=C, width=5 * S)
+    luz = (255, 60, 60, 255) if (t * 3) % 1 < 0.5 else (120, 30, 30, 255)
+    d.ellipse([*P(cx - 104, 16), *P(cx - 76, 44)], fill=luz, outline=C, width=3 * S)
+    # ojos LED
+    parp = (t % 3.1) < 0.12
+    for lado in (-1, 1):
+        ex = cx + lado * 48
+        if ojos == "feliz":
+            d.arc([*P(ex - 26, 140), *P(ex + 26, 190)], 200, 340, fill=(40, 200, 255, 255), width=9 * S)
+        elif parp:
+            d.rectangle([*P(ex - 26, 163), *P(ex + 26, 170)], fill=(40, 200, 255, 255))
+        else:
+            d.rounded_rectangle([*P(ex - 24, 140), *P(ex + 24, 190)], 12 * S, fill=(40, 200, 255, 255), outline=C, width=3 * S)
+            d.rounded_rectangle([*P(ex - 10, 148), *P(ex + 2, 164)], 5 * S, fill=(220, 250, 255, 255))
+    for lado in (-1, 1):                                                       # cachetes
+        d.ellipse([*P(cx + lado * 78 - 20, 196), *P(cx + lado * 78 + 20, 216)], fill=(255, 170, 180, 200))
+    # boca de rejilla (mandíbula animatrónica)
+    ab = 34 if hablando and (t * 8) % 1 < 0.5 else 10
+    d.rounded_rectangle([*P(cx - 48, 205), *P(cx + 48, 205 + ab)], 8 * S, fill=(50, 40, 60, 255), outline=C, width=3 * S)
+    for i in range(1, 4):
+        d.line([P(cx - 48 + i * 24, 205), P(cx - 48 + i * 24, 205 + ab)], fill=(200, 200, 210, 255), width=2 * S)
+    return im.resize((Wc // S, Hc // S), Image.LANCZOS)
+
+def _caja_regalo(L, cx, base, tapa_dy=0.0, tapa_ang=0.0, tapa=True, solo="todo"):
+    d = ImageDraw.Draw(L); C = (45, 45, 70, 255)
+    if solo in ("todo", "frente"):
+        d.rectangle([cx - 175, base - 210, cx + 175, base], fill=(205, 35, 45, 255), outline=C, width=6)
+        d.rectangle([cx - 22, base - 210, cx + 22, base], fill=(40, 170, 80, 255))
+        d.rectangle([cx + 70, base - 80, cx + 150, base - 30], fill=(255, 255, 255, 255))     # etiqueta sin datos
+        d.polygon([(cx + 92, base - 45), (cx + 130, base - 62), (cx + 112, base - 40)], fill=(255, 130, 30, 255))
+    if tapa and solo in ("todo", "tapa"):
+        capa = Image.new("RGBA", (420, 200), (0, 0, 0, 0)); dc = ImageDraw.Draw(capa)
+        dc.rectangle([10, 100, 410, 160], fill=(225, 45, 55, 255), outline=C, width=6)
+        dc.rectangle([185, 100, 235, 160], fill=(40, 170, 80, 255))
+        dc.ellipse([130, 40, 210, 110], fill=(40, 170, 80, 255), outline=C, width=5)          # lazo
+        dc.ellipse([210, 40, 290, 110], fill=(40, 170, 80, 255), outline=C, width=5)
+        if abs(tapa_ang) > 0.5: capa = capa.rotate(tapa_ang, Image.BICUBIC, expand=True)
+        L.alpha_composite(capa, (int(cx - capa.width / 2), int(base - 210 - 130 - tapa_dy - (capa.height - 200) / 2)))
+
+def _nieve(L, lt):
+    d = ImageDraw.Draw(L); rnd = _random.Random(7)
+    for i in range(70):
+        x0 = rnd.uniform(0, W); v = rnd.uniform(60, 160); r = rnd.uniform(4, 11); fase = rnd.uniform(0, H)
+        y = (fase + lt * v) % (H + 40) - 20; x = x0 + 25 * math.sin(lt * 1.3 + i)
+        d.ellipse([x - r, y - r, x + r, y + r], fill=(255, 255, 255, 190))
+
+def _a_copito(L, e, lt):
+    """modo: sorpresa (la caja tiembla, sale Copito de golpe y Paqui se asusta) | charla | baile."""
+    modo = e.get("modo", "charla")
+    s, xp, xc = 270, 270, 760
+    SU = _SUELO + 120
+    _nieve(L, lt)
+    habla_c = habla_p = False
+    for desde, hasta, quien, *_ in e.get("lineas", []):
+        if desde <= lt < hasta:
+            if quien == "copito": habla_c = True
+            if quien == "paqui": habla_p = True
+    ep = "feliz"; bp = (20, 20); yp = SU; mp = (1, 0)
+    brazos = (20, 20); ojos = "normal"; alto = 1.0; inclina = 0.0; dx = 0.0
+    tq = math.floor(lt * 6) / 6                                                # movimiento "a saltitos" de animatrónico
+    tapa = True; tapa_dy = 0.0; tapa_ang = 0.0
+    if modo == "sorpresa":
+        sale = float(e.get("sale", 0.55))
+        if lt < sale:                                                          # la caja tiembla
+            dx = 14 * math.sin(lt * 70); alto = 0.0; ep = "sorpresa"
+            texto_borde(L, (xc + 150, SU - 330 - 20 * math.sin(lt * 20)), "?", font("Black", 120), (255, 230, 80), 1, borde=9)
+        else:
+            q = lt - sale
+            alto = min(1.0, 1 - math.exp(-q * 9) * math.cos(q * 26))          # resorte con rebote
+            tapa_dy = 900 * q + 40; tapa_ang = 260 * q
+            tapa = tapa_dy < 1400
+            brazos = (150, 150) if q < 1.5 else (20 + 60 * (tq * 3 % 2), 20)
+            ep = "panico" if q < 1.6 else "nervioso"; bp = (160, 160) if q < 1.6 else (40, 40)
+            yp = SU - 70 * max(0, math.sin(min(q, 0.45) / 0.45 * math.pi)) if q < 0.45 else SU
+            mp = (1, -0.3)
+            if q < 0.8:
+                texto_borde(L, (W / 2, 700), "¡POP!", font("Black", int(200 * (1 + q * 0.5))), (255, 230, 80), 1 - q / 0.8, borde=12)
+                d = ImageDraw.Draw(L)
+                for i in range(14):
+                    ang = i * math.pi / 7; r = 120 + 520 * q
+                    _estrella(d, xc + r * math.cos(ang), SU - 330 + r * math.sin(ang) * 0.8, 24 * (1 - q / 0.8), (255, 220, 60, 255))
+    elif modo == "charla":
+        tapa = False
+        inclina = 8 * math.sin(tq * 2.2); brazos = (20 + 40 * (math.floor(lt * 2) % 2), 25)
+        ep = "feliz"; bp = (20, 90 + 20 * math.sin(lt * 6))
+    elif modo == "baile":
+        tapa = False; ojos = "feliz"
+        paso = math.floor(lt * 4) % 2
+        brazos = (150, 30) if paso else (30, 150); inclina = 12 if paso else -12
+        ep = "risa" if (lt % 2) < 1 else "feliz"; bp = (160, 40) if paso else (40, 160)
+        yp = SU - 70 * abs(math.sin(lt * 7.5))
+        d = ImageDraw.Draw(L)
+        for i in range(9):                                                     # lucecitas de colores
+            col = [(255, 70, 70), (70, 220, 110), (255, 210, 60), (90, 170, 255)][(i + int(lt * 4)) % 4]
+            x = 80 + i * 115; y = 560 + 30 * math.sin(i * 0.9)
+            d.ellipse([x - 20, y - 20, x + 20, y + 20], fill=col + (255,))
+    if habla_p and ep in ("feliz", "sorpresa", "nervioso") and (lt * 7.5) % 1 < 0.5: ep = "abierta"
+    # caja + Copito (sale desde dentro de la caja)
+    if alto > 0.02:
+        spr = _copito_sprite(lt, habla_c, brazos, ojos).crop((0, 0, 380, 482))    # sin el espacio vacío de abajo
+        tope = SU - 195                                                          # borde de la caja
+        y_b = tope + 482 * (1 - alto)                                            # base del robot (sube con el resorte)
+        vis = int(482 - max(0, y_b - tope))
+        if vis > 4:
+            spr = spr.crop((0, 0, 380, vis))
+            if abs(inclina) > 0.3:
+                ancho0 = spr.width; spr = spr.rotate(inclina, Image.BICUBIC, expand=True)
+            L.alpha_composite(spr, (int(xc + dx - spr.width / 2), int(min(y_b, tope) - spr.height + 10)))
+    pj.sombra(L, xc, SU - 6, 380); pj.sombra(L, xp, SU - 8, s * 1.4)
+    _caja_regalo(L, xc + dx, SU, solo="frente")
+    if tapa: _caja_regalo(L, xc + dx, SU, tapa_dy, tapa_ang, True, solo="tapa")
+    pj.pegar(L, pj.caja(s, lt, ep, bp, mirar=mp), xp, yp)
+
+ANIMACIONES["copito"] = _a_copito
+
+import show as _show
+ANIMACIONES["show"] = _show.a_show
+
 def esc_anim(L, e, lt, a):
     ANIMACIONES[e.get("escena", "hola")](L, e, lt)
     if e.get("lineas"):                                       # diálogo hablado: el texto sigue a la voz
         activa = None
         for desde, hasta, quien, frase in e["lineas"]:
             if lt >= desde: activa = (desde, quien, frase)
+        if e.get("subt_cortos"):
+            act = None                                       # solo una frase a la vez (la última que empezó)
+            for desde, hasta, quien, frase in e["lineas"]:
+                if desde <= lt < hasta + 0.25: act = (desde, hasta, quien, frase)
+            if act:
+                desde, hasta, quien, frase = act
+                _subt_corto(L, quien, frase, lt - desde, max(0.3, hasta - desde), a)
+            return
         if activa:
-            nombre = {"paqui": "Paqui", "amigo": "Su amigo"}.get(activa[1], activa[1])
+            nombre = {"paqui": "Paqui", "amigo": "Su amigo", "copito": "Copito"}.get(activa[1], activa[1])
             esc_clip(L, dict(e, texto=f"{nombre}: {activa[2]}", resaltado=None, globo=None), lt - activa[0], a)
         return
     c = e.get("cambio")
@@ -1329,6 +1540,10 @@ def main():
     for c in _clips.values():
         if c.proc: c.proc.kill()
     voces = [(s0, e) for s0, _, e in escenas if e["tipo"] == "clip" and e.get("con_audio")]
+    efectos = [(s0 + float(off), tipo) for s0, _, e in escenas for off, tipo in e.get("sfx", [])]
+    if efectos:                                                # efectos de sonido sintetizados (escena "show")
+        ruta_sfx = os.path.join(tmp, "sfx.wav"); _show.sfx_wav(efectos, total, ruta_sfx)
+        voces.append((0.0, {"archivo": ruta_sfx, "inicio": 0, "dur": total + 1, "sfx": True}))
     for s0, _, e in escenas:                                   # voces de los personajes animados
         for off, archivo in e.get("voces", []):
             voces.append((s0 + float(off), {"archivo": archivo, "inicio": 0, "dur": 30}))
@@ -1340,7 +1555,9 @@ def main():
         for k, (s0, e) in enumerate(voces):
             entradas += ["-ss", str(e.get("inicio", 0)), "-t", str(e["dur"]), "-i", e["archivo"]]
             ms = int(s0 * 1000)
-            partes.append(f"[{k + 2}:a]aresample=44100,highpass=f=90,dynaudnorm=f=150:g=15,volume=1.3,adelay={ms}|{ms}[v{k}]"); etiquetas.append(f"[v{k}]")
+            if e.get("sfx"): partes.append(f"[{k + 2}:a]aresample=44100,volume=0.9[v{k}]")
+            else: partes.append(f"[{k + 2}:a]aresample=44100,highpass=f=90,dynaudnorm=f=150:g=15,volume=1.3,adelay={ms}|{ms}[v{k}]")
+            etiquetas.append(f"[v{k}]")
         partes.append("".join(etiquetas) + f"amix=inputs={len(etiquetas)}:duration=first:normalize=0,alimiter=limit=0.95[a]")
         filtro, mapa = ";".join(partes), "[a]"
     cmd = ["ffmpeg", "-y", "-loglevel", "error"] + entradas

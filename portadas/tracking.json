@@ -1,0 +1,27 @@
+{
+ "num": 5,
+ "guion": "guiones/2026-11-03_paqui-tracking.json",
+ "escena_n": 0,
+ "t": 3.9,
+ "titulo": [
+  [
+   "¿YA LLEGÓ?",
+   "blanco"
+  ],
+  [
+   "¿YA LLEGÓ?",
+   "blanco"
+  ],
+  [
+   "¡¿YA LLEGÓ?!",
+   "amarillo"
+  ]
+ ],
+ "ocultar": [
+  "burbuja"
+ ],
+ "abajo": [
+  "¡SEÑORA!",
+  "naranja"
+ ]
+}

@@ -1,0 +1,569 @@
+{
+ "musica_semilla": 115,
+ "escenas": [
+  {
+   "tipo": "anim",
+   "escena": "show",
+   "dur": 5.8,
+   "estilo_fondo": "rayos",
+   "transicion": "ninguna",
+   "subt_cortos": true,
+   "voces": [
+    [
+     0.1,
+     "material/voces/entrevista/p1.mp3"
+    ],
+    [
+     1.6,
+     "material/voces/entrevista/a1.mp3"
+    ]
+   ],
+   "lineas": [
+    [
+     0.1,
+     1.3,
+     "paqui",
+     "¡*SIGUIENTE*!"
+    ],
+    [
+     1.6,
+     3.6,
+     "amigo",
+     "B-b-buenos *días*..."
+    ],
+    [
+     3.6,
+     5.5,
+     "amigo",
+     "vengo para ser *paquete*."
+    ]
+   ],
+   "props": [
+    {
+     "tipo": "escritorio",
+     "x0": 90,
+     "x1": 690,
+     "y": 1320,
+     "placa": "JEFE"
+    },
+    {
+     "tipo": "emoji",
+     "e": "📢",
+     "x": 800,
+     "y": 760,
+     "r": 200,
+     "hasta": 1.5,
+     "anim": "late"
+    }
+   ],
+   "actores": [
+    {
+     "quien": "paqui",
+     "x": 390,
+     "y": 1420,
+     "s": 300,
+     "acc": [
+      "corbata"
+     ],
+     "sombra": false,
+     "expr": [
+      [
+       0,
+       "panico"
+      ],
+      [
+       1.3,
+       "feliz"
+      ]
+     ],
+     "brazos": [
+      [
+       0,
+       "arriba"
+      ],
+      [
+       1.3,
+       "cruzados"
+      ]
+     ],
+     "mirar": [
+      1,
+      0
+     ]
+    },
+    {
+     "quien": "amigo",
+     "x": 860,
+     "y": 1470,
+     "s": 250,
+     "desde": 1.2,
+     "mov": [
+      [
+       0,
+       "entra_der"
+      ],
+      [
+       1.9,
+       "tiembla"
+      ]
+     ],
+     "expr": "nervioso",
+     "sudor": 3,
+     "brazos": "cintura",
+     "mirar": [
+      -1,
+      0
+     ]
+    }
+   ],
+   "sacudir": [
+    [
+     0.1,
+     0.9,
+     16
+    ]
+   ],
+   "sfx": [
+    [
+     0.1,
+     "sello"
+    ]
+   ]
+  },
+  {
+   "tipo": "anim",
+   "escena": "show",
+   "dur": 13.6,
+   "estilo_fondo": "puntos",
+   "transicion": "barrido",
+   "subt_cortos": true,
+   "voces": [
+    [
+     0.2,
+     "material/voces/entrevista/p2.mp3"
+    ],
+    [
+     3.2,
+     "material/voces/entrevista/a2.mp3"
+    ],
+    [
+     6.1,
+     "material/voces/entrevista/p3.mp3"
+    ],
+    [
+     9.2,
+     "material/voces/entrevista/a3.mp3"
+    ]
+   ],
+   "lineas": [
+    [
+     0.2,
+     1.1,
+     "paqui",
+     "A ver..."
+    ],
+    [
+     1.4,
+     2.8,
+     "paqui",
+     "¿Vienes bien *empacado*?"
+    ],
+    [
+     3.2,
+     5.6,
+     "amigo",
+     "¡Sí, señor! Con *cinta* y todo."
+    ],
+    [
+     6.1,
+     8.9,
+     "paqui",
+     "¿Y tu *factura* dice lo que llevas adentro?"
+    ],
+    [
+     9.2,
+     10.6,
+     "amigo",
+     "¡*Exactito*, señor!"
+    ],
+    [
+     10.85,
+     13.0,
+     "amigo",
+     "Lo que dice la factura es *lo que llevo*."
+    ]
+   ],
+   "props": [
+    {
+     "tipo": "escritorio",
+     "x0": 90,
+     "x1": 690,
+     "y": 1320,
+     "placa": "JEFE"
+    },
+    {
+     "tipo": "emoji",
+     "e": "🔍",
+     "x": 560,
+     "y": 820,
+     "r": 170,
+     "hasta": 3.1,
+     "anim": "flota"
+    },
+    {
+     "tipo": "emoji",
+     "e": "🧾",
+     "x": 290,
+     "y": 720,
+     "r": 180,
+     "desde": 6.4,
+     "anim": "pop",
+     "texto": "FACTURA",
+     "tam": 44
+    },
+    {
+     "tipo": "emoji",
+     "e": "📦",
+     "x": 790,
+     "y": 720,
+     "r": 180,
+     "desde": 10.9,
+     "anim": "pop",
+     "texto": "CONTENIDO",
+     "tam": 44
+    },
+    {
+     "tipo": "texto",
+     "texto": "=",
+     "x": 540,
+     "y": 700,
+     "tam": 150,
+     "desde": 11.3,
+     "color": [
+      120,
+      255,
+      140
+     ]
+    },
+    {
+     "tipo": "emoji",
+     "e": "✅",
+     "x": 540,
+     "y": 570,
+     "r": 110,
+     "desde": 11.8,
+     "anim": "pop"
+    }
+   ],
+   "actores": [
+    {
+     "quien": "paqui",
+     "x": 390,
+     "y": 1420,
+     "s": 300,
+     "acc": [
+      "corbata"
+     ],
+     "sombra": false,
+     "expr": [
+      [
+       0,
+       "nervioso"
+      ],
+      [
+       3.2,
+       "feliz"
+      ],
+      [
+       6.1,
+       "nervioso"
+      ],
+      [
+       11.0,
+       "feliz"
+      ]
+     ],
+     "brazos": [
+      [
+       0,
+       "cruzados"
+      ],
+      [
+       1.4,
+       "senala"
+      ],
+      [
+       3.2,
+       "cruzados"
+      ],
+      [
+       6.1,
+       "habla"
+      ],
+      [
+       9.2,
+       "cintura"
+      ]
+     ],
+     "mirar": [
+      1,
+      0
+     ]
+    },
+    {
+     "quien": "amigo",
+     "x": 860,
+     "y": 1470,
+     "s": 250,
+     "expr": [
+      [
+       0,
+       "nervioso"
+      ],
+      [
+       3.2,
+       "abierta"
+      ],
+      [
+       5.6,
+       "nervioso"
+      ],
+      [
+       9.2,
+       "feliz"
+      ]
+     ],
+     "mov": [
+      [
+       0,
+       "tiembla"
+      ],
+      [
+       3.2,
+       "salta"
+      ],
+      [
+       4.4,
+       "tiembla"
+      ],
+      [
+       9.2,
+       "salta"
+      ],
+      [
+       10.6,
+       "quieto"
+      ]
+     ],
+     "brazos": [
+      [
+       0,
+       "cintura"
+      ],
+      [
+       3.2,
+       "arriba"
+      ],
+      [
+       5.6,
+       "cintura"
+      ],
+      [
+       9.2,
+       "arriba"
+      ],
+      [
+       10.6,
+       "habla"
+      ]
+     ],
+     "mirar": [
+      -1,
+      0
+     ]
+    }
+   ],
+   "sfx": [
+    [
+     6.4,
+     "pop"
+    ],
+    [
+     10.9,
+     "pop"
+    ],
+    [
+     11.8,
+     "ding"
+    ]
+   ]
+  },
+  {
+   "tipo": "anim",
+   "escena": "show",
+   "dur": 3.9,
+   "estilo_fondo": "confeti",
+   "transicion": "destello",
+   "subt_cortos": true,
+   "voces": [
+    [
+     0.1,
+     "material/voces/entrevista/p4.mp3"
+    ]
+   ],
+   "lineas": [
+    [
+     0.1,
+     1.2,
+     "paqui",
+     "¡*CONTRATADO*!"
+    ],
+    [
+     1.35,
+     3.6,
+     "paqui",
+     "Así da gusto pasar la *aduana*."
+    ]
+   ],
+   "props": [
+    {
+     "tipo": "escritorio",
+     "x0": 90,
+     "x1": 690,
+     "y": 1320,
+     "placa": "JEFE"
+    },
+    {
+     "tipo": "texto",
+     "texto": "CONTRATADO",
+     "estilo": "sello",
+     "x": 560,
+     "y": 780,
+     "tam": 110,
+     "color": [
+      40,
+      190,
+      90
+     ]
+    }
+   ],
+   "actores": [
+    {
+     "quien": "paqui",
+     "x": 390,
+     "y": 1420,
+     "s": 300,
+     "acc": [
+      "corbata"
+     ],
+     "sombra": false,
+     "expr": "risa",
+     "brazos": "arriba",
+     "mirar": [
+      1,
+      0
+     ]
+    },
+    {
+     "quien": "amigo",
+     "x": 860,
+     "y": 1470,
+     "s": 250,
+     "expr": "risa",
+     "mov": "salta",
+     "brazos": "arriba"
+    }
+   ],
+   "sfx": [
+    [
+     0.1,
+     "sello"
+    ],
+    [
+     0.4,
+     "tada"
+    ]
+   ]
+  },
+  {
+   "tipo": "anim",
+   "escena": "show",
+   "dur": 5.6,
+   "estilo_fondo": "burbujas",
+   "transicion": "zoom",
+   "subt_cortos": true,
+   "voces": [
+    [
+     0.2,
+     "material/voces/entrevista/p5.mp3"
+    ]
+   ],
+   "lineas": [
+    [
+     0.2,
+     3.0,
+     "paqui",
+     "*Declara bien* tu compra y viaja *tranquilo*."
+    ],
+    [
+     3.25,
+     5.3,
+     "paqui",
+     "¡Síguenos en *Jetport Courier*!"
+    ]
+   ],
+   "props": [
+    {
+     "tipo": "emoji",
+     "e": "🧾",
+     "x": 540,
+     "y": 830,
+     "r": 200,
+     "anim": "flota",
+     "texto": "DECLARA BIEN",
+     "color": [
+      255,
+      214,
+      64
+     ]
+    }
+   ],
+   "actores": [
+    {
+     "quien": "paqui",
+     "x": 330,
+     "y": 1470,
+     "s": 290,
+     "acc": [
+      "corbata"
+     ],
+     "expr": "feliz",
+     "brazos": "habla",
+     "mov": [
+      [
+       0,
+       "quieto"
+      ],
+      [
+       3.2,
+       "baila"
+      ]
+     ]
+    },
+    {
+     "quien": "amigo",
+     "x": 800,
+     "y": 1470,
+     "s": 250,
+     "expr": "feliz",
+     "mov": "baila"
+    }
+   ]
+  },
+  {
+   "tipo": "cta",
+   "dur": 3,
+   "transicion": "zoom"
+  }
+ ]
+}

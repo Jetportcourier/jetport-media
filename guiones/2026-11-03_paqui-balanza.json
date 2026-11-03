@@ -1,0 +1,643 @@
+{
+ "musica_semilla": 101,
+ "escenas": [
+  {
+   "tipo": "anim",
+   "escena": "show",
+   "dur": 10.9,
+   "estilo_fondo": "rayos",
+   "transicion": "ninguna",
+   "subt_cortos": true,
+   "voces": [
+    [
+     0.2,
+     "material/voces/balanza/p1.mp3"
+    ],
+    [
+     3.5,
+     "material/voces/balanza/a1.mp3"
+    ],
+    [
+     5.4,
+     "material/voces/balanza/p2.mp3"
+    ]
+   ],
+   "lineas": [
+    [
+     0.2,
+     3.5,
+     "paqui",
+     "¡No *respires*, no *respires*, no *respires*!"
+    ],
+    [
+     3.5,
+     5.2,
+     "amigo",
+     "Paqui... ¿qué *haces*?"
+    ],
+    [
+     5.4,
+     7.3,
+     "paqui",
+     "¡Shhh! ¡Me están *pesando*!"
+    ],
+    [
+     7.3,
+     10.6,
+     "paqui",
+     "Si aguanto el aire, *peso menos*."
+    ]
+   ],
+   "props": [
+    {
+     "tipo": "balanza",
+     "x": 420,
+     "y": 1510,
+     "lectura": "???",
+     "parpadea": true,
+     "unidad": "KG"
+    },
+    {
+     "tipo": "texto",
+     "texto": "¡GLUP!",
+     "x": 250,
+     "y": 760,
+     "tam": 110,
+     "desde": 0.0,
+     "hasta": 1.6,
+     "ang": -10,
+     "color": [
+      255,
+      214,
+      64
+     ]
+    }
+   ],
+   "actores": [
+    {
+     "quien": "paqui",
+     "x": 420,
+     "y": 1456,
+     "s": 280,
+     "expr": [
+      [
+       0,
+       "panico"
+      ],
+      [
+       1.0,
+       "forzada"
+      ],
+      [
+       5.4,
+       "nervioso"
+      ]
+     ],
+     "sx": [
+      [
+       0,
+       1.0
+      ],
+      [
+       0.6,
+       1.28
+      ]
+     ],
+     "sy": [
+      [
+       0,
+       1.0
+      ],
+      [
+       0.6,
+       1.16
+      ]
+     ],
+     "mov": "tiembla",
+     "brazos": "arriba",
+     "sudor": 3
+    },
+    {
+     "quien": "amigo",
+     "x": 890,
+     "y": 1470,
+     "s": 240,
+     "desde": 3.2,
+     "mov": [
+      [
+       0,
+       "entra_der"
+      ],
+      [
+       4.0,
+       "quieto"
+      ]
+     ],
+     "expr": [
+      [
+       0,
+       "sorpresa"
+      ],
+      [
+       5.4,
+       "nervioso"
+      ]
+     ],
+     "brazos": "cintura",
+     "mirar": [
+      -1,
+      0
+     ]
+    }
+   ],
+   "sfx": [
+    [
+     0.05,
+     "pop"
+    ],
+    [
+     3.2,
+     "swish"
+    ]
+   ]
+  },
+  {
+   "tipo": "anim",
+   "escena": "show",
+   "dur": 10.2,
+   "estilo_fondo": "puntos",
+   "transicion": "sacudida",
+   "subt_cortos": true,
+   "voces": [
+    [
+     0.3,
+     "material/voces/balanza/a2.mp3"
+    ],
+    [
+     5.9,
+     "material/voces/balanza/p3.mp3"
+    ]
+   ],
+   "lineas": [
+    [
+     0.3,
+     2.0,
+     "amigo",
+     "¡Jajaja!"
+    ],
+    [
+     2.0,
+     4.1,
+     "amigo",
+     "La balanza no se deja *engañar*, causa."
+    ],
+    [
+     4.1,
+     5.6,
+     "amigo",
+     "Marca tu *peso exacto*."
+    ],
+    [
+     5.9,
+     6.7,
+     "paqui",
+     "Pfffff..."
+    ],
+    [
+     6.95,
+     9.6,
+     "paqui",
+     "El peso *no miente*."
+    ]
+   ],
+   "props": [
+    {
+     "tipo": "balanza",
+     "x": 420,
+     "y": 1510,
+     "lectura": [
+      [
+       0,
+       "8.88"
+      ],
+      [
+       0.5,
+       "4.2"
+      ]
+     ],
+     "unidad": "KG"
+    },
+    {
+     "tipo": "texto",
+     "texto": "¡BIP!",
+     "x": 705,
+     "y": 730,
+     "tam": 90,
+     "hasta": 1.2,
+     "color": [
+      120,
+      255,
+      140
+     ]
+    }
+   ],
+   "actores": [
+    {
+     "quien": "paqui",
+     "x": 420,
+     "y": 1456,
+     "s": 280,
+     "expr": [
+      [
+       0,
+       "nervioso"
+      ],
+      [
+       5.9,
+       "silbando"
+      ],
+      [
+       6.9,
+       "verguenza"
+      ]
+     ],
+     "sx": [
+      [
+       0,
+       1.28
+      ],
+      [
+       5.9,
+       1.28
+      ],
+      [
+       6.6,
+       1.0
+      ]
+     ],
+     "sy": [
+      [
+       0,
+       1.16
+      ],
+      [
+       5.9,
+       1.16
+      ],
+      [
+       6.6,
+       1.0
+      ]
+     ],
+     "mov": [
+      [
+       0,
+       "quieto"
+      ],
+      [
+       5.9,
+       "vibra"
+      ],
+      [
+       6.7,
+       "quieto"
+      ]
+     ],
+     "brazos": "normal"
+    },
+    {
+     "quien": "amigo",
+     "x": 890,
+     "y": 1470,
+     "s": 240,
+     "expr": [
+      [
+       0,
+       "risa"
+      ],
+      [
+       5.7,
+       "feliz"
+      ]
+     ],
+     "mov": [
+      [
+       0,
+       "salta"
+      ],
+      [
+       2.0,
+       "quieto"
+      ]
+     ],
+     "brazos": [
+      [
+       0,
+       [
+        160,
+        40
+       ]
+      ],
+      [
+       2.0,
+       "habla"
+      ]
+     ],
+     "mirar": [
+      -1,
+      0
+     ]
+    }
+   ],
+   "sfx": [
+    [
+     0.05,
+     "beep"
+    ],
+    [
+     5.9,
+     "swish"
+    ]
+   ]
+  },
+  {
+   "tipo": "anim",
+   "escena": "show",
+   "dur": 14.7,
+   "estilo_fondo": "burbujas",
+   "transicion": "barrido",
+   "subt_cortos": true,
+   "voces": [
+    [
+     0.2,
+     "material/voces/balanza/a3.mp3"
+    ],
+    [
+     5.2,
+     "material/voces/balanza/p4.mp3"
+    ],
+    [
+     8.9,
+     "material/voces/balanza/a4.mp3"
+    ]
+   ],
+   "lineas": [
+    [
+     0.2,
+     5.0,
+     "amigo",
+     "Y si vienes de *China*, también te miden de *largo*, de *ancho* y de *alto*."
+    ],
+    [
+     5.2,
+     8.7,
+     "paqui",
+     "¡¿Qué?! ¿O sea que mi *tamaño* también cuenta?"
+    ],
+    [
+     8.9,
+     10.9,
+     "amigo",
+     "¡Claro! Es el *peso volumétrico*."
+    ],
+    [
+     10.9,
+     12.3,
+     "amigo",
+     "Se toma *el mayor*:"
+    ],
+    [
+     12.65,
+     14.4,
+     "amigo",
+     "tu *peso real* o tu *tamaño*."
+    ]
+   ],
+   "props": [
+    {
+     "tipo": "medidas",
+     "x": 420,
+     "y": 1470,
+     "w": 300,
+     "h": 270,
+     "desde": 2.2,
+     "hasta": 8.9,
+     "cada": 0.75
+    },
+    {
+     "tipo": "emoji",
+     "e": "⚖",
+     "x": 300,
+     "y": 880,
+     "r": 190,
+     "desde": 12.6,
+     "anim": "pop",
+     "texto": "PESO REAL"
+    },
+    {
+     "tipo": "emoji",
+     "e": "📦",
+     "x": 780,
+     "y": 880,
+     "r": 190,
+     "desde": 13.4,
+     "anim": "pop",
+     "texto": "TAMAÑO"
+    },
+    {
+     "tipo": "texto",
+     "texto": "VS",
+     "x": 540,
+     "y": 880,
+     "tam": 110,
+     "desde": 13.0,
+     "color": [
+      255,
+      122,
+      26
+     ]
+    }
+   ],
+   "actores": [
+    {
+     "quien": "paqui",
+     "x": 420,
+     "y": 1470,
+     "s": 280,
+     "expr": [
+      [
+       0,
+       "sorpresa"
+      ],
+      [
+       5.2,
+       "panico"
+      ],
+      [
+       8.8,
+       "nervioso"
+      ]
+     ],
+     "mov": [
+      [
+       0,
+       "quieto"
+      ],
+      [
+       5.2,
+       "salta"
+      ],
+      [
+       6.6,
+       "tiembla"
+      ],
+      [
+       8.8,
+       "quieto"
+      ]
+     ],
+     "brazos": [
+      [
+       0,
+       "normal"
+      ],
+      [
+       5.2,
+       "agita"
+      ],
+      [
+       8.8,
+       "normal"
+      ]
+     ],
+     "mirar": [
+      1,
+      0
+     ]
+    },
+    {
+     "quien": "amigo",
+     "x": 880,
+     "y": 1470,
+     "s": 240,
+     "expr": "feliz",
+     "brazos": [
+      [
+       0,
+       "senala_izq"
+      ],
+      [
+       5.0,
+       "cintura"
+      ],
+      [
+       8.9,
+       "habla"
+      ]
+     ],
+     "mirar": [
+      -1,
+      0
+     ]
+    }
+   ],
+   "sfx": [
+    [
+     2.3,
+     "pop"
+    ],
+    [
+     3.05,
+     "pop"
+    ],
+    [
+     3.8,
+     "pop"
+    ],
+    [
+     12.6,
+     "pop"
+    ],
+    [
+     13.4,
+     "pop"
+    ]
+   ]
+  },
+  {
+   "tipo": "anim",
+   "escena": "show",
+   "dur": 7.3,
+   "estilo_fondo": "confeti",
+   "transicion": "destello",
+   "subt_cortos": true,
+   "voces": [
+    [
+     0.2,
+     "material/voces/balanza/p5.mp3"
+    ]
+   ],
+   "lineas": [
+    [
+     0.2,
+     2.8,
+     "paqui",
+     "¡Entonces empaca bien y *sin aire*!"
+    ],
+    [
+     3.15,
+     7.0,
+     "paqui",
+     "¿Tú sabías esto? *Comenta* y síguenos en Jetport Courier."
+    ]
+   ],
+   "props": [
+    {
+     "tipo": "emoji",
+     "e": "📦",
+     "x": 790,
+     "y": 1020,
+     "r": 200,
+     "anim": "flota",
+     "texto": "¡SIN AIRE!",
+     "color": [
+      255,
+      214,
+      64
+     ]
+    },
+    {
+     "tipo": "emoji",
+     "e": "💬",
+     "x": 250,
+     "y": 900,
+     "r": 150,
+     "desde": 3.2,
+     "anim": "pop"
+    }
+   ],
+   "actores": [
+    {
+     "quien": "paqui",
+     "x": 380,
+     "y": 1470,
+     "s": 300,
+     "expr": "feliz",
+     "mov": "salta",
+     "brazos": "arriba"
+    }
+   ],
+   "sfx": [
+    [
+     0.1,
+     "tada"
+    ]
+   ]
+  },
+  {
+   "tipo": "cta",
+   "dur": 3,
+   "transicion": "zoom"
+  }
+ ]
+}

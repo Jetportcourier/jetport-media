@@ -1,0 +1,27 @@
+{
+ "num": 9,
+ "guion": "guiones/2026-11-03_paqui-responde.json",
+ "escena_n": 0,
+ "t": 5.5,
+ "titulo": [
+  [
+   "¿Y SI MI",
+   "blanco"
+  ],
+  [
+   "PAQUETE SE",
+   "blanco"
+  ],
+  [
+   "PIERDE?",
+   "amarillo"
+  ]
+ ],
+ "ocultar": [
+  "texto"
+ ],
+ "abajo": [
+  "¡¿PERDERME YO?!",
+  "naranja"
+ ]
+}

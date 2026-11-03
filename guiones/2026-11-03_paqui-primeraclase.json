@@ -1,0 +1,468 @@
+{
+ "musica_semilla": 118,
+ "escenas": [
+  {
+   "tipo": "anim",
+   "escena": "show",
+   "dur": 4.0,
+   "estilo_fondo": "degradado",
+   "transicion": "ninguna",
+   "subt_cortos": true,
+   "voces": [
+    [
+     0.15,
+     "material/voces/primeraclase/p1.mp3"
+    ]
+   ],
+   "lineas": [
+    [
+     0.15,
+     1.2,
+     "paqui",
+     "¡AAAH!"
+    ],
+    [
+     1.2,
+     2.4,
+     "paqui",
+     "¡*Turbulencia*!"
+    ],
+    [
+     2.4,
+     3.8,
+     "paqui",
+     "¡*Agárrenseee*!"
+    ]
+   ],
+   "props": [
+    {
+     "tipo": "bodega"
+    },
+    {
+     "tipo": "texto",
+     "texto": "¡TURBULENCIA!",
+     "x": 540,
+     "y": 700,
+     "tam": 120,
+     "color": [
+      255,
+      90,
+      90
+     ],
+     "tiembla": true,
+     "desde": 1.1
+    }
+   ],
+   "actores": [
+    {
+     "quien": "paqui",
+     "x": 330,
+     "y": 1470,
+     "s": 290,
+     "expr": "panico",
+     "brazos": "agita",
+     "mov": "salta"
+    },
+    {
+     "quien": "maleta",
+     "x": 820,
+     "y": 1470,
+     "s": 250,
+     "expr": "feliz",
+     "mov": "vibra"
+    }
+   ],
+   "sacudir": [
+    [
+     0,
+     4.0,
+     18
+    ]
+   ],
+   "sfx": [
+    [
+     0,
+     "turbulencia"
+    ]
+   ]
+  },
+  {
+   "tipo": "anim",
+   "escena": "show",
+   "dur": 12.5,
+   "estilo_fondo": "degradado",
+   "transicion": "sacudida",
+   "subt_cortos": true,
+   "voces": [
+    [
+     0.2,
+     "material/voces/primeraclase/m1.mp3"
+    ],
+    [
+     4.2,
+     "material/voces/primeraclase/p2.mp3"
+    ],
+    [
+     9.2,
+     "material/voces/primeraclase/m2.mp3"
+    ]
+   ],
+   "lineas": [
+    [
+     0.2,
+     1.95,
+     "maleta",
+     "Querido, *tranquilízate*."
+    ],
+    [
+     2.3,
+     3.9,
+     "maleta",
+     "Yo viajo en *primera clase*."
+    ],
+    [
+     4.2,
+     5.3,
+     "paqui",
+     "¡Yo *también*!"
+    ],
+    [
+     5.95,
+     8.9,
+     "paqui",
+     "Primera clase... ¡de *CARGA*!"
+    ],
+    [
+     9.2,
+     11.9,
+     "maleta",
+     "¿Y a dónde vas tan *apurado*?"
+    ]
+   ],
+   "props": [
+    {
+     "tipo": "bodega"
+    },
+    {
+     "tipo": "emoji",
+     "e": "🥂",
+     "x": 900,
+     "y": 880,
+     "r": 130,
+     "hasta": 4.1,
+     "desde": 2.3,
+     "anim": "pop"
+    },
+    {
+     "tipo": "texto",
+     "texto": "PRIMERA CLASE DE CARGA",
+     "estilo": "sello",
+     "x": 540,
+     "y": 760,
+     "tam": 64,
+     "desde": 7.6,
+     "hasta": 9.2,
+     "color": [
+      255,
+      122,
+      26
+     ]
+    }
+   ],
+   "actores": [
+    {
+     "quien": "paqui",
+     "x": 330,
+     "y": 1470,
+     "s": 290,
+     "expr": [
+      [
+       0,
+       "nervioso"
+      ],
+      [
+       4.2,
+       "feliz"
+      ],
+      [
+       7.6,
+       "risa"
+      ],
+      [
+       9.2,
+       "feliz"
+      ]
+     ],
+     "brazos": [
+      [
+       0,
+       "normal"
+      ],
+      [
+       4.2,
+       "cintura"
+      ],
+      [
+       7.6,
+       [
+        160,
+        40
+       ]
+      ],
+      [
+       9.2,
+       "normal"
+      ]
+     ],
+     "mov": [
+      [
+       0,
+       "vibra"
+      ],
+      [
+       1.0,
+       "flota"
+      ]
+     ],
+     "mirar": [
+      1,
+      0
+     ]
+    },
+    {
+     "quien": "maleta",
+     "x": 820,
+     "y": 1470,
+     "s": 250,
+     "expr": [
+      [
+       0,
+       "feliz"
+      ],
+      [
+       7.6,
+       "sorpresa"
+      ],
+      [
+       9.2,
+       "feliz"
+      ]
+     ]
+    }
+   ],
+   "sacudir": [
+    [
+     0,
+     12.5,
+     3
+    ]
+   ],
+   "sfx": [
+    [
+     7.6,
+     "sello"
+    ]
+   ]
+  },
+  {
+   "tipo": "anim",
+   "escena": "show",
+   "dur": 7.4,
+   "estilo_fondo": "degradado",
+   "transicion": "barrido",
+   "subt_cortos": true,
+   "voces": [
+    [
+     0.2,
+     "material/voces/primeraclase/p3.mp3"
+    ],
+    [
+     4.9,
+     "material/voces/primeraclase/m3.mp3"
+    ]
+   ],
+   "lineas": [
+    [
+     0.2,
+     2.1,
+     "paqui",
+     "¡De *Miami* a *Lima*!"
+    ],
+    [
+     2.1,
+     4.6,
+     "paqui",
+     "Y de ahí, directito a la *casa* de mi cliente."
+    ],
+    [
+     4.9,
+     5.6,
+     "maleta",
+     "Oh..."
+    ],
+    [
+     5.85,
+     7.0,
+     "maleta",
+     "qué *importante*."
+    ]
+   ],
+   "props": [
+    {
+     "tipo": "bodega"
+    },
+    {
+     "tipo": "ruta",
+     "pasos": [
+      "MIAMI",
+      "LIMA",
+      "🏠"
+     ],
+     "y": 1650,
+     "progreso": [
+      [
+       0,
+       0
+      ],
+      [
+       2.0,
+       0.5
+      ],
+      [
+       4.4,
+       1.0
+      ]
+     ]
+    }
+   ],
+   "actores": [
+    {
+     "quien": "paqui",
+     "x": 330,
+     "y": 1470,
+     "s": 290,
+     "expr": "feliz",
+     "acc": [
+      [
+       0,
+       []
+      ],
+      [
+       4.9,
+       [
+        "lentes"
+       ]
+      ]
+     ],
+     "brazos": [
+      [
+       0,
+       "habla"
+      ],
+      [
+       4.9,
+       "cruzados"
+      ]
+     ],
+     "mov": "flota",
+     "mirar": [
+      1,
+      0
+     ]
+    },
+    {
+     "quien": "maleta",
+     "x": 820,
+     "y": 1470,
+     "s": 250,
+     "expr": [
+      [
+       0,
+       "feliz"
+      ],
+      [
+       4.9,
+       "sorpresa"
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "tipo": "anim",
+   "escena": "show",
+   "dur": 6.5,
+   "estilo_fondo": "confeti",
+   "transicion": "destello",
+   "subt_cortos": true,
+   "voces": [
+    [
+     0.2,
+     "material/voces/primeraclase/p4.mp3"
+    ]
+   ],
+   "lineas": [
+    [
+     0.2,
+     1.0,
+     "paqui",
+     "¡Claro!"
+    ],
+    [
+     1.0,
+     3.6,
+     "paqui",
+     "Tus compras de *USA* y *China*, en *Perú*."
+    ],
+    [
+     3.6,
+     6.1,
+     "paqui",
+     "¡Síguenos en *Jetport Courier*!"
+    ]
+   ],
+   "props": [
+    {
+     "tipo": "emoji",
+     "e": "✈",
+     "x": 540,
+     "y": 800,
+     "r": 220,
+     "anim": "flota"
+    }
+   ],
+   "actores": [
+    {
+     "quien": "paqui",
+     "x": 330,
+     "y": 1470,
+     "s": 290,
+     "expr": "feliz",
+     "acc": [
+      "lentes"
+     ],
+     "mov": "baila"
+    },
+    {
+     "quien": "maleta",
+     "x": 820,
+     "y": 1470,
+     "s": 250,
+     "expr": "feliz",
+     "mov": "vibra"
+    }
+   ],
+   "sfx": [
+    [
+     0.2,
+     "tada"
+    ]
+   ]
+  },
+  {
+   "tipo": "cta",
+   "dur": 3,
+   "transicion": "zoom"
+  }
+ ]
+}

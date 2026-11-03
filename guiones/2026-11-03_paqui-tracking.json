@@ -1,0 +1,630 @@
+{
+ "musica_semilla": 103,
+ "escenas": [
+  {
+   "tipo": "anim",
+   "escena": "show",
+   "dur": 7.3,
+   "estilo_fondo": "degradado",
+   "transicion": "ninguna",
+   "subt_cortos": true,
+   "voces": [
+    [
+     0.15,
+     "material/voces/tracking/c1.mp3"
+    ],
+    [
+     3.5,
+     "material/voces/tracking/p1.mp3"
+    ]
+   ],
+   "lineas": [
+    [
+     0.15,
+     0.9,
+     "clienta",
+     "¿Ya *llegó*?"
+    ],
+    [
+     1.2,
+     1.9,
+     "clienta",
+     "¿Ya *llegó*?"
+    ],
+    [
+     2.2,
+     3.3,
+     "clienta",
+     "¡¿YA *LLEGÓ*?!"
+    ],
+    [
+     3.5,
+     4.4,
+     "paqui",
+     "¡AAAH!"
+    ],
+    [
+     4.4,
+     7.0,
+     "paqui",
+     "¡Señora, estoy *volando*!"
+    ]
+   ],
+   "props": [
+    {
+     "tipo": "bodega"
+    },
+    {
+     "tipo": "burbuja",
+     "texto": "¿Ya llegó?",
+     "x": 560,
+     "y": 610,
+     "w": 480,
+     "tam": 52,
+     "desde": 0.15,
+     "cola": "no"
+    },
+    {
+     "tipo": "burbuja",
+     "texto": "¿Ya llegó?",
+     "x": 520,
+     "y": 740,
+     "w": 480,
+     "tam": 52,
+     "desde": 1.2,
+     "cola": "no"
+    },
+    {
+     "tipo": "burbuja",
+     "texto": "¡¿YA LLEGÓ?!",
+     "x": 560,
+     "y": 870,
+     "w": 520,
+     "tam": 58,
+     "desde": 2.2,
+     "cola": "no",
+     "fondo": [
+      255,
+      235,
+      120
+     ],
+     "contador": [
+      3,
+      23
+     ],
+     "t_contador": 1.2
+    },
+    {
+     "tipo": "emoji",
+     "e": "📱",
+     "x": 170,
+     "y": 700,
+     "r": 150,
+     "anim": "late"
+    }
+   ],
+   "actores": [
+    {
+     "quien": "paqui",
+     "x": 540,
+     "y": 1470,
+     "s": 300,
+     "expr": [
+      [
+       0,
+       "panico"
+      ],
+      [
+       0.6,
+       "sorpresa"
+      ],
+      [
+       3.5,
+       "panico"
+      ],
+      [
+       4.4,
+       "forzada"
+      ]
+     ],
+     "mov": [
+      [
+       0,
+       "salta"
+      ],
+      [
+       0.5,
+       "flota"
+      ],
+      [
+       3.5,
+       "tiembla"
+      ],
+      [
+       4.4,
+       "flota"
+      ]
+     ],
+     "brazos": [
+      [
+       0,
+       "arriba"
+      ],
+      [
+       0.6,
+       "normal"
+      ],
+      [
+       3.5,
+       "agita"
+      ],
+      [
+       4.4,
+       "habla"
+      ]
+     ]
+    }
+   ],
+   "sacudir": [
+    [
+     0,
+     0.4,
+     14
+    ],
+    [
+     3.5,
+     4.2,
+     10
+    ]
+   ],
+   "sfx": [
+    [
+     0.05,
+     "ding"
+    ],
+    [
+     1.15,
+     "ding"
+    ],
+    [
+     2.15,
+     "ding"
+    ]
+   ]
+  },
+  {
+   "tipo": "anim",
+   "escena": "show",
+   "dur": 10.4,
+   "estilo_fondo": "degradado",
+   "transicion": "sacudida",
+   "subt_cortos": true,
+   "voces": [
+    [
+     0.2,
+     "material/voces/tracking/c2.mp3"
+    ],
+    [
+     4.7,
+     "material/voces/tracking/p2.mp3"
+    ]
+   ],
+   "lineas": [
+    [
+     0.2,
+     1.6,
+     "clienta",
+     "Ay, *perdón*..."
+    ],
+    [
+     2.55,
+     4.4,
+     "clienta",
+     "¿Y ahorita? ¿Ya *llegó*?"
+    ],
+    [
+     4.7,
+     6.5,
+     "paqui",
+     "¡Seguimos en el *aire*!"
+    ],
+    [
+     6.8,
+     7.7,
+     "paqui",
+     "Pero tranquila,"
+    ],
+    [
+     7.9,
+     10.1,
+     "paqui",
+     "en el *seguimiento* ves por dónde voy."
+    ]
+   ],
+   "props": [
+    {
+     "tipo": "bodega"
+    },
+    {
+     "tipo": "burbuja",
+     "texto": [
+      [
+       0,
+       "Ay, perdón..."
+      ],
+      [
+       2.5,
+       "¿Y ahorita? ¿Ya llegó?"
+      ]
+     ],
+     "x": 540,
+     "y": 680,
+     "w": 620,
+     "tam": 54,
+     "desde": 0.2,
+     "hasta": 4.6,
+     "cola": "no"
+    },
+    {
+     "tipo": "ruta",
+     "pasos": [
+      "MIAMI",
+      "LIMA",
+      "🏠"
+     ],
+     "y": 1640,
+     "desde": 6.8,
+     "progreso": [
+      [
+       0,
+       0.12
+      ],
+      [
+       2.5,
+       0.45
+      ]
+     ]
+    }
+   ],
+   "actores": [
+    {
+     "quien": "paqui",
+     "x": 540,
+     "y": 1470,
+     "s": 300,
+     "expr": [
+      [
+       0,
+       "forzada"
+      ],
+      [
+       4.7,
+       "panico"
+      ],
+      [
+       6.8,
+       "alivio"
+      ],
+      [
+       7.9,
+       "feliz"
+      ]
+     ],
+     "mov": [
+      [
+       0,
+       "flota"
+      ],
+      [
+       4.7,
+       "tiembla"
+      ],
+      [
+       6.6,
+       "flota"
+      ]
+     ],
+     "brazos": [
+      [
+       0,
+       "cintura"
+      ],
+      [
+       4.7,
+       "agita"
+      ],
+      [
+       6.8,
+       "habla"
+      ]
+     ]
+    }
+   ],
+   "sfx": [
+    [
+     2.5,
+     "ding"
+    ]
+   ]
+  },
+  {
+   "tipo": "anim",
+   "escena": "show",
+   "dur": 8.3,
+   "estilo_fondo": "ciudad",
+   "transicion": "barrido",
+   "subt_cortos": true,
+   "voces": [
+    [
+     0.5,
+     "material/voces/tracking/p3.mp3"
+    ],
+    [
+     4.6,
+     "material/voces/tracking/c3.mp3"
+    ]
+   ],
+   "lineas": [
+    [
+     0.5,
+     2.3,
+     "paqui",
+     "¡Ya estamos en *Lima*!"
+    ],
+    [
+     2.3,
+     4.3,
+     "paqui",
+     "Y ahora... ¡a tu *casa*!"
+    ],
+    [
+     4.6,
+     5.4,
+     "clienta",
+     "¡AAAH!"
+    ],
+    [
+     5.4,
+     8.0,
+     "clienta",
+     "¡*LLEGÓ*! ¡LLEGÓ MI *PAQUETE*!"
+    ]
+   ],
+   "props": [
+    {
+     "tipo": "ruta",
+     "pasos": [
+      "MIAMI",
+      "LIMA",
+      "🏠"
+     ],
+     "y": 1640,
+     "progreso": [
+      [
+       0,
+       0.45
+      ],
+      [
+       1.0,
+       0.5
+      ],
+      [
+       3.0,
+       1.0
+      ]
+     ]
+    },
+    {
+     "tipo": "emoji",
+     "e": "🏠",
+     "x": 800,
+     "y": 1230,
+     "r": 320,
+     "desde": 2.6,
+     "hasta": 4.5,
+     "anim": "pop"
+    },
+    {
+     "tipo": "corazones",
+     "x": 700,
+     "y": 1250,
+     "desde": 4.6
+    }
+   ],
+   "actores": [
+    {
+     "quien": "paqui",
+     "x": 330,
+     "y": 1470,
+     "s": 290,
+     "expr": [
+      [
+       0,
+       "feliz"
+      ],
+      [
+       4.6,
+       "enamorado"
+      ]
+     ],
+     "mov": [
+      [
+       0,
+       "cae"
+      ],
+      [
+       0.8,
+       "quieto"
+      ],
+      [
+       2.3,
+       "camina"
+      ],
+      [
+       4.5,
+       "salta"
+      ]
+     ],
+     "brazos": [
+      [
+       0,
+       "arriba"
+      ],
+      [
+       0.8,
+       "habla"
+      ],
+      [
+       4.6,
+       "arriba"
+      ]
+     ]
+    },
+    {
+     "quien": "emoji",
+     "e": [
+      [
+       0,
+       "😱"
+      ],
+      [
+       1.0,
+       "🤩"
+      ]
+     ],
+     "x": 790,
+     "y": 1470,
+     "s": 280,
+     "desde": 4.5,
+     "mov": "pop",
+     "habla": "clienta"
+    }
+   ],
+   "sfx": [
+    [
+     0.5,
+     "pop"
+    ],
+    [
+     2.6,
+     "pop"
+    ],
+    [
+     4.6,
+     "tada"
+    ]
+   ]
+  },
+  {
+   "tipo": "anim",
+   "escena": "show",
+   "dur": 7.2,
+   "estilo_fondo": "confeti",
+   "transicion": "destello",
+   "subt_cortos": true,
+   "voces": [
+    [
+     0.2,
+     "material/voces/tracking/p4.mp3"
+    ]
+   ],
+   "lineas": [
+    [
+     0.2,
+     2.5,
+     "paqui",
+     "Paciencia, que *sí llegamos*."
+    ],
+    [
+     2.85,
+     5.0,
+     "paqui",
+     "¿Cuántas veces revisas tu *tracking* al día?"
+    ],
+    [
+     5.25,
+     6.9,
+     "paqui",
+     "*Comenta* y síguenos."
+    ]
+   ],
+   "props": [
+    {
+     "tipo": "emoji",
+     "e": "📱",
+     "x": 800,
+     "y": 1050,
+     "r": 230,
+     "anim": "flota",
+     "desde": 2.8
+    },
+    {
+     "tipo": "texto",
+     "texto": "¿1? ¿10? ¿50?",
+     "x": 540,
+     "y": 720,
+     "tam": 100,
+     "desde": 3.2,
+     "color": [
+      255,
+      214,
+      64
+     ]
+    }
+   ],
+   "actores": [
+    {
+     "quien": "paqui",
+     "x": 380,
+     "y": 1470,
+     "s": 300,
+     "expr": [
+      [
+       0,
+       "alivio"
+      ],
+      [
+       2.8,
+       "feliz"
+      ]
+     ],
+     "mov": [
+      [
+       0,
+       "quieto"
+      ],
+      [
+       5.2,
+       "salta"
+      ]
+     ],
+     "brazos": [
+      [
+       0,
+       "cintura"
+      ],
+      [
+       2.8,
+       "senala"
+      ],
+      [
+       5.2,
+       "arriba"
+      ]
+     ]
+    }
+   ],
+   "sfx": [
+    [
+     3.2,
+     "pop"
+    ]
+   ]
+  },
+  {
+   "tipo": "cta",
+   "dur": 3,
+   "transicion": "zoom"
+  }
+ ]
+}

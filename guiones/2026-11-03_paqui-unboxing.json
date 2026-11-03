@@ -1,0 +1,546 @@
+{
+ "musica_semilla": 107,
+ "escenas": [
+  {
+   "tipo": "anim",
+   "escena": "show",
+   "dur": 6.8,
+   "estilo_fondo": "rayos",
+   "transicion": "ninguna",
+   "subt_cortos": true,
+   "voces": [
+    [
+     0.2,
+     "material/voces/unboxing/p1.mp3"
+    ]
+   ],
+   "lineas": [
+    [
+     0.2,
+     2.4,
+     "paqui",
+     "Así me imagino cuando me abren..."
+    ],
+    [
+     2.7,
+     6.3,
+     "paqui",
+     "¡Con *fuegos artificiales* y música épica!"
+    ]
+   ],
+   "actores": [
+    {
+     "quien": "paqui",
+     "x": 540,
+     "y": 1470,
+     "s": 300,
+     "expr": [
+      [
+       0,
+       "feliz"
+      ],
+      [
+       2.7,
+       "enamorado"
+      ]
+     ],
+     "mov": [
+      [
+       0,
+       "pop"
+      ],
+      [
+       0.6,
+       "flota"
+      ],
+      [
+       2.7,
+       "baila"
+      ]
+     ],
+     "brazos": [
+      [
+       0,
+       "habla"
+      ],
+      [
+       2.7,
+       "arriba"
+      ]
+     ]
+    }
+   ],
+   "props": [
+    {
+     "tipo": "cartel",
+     "texto": "EXPECTATIVA",
+     "y": 640,
+     "tam": 90
+    },
+    {
+     "tipo": "fuegos",
+     "desde": 2.6,
+     "n": 8
+    },
+    {
+     "tipo": "emoji",
+     "e": "🎵",
+     "x": 200,
+     "y": 900,
+     "r": 130,
+     "anim": "flota",
+     "desde": 3.0
+    },
+    {
+     "tipo": "emoji",
+     "e": "🎺",
+     "x": 880,
+     "y": 930,
+     "r": 140,
+     "anim": "flota",
+     "desde": 3.3
+    }
+   ],
+   "sfx": [
+    [
+     0.1,
+     "pop"
+    ],
+    [
+     2.7,
+     "fuegos"
+    ],
+    [
+     4.2,
+     "tada"
+    ]
+   ]
+  },
+  {
+   "tipo": "anim",
+   "escena": "show",
+   "dur": 10.3,
+   "estilo_fondo": "degradado",
+   "transicion": "sacudida",
+   "subt_cortos": true,
+   "voces": [
+    [
+     0.3,
+     "material/voces/unboxing/p2.mp3"
+    ],
+    [
+     5.1,
+     "material/voces/unboxing/c1.mp3"
+    ]
+   ],
+   "lineas": [
+    [
+     0.3,
+     1.3,
+     "paqui",
+     "¡AAAH!"
+    ],
+    [
+     1.3,
+     3.0,
+     "paqui",
+     "¡Un *cuchillo* de cocina!"
+    ],
+    [
+     3.0,
+     4.8,
+     "paqui",
+     "¡Con cuidado, que soy *delicado*!"
+    ],
+    [
+     5.1,
+     7.5,
+     "clienta",
+     "¡Ay, perdón, Paqui!"
+    ],
+    [
+     7.5,
+     9.8,
+     "clienta",
+     "Es que estaba *emocionada*."
+    ]
+   ],
+   "actores": [
+    {
+     "quien": "paqui",
+     "x": 380,
+     "y": 1470,
+     "s": 300,
+     "expr": [
+      [
+       0,
+       "panico"
+      ],
+      [
+       5.1,
+       "llanto"
+      ],
+      [
+       7.6,
+       "alivio"
+      ]
+     ],
+     "mov": [
+      [
+       0,
+       "tiembla"
+      ],
+      [
+       5.1,
+       "vibra"
+      ],
+      [
+       7.6,
+       "quieto"
+      ]
+     ],
+     "brazos": [
+      [
+       0,
+       "agita"
+      ],
+      [
+       5.1,
+       "cruzados"
+      ],
+      [
+       7.6,
+       "cintura"
+      ]
+     ],
+     "sudor": 3
+    },
+    {
+     "quien": "emoji",
+     "e": [
+      [
+       0,
+       "😅"
+      ],
+      [
+       7.5,
+       "🥺"
+      ]
+     ],
+     "x": 820,
+     "y": 1450,
+     "s": 250,
+     "desde": 5.0,
+     "mov": "pop",
+     "habla": "clienta"
+    }
+   ],
+   "props": [
+    {
+     "tipo": "cartel",
+     "texto": "REALIDAD",
+     "y": 640,
+     "tam": 90,
+     "fondo": [
+      11,
+      37,
+      84
+     ],
+     "lado": -1
+    },
+    {
+     "tipo": "emoji",
+     "e": "🔪",
+     "x": 660,
+     "y": 1080,
+     "r": 190,
+     "anim": "corta",
+     "desde": 0.2,
+     "hasta": 5.0
+    },
+    {
+     "tipo": "texto",
+     "texto": "¡NOOO!",
+     "x": 540,
+     "y": 860,
+     "tam": 110,
+     "desde": 0.3,
+     "hasta": 2.0,
+     "tiembla": true
+    }
+   ],
+   "sacudir": [
+    [
+     0.3,
+     1.3,
+     14
+    ]
+   ],
+   "sfx": [
+    [
+     0.2,
+     "swish"
+    ],
+    [
+     0.5,
+     "crash"
+    ],
+    [
+     5.1,
+     "boing"
+    ]
+   ]
+  },
+  {
+   "tipo": "anim",
+   "escena": "show",
+   "dur": 9.0,
+   "estilo_fondo": "patron",
+   "transicion": "barrido",
+   "subt_cortos": true,
+   "voces": [
+    [
+     0.3,
+     "material/voces/unboxing/p3.mp3"
+    ],
+    [
+     5.6,
+     "material/voces/unboxing/c2.mp3"
+    ]
+   ],
+   "lineas": [
+    [
+     0.3,
+     0.7,
+     "paqui",
+     "*Tip:*"
+    ],
+    [
+     0.98,
+     2.96,
+     "paqui",
+     "ábreme con *tijera* y por la cinta."
+    ],
+    [
+     3.26,
+     5.3,
+     "paqui",
+     "Así no dañas lo de adentro."
+    ],
+    [
+     5.6,
+     8.6,
+     "clienta",
+     "¡Aaay! ¡Está *perfecto*!"
+    ]
+   ],
+   "actores": [
+    {
+     "quien": "paqui",
+     "x": 360,
+     "y": 1470,
+     "s": 290,
+     "expr": [
+      [
+       0,
+       "feliz"
+      ],
+      [
+       5.6,
+       "enamorado"
+      ]
+     ],
+     "mov": [
+      [
+       0,
+       "quieto"
+      ],
+      [
+       5.6,
+       "salta"
+      ]
+     ],
+     "brazos": [
+      [
+       0,
+       "senala"
+      ],
+      [
+       3.2,
+       "habla"
+      ],
+      [
+       5.6,
+       "arriba"
+      ]
+     ],
+     "acc": [
+      "lentes"
+     ]
+    },
+    {
+     "quien": "emoji",
+     "e": "🤩",
+     "x": 820,
+     "y": 1450,
+     "s": 250,
+     "desde": 5.5,
+     "mov": "pop",
+     "habla": "clienta"
+    }
+   ],
+   "props": [
+    {
+     "tipo": "emoji",
+     "e": "✂",
+     "x": 760,
+     "y": 820,
+     "r": 200,
+     "anim": "pop",
+     "desde": 1.0,
+     "hasta": 5.5
+    },
+    {
+     "tipo": "texto",
+     "texto": "¡TIJERA!",
+     "x": 760,
+     "y": 1010,
+     "tam": 80,
+     "color": [
+      255,
+      255,
+      255
+     ],
+     "desde": 1.2,
+     "hasta": 5.5
+    },
+    {
+     "tipo": "emoji",
+     "e": "👍",
+     "x": 300,
+     "y": 760,
+     "r": 150,
+     "anim": "pop",
+     "desde": 3.3,
+     "hasta": 5.5
+    },
+    {
+     "tipo": "corazones",
+     "desde": 5.7
+    }
+   ],
+   "sfx": [
+    [
+     1.0,
+     "pop"
+    ],
+    [
+     3.3,
+     "ding"
+    ],
+    [
+     5.6,
+     "tada"
+    ]
+   ]
+  },
+  {
+   "tipo": "anim",
+   "escena": "show",
+   "dur": 6.8,
+   "estilo_fondo": "confeti",
+   "transicion": "destello",
+   "subt_cortos": true,
+   "voces": [
+    [
+     0.2,
+     "material/voces/unboxing/p4.mp3"
+    ]
+   ],
+   "lineas": [
+    [
+     0.2,
+     2.2,
+     "paqui",
+     "*Valió la pena.*"
+    ],
+    [
+     2.6,
+     4.1,
+     "paqui",
+     "¿Tú cómo abres tus paquetes?"
+    ],
+    [
+     4.4,
+     6.3,
+     "paqui",
+     "*Comenta* y síguenos."
+    ]
+   ],
+   "actores": [
+    {
+     "quien": "paqui",
+     "x": 380,
+     "y": 1470,
+     "s": 300,
+     "expr": [
+      [
+       0,
+       "alivio"
+      ],
+      [
+       2.6,
+       "feliz"
+      ]
+     ],
+     "mov": [
+      [
+       0,
+       "quieto"
+      ],
+      [
+       4.4,
+       "salta"
+      ]
+     ],
+     "brazos": [
+      [
+       0,
+       "cintura"
+      ],
+      [
+       2.6,
+       "senala"
+      ],
+      [
+       4.4,
+       "arriba"
+      ]
+     ]
+    }
+   ],
+   "props": [
+    {
+     "tipo": "emoji",
+     "e": "💬",
+     "x": 790,
+     "y": 900,
+     "r": 200,
+     "anim": "late",
+     "desde": 2.6
+    }
+   ],
+   "sfx": [
+    [
+     2.6,
+     "pop"
+    ]
+   ]
+  },
+  {
+   "tipo": "cta",
+   "dur": 3,
+   "transicion": "zoom"
+  }
+ ]
+}

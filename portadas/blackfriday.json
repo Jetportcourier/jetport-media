@@ -1,0 +1,20 @@
+{
+ "num": 8,
+ "guion": "guiones/2026-11-03_paqui-blackfriday.json",
+ "escena_n": 1,
+ "t": 1.0,
+ "titulo": [
+  [
+   "¿TODO ESTO",
+   "blanco"
+  ],
+  [
+   "ES DE UNA SOLA",
+   "blanco"
+  ],
+  [
+   "PERSONA?",
+   "amarillo"
+  ]
+ ]
+}

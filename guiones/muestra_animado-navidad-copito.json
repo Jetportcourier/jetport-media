@@ -1,0 +1,22 @@
+{
+ "musica_semilla": 102,
+ "escenas": [
+  {"tipo": "anim", "escena": "copito", "modo": "sorpresa", "sale": 0.5, "dur": 7.5, "estilo_fondo": "degradado", "transicion": "ninguna", "subt_cortos": true,
+   "voces": [[0.6, "material/voces/navidad-copito/r1_jojojo.mp3"], [4.7, "material/voces/navidad-copito/q1_quien.mp3"]],
+   "lineas": [[0.6, 1.3, "copito", "JO..."], [1.5, 2.2, "copito", "JO..."], [2.35, 3.0, "copito", "JO..."], [3.3, 4.5, "copito", "¡FELIZ *NAVIDAD*!"],
+              [4.7, 5.8, "paqui", "¡AAAH!"], [5.95, 7.3, "paqui", "¿Y tú *quién* eres?"]]},
+  {"tipo": "anim", "escena": "copito", "modo": "charla", "dur": 9.8, "estilo_fondo": "burbujas", "transicion": "zoom", "subt_cortos": true,
+   "voces": [[0.2, "material/voces/navidad-copito/r2_soy.mp3"], [5.6, "material/voces/navidad-copito/q2_regalo.mp3"]],
+   "lineas": [[0.2, 1.15, "copito", "Soy *Copito*."], [1.58, 3.0, "copito", "Animatrónico *navideño*."], [3.45, 5.3, "copito", "Recién llegado de *USA*."],
+              [5.6, 6.55, "paqui", "¡Ahhh!"], [6.74, 9.45, "paqui", "¡Tú eres el *regalo* que viajó conmigo en el *avión*!"]]},
+  {"tipo": "anim", "escena": "copito", "modo": "charla", "dur": 10.4, "estilo_fondo": "degradado", "transicion": "barrido", "subt_cortos": true,
+   "voces": [[0.2, "material/voces/navidad-copito/r3_atiempo.mp3"], [4.5, "material/voces/navidad-copito/q3_justito.mp3"]],
+   "lineas": [[0.2, 1.1, "copito", "*Afirmativo*."], [1.6, 2.1, "copito", "Pregunta:"], [2.65, 4.2, "copito", "¿Llegué a *tiempo* para Navidad?"],
+              [4.5, 5.4, "paqui", "¡Claro que *sí*!"], [5.5, 8.8, "paqui", "Si compras con *tiempo*, llegas *justito*"], [8.9, 9.95, "paqui", "para *Navidad*."]]},
+  {"tipo": "anim", "escena": "copito", "modo": "baile", "dur": 10.0, "estilo_fondo": "confeti", "transicion": "destello", "subt_cortos": true,
+   "voces": [[0.2, "material/voces/navidad-copito/r4_baile.mp3"], [4.2, "material/voces/navidad-copito/q4_cierre.mp3"]],
+   "lineas": [[0.2, 1.05, "copito", "*Excelente*."], [1.36, 2.25, "copito", "Iniciando..."], [2.43, 3.7, "copito", "¡*Baile* navideño!"],
+              [4.2, 7.0, "paqui", "¿Y tú qué *regalo* traerías de *USA*?"], [7.1, 9.6, "paqui", "¡*Comenta* y síguenos en Jetport Courier!"]]},
+  {"tipo": "cta", "dur": 3, "transicion": "zoom"}
+ ]
+}

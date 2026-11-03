@@ -1,0 +1,551 @@
+{
+ "musica_semilla": 112,
+ "escenas": [
+  {
+   "tipo": "anim",
+   "escena": "show",
+   "dur": 6.1,
+   "estilo_fondo": "puntos",
+   "transicion": "ninguna",
+   "subt_cortos": true,
+   "voces": [
+    [
+     0.2,
+     "material/voces/responde/p1.mp3"
+    ],
+    [
+     3.9,
+     "material/voces/responde/p2.mp3"
+    ]
+   ],
+   "lineas": [
+    [
+     0.2,
+     1.7,
+     "paqui",
+     "Nos *preguntan* mucho:"
+    ],
+    [
+     1.95,
+     3.7,
+     "paqui",
+     "¿Y si mi paquete se *pierde*?"
+    ],
+    [
+     3.9,
+     5.8,
+     "paqui",
+     "¡¿*Perderme* YO?!"
+    ]
+   ],
+   "props": [
+    {
+     "tipo": "comentario",
+     "texto": "¿Y si mi paquete se pierde?",
+     "x": 540,
+     "y": 720,
+     "w": 960,
+     "tam": 60,
+     "cola": "no",
+     "hasta": 3.9
+    },
+    {
+     "tipo": "texto",
+     "texto": "¡¿YO?!",
+     "x": 540,
+     "y": 760,
+     "tam": 230,
+     "desde": 3.9,
+     "color": [
+      255,
+      214,
+      64
+     ],
+     "tiembla": true
+    }
+   ],
+   "actores": [
+    {
+     "quien": "paqui",
+     "x": 540,
+     "y": 1470,
+     "s": 310,
+     "expr": [
+      [
+       0,
+       "sorpresa"
+      ],
+      [
+       3.9,
+       "panico"
+      ]
+     ],
+     "brazos": [
+      [
+       0,
+       "normal"
+      ],
+      [
+       3.9,
+       "agita"
+      ]
+     ],
+     "mov": [
+      [
+       0,
+       "quieto"
+      ],
+      [
+       3.9,
+       "tiembla"
+      ]
+     ],
+     "mirar": [
+      0,
+      -1
+     ]
+    }
+   ],
+   "sacudir": [
+    [
+     3.9,
+     5.0,
+     14
+    ]
+   ],
+   "sfx": [
+    [
+     0.1,
+     "ding"
+    ],
+    [
+     3.9,
+     "sello"
+    ]
+   ]
+  },
+  {
+   "tipo": "anim",
+   "escena": "show",
+   "dur": 9.8,
+   "estilo_fondo": "rayos",
+   "transicion": "sacudida",
+   "subt_cortos": true,
+   "voces": [
+    [
+     0.1,
+     "material/voces/responde/a1.mp3"
+    ],
+    [
+     4.0,
+     "material/voces/responde/p3.mp3"
+    ]
+   ],
+   "lineas": [
+    [
+     0.1,
+     1.1,
+     "amigo",
+     "¡Jajaja!"
+    ],
+    [
+     1.1,
+     3.7,
+     "amigo",
+     "¡Si tú te pierdes hasta en tu *propia casa*!"
+    ],
+    [
+     4.0,
+     5.3,
+     "paqui",
+     "¡Ya, ya!"
+    ],
+    [
+     5.55,
+     6.3,
+     "paqui",
+     "En *serio*:"
+    ],
+    [
+     6.65,
+     9.4,
+     "paqui",
+     "cada paquete viaja con su *número de seguimiento*."
+    ]
+   ],
+   "props": [
+    {
+     "tipo": "emoji",
+     "e": "🏷",
+     "x": 540,
+     "y": 800,
+     "r": 220,
+     "desde": 6.7,
+     "anim": "pop",
+     "texto": "N° DE SEGUIMIENTO",
+     "tam": 54,
+     "color": [
+      255,
+      214,
+      64
+     ]
+    }
+   ],
+   "actores": [
+    {
+     "quien": "paqui",
+     "x": 360,
+     "y": 1470,
+     "s": 290,
+     "expr": [
+      [
+       0,
+       "forzada"
+      ],
+      [
+       4.0,
+       "nervioso"
+      ],
+      [
+       5.5,
+       "feliz"
+      ]
+     ],
+     "brazos": [
+      [
+       0,
+       "cruzados"
+      ],
+      [
+       4.0,
+       "agita"
+      ],
+      [
+       5.5,
+       "habla"
+      ]
+     ],
+     "mirar": [
+      1,
+      0
+     ]
+    },
+    {
+     "quien": "amigo",
+     "x": 820,
+     "y": 1470,
+     "s": 250,
+     "mov": [
+      [
+       0,
+       "entra_der"
+      ],
+      [
+       0.6,
+       "salta"
+      ],
+      [
+       3.7,
+       "quieto"
+      ]
+     ],
+     "expr": [
+      [
+       0,
+       "risa"
+      ],
+      [
+       3.7,
+       "verguenza"
+      ]
+     ],
+     "brazos": [
+      [
+       0,
+       [
+        160,
+        40
+       ]
+      ],
+      [
+       3.7,
+       "normal"
+      ]
+     ],
+     "mirar": [
+      -1,
+      0
+     ]
+    }
+   ],
+   "sfx": [
+    [
+     0.1,
+     "risas"
+    ],
+    [
+     6.7,
+     "pop"
+    ]
+   ]
+  },
+  {
+   "tipo": "anim",
+   "escena": "show",
+   "dur": 6.7,
+   "estilo_fondo": "ciudad",
+   "transicion": "barrido",
+   "subt_cortos": true,
+   "voces": [
+    [
+     0.2,
+     "material/voces/responde/p4.mp3"
+    ]
+   ],
+   "lineas": [
+    [
+     0.2,
+     1.6,
+     "paqui",
+     "Así sabes *dónde estoy*:"
+    ],
+    [
+     1.9,
+     4.9,
+     "paqui",
+     "en el *almacén*, en el *avión*, en *Lima*..."
+    ],
+    [
+     5.15,
+     6.3,
+     "paqui",
+     "¡y en tu *casa*!"
+    ]
+   ],
+   "props": [
+    {
+     "tipo": "ruta",
+     "pasos": [
+      "ALMACÉN",
+      "AVIÓN",
+      "LIMA",
+      "🏠"
+     ],
+     "y": 1650,
+     "progreso": [
+      [
+       0,
+       0
+      ],
+      [
+       1.9,
+       0
+      ],
+      [
+       2.9,
+       0.33
+      ],
+      [
+       3.9,
+       0.66
+      ],
+      [
+       5.1,
+       1.0
+      ]
+     ]
+    },
+    {
+     "tipo": "emoji",
+     "e": "🏭",
+     "x": 540,
+     "y": 780,
+     "r": 230,
+     "desde": 1.9,
+     "hasta": 2.9
+    },
+    {
+     "tipo": "emoji",
+     "e": "✈",
+     "x": 540,
+     "y": 780,
+     "r": 230,
+     "desde": 2.9,
+     "hasta": 3.9
+    },
+    {
+     "tipo": "emoji",
+     "e": "🏙",
+     "x": 540,
+     "y": 780,
+     "r": 230,
+     "desde": 3.9,
+     "hasta": 5.1
+    },
+    {
+     "tipo": "emoji",
+     "e": "🏠",
+     "x": 540,
+     "y": 780,
+     "r": 260,
+     "desde": 5.1,
+     "anim": "late"
+    }
+   ],
+   "actores": [
+    {
+     "quien": "paqui",
+     "x": 540,
+     "y": 1470,
+     "s": 280,
+     "expr": "feliz",
+     "mov": [
+      [
+       0,
+       "quieto"
+      ],
+      [
+       1.9,
+       "camina"
+      ],
+      [
+       5.1,
+       "salta"
+      ]
+     ],
+     "brazos": [
+      [
+       0,
+       "habla"
+      ],
+      [
+       5.1,
+       "arriba"
+      ]
+     ]
+    }
+   ],
+   "sfx": [
+    [
+     1.9,
+     "pop"
+    ],
+    [
+     2.9,
+     "pop"
+    ],
+    [
+     3.9,
+     "pop"
+    ],
+    [
+     5.1,
+     "tada"
+    ]
+   ]
+  },
+  {
+   "tipo": "anim",
+   "escena": "show",
+   "dur": 5.4,
+   "estilo_fondo": "confeti",
+   "transicion": "destello",
+   "subt_cortos": true,
+   "voces": [
+    [
+     0.2,
+     "material/voces/responde/p5.mp3"
+    ]
+   ],
+   "lineas": [
+    [
+     0.2,
+     1.4,
+     "paqui",
+     "¿Tienes otra *pregunta*?"
+    ],
+    [
+     1.75,
+     3.9,
+     "paqui",
+     "Déjala en los *comentarios* y te respondo."
+    ],
+    [
+     4.2,
+     5.2,
+     "paqui",
+     "¡*Síguenos*!"
+    ]
+   ],
+   "props": [
+    {
+     "tipo": "comentario",
+     "texto": "Tu pregunta aquí...",
+     "x": 540,
+     "y": 720,
+     "w": 960,
+     "tam": 60,
+     "cola": "no",
+     "color": [
+      120,
+      130,
+      150
+     ]
+    },
+    {
+     "tipo": "emoji",
+     "e": "💬",
+     "x": 840,
+     "y": 1020,
+     "r": 170,
+     "anim": "flota",
+     "desde": 1.7
+    }
+   ],
+   "actores": [
+    {
+     "quien": "paqui",
+     "x": 400,
+     "y": 1470,
+     "s": 300,
+     "expr": "feliz",
+     "brazos": [
+      [
+       0,
+       "senala"
+      ],
+      [
+       4.2,
+       "arriba"
+      ]
+     ],
+     "mov": [
+      [
+       0,
+       "quieto"
+      ],
+      [
+       4.2,
+       "salta"
+      ]
+     ],
+     "mirar": [
+      0,
+      -1
+     ]
+    }
+   ],
+   "sfx": [
+    [
+     0.2,
+     "ding"
+    ]
+   ]
+  },
+  {
+   "tipo": "cta",
+   "dur": 3,
+   "transicion": "zoom"
+  }
+ ]
+}
