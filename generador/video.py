@@ -37,6 +37,8 @@ Clips reales: escena {"tipo": "clip", "dur": 3, "archivo": "material/clip.mp4", 
   (disimula fotos de baja calidad); opcionales "pie" (texto en el borde) y "angulo".
 Cortos animados: {"tipo": "anim", "escena": "hola|vuelo|aduana|llegada|fila|lupa|sonrisa|rayosx|sello|duo", "dur": 2.6, "texto": ..., "resaltado": ...}
   con "Paqui", la cajita animada (generador/personajes.py). "aduana" y "rayosx" admiten "cambio" + "texto_despues"; "sello" admite "sello" (texto del sello).
+  Diálogo hablado en "anim": "voces": [[segundo, "material/voces/x.mp3"], ...] mezcla cada voz (la música baja sola) y
+  "lineas": [[desde, hasta, "paqui|amigo", "frase"], ...] pone la frase arriba y mueve la boca de quien habla.
   "duo" (Paqui y su amigo) admite "modo": charla | verde (canal verde, Paqui se ríe) | rojo (canal rojo, el amigo llora) | abrazo.
   Usa "estilo_fondo" para el fondo. Ejemplo: guiones/muestra_animado-paqui.json.
   "globo": "texto" dibuja un globo de diálogo blanco (para que la presentadora 'hable'); "globo_y" ajusta la altura.
@@ -985,6 +987,10 @@ def _a_duo(L, e, lt):
             bp = (160, 160); ba = (160, 160)
         r = max(0, 160 - 200 * lt)
         if r > 2: d.ellipse([xa - r, SU - 18, xa + r, SU + 22], fill=(110, 190, 255, 230))
+    for desde, hasta, quien, *_ in e.get("lineas", []):                    # boca que se mueve al hablar
+        if desde <= lt < hasta and (lt * 7.5) % 1 < 0.5:
+            if quien == "paqui" and ep in ("feliz", "sorpresa", "nervioso"): ep = "abierta"
+            if quien == "amigo" and ea in ("feliz", "sorpresa", "nervioso"): ea = "abierta"
     pj.sombra(L, xp, SU - 8, s * 1.4); pj.sombra(L, xa, SU - 8, s * 1.3)
     pj.pegar(L, pj.caja(s, lt, ea, ba, mirar=ma, color="amigo"), xa, ya, 0.92, 1.12, anga)
     pj.pegar(L, pj.caja(s, lt, ep, bp, mirar=mp), xp, yp, sxp, 1.0, angp)
@@ -993,6 +999,14 @@ ANIMACIONES["duo"] = _a_duo
 
 def esc_anim(L, e, lt, a):
     ANIMACIONES[e.get("escena", "hola")](L, e, lt)
+    if e.get("lineas"):                                       # diálogo hablado: el texto sigue a la voz
+        activa = None
+        for desde, hasta, quien, frase in e["lineas"]:
+            if lt >= desde: activa = (desde, quien, frase)
+        if activa:
+            nombre = {"paqui": "Paqui", "amigo": "Su amigo"}.get(activa[1], activa[1])
+            esc_clip(L, dict(e, texto=f"{nombre}: {activa[2]}", resaltado=None, globo=None), lt - activa[0], a)
+        return
     c = e.get("cambio")
     if e.get("texto_despues") and c is not None and lt >= float(c):
         esc_clip(L, dict(e, texto=e["texto_despues"], resaltado=e.get("resaltado_despues"), globo=None), lt - float(c), a)
@@ -1230,6 +1244,9 @@ def main():
     for c in _clips.values():
         if c.proc: c.proc.kill()
     voces = [(s0, e) for s0, _, e in escenas if e["tipo"] == "clip" and e.get("con_audio")]
+    for s0, _, e in escenas:                                   # voces de los personajes animados
+        for off, archivo in e.get("voces", []):
+            voces.append((s0 + float(off), {"archivo": archivo, "inicio": 0, "dur": 30}))
     entradas = ["-i", muda, "-i", wav]
     if not voces:
         filtro, mapa = None, "1:a"
