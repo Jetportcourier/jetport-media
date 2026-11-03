@@ -4,7 +4,7 @@
   {
    "tipo": "anim",
    "escena": "show",
-   "dur": 11.8,
+   "dur": 3.0,
    "estilo_fondo": "puntos",
    "transicion": "ninguna",
    "subt_cortos": true,
@@ -12,40 +12,14 @@
     [
      0.3,
      "material/voces/confesiones/p1.mp3"
-    ],
-    [
-     3.0,
-     "material/voces/confesiones/p2.mp3"
-    ],
-    [
-     8.6,
-     "material/voces/confesiones/a1.mp3"
     ]
    ],
    "lineas": [
     [
      0.3,
-     2.5,
+     2.7,
      "paqui",
      "Lo que *callamos* los paquetes..."
-    ],
-    [
-     3.0,
-     5.5,
-     "paqui",
-     "Que el cliente pidió *quince fundas*..."
-    ],
-    [
-     6.2,
-     8.3,
-     "paqui",
-     "para *UN* solo celular."
-    ],
-    [
-     8.6,
-     11.5,
-     "amigo",
-     "¡Y una tiene *brillitos*!"
     ]
    ],
    "actores": [
@@ -54,20 +28,7 @@
      "x": 330,
      "y": 1470,
      "s": 320,
-     "expr": [
-      [
-       0,
-       "nervioso"
-      ],
-      [
-       6.2,
-       "forzada"
-      ],
-      [
-       8.6,
-       "risa"
-      ]
-     ],
+     "expr": "nervioso",
      "mov": [
       [
        0,
@@ -86,31 +47,8 @@
       [
        0.6,
        "senala_izq"
-      ],
-      [
-       3.0,
-       "habla"
       ]
      ]
-    },
-    {
-     "quien": "amigo",
-     "x": 790,
-     "y": 1470,
-     "s": 270,
-     "desde": 8.3,
-     "mov": [
-      [
-       8.3,
-       "entra_der"
-      ],
-      [
-       8.9,
-       "salta"
-      ]
-     ],
-     "expr": "risa",
-     "brazos": "agita"
     }
    ],
    "props": [
@@ -121,94 +59,41 @@
      "y": 900,
      "r": 200,
      "anim": "pop",
-     "desde": 0.2,
-     "hasta": 2.9
-    },
-    {
-     "tipo": "emoji",
-     "e": "📱",
-     "x": 760,
-     "y": 880,
-     "r": 190,
-     "anim": "late",
-     "desde": 3.2,
-     "hasta": 8.3
-    },
-    {
-     "tipo": "texto",
-     "texto": "×15",
-     "x": 760,
-     "y": 1060,
-     "tam": 110,
-     "desde": 3.6,
-     "hasta": 8.3
-    },
-    {
-     "tipo": "emoji",
-     "e": "✨",
-     "x": 760,
-     "y": 860,
-     "r": 170,
-     "anim": "flota",
-     "desde": 8.7
+     "desde": 0.2
     }
    ],
    "sfx": [
     [
      0.2,
      "swish"
-    ],
-    [
-     3.6,
-     "pop"
-    ],
-    [
-     8.7,
-     "risas"
     ]
    ]
   },
   {
    "tipo": "anim",
    "escena": "show",
-   "dur": 9.3,
-   "estilo_fondo": "burbujas",
-   "transicion": "barrido",
+   "dur": 4.9,
+   "estilo_fondo": "degradado",
+   "transicion": "sacudida",
    "subt_cortos": true,
    "voces": [
     [
-     0.3,
-     "material/voces/confesiones/p3.mp3"
-    ],
-    [
-     5.0,
-     "material/voces/confesiones/a2.mp3"
+     0.2,
+     "material/voces/confesiones/v2p2.mp3"
     ]
    ],
    "lineas": [
     [
-     0.3,
-     1.6,
+     0.2,
+     1.4,
      "paqui",
-     "Que cuando nos *abren*..."
+     "Que en el *avión*..."
     ],
     [
-     2.1,
-     4.7,
+     1.75,
+     4.6,
      "paqui",
-     "¡nos emocionamos más que el *cliente*!"
-    ],
-    [
-     5.0,
-     6.7,
-     "amigo",
-     "Que revisan el *tracking*..."
-    ],
-    [
-     7.1,
-     9.0,
-     "amigo",
-     "cada *cinco minutos*."
+     "¡hay *turbulencia* y nos sacudimos todos!"
     ]
    ],
    "actores": [
@@ -223,12 +108,8 @@
        "nervioso"
       ],
       [
-       2.1,
-       "enamorado"
-      ],
-      [
-       5.0,
-       "risa"
+       1.75,
+       "panico"
       ]
      ],
      "mov": [
@@ -237,12 +118,8 @@
        "quieto"
       ],
       [
-       2.1,
-       "salta"
-      ],
-      [
-       4.8,
-       "quieto"
+       1.75,
+       "tiembla"
       ]
      ],
      "brazos": [
@@ -251,14 +128,11 @@
        "habla"
       ],
       [
-       2.1,
-       "arriba"
-      ],
-      [
-       5.0,
-       "normal"
+       1.75,
+       "agita"
       ]
-     ]
+     ],
+     "sudor": 3
     },
     {
      "quien": "amigo",
@@ -271,8 +145,18 @@
        "feliz"
       ],
       [
-       5.0,
-       "nervioso"
+       1.75,
+       "panico"
+      ]
+     ],
+     "mov": [
+      [
+       0,
+       "quieto"
+      ],
+      [
+       1.75,
+       "tiembla"
       ]
      ],
      "brazos": [
@@ -281,73 +165,197 @@
        "normal"
       ],
       [
-       5.0,
-       "habla"
+       1.75,
+       "agita"
       ]
      ]
     }
    ],
    "props": [
     {
-     "tipo": "corazones",
-     "desde": 2.1,
-     "hasta": 4.9,
-     "x": 330
-    },
-    {
-     "tipo": "emoji",
-     "e": "⏱",
-     "x": 560,
-     "y": 880,
-     "r": 170,
-     "anim": "late",
-     "desde": 7.1
-    },
-    {
-     "tipo": "texto",
-     "texto": "5 MIN",
-     "x": 560,
-     "y": 1060,
-     "tam": 90,
-     "desde": 7.2
+     "tipo": "bodega"
     }
    ],
    "sfx": [
     [
-     2.1,
-     "tada"
-    ],
+     1.75,
+     "turbulencia"
+    ]
+   ],
+   "sacudir": [
     [
-     7.1,
-     "beep"
+     1.75,
+     4.2,
+     14
     ]
    ]
   },
   {
    "tipo": "anim",
    "escena": "show",
-   "dur": 6.4,
-   "estilo_fondo": "ciudad",
-   "transicion": "deslizar",
+   "dur": 5.6,
+   "estilo_fondo": "degradado",
+   "transicion": "barrido",
    "subt_cortos": true,
    "voces": [
     [
-     0.3,
-     "material/voces/confesiones/p4.mp3"
+     0.2,
+     "material/voces/confesiones/v2a1.mp3"
     ]
    ],
    "lineas": [
     [
-     0.3,
-     1.5,
-     "paqui",
-     "Y que *nosotros*..."
+     0.2,
+     2.1,
+     "amigo",
+     "Que a veces el paquete de al lado..."
     ],
     [
-     1.9,
-     4.4,
+     2.5,
+     5.2,
+     "amigo",
+     "está medio *húmedo*. ¡*Guácala*!"
+    ]
+   ],
+   "actores": [
+    {
+     "quien": "paqui",
+     "x": 300,
+     "y": 1470,
+     "s": 300,
+     "expr": [
+      [
+       0,
+       "nervioso"
+      ],
+      [
+       2.5,
+       "panico"
+      ]
+     ],
+     "brazos": [
+      [
+       0,
+       "normal"
+      ],
+      [
+       2.5,
+       "agita"
+      ]
+     ],
+     "ang": [
+      [
+       0,
+       0
+      ],
+      [
+       2.5,
+       -8
+      ]
+     ],
+     "sudor": 1
+    },
+    {
+     "quien": "amigo",
+     "x": 790,
+     "y": 1470,
+     "s": 270,
+     "expr": [
+      [
+       0,
+       "nervioso"
+      ],
+      [
+       2.5,
+       "forzada"
+      ]
+     ],
+     "brazos": [
+      [
+       0,
+       "senala_izq"
+      ],
+      [
+       2.5,
+       "cruzados"
+      ]
+     ]
+    },
+    {
+     "quien": "emoji",
+     "e": "🤢",
+     "x": 540,
+     "y": 1380,
+     "s": 170,
+     "mov": "pop",
+     "habla": "nadie",
+     "desde": 2.5
+    }
+   ],
+   "props": [
+    {
+     "tipo": "bodega"
+    },
+    {
+     "tipo": "emoji",
+     "e": "💧",
+     "x": 470,
+     "y": 1000,
+     "r": 110,
+     "anim": "cae",
+     "desde": 2.5
+    },
+    {
+     "tipo": "emoji",
+     "e": "💧",
+     "x": 560,
+     "y": 960,
+     "r": 90,
+     "anim": "cae",
+     "desde": 2.8
+    },
+    {
+     "tipo": "texto",
+     "texto": "¡GUÁCALA!",
+     "x": 540,
+     "y": 760,
+     "tam": 120,
+     "desde": 3.2,
+     "tiembla": true
+    }
+   ],
+   "sfx": [
+    [
+     2.5,
+     "boing"
+    ]
+   ]
+  },
+  {
+   "tipo": "anim",
+   "escena": "show",
+   "dur": 7.0,
+   "estilo_fondo": "patron",
+   "transicion": "deslizar",
+   "subt_cortos": true,
+   "voces": [
+    [
+     0.2,
+     "material/voces/confesiones/v2p3.mp3"
+    ]
+   ],
+   "lineas": [
+    [
+     0.2,
+     3.6,
      "paqui",
-     "también queremos llegar *rápido a casa*."
+     "Que nos cargan, nos apilan, nos voltean..."
+    ],
+    [
+     3.6,
+     6.7,
+     "paqui",
+     "¡y siempre me toca *abajo*!"
     ]
    ],
    "actores": [
@@ -362,19 +370,198 @@
        "nervioso"
       ],
       [
-       1.9,
-       "alivio"
+       1.4,
+       "sorpresa"
+      ],
+      [
+       2.6,
+       "panico"
+      ],
+      [
+       3.6,
+       "llanto"
       ]
      ],
-     "mov": "flota",
+     "mov": [
+      [
+       0,
+       "salta"
+      ],
+      [
+       1.4,
+       "quieto"
+      ],
+      [
+       2.6,
+       "tiembla"
+      ],
+      [
+       3.6,
+       "vibra"
+      ]
+     ],
+     "ang": [
+      [
+       0,
+       0
+      ],
+      [
+       2.6,
+       180
+      ],
+      [
+       3.3,
+       0
+      ]
+     ],
+     "sy": [
+      [
+       0,
+       1
+      ],
+      [
+       3.6,
+       1
+      ],
+      [
+       4.0,
+       0.72
+      ]
+     ],
+     "brazos": [
+      [
+       0,
+       "arriba"
+      ],
+      [
+       3.6,
+       "agita"
+      ]
+     ],
+     "sudor": 2
+    }
+   ],
+   "props": [
+    {
+     "tipo": "cajas_caen",
+     "desde": 3.6,
+     "n": 12,
+     "cada": 0.07,
+     "techo": 1100,
+     "semilla": 5,
+     "capa": "atras"
+    }
+   ],
+   "sfx": [
+    [
+     0.3,
+     "pop"
+    ],
+    [
+     1.4,
+     "pop"
+    ],
+    [
+     2.6,
+     "swish"
+    ],
+    [
+     3.7,
+     "crash"
+    ]
+   ],
+   "sacudir": [
+    [
+     3.7,
+     4.3,
+     14
+    ]
+   ]
+  },
+  {
+   "tipo": "anim",
+   "escena": "show",
+   "dur": 6.7,
+   "estilo_fondo": "rayos",
+   "transicion": "zoom",
+   "subt_cortos": true,
+   "voces": [
+    [
+     0.2,
+     "material/voces/confesiones/v2p4.mp3"
+    ]
+   ],
+   "lineas": [
+    [
+     0.2,
+     2.2,
+     "paqui",
+     "Pero, ¿sabes cuál es mi *secreto*?"
+    ],
+    [
+     2.6,
+     4.4,
+     "paqui",
+     "Un buen *empaque reforzado*."
+    ],
+    [
+     4.7,
+     6.5,
+     "paqui",
+     "¡Así llego *enterito*!"
+    ]
+   ],
+   "actores": [
+    {
+     "quien": "paqui",
+     "x": 360,
+     "y": 1470,
+     "s": 300,
+     "expr": [
+      [
+       0,
+       "feliz"
+      ],
+      [
+       4.7,
+       "enamorado"
+      ]
+     ],
+     "mov": [
+      [
+       0,
+       "quieto"
+      ],
+      [
+       4.7,
+       "salta"
+      ]
+     ],
      "brazos": [
       [
        0,
        "habla"
       ],
       [
-       4.0,
+       2.6,
        "cintura"
+      ],
+      [
+       4.7,
+       "arriba"
+      ]
+     ],
+     "acc": [
+      "lentes"
+     ],
+     "sy": [
+      [
+       0,
+       1
+      ],
+      [
+       2.6,
+       1.06
       ]
      ]
     }
@@ -382,57 +569,73 @@
    "props": [
     {
      "tipo": "emoji",
-     "e": "🏠",
-     "x": 820,
+     "e": "📦",
+     "x": 790,
      "y": 900,
-     "r": 180,
-     "anim": "flota",
-     "desde": 2.0
+     "r": 200,
+     "anim": "pop",
+     "desde": 2.6,
+     "texto": "EMPAQUE REFORZADO",
+     "tam": 50,
+     "color": [
+      255,
+      214,
+      64
+     ]
     },
     {
      "tipo": "emoji",
-     "e": "✈",
-     "x": 260,
-     "y": 880,
+     "e": "💪",
+     "x": 790,
+     "y": 1180,
      "r": 150,
-     "anim": "vuela",
-     "desde": 1.9,
-     "de": [
-      -200,
-      800
-     ]
+     "anim": "late",
+     "desde": 3.0
+    },
+    {
+     "tipo": "emoji",
+     "e": "✨",
+     "x": 360,
+     "y": 1050,
+     "r": 150,
+     "anim": "flota",
+     "desde": 4.7
     }
    ],
    "sfx": [
     [
-     1.9,
-     "swish"
+     2.6,
+     "ding"
+    ],
+    [
+     4.7,
+     "tada"
     ]
    ]
   },
   {
    "tipo": "anim",
    "escena": "show",
-   "dur": 4.8,
+   "dur": 4.3,
    "estilo_fondo": "confeti",
    "transicion": "destello",
    "subt_cortos": true,
    "voces": [
     [
-     0.3,
-     "material/voces/confesiones/p5.mp3"
+     0.2,
+     "material/voces/confesiones/v2p5.mp3"
     ]
    ],
    "lineas": [
     [
-     0.3,
-     2.4,
+     0.2,
+     2.0,
      "paqui",
-     "¿Qué otra cosa *callamos*?"
+     "¿Tu compra viene bien *empacada*?"
     ],
     [
-     2.7,
-     4.5,
+     2.3,
+     4.1,
      "paqui",
      "*Comenta* y síguenos."
     ]
@@ -450,7 +653,7 @@
        "quieto"
       ],
       [
-       2.7,
+       2.3,
        "salta"
       ]
      ],
@@ -460,7 +663,7 @@
        "habla"
       ],
       [
-       2.7,
+       2.3,
        "senala"
       ]
      ]
@@ -474,12 +677,12 @@
      "y": 900,
      "r": 200,
      "anim": "late",
-     "desde": 2.7
+     "desde": 2.3
     }
    ],
    "sfx": [
     [
-     2.7,
+     2.3,
      "pop"
     ]
    ]
