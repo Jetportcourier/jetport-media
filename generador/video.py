@@ -35,8 +35,9 @@ Clips reales: escena {"tipo": "clip", "dur": 3, "archivo": "material/clip.mp4", 
   "paneo_izq", "subir", "bajar", "diagonal", o lista [zoom0, zoom1, cx0, cy0, cx1, cy1].
   "estilo": "polaroid" muestra la foto como tarjeta inclinada con borde blanco sobre fondo desenfocado
   (disimula fotos de baja calidad); opcionales "pie" (texto en el borde) y "angulo".
-Cortos animados: {"tipo": "anim", "escena": "hola|vuelo|aduana|llegada|fila|lupa|sonrisa|rayosx|sello", "dur": 2.6, "texto": ..., "resaltado": ...}
+Cortos animados: {"tipo": "anim", "escena": "hola|vuelo|aduana|llegada|fila|lupa|sonrisa|rayosx|sello|duo", "dur": 2.6, "texto": ..., "resaltado": ...}
   con "Paqui", la cajita animada (generador/personajes.py). "aduana" y "rayosx" admiten "cambio" + "texto_despues"; "sello" admite "sello" (texto del sello).
+  "duo" (Paqui y su amigo) admite "modo": charla | verde (canal verde, Paqui se ríe) | rojo (canal rojo, el amigo llora) | abrazo.
   Usa "estilo_fondo" para el fondo. Ejemplo: guiones/muestra_animado-paqui.json.
   "globo": "texto" dibuja un globo de diálogo blanco (para que la presentadora 'hable'); "globo_y" ajusta la altura.
   (Las fotos y videos del avatar en referencias/ son SOLO referencia del dueño: NO usarlos en los videos.)
@@ -923,6 +924,72 @@ def _a_sello(L, e, lt):
         L.alpha_composite(st, (int(W / 2 - st.width / 2), int(640 - st.height / 2)))
 
 ANIMACIONES.update({"fila": _a_fila, "lupa": _a_lupa, "sonrisa": _a_sonrisa, "rayosx": _a_rayosx, "sello": _a_sello})
+
+# --- "duo": Paqui y su amigo saliendo de aduana (modo charla | verde | rojo | abrazo) ---
+def _semaforo(L, lt, activo):
+    """Semáforo horizontal de aduana con la luz activa ('verde' o 'rojo') parpadeando y su cartel."""
+    d = ImageDraw.Draw(L); cx, cy = W / 2, 760
+    d.rounded_rectangle([cx - 230, cy - 80, cx + 230, cy + 80], 40, fill=(30, 34, 48, 255), outline=(255, 255, 255, 255), width=6)
+    luces = [("verde", (40, 210, 90)), ("naranja", (255, 150, 30)), ("rojo", (235, 50, 50))]
+    on = (lt * 4) % 1 < 0.75
+    for i, (nombre, col) in enumerate(luces):
+        x = cx - 140 + i * 140
+        prendida = nombre == activo and on
+        if prendida:
+            d.ellipse([x - 78, cy - 78, x + 78, cy + 78], fill=col + (90,))
+        d.ellipse([x - 52, cy - 52, x + 52, cy + 52], fill=col + (255,) if prendida else tuple(c // 4 for c in col) + (255,))
+    if activo:
+        col = dict(luces)[activo]; txt = "CANAL " + activo.upper()
+        p = ease(lt / 0.3); f = font("Black", 64); tw = f.getlength(txt)
+        y = cy + 125
+        d.rounded_rectangle([cx - tw / 2 - 30, y - 50, cx + tw / 2 + 30, y + 50], 26, fill=col + (int(255 * p),))
+        d.text((cx, y), txt, font=f, fill=(255, 255, 255, int(255 * p)), anchor="mm")
+
+def _ja(L, x, y, lt, i):
+    q = (lt * 1.6 + i / 3) % 1
+    texto_borde(L, (x + 30 * math.sin(i * 2 + lt * 3), y - 200 * q), "JA", font("Black", int(70 + 30 * (1 - q))), (255, 230, 80), 1 - q, borde=7)
+
+def _a_duo(L, e, lt):
+    modo = e.get("modo", "charla")
+    s, xp, xa = 290, 300, 790
+    SU = _SUELO + 130                                                         # más abajo para dejar sitio al semáforo
+    d = ImageDraw.Draw(L)
+    if modo in ("verde", "rojo"):
+        _semaforo(L, lt, modo)
+    elif modo == "charla":
+        _semaforo(L, lt, None)
+    # expresiones y gestos de cada uno
+    ep, ea = "feliz", "feliz"; bp, ba = (20, 20), (20, 20); mp, ma = (1, 0), (-1, 0)
+    yp = ya = SU; angp = anga = 0.0; sxp = 1.0
+    if modo == "charla":
+        bp = (20, 110 + 20 * math.sin(lt * 9)); ep = "abierta" if (lt * 3) % 1 < 0.5 else "feliz"
+        ea = "sorpresa" if lt > 1.2 else "feliz"
+    elif modo == "verde":
+        ep = "risa"; bp = (160, 40 + 15 * math.sin(lt * 20))                  # se ríe agarrándose la panza
+        yp = SU - 18 * abs(math.sin(lt * 18)); angp = -8 + 4 * math.sin(lt * 18)
+        ea = "nervioso"; ma = (-1, 0)
+        for i in range(3): _ja(L, xp + 130, 1180, lt, i)
+    elif modo == "rojo":
+        ea = "llanto"; ba = (165 + 10 * math.sin(lt * 14), 165 - 10 * math.sin(lt * 14))
+        ya = SU - 6 * abs(math.sin(lt * 14))
+        ep = "sorpresa"; mp = (1, 0.2)
+        r = 60 + 160 * min(1, lt / 2.5)                                          # charco de lágrimas
+        d.ellipse([xa - r, SU - 18, xa + r, SU + 22], fill=(110, 190, 255, 230))
+    elif modo == "abrazo":
+        k = ease(lt / 0.6)
+        xp = 300 + 120 * k; xa = 790 - 110 * k
+        ep = "feliz"; bp = (20, 150)
+        ea = "llanto" if lt < 0.9 else "feliz"
+        if lt > 1.2:                                                               # saltan juntos de alegría
+            yp = SU - 90 * abs(math.sin((lt - 1.2) * 7)); ya = SU - 90 * abs(math.sin((lt - 1.2) * 7 + 0.6))
+            bp = (160, 160); ba = (160, 160)
+        r = max(0, 160 - 200 * lt)
+        if r > 2: d.ellipse([xa - r, SU - 18, xa + r, SU + 22], fill=(110, 190, 255, 230))
+    pj.sombra(L, xp, SU - 8, s * 1.4); pj.sombra(L, xa, SU - 8, s * 1.3)
+    pj.pegar(L, pj.caja(s, lt, ea, ba, mirar=ma, color="amigo"), xa, ya, 0.92, 1.12, anga)
+    pj.pegar(L, pj.caja(s, lt, ep, bp, mirar=mp), xp, yp, sxp, 1.0, angp)
+
+ANIMACIONES["duo"] = _a_duo
 
 def esc_anim(L, e, lt, a):
     ANIMACIONES[e.get("escena", "hola")](L, e, lt)
