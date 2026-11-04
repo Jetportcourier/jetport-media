@@ -1,0 +1,684 @@
+[
+ {
+  "nombre": "paqui-balanza",
+  "fecha": "04/11 12:07",
+  "salida": "videos/paqui-balanza_miniatura.jpg",
+  "fondo": "material/foto_balanza_04.jpg",
+  "foco": [
+   0.6,
+   0.5
+  ],
+  "oscuro": 0.8,
+  "titulo": [
+   [
+    "¿CUÁNTO PESA",
+    "blanco"
+   ],
+   [
+    "DE VERDAD",
+    "amarillo"
+   ],
+   [
+    "TU PAQUETE?",
+    "blanco"
+   ]
+  ],
+  "tam_titulo": 150,
+  "sub": "Lo que debes saber antes de comprar",
+  "pip": {
+   "video": "videos/paqui-balanza.mp4",
+   "t": 6.0,
+   "x": 760,
+   "y": 1320,
+   "w": 400,
+   "ang": 4,
+   "recorte": [
+    0,
+    0.35,
+    1,
+    0.9
+   ]
+  },
+  "sello": [
+   "PESO EXACTO",
+   "rojo",
+   300,
+   1280,
+   -6
+  ]
+ },
+ {
+  "nombre": "pov-mi-compra",
+  "fecha": "04/11 19:07",
+  "salida": "videos/2026-11-04_corto-pov-mi-compra_miniatura.jpg",
+  "fondo": {
+   "video": "material/carga_van_03.mp4",
+   "t": 2.0
+  },
+  "foco": [
+   0.5,
+   0.5
+  ],
+  "oscuro": 0.9,
+  "titulo": [
+   [
+    "POV:",
+    "amarillo"
+   ],
+   [
+    "ERES MI COMPRA",
+    "blanco"
+   ],
+   [
+    "DE AMAZON",
+    "caja_amarillo"
+   ]
+  ],
+  "tam_titulo": 150,
+  "sello": [
+   "DE USA A TU CASA",
+   "naranja",
+   540,
+   1560,
+   -3
+  ]
+ },
+ {
+  "nombre": "paqui-tracking",
+  "fecha": "05/11 12:07",
+  "salida": "videos/paqui-tracking_miniatura.jpg",
+  "fondo": {
+   "video": "material/presentadora_senala_14.mp4",
+   "t": 1.5
+  },
+  "foco": [
+   0.5,
+   0.45
+  ],
+  "oscuro": 0.85,
+  "titulo": [
+   [
+    "¿YA LLEGÓ?",
+    "amarillo"
+   ],
+   [
+    "LA CLIENTA INTENSA",
+    "caja_rojo"
+   ]
+  ],
+  "tam_titulo": 170,
+  "chat": [
+   [
+    "¿Ya llegó?",
+    "9:01"
+   ],
+   [
+    "¿Y ahora?",
+    "9:02"
+   ],
+   [
+    "¿Ya salió de Miami?",
+    "9:03"
+   ],
+   [
+    "¡¿YA LLEGÓ?!",
+    "9:04"
+   ]
+  ],
+  "chat_y": 760,
+  "chat_x": 400,
+  "pip": {
+   "video": "videos/paqui-tracking.mp4",
+   "t": 4.0,
+   "x": 230,
+   "y": 1420,
+   "w": 300,
+   "ang": -5,
+   "recorte": [
+    0,
+    0.45,
+    1,
+    0.85
+   ]
+  }
+ },
+ {
+  "nombre": "regalos-navidad",
+  "fecha": "05/11 19:07",
+  "salida": "videos/2026-11-05_regalos-navidad-desde-usa_miniatura.jpg",
+  "fondo": "material/foto_almacen_05.jpg",
+  "foco": [
+   0.5,
+   0.5
+  ],
+  "oscuro": 0.75,
+  "titulo": [
+   [
+    "REGALOS DE",
+    "blanco"
+   ],
+   [
+    "NAVIDAD",
+    "rojo"
+   ],
+   [
+    "DESDE USA",
+    "blanco"
+   ]
+  ],
+  "tam_titulo": 165,
+  "sub": "El error: dejarlo para diciembre",
+  "sello": [
+   "¡COMPRA CON TIEMPO!",
+   "amarillo",
+   540,
+   1450,
+   -4
+  ]
+ },
+ {
+  "nombre": "paqui-entrevista",
+  "fecha": "06/11 12:07",
+  "salida": "videos/paqui-entrevista_miniatura.jpg",
+  "fondo": "material/foto_almacen_03.jpg",
+  "foco": [
+   0.4,
+   0.5
+  ],
+  "oscuro": 0.75,
+  "titulo": [
+   [
+    "¿TU PAQUETE",
+    "blanco"
+   ],
+   [
+    "PASARÍA LA",
+    "blanco"
+   ],
+   [
+    "ENTREVISTA?",
+    "amarillo"
+   ]
+  ],
+  "tam_titulo": 150,
+  "pip": {
+   "video": "videos/paqui-entrevista.mp4",
+   "t": 8.0,
+   "x": 640,
+   "y": 1290,
+   "w": 470,
+   "ang": 4,
+   "recorte": [
+    0,
+    0.4,
+    1,
+    0.82
+   ]
+  },
+  "sello": [
+   "FACTURA = CONTENIDO",
+   "rojo",
+   430,
+   1580,
+   -5
+  ]
+ },
+ {
+  "nombre": "viernes-llego",
+  "fecha": "06/11 19:07",
+  "salida": "videos/2026-11-06_corto-viernes-llego_miniatura.jpg",
+  "fondo": "material/foto_paquetes_piso_16.jpg",
+  "foco": [
+   0.5,
+   0.55
+  ],
+  "oscuro": 0.8,
+  "titulo": [
+   [
+    "VIERNES:",
+    "amarillo"
+   ],
+   [
+    "¿MI PAQUETE",
+    "blanco"
+   ],
+   [
+    "LLEGA PARA",
+    "blanco"
+   ],
+   [
+    "EL FINDE?",
+    "caja_rojo"
+   ]
+  ],
+  "tam_titulo": 150
+ },
+ {
+  "nombre": "lo-que-vive-tu-paquete",
+  "fecha": "07/11 12:07",
+  "salida": "videos/muestra_zoom-fotos_miniatura.jpg",
+  "fondo": "material/foto_camion_sacos_12.jpg",
+  "foco": [
+   0.5,
+   0.5
+  ],
+  "oscuro": 0.8,
+  "titulo": [
+   [
+    "LO QUE VIVE",
+    "blanco"
+   ],
+   [
+    "TU PAQUETE",
+    "amarillo"
+   ],
+   [
+    "ANTES DE",
+    "blanco"
+   ],
+   [
+    "LLEGAR A TI",
+    "blanco"
+   ]
+  ],
+  "tam_titulo": 150,
+  "sello": [
+   "DETRÁS DE CÁMARAS",
+   "rojo",
+   540,
+   1480,
+   -4
+  ]
+ },
+ {
+  "nombre": "paqui-senala",
+  "fecha": "08/11 12:07",
+  "salida": "videos/paqui-senala_miniatura.jpg",
+  "fondo": {
+   "video": "material/presentadora_senala_13.mp4",
+   "t": 1.5
+  },
+  "foco": [
+   0.5,
+   0.45
+  ],
+  "oscuro": 0.85,
+  "titulo": [
+   [
+    "¿QUÉ PUEDES",
+    "blanco"
+   ],
+   [
+    "TRAER DE",
+    "blanco"
+   ],
+   [
+    "USA Y CHINA?",
+    "amarillo"
+   ]
+  ],
+  "tam_titulo": 150,
+  "pip": {
+   "video": "videos/paqui-senala.mp4",
+   "t": 2.0,
+   "x": 800,
+   "y": 1330,
+   "w": 360,
+   "ang": 4,
+   "recorte": [
+    0,
+    0.3,
+    1,
+    0.8
+   ]
+  },
+  "sello": [
+   "¡OJO CON ESTO!",
+   "rojo",
+   300,
+   1500,
+   -5
+  ],
+  "bajar": 520
+ },
+ {
+  "nombre": "paqui-responde",
+  "fecha": "09/11 12:07",
+  "salida": "videos/paqui-responde_miniatura.jpg",
+  "fondo": "material/foto_uhaul_02.jpg",
+  "foco": [
+   0.5,
+   0.5
+  ],
+  "oscuro": 0.75,
+  "titulo": [
+   [
+    "¿Y SI MI",
+    "blanco"
+   ],
+   [
+    "PAQUETE SE",
+    "blanco"
+   ],
+   [
+    "PIERDE?",
+    "rojo"
+   ]
+  ],
+  "tam_titulo": 165,
+  "sub": "Esto es lo que pasa",
+  "pip": {
+   "video": "videos/paqui-responde.mp4",
+   "t": 15.0,
+   "x": 700,
+   "y": 1330,
+   "w": 440,
+   "ang": 4,
+   "recorte": [
+    0,
+    0.35,
+    1,
+    0.82
+   ]
+  }
+ },
+ {
+  "nombre": "caja-aplastada",
+  "fecha": "10/11 12:07",
+  "salida": "videos/muestra_animado-caja-aplastada_miniatura.jpg",
+  "fondo": "material/foto_camion_sacos_11.jpg",
+  "foco": [
+   0.5,
+   0.5
+  ],
+  "oscuro": 0.75,
+  "titulo": [
+   [
+    "¿TU COMPRA",
+    "blanco"
+   ],
+   [
+    "LLEGÓ",
+    "blanco"
+   ],
+   [
+    "APLASTADA?",
+    "rojo"
+   ]
+  ],
+  "tam_titulo": 165,
+  "pip": {
+   "video": "videos/muestra_animado-caja-aplastada.mp4",
+   "t": 8.0,
+   "x": 650,
+   "y": 1300,
+   "w": 460,
+   "ang": 4,
+   "recorte": [
+    0,
+    0.38,
+    1,
+    0.82
+   ]
+  },
+  "sello": [
+   "EL SECRETO: EL EMPAQUE",
+   "amarillo",
+   470,
+   1580,
+   -4
+  ]
+ },
+ {
+  "nombre": "paqui-confesiones",
+  "fecha": "11/11 12:07",
+  "salida": "videos/paqui-confesiones_miniatura.jpg",
+  "fondo": "material/foto_camion_sacos_13.jpg",
+  "foco": [
+   0.5,
+   0.5
+  ],
+  "oscuro": 0.7,
+  "titulo": [
+   [
+    "LO QUE TU",
+    "blanco"
+   ],
+   [
+    "PAQUETE",
+    "amarillo"
+   ],
+   [
+    "NO TE CUENTA",
+    "blanco"
+   ]
+  ],
+  "tam_titulo": 160,
+  "pip": {
+   "video": "videos/paqui-confesiones.mp4",
+   "t": 15.0,
+   "x": 700,
+   "y": 1300,
+   "w": 420,
+   "ang": 4,
+   "recorte": [
+    0,
+    0.35,
+    1,
+    0.82
+   ]
+  }
+ },
+ {
+  "nombre": "paqui-peruano",
+  "fecha": "12/11 12:07",
+  "salida": "videos/paqui-peruano_miniatura.jpg",
+  "fondo": "material/foto_camion_07.jpg",
+  "foco": [
+   0.5,
+   0.5
+  ],
+  "oscuro": 0.75,
+  "titulo": [
+   [
+    "LLEGÓ A LIMA",
+    "blanco"
+   ],
+   [
+    "Y YA HABLA",
+    "blanco"
+   ],
+   [
+    "PERUANO",
+    "caja_rojo"
+   ]
+  ],
+  "tam_titulo": 155,
+  "pip": {
+   "video": "videos/paqui-peruano.mp4",
+   "t": 2.0,
+   "x": 640,
+   "y": 1320,
+   "w": 470,
+   "ang": 4,
+   "recorte": [
+    0,
+    0.38,
+    1,
+    0.82
+   ]
+  },
+  "sello": [
+   "¡QUÉ FUE, CAUSA!",
+   "amarillo",
+   320,
+   1590,
+   -5
+  ]
+ },
+ {
+  "nombre": "paqui-celoso",
+  "fecha": "13/11 12:07",
+  "salida": "videos/paqui-celoso_miniatura.jpg",
+  "fondo": "material/foto_companero_desempaca_14.jpg",
+  "foco": [
+   0.5,
+   0.5
+  ],
+  "oscuro": 0.8,
+  "titulo": [
+   [
+    "¿QUÉ HACES CON",
+    "blanco"
+   ],
+   [
+    "LA CAJA",
+    "amarillo"
+   ],
+   [
+    "CUANDO LLEGA?",
+    "blanco"
+   ]
+  ],
+  "tam_titulo": 150,
+  "pip": {
+   "video": "videos/paqui-celoso.mp4",
+   "t": 2.0,
+   "x": 700,
+   "y": 1320,
+   "w": 430,
+   "ang": 4,
+   "recorte": [
+    0,
+    0.38,
+    1,
+    0.82
+   ]
+  }
+ },
+ {
+  "nombre": "paqui-courier",
+  "fecha": "15/11 12:07",
+  "salida": "videos/paqui-courier_miniatura.jpg",
+  "fondo": {
+   "video": "material/presentadora_caja_20.mp4",
+   "t": 1.5
+  },
+  "foco": [
+   0.5,
+   0.5
+  ],
+  "oscuro": 0.9,
+  "titulo": [
+   [
+    "¿CON QUÉ",
+    "blanco"
+   ],
+   [
+    "COURIER TRAES",
+    "blanco"
+   ],
+   [
+    "TUS COMPRAS?",
+    "amarillo"
+   ]
+  ],
+  "tam_titulo": 150,
+  "sello": [
+   "USA y CHINA → PERÚ",
+   "naranja",
+   540,
+   1590,
+   -3
+  ],
+  "bajar": 520
+ },
+ {
+  "nombre": "paqui-blackfriday",
+  "fecha": "20/11 12:07",
+  "salida": "videos/paqui-blackfriday_miniatura.jpg",
+  "fondo": "material/foto_van_cargada_09.jpg",
+  "foco": [
+   0.5,
+   0.5
+  ],
+  "oscuro": 0.6,
+  "titulo": [
+   [
+    "BLACK FRIDAY",
+    "blanco"
+   ],
+   [
+    "27 DE NOVIEMBRE",
+    "caja_amarillo"
+   ],
+   [
+    "¿YA TIENES TU LISTA?",
+    "blanco"
+   ]
+  ],
+  "tam_titulo": 150,
+  "pip": {
+   "video": "videos/paqui-blackfriday.mp4",
+   "t": 8.0,
+   "x": 700,
+   "y": 1330,
+   "w": 440,
+   "ang": 4,
+   "recorte": [
+    0,
+    0.35,
+    1,
+    0.85
+   ]
+  },
+  "sello": [
+   "CONSOLIDA TUS COMPRAS",
+   "rojo",
+   430,
+   1600,
+   -4
+  ]
+ },
+ {
+  "nombre": "navidad-copito",
+  "fecha": "01/12 12:07",
+  "salida": "videos/muestra_animado-navidad-copito_miniatura.jpg",
+  "fondo": {
+   "video": "material/presentadora_caja_21.mp4",
+   "t": 1.5
+  },
+  "foco": [
+   0.5,
+   0.5
+  ],
+  "oscuro": 0.8,
+  "titulo": [
+   [
+    "¿LLEGA PARA",
+    "blanco"
+   ],
+   [
+    "NAVIDAD?",
+    "rojo"
+   ]
+  ],
+  "tam_titulo": 170,
+  "sub": "Si compras con tiempo, sí",
+  "pip": {
+   "video": "videos/muestra_animado-navidad-copito.mp4",
+   "t": 8.0,
+   "x": 800,
+   "y": 1450,
+   "w": 340,
+   "ang": 4,
+   "recorte": [
+    0,
+    0.4,
+    1,
+    0.85
+   ]
+  },
+  "bajar": 520
+ }
+]
