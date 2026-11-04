@@ -3,7 +3,7 @@
 {"tipo": "anim", "escena": "show", "dur": 8, "estilo_fondo": "rayos",
  "actores": [ {"quien": "paqui"|"amigo"|"maleta"|"emoji", "x": 540, "y": 1470, "s": 290,
                "expr": "feliz" o [[0, "panico"], [2.1, "feliz"]],          (valores con tiempo: cambian en ese segundo)
-               "brazos": "normal|habla|arriba|agita|senala|taza|cintura" o [izq, der]  (mujer: abajo|sostiene|arriba|corta|cubre|aplaude|masajea|envuelve|pulgar; "ropa": "jetport" = polo de la empresa),
+               "brazos": "normal|habla|arriba|agita|senala|taza|cintura" o [izq, der]  (mujer: abajo|sostiene|reclama|arriba|corta|cubre|aplaude|masajea|envuelve|pulgar; expr extra "enojada"; "ropa": "jetport" = polo de la empresa, "roja" = blusa roja),
                "mov": "quieto|salta|tiembla|baila|camina|flota|entra_der|entra_izq|cae|pop|sale_der|vibra",
                "sx": 1, "sy": 1, "ang": 0, "mirar": [1, 0], "color": "paqui",
                "acc": ["lentes", "corbata", "gorro", "cafe"], "desde": 0, "hasta": 99,
@@ -194,7 +194,7 @@ PIEL, PELO, BLUSA_DEF = (241, 192, 152), (70, 40, 30), (40, 170, 190)
 def _mujer(L, x, y, s, lt, habla, expr, br, obj, k, ropa=None):
     """Clienta dibujada (de la cintura para arriba). y = borde inferior del torso; s = escala (100 = cabeza de radio 95)."""
     u = s / 100; d = ImageDraw.Draw(L); OUT = (60, 35, 30, 255)
-    BLUSA = (28, 58, 128) if ropa == "jetport" else BLUSA_DEF                 # "jetport": polo azul de la empresa
+    BLUSA = (28, 58, 128) if ropa == "jetport" else (214, 38, 58) if ropa == "roja" else BLUSA_DEF                 # "jetport": polo azul de la empresa
     hx, hy = x, y - 330 * u                                             # centro de la cabeza
     # pelo largo por detrás
     d.rounded_rectangle([hx - 120 * u, hy - 60 * u, hx + 120 * u, hy + 175 * u], int(60 * u), fill=PELO + (255,))
@@ -219,6 +219,7 @@ def _mujer(L, x, y, s, lt, habla, expr, br, obj, k, ropa=None):
         md = (x - 300 * u + 110 * u * math.cos(k * 6), y - 470 * u + 90 * u * math.sin(k * 6))
         mi = (x - 300 * u - 110 * u * math.cos(k * 6), y - 470 * u - 90 * u * math.sin(k * 6))
     elif br == "pulgar": md, mi = (x - 200 * u, y - 380 * u), (x + 190 * u, y - 30 * u)
+    elif br == "reclama": md, mi = (x - 215 * u, y - 360 * u), (x + 235 * u, y - 300 * u + 18 * u * math.sin(k * 14))   # celular en alto y la otra mano reclamando
     elif br == "cubre": md, mi = (hx - 85 * u, hy + 35 * u), (hx + 85 * u, hy + 35 * u)
     elif br == "aplaude":
         z = 30 * u * abs(math.sin(k * 10)); md, mi = (x - 20 * u - z, y - 300 * u), (x + 20 * u + z, y - 300 * u)
@@ -238,15 +239,17 @@ def _mujer(L, x, y, s, lt, habla, expr, br, obj, k, ropa=None):
             pegar_centro(L, emoji("❤", 46 * u), ex, ey); continue
         if expr in ("risa", "verguenza") or parp:
             d.arc([ex - 20 * u, ey - 12 * u, ex + 20 * u, ey + 16 * u], 200, 340, fill=OUT, width=max(3, int(5 * u))); continue
-        big = 1.25 if expr in ("sorpresa", "panico") else 1.0
+        big = 1.25 if expr in ("sorpresa", "panico", "enojada") else 1.0
         d.ellipse([ex - 20 * u * big, ey - 25 * u * big, ex + 20 * u * big, ey + 25 * u * big], fill=WHITE + (255,), outline=OUT, width=max(2, int(3 * u)))
-        rp = 9 * u if expr in ("sorpresa", "panico") else 13 * u
+        rp = 9 * u if expr in ("sorpresa", "panico", "enojada") else 13 * u
         d.ellipse([ex - rp, ey - rp + 3 * u, ex + rp, ey + rp + 3 * u], fill=(60, 35, 25, 255))
         d.ellipse([ex - 4 * u, ey - 6 * u, ex + 2 * u, ey], fill=WHITE + (255,))
         d.line([ex + s_ * 14 * u, ey - 24 * u * big, ex + s_ * 26 * u, ey - 34 * u * big], fill=OUT, width=max(2, int(4 * u)))   # pestaña
     cejas = -48 if expr in ("sorpresa", "panico") else -40
     for s_ in (-1, 1):
         ex = hx + s_ * 38 * u
+        if expr == "enojada":                                           # cejas en V, bien fruncidas
+            d.line([hx + s_ * 12 * u, hy - 30 * u, hx + s_ * 62 * u, hy - 58 * u], fill=PELO + (255,), width=max(4, int(9 * u))); continue
         d.line([ex - 18 * u, hy + cejas * u + (4 * u if s_ < 0 else 0), ex + 18 * u, hy + cejas * u + (0 if s_ < 0 else 4 * u)], fill=PELO + (255,), width=max(3, int(6 * u)))
     rub = (245, 130, 140) if expr == "verguenza" else (247, 165, 160)
     for s_ in (-1, 1):
@@ -255,6 +258,10 @@ def _mujer(L, x, y, s, lt, habla, expr, br, obj, k, ropa=None):
     my = hy + 58 * u
     if habla and (lt * 7.5) % 1 < 0.5:
         d.ellipse([hx - 20 * u, my - 12 * u, hx + 20 * u, my + 20 * u], fill=(150, 40, 60, 255), outline=OUT, width=max(2, int(3 * u)))
+    elif expr == "enojada":                                             # boca bien abierta, gritando, con dientes
+        d.ellipse([hx - 30 * u, my - 18 * u, hx + 30 * u, my + 34 * u], fill=(150, 40, 60, 255), outline=OUT, width=max(2, int(3 * u)))
+        d.chord([hx - 26 * u, my - 15 * u, hx + 26 * u, my + 4 * u], 180, 360, fill=WHITE + (255,))
+        d.ellipse([hx - 14 * u, my + 14 * u, hx + 14 * u, my + 30 * u], fill=(230, 100, 110, 255))
     elif expr in ("sorpresa", "panico"):
         d.ellipse([hx - 13 * u, my - 10 * u, hx + 13 * u, my + 18 * u], fill=(150, 40, 60, 255), outline=OUT, width=max(2, int(3 * u)))
     elif expr in ("risa", "enamorado", "feliz"):
