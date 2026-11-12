@@ -1,0 +1,13 @@
+{
+  "musica_semilla": 98,
+  "fondos": ["rayos", "patron", "confeti", "ciudad", "puntos", "burbujas"],
+  "escenas": [
+    {"tipo": "titulo", "dur": 3.8, "arriba": "¿BLACK FRIDAY O CYBER MONDAY?", "lineas": ["Si compras en USA,", "esto es para ti"], "sub": "Guárdalo para tu próxima compra", "fondo": "tienda"},
+    {"tipo": "texto", "dur": 4.6, "etiqueta": "FECHAS 2026", "titulo": "Viernes 27 y lunes 30 de noviembre", "texto": "Black Friday es el viernes 27/11 y Cyber Monday el lunes 30/11."},
+    {"tipo": "punto", "dur": 5, "numero": "1", "etiqueta": "BLACK FRIDAY", "titulo": "Tiendas de todo", "texto": "Ropa, zapatillas, juguetes y hogar. Muchas ofertas empiezan días antes.", "fondo": "tienda"},
+    {"tipo": "punto", "dur": 5, "numero": "2", "etiqueta": "CYBER MONDAY", "titulo": "Fuerte en compras online", "texto": "Suele traer descuentos en tecnología y en tiendas online."},
+    {"tipo": "punto", "dur": 5, "numero": "3", "etiqueta": "TIP", "titulo": "Compara en las dos fechas", "texto": "Anota el precio del viernes y revísalo el lunes antes de decidir.", "fondo": "cajas"},
+    {"tipo": "punto", "dur": 5, "numero": "4", "etiqueta": "TIP", "titulo": "Ten listo tu casillero", "texto": "Pon la dirección de tu casillero en Miami antes de que empiecen las ofertas.", "fondo": "avion"},
+    {"tipo": "cta", "dur": 4.5}
+  ]
+}

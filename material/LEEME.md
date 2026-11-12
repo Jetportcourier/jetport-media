@@ -17,7 +17,8 @@ Registro de clips (qué se ve y segundos útiles):
 | foto_balanza_04.jpg | Cajas U-Haul junto a la balanza | foto |
 | foto_almacen_05.jpg | Pared de cajas azules "S" | foto |
 | foto_camion_07.jpg | Camión cargado de cajas al aire libre | foto |
-| foto_van_cargada_09.jpg | Van abierta llena de cajas (incluye caja HP) | foto |
+| foto_van_cargada_09.jpg | Van abierta llena de cajas (incluye caja HP) | foto; con zoom se leen números de etiquetas (7619xx): no acercar |
+| foto_camion_07.jpg (aviso 08/11) | con zoom se lee "WR-13878" y un nombre escrito a mano | no acercar ni panear |
 | sacos_cajas_almacen_06.mp4 | Almacén: sacos blancos y cajas apiladas, paneo (636x848, 10,6 s) | 0–10,6 (todo) |
 | camion_sacos_07.mp4 | Camión retrocediendo lleno de sacos blancos (368x496, 7 s). PLACA DIFUMINADA (recuadro gris abajo al centro) | 0–7; poner texto "abajo" para tapar el difuminado |
 | sacos_almacen_08.mp4 | Fila de sacos blancos en almacén (636x848, 2,8 s) | 0–2,8 |

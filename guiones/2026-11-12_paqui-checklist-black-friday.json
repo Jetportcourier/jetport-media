@@ -1,0 +1,13 @@
+{
+  "musica_semilla": 95,
+  "fondos": ["confeti", "ciudad", "puntos", "rayos", "burbujas", "patron"],
+  "escenas": [
+    {"tipo": "anim", "escena": "hola", "dur": 3.2, "estilo_fondo": "rayos", "transicion": "ninguna", "texto": "¡ALTO! ¿Vas a comprar en Black Friday?", "resaltado": "¡Hola, soy Paqui!"},
+    {"tipo": "punto", "dur": 4.6, "numero": "1", "etiqueta": "CHECKLIST", "titulo": "Casillero listo", "texto": "Regístrate antes y copia bien la dirección en la tienda."},
+    {"tipo": "punto", "dur": 4.6, "numero": "2", "etiqueta": "CHECKLIST", "titulo": "Tarjeta habilitada", "texto": "Revisa que tu tarjeta acepte compras en el extranjero.", "fondo": "tienda"},
+    {"tipo": "punto", "dur": 4.6, "numero": "3", "etiqueta": "CHECKLIST", "titulo": "Guarda tu factura", "texto": "Descarga la factura de cada compra. La vas a necesitar.", "fondo": "cajas"},
+    {"tipo": "punto", "dur": 4.6, "numero": "4", "etiqueta": "CHECKLIST", "titulo": "Nada de restringidos", "texto": "Evita baterías de litio sueltas, aerosoles y líquidos inflamables.", "fondo": "avion"},
+    {"tipo": "anim", "escena": "sello", "dur": 2.8, "estilo_fondo": "confeti", "transicion": "destello", "texto": "¡Listo para el Black Friday!", "sello": "OK"},
+    {"tipo": "cta", "dur": 4.5, "modo": "escribenos"}
+  ]
+}

@@ -1,0 +1,9 @@
+{
+  "musica_semilla": 97,
+  "escenas": [
+    {"tipo": "clip", "dur": 2.6, "archivo": "material/foto_uhaul_02.jpg", "camara": "diagonal", "texto": "Viernes 13: ¿y si mi paquete no llega?", "posicion": "arriba", "transicion": "ninguna"},
+    {"tipo": "clip", "dur": 2.4, "archivo": "material/carga_van_03.mp4", "inicio": 4.0, "texto": "Mala suerte: 0", "posicion": "arriba", "transicion": "glitch"},
+    {"tipo": "clip", "dur": 2.6, "archivo": "material/foto_companero_desempaca_15.jpg", "estilo": "polaroid", "angulo": -4, "pie": "Llegó", "texto": "Tu paquete: 1", "resaltado": "¡Llegó igual!", "transicion": "destello"},
+    {"tipo": "cta", "dur": 3, "transicion": "zoom"}
+  ]
+}

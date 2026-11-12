@@ -1,0 +1,39 @@
+{
+  "musica_semilla": 93,
+  "escenas": [
+    {
+      "tipo": "clip",
+      "dur": 2.4,
+      "archivo": "material/foto_cajas_rincon_17.jpg",
+      "camara": "acercar",
+      "texto": "Mi pareja: ¿OTRA caja más?",
+      "posicion": "arriba",
+      "transicion": "ninguna"
+    },
+    {
+      "tipo": "clip",
+      "dur": 2.4,
+      "archivo": "material/foto_paquetes_piso_16.jpg",
+      "estilo": "polaroid",
+      "angulo": -5,
+      "pie": "La última, lo juro",
+      "texto": "Yo: es la última, lo juro",
+      "transicion": "giro"
+    },
+    {
+      "tipo": "clip",
+      "dur": 2.6,
+      "archivo": "material/sacos_cajas_almacen_06.mp4",
+      "texto": "La \"última\":",
+      "resaltado": "¡Llegó todo!",
+      "posicion": "arriba",
+      "transicion": "sacudida",
+      "inicio": 4.0
+    },
+    {
+      "tipo": "cta",
+      "dur": 3,
+      "transicion": "destello"
+    }
+  ]
+}
