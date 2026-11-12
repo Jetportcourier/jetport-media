@@ -19,6 +19,7 @@ from PIL import Image, ImageDraw, ImageFont
 
 import personajes as pj
 import noticiero as nt
+import evento as ev
 
 W, H = 1080, 1920
 SU = 1470
@@ -628,6 +629,7 @@ PROPS = {"emoji": _p_emoji, "texto": _p_texto, "cartel": _p_cartel, "burbuja": _
 
 
 PROPS.update(nt.PROPS)
+PROPS.update(ev.PROPS)
 
 
 def _props(L, e, lt, capa):
