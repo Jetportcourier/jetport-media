@@ -38,3 +38,5 @@ videos/jetport_tips_1.mp4 (primera versión de "3 errores", estilo antiguo).
 
 Desde el 16/10/2026 (pedido del dueño): música siempre alegre (estilo 3 = tropical, ya no lo-fi) y fondos variados
 (rayos, confeti, ciudad, patrón, burbujas, puntos, degradado) que rotan solos. Las semillas 13 y 22 son de la música anterior.
+
+- 14/11/2026 12:07 · JP Noticias #1 (noticiero animado: Don Lucho, Jetito, Paqui) · Black Friday 27/11 + compras hasta US$200 sin impuestos por ahora, SUNAT evalúa cambios · semilla 76 · animado, sin clips reales · programado (TikTok+IG+FB). Desde aquí: 1 episodio cada sábado 12:07.
