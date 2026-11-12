@@ -1,0 +1,1064 @@
+{
+ "musica_semilla": 76,
+ "escenas": [
+  {
+   "tipo": "anim",
+   "escena": "show",
+   "dur": 4.5,
+   "transicion": "ninguna",
+   "subt_cortos": true,
+   "voces": [
+    [
+     0.15,
+     "material/voces/noticias1/l1.mp3"
+    ]
+   ],
+   "lineas": [
+    [
+     0.15,
+     1.35,
+     "lucho",
+     "¡*Atención*, atención!"
+    ],
+    [
+     1.6,
+     4.2,
+     "lucho",
+     "¡Interrumpimos tu *scroll* con noticias de tus *compras*!"
+    ]
+   ],
+   "props": [
+    {
+     "tipo": "estudio"
+    },
+    {
+     "tipo": "pantalla",
+     "e": "🚨",
+     "titulo": "ÚLTIMO",
+     "sub": "MINUTO",
+     "fondo": [
+      190,
+      20,
+      40
+     ],
+     "fondo2": [
+      70,
+      5,
+      20
+     ]
+    },
+    {
+     "tipo": "mesa"
+    },
+    {
+     "tipo": "zocalo",
+     "tag": "ÚLTIMO MINUTO",
+     "texto": "Noticias de tus compras",
+     "desde": 0.3
+    },
+    {
+     "tipo": "sirena",
+     "hasta": 1.6
+    },
+    {
+     "tipo": "ticker",
+     "textos": [
+      "BLACK FRIDAY: VIERNES 27 DE NOVIEMBRE",
+      "CYBER MONDAY: LUNES 30",
+      "COMPRA CON TIEMPO PARA NAVIDAD",
+      "DECLARA EL VALOR REAL DE TU COMPRA",
+      "SÍGUENOS: @JETPORTCOURIER"
+     ]
+    }
+   ],
+   "actores": [
+    {
+     "quien": "lucho",
+     "x": 540,
+     "y": 1420,
+     "s": 120,
+     "z": 1,
+     "expr": [
+      [
+       0,
+       "sorpresa"
+      ],
+      [
+       1.6,
+       "serio"
+      ]
+     ],
+     "brazos": [
+      [
+       0,
+       "golpe"
+      ],
+      [
+       1.4,
+       "habla"
+      ]
+     ]
+    }
+   ],
+   "sacudir": [
+    [
+     0,
+     0.7,
+     18
+    ]
+   ],
+   "sfx": [
+    [
+     0,
+     "sirena"
+    ],
+    [
+     0.2,
+     "sello"
+    ]
+   ]
+  },
+  {
+   "tipo": "anim",
+   "escena": "show",
+   "dur": 4.9,
+   "transicion": "barrido",
+   "subt_cortos": true,
+   "voces": [
+    [
+     0.1,
+     "material/voces/noticias1/l2.mp3"
+    ]
+   ],
+   "lineas": [
+    [
+     0.15,
+     1.0,
+     "lucho",
+     "Buenas *noches*."
+    ],
+    [
+     1.25,
+     3.05,
+     "lucho",
+     "Soy *Don Lucho*, y esto es..."
+    ],
+    [
+     3.25,
+     4.75,
+     "lucho",
+     "¡*JP Noticias*!"
+    ]
+   ],
+   "props": [
+    {
+     "tipo": "estudio"
+    },
+    {
+     "tipo": "pantalla",
+     "e": "🎙️",
+     "titulo": "DON LUCHO",
+     "sub": "Conductor",
+     "tam": 96
+    },
+    {
+     "tipo": "mesa"
+    },
+    {
+     "tipo": "zocalo",
+     "tag": "CONDUCTOR",
+     "texto": "Don Lucho · JP Noticias",
+     "color_tag": [
+      11,
+      37,
+      84
+     ],
+     "parpadea": false,
+     "desde": 0.2
+    },
+    {
+     "tipo": "ticker",
+     "textos": [
+      "BLACK FRIDAY: VIERNES 27 DE NOVIEMBRE",
+      "CYBER MONDAY: LUNES 30",
+      "COMPRA CON TIEMPO PARA NAVIDAD",
+      "DECLARA EL VALOR REAL DE TU COMPRA",
+      "SÍGUENOS: @JETPORTCOURIER"
+     ]
+    }
+   ],
+   "actores": [
+    {
+     "quien": "lucho",
+     "x": 540,
+     "y": 1420,
+     "s": 120,
+     "z": 1,
+     "expr": [
+      [
+       0,
+       "feliz"
+      ],
+      [
+       3.2,
+       "risa"
+      ]
+     ],
+     "brazos": [
+      [
+       0,
+       "saluda"
+      ],
+      [
+       1.2,
+       "habla"
+      ],
+      [
+       3.2,
+       "arriba"
+      ]
+     ]
+    }
+   ],
+   "sfx": [
+    [
+     3.25,
+     "ding"
+    ]
+   ]
+  },
+  {
+   "tipo": "anim",
+   "escena": "show",
+   "dur": 2.1,
+   "transicion": "zoom",
+   "props": [
+    {
+     "tipo": "intro",
+     "sub": "Lo último de tus compras"
+    }
+   ],
+   "actores": [],
+   "sfx": [
+    [
+     0.05,
+     "jingle"
+    ]
+   ]
+  },
+  {
+   "tipo": "anim",
+   "escena": "show",
+   "dur": 7.9,
+   "transicion": "barrido",
+   "subt_cortos": true,
+   "voces": [
+    [
+     0.1,
+     "material/voces/noticias1/l3.mp3"
+    ]
+   ],
+   "lineas": [
+    [
+     0.1,
+     1.0,
+     "lucho",
+     "*Primera* noticia:"
+    ],
+    [
+     1.35,
+     4.45,
+     "lucho",
+     "el Black Friday llega el viernes *27 de noviembre*."
+    ],
+    [
+     4.75,
+     7.45,
+     "lucho",
+     "¡Arma tu *lista* desde ahora y compra con *tiempo*!"
+    ]
+   ],
+   "props": [
+    {
+     "tipo": "estudio"
+    },
+    {
+     "tipo": "pantalla",
+     "e": "🛍️",
+     "titulo": "27 NOV",
+     "sub": "BLACK FRIDAY",
+     "hasta": 4.7
+    },
+    {
+     "tipo": "pantalla",
+     "e": "📝",
+     "titulo": "TU LISTA",
+     "sub": "Compra con tiempo",
+     "desde": 4.7,
+     "fondo": [
+      230,
+      110,
+      20
+     ],
+     "fondo2": [
+      120,
+      40,
+      5
+     ]
+    },
+    {
+     "tipo": "mesa"
+    },
+    {
+     "tipo": "zocalo",
+     "tag": "COMPRAS",
+     "texto": "Black Friday: viernes 27 de noviembre",
+     "desde": 0.3
+    },
+    {
+     "tipo": "ticker",
+     "textos": [
+      "BLACK FRIDAY: VIERNES 27 DE NOVIEMBRE",
+      "CYBER MONDAY: LUNES 30",
+      "COMPRA CON TIEMPO PARA NAVIDAD",
+      "DECLARA EL VALOR REAL DE TU COMPRA",
+      "SÍGUENOS: @JETPORTCOURIER"
+     ]
+    }
+   ],
+   "actores": [
+    {
+     "quien": "lucho",
+     "x": 540,
+     "y": 1420,
+     "s": 120,
+     "z": 1,
+     "expr": [
+      [
+       0,
+       "serio"
+      ],
+      [
+       1.35,
+       "feliz"
+      ],
+      [
+       4.75,
+       "guino"
+      ],
+      [
+       5.4,
+       "feliz"
+      ]
+     ],
+     "brazos": [
+      [
+       0,
+       "papeles"
+      ],
+      [
+       1.35,
+       "senala"
+      ],
+      [
+       4.75,
+       "habla"
+      ]
+     ]
+    }
+   ],
+   "sfx": [
+    [
+     0.1,
+     "swish"
+    ],
+    [
+     4.75,
+     "pop"
+    ]
+   ]
+  },
+  {
+   "tipo": "anim",
+   "escena": "show",
+   "dur": 10.8,
+   "transicion": "zoom",
+   "subt_cortos": true,
+   "voces": [
+    [
+     0.1,
+     "material/voces/noticias1/l4.mp3"
+    ]
+   ],
+   "lineas": [
+    [
+     0.1,
+     0.9,
+     "lucho",
+     "En *aduanas*:"
+    ],
+    [
+     1.25,
+     4.0,
+     "lucho",
+     "las compras por courier de hasta *200 dólares*,"
+    ],
+    [
+     4.2,
+     6.35,
+     "lucho",
+     "por ahora, siguen *sin pagar impuestos*."
+    ],
+    [
+     6.65,
+     7.05,
+     "lucho",
+     "Y *ojo*:"
+    ],
+    [
+     7.35,
+     9.25,
+     "lucho",
+     "la *SUNAT* está evaluando cambios."
+    ],
+    [
+     9.55,
+     10.6,
+     "lucho",
+     "¡Aquí te *avisamos*!"
+    ]
+   ],
+   "props": [
+    {
+     "tipo": "estudio"
+    },
+    {
+     "tipo": "pantalla",
+     "e": "📦",
+     "titulo": "US$200",
+     "sub": "Sin impuestos (por ahora)",
+     "hasta": 6.6,
+     "fondo": [
+      20,
+      140,
+      90
+     ],
+     "fondo2": [
+      5,
+      60,
+      40
+     ]
+    },
+    {
+     "tipo": "pantalla",
+     "e": "👀",
+     "titulo": "SUNAT",
+     "sub": "Evalúa cambios",
+     "desde": 6.6
+    },
+    {
+     "tipo": "mesa"
+    },
+    {
+     "tipo": "zocalo",
+     "tag": "ADUANAS",
+     "texto": "Hasta US$200: sin impuestos, por ahora",
+     "desde": 0.3
+    },
+    {
+     "tipo": "ticker",
+     "textos": [
+      "BLACK FRIDAY: VIERNES 27 DE NOVIEMBRE",
+      "CYBER MONDAY: LUNES 30",
+      "COMPRA CON TIEMPO PARA NAVIDAD",
+      "DECLARA EL VALOR REAL DE TU COMPRA",
+      "SÍGUENOS: @JETPORTCOURIER"
+     ]
+    }
+   ],
+   "actores": [
+    {
+     "quien": "lucho",
+     "x": 540,
+     "y": 1420,
+     "s": 120,
+     "z": 1,
+     "expr": [
+      [
+       0,
+       "serio"
+      ],
+      [
+       4.2,
+       "feliz"
+      ],
+      [
+       6.65,
+       "sorpresa"
+      ],
+      [
+       7.35,
+       "serio"
+      ],
+      [
+       9.55,
+       "guino"
+      ]
+     ],
+     "brazos": [
+      [
+       0,
+       "papeles"
+      ],
+      [
+       1.25,
+       "senala"
+      ],
+      [
+       4.2,
+       "habla"
+      ],
+      [
+       6.65,
+       "golpe"
+      ],
+      [
+       7.1,
+       "papeles"
+      ],
+      [
+       9.55,
+       "habla"
+      ]
+     ]
+    }
+   ],
+   "sfx": [
+    [
+     0.15,
+     "tecleo"
+    ],
+    [
+     6.65,
+     "sello"
+    ]
+   ]
+  },
+  {
+   "tipo": "anim",
+   "escena": "show",
+   "dur": 4.0,
+   "transicion": "barrido",
+   "subt_cortos": true,
+   "voces": [
+    [
+     0.1,
+     "material/voces/noticias1/l5.mp3"
+    ]
+   ],
+   "lineas": [
+    [
+     0.1,
+     2.9,
+     "lucho",
+     "Vamos *en vivo* a Miami, con nuestro reportero..."
+    ],
+    [
+     3.1,
+     3.8,
+     "lucho",
+     "¡*Jetito*!"
+    ]
+   ],
+   "props": [
+    {
+     "tipo": "estudio"
+    },
+    {
+     "tipo": "pantalla",
+     "e": "✈️",
+     "titulo": "MIAMI",
+     "sub": "En vivo"
+    },
+    {
+     "tipo": "mesa"
+    },
+    {
+     "tipo": "zocalo",
+     "tag": "ENLACE",
+     "texto": "En vivo desde Miami",
+     "desde": 0.3
+    },
+    {
+     "tipo": "ticker",
+     "textos": [
+      "BLACK FRIDAY: VIERNES 27 DE NOVIEMBRE",
+      "CYBER MONDAY: LUNES 30",
+      "COMPRA CON TIEMPO PARA NAVIDAD",
+      "DECLARA EL VALOR REAL DE TU COMPRA",
+      "SÍGUENOS: @JETPORTCOURIER"
+     ]
+    }
+   ],
+   "actores": [
+    {
+     "quien": "lucho",
+     "x": 540,
+     "y": 1420,
+     "s": 120,
+     "z": 1,
+     "expr": "feliz",
+     "brazos": [
+      [
+       0,
+       "habla"
+      ],
+      [
+       3.0,
+       "senala"
+      ]
+     ]
+    }
+   ],
+   "sfx": [
+    [
+     3.1,
+     "swish"
+    ]
+   ]
+  },
+  {
+   "tipo": "anim",
+   "escena": "show",
+   "dur": 10.2,
+   "transicion": "deslizar",
+   "subt_cortos": true,
+   "voces": [
+    [
+     0.2,
+     "material/voces/noticias1/j1.mp3"
+    ],
+    [
+     5.6,
+     "material/voces/noticias1/j2.mp3"
+    ]
+   ],
+   "lineas": [
+    [
+     0.2,
+     1.2,
+     "jetito",
+     "¡Gracias, *Lucho*!"
+    ],
+    [
+     1.35,
+     4.95,
+     "jetito",
+     "Aquí en el almacén de Miami, las cajas ya *no paran* de llegar..."
+    ],
+    [
+     5.7,
+     7.6,
+     "jetito",
+     "¡Uy! ¡Uy! ¡*Otra más*!"
+    ],
+    [
+     8.15,
+     9.7,
+     "jetito",
+     "¡Devuelvo la *señal*, Lucho!"
+    ]
+   ],
+   "props": [
+    {
+     "tipo": "almacen"
+    },
+    {
+     "tipo": "cajas_caen",
+     "desde": 5.0,
+     "n": 16,
+     "cada": 0.12,
+     "techo": 1150,
+     "semilla": 5,
+     "capa": "atras"
+    },
+    {
+     "tipo": "emoji",
+     "e": "📦",
+     "x": 560,
+     "y": 930,
+     "r": 200,
+     "anim": "cae",
+     "desde": 5.6,
+     "hasta": 10.2,
+     "capa": "frente"
+    },
+    {
+     "tipo": "emoji",
+     "e": "📦",
+     "x": 470,
+     "y": 790,
+     "r": 170,
+     "anim": "cae",
+     "desde": 6.4,
+     "hasta": 10.2,
+     "capa": "frente"
+    },
+    {
+     "tipo": "emoji",
+     "e": "💫",
+     "x": 560,
+     "y": 700,
+     "r": 120,
+     "anim": "gira",
+     "desde": 7.0,
+     "hasta": 10.2,
+     "capa": "frente"
+    },
+    {
+     "tipo": "en_vivo",
+     "lugar": "MIAMI"
+    },
+    {
+     "tipo": "zocalo",
+     "tag": "EN VIVO",
+     "texto": "Jetito · reportero en Miami",
+     "desde": 0.4
+    },
+    {
+     "tipo": "ticker",
+     "textos": [
+      "BLACK FRIDAY: VIERNES 27 DE NOVIEMBRE",
+      "CYBER MONDAY: LUNES 30",
+      "COMPRA CON TIEMPO PARA NAVIDAD",
+      "DECLARA EL VALOR REAL DE TU COMPRA",
+      "SÍGUENOS: @JETPORTCOURIER"
+     ]
+    }
+   ],
+   "actores": [
+    {
+     "quien": "jetito",
+     "x": [
+      [
+       0,
+       1300
+      ],
+      [
+       0.6,
+       560
+      ]
+     ],
+     "y": 1150,
+     "s": 215,
+     "dir": -1,
+     "mov": [
+      [
+       0,
+       "quieto"
+      ],
+      [
+       0.6,
+       "flota"
+      ],
+      [
+       5.6,
+       "tiembla"
+      ],
+      [
+       7.6,
+       "flota"
+      ]
+     ],
+     "expr": [
+      [
+       0,
+       "feliz"
+      ],
+      [
+       5.6,
+       "panico"
+      ],
+      [
+       7.7,
+       "risa"
+      ],
+      [
+       8.2,
+       "feliz"
+      ]
+     ],
+     "z": 0
+    }
+   ],
+   "sacudir": [
+    [
+     5.6,
+     6.4,
+     16
+    ]
+   ],
+   "sfx": [
+    [
+     0.1,
+     "swish"
+    ],
+    [
+     5.65,
+     "crash"
+    ],
+    [
+     6.45,
+     "boing"
+    ]
+   ]
+  },
+  {
+   "tipo": "anim",
+   "escena": "show",
+   "dur": 5.6,
+   "transicion": "zoom",
+   "subt_cortos": true,
+   "voces": [
+    [
+     0.3,
+     "material/voces/noticias1/p1.mp3"
+    ]
+   ],
+   "lineas": [
+    [
+     0.3,
+     2.7,
+     "paqui",
+     "¡Hola, soy *Paqui*!"
+    ],
+    [
+     2.95,
+     5.3,
+     "paqui",
+     "Y recuerda: ¡declara el *valor real* de tu compra!"
+    ]
+   ],
+   "props": [
+    {
+     "tipo": "estudio"
+    },
+    {
+     "tipo": "pantalla",
+     "e": "🧾",
+     "titulo": "VALOR REAL",
+     "sub": "Declara bien tu compra",
+     "tam": 90
+    },
+    {
+     "tipo": "mesa"
+    },
+    {
+     "tipo": "zocalo",
+     "tag": "INVITADO",
+     "texto": "Paqui · mascota de Jetport",
+     "color_tag": [
+      255,
+      122,
+      26
+     ],
+     "parpadea": false,
+     "desde": 0.3
+    },
+    {
+     "tipo": "ticker",
+     "textos": [
+      "BLACK FRIDAY: VIERNES 27 DE NOVIEMBRE",
+      "CYBER MONDAY: LUNES 30",
+      "COMPRA CON TIEMPO PARA NAVIDAD",
+      "DECLARA EL VALOR REAL DE TU COMPRA",
+      "SÍGUENOS: @JETPORTCOURIER"
+     ]
+    }
+   ],
+   "actores": [
+    {
+     "quien": "lucho",
+     "x": 360,
+     "y": 1420,
+     "s": 120,
+     "z": 1,
+     "expr": [
+      [
+       0,
+       "sorpresa"
+      ],
+      [
+       0.8,
+       "risa"
+      ],
+      [
+       2.9,
+       "feliz"
+      ]
+     ],
+     "brazos": [
+      [
+       0,
+       "arriba"
+      ],
+      [
+       0.8,
+       "mesa"
+      ]
+     ]
+    },
+    {
+     "quien": "paqui",
+     "x": 800,
+     "y": 1330,
+     "s": 200,
+     "desde": 0.1,
+     "mov": [
+      [
+       0,
+       "pop"
+      ],
+      [
+       1.0,
+       "salta"
+      ],
+      [
+       2.9,
+       "quieto"
+      ]
+     ],
+     "expr": "feliz",
+     "brazos": [
+      [
+       0,
+       "arriba"
+      ],
+      [
+       2.9,
+       "habla"
+      ]
+     ],
+     "mirar": [
+      -1,
+      0
+     ],
+     "sombra": false,
+     "z": 2
+    }
+   ],
+   "sfx": [
+    [
+     0.1,
+     "pop"
+    ],
+    [
+     0.35,
+     "boing"
+    ]
+   ]
+  },
+  {
+   "tipo": "anim",
+   "escena": "show",
+   "dur": 4.0,
+   "transicion": "barrido",
+   "subt_cortos": true,
+   "voces": [
+    [
+     0.1,
+     "material/voces/noticias1/l6.mp3"
+    ]
+   ],
+   "lineas": [
+    [
+     0.1,
+     1.15,
+     "lucho",
+     "Eso es todo por *hoy*."
+    ],
+    [
+     1.45,
+     3.8,
+     "lucho",
+     "¡*Síguenos* para más JP Noticias!"
+    ]
+   ],
+   "props": [
+    {
+     "tipo": "estudio"
+    },
+    {
+     "tipo": "pantalla",
+     "e": "📲",
+     "titulo": "SÍGUENOS",
+     "sub": "@jetportcourier",
+     "tam": 100
+    },
+    {
+     "tipo": "mesa"
+    },
+    {
+     "tipo": "ticker",
+     "textos": [
+      "BLACK FRIDAY: VIERNES 27 DE NOVIEMBRE",
+      "CYBER MONDAY: LUNES 30",
+      "COMPRA CON TIEMPO PARA NAVIDAD",
+      "DECLARA EL VALOR REAL DE TU COMPRA",
+      "SÍGUENOS: @JETPORTCOURIER"
+     ]
+    }
+   ],
+   "actores": [
+    {
+     "quien": "lucho",
+     "x": 360,
+     "y": 1420,
+     "s": 120,
+     "z": 1,
+     "expr": [
+      [
+       0,
+       "feliz"
+      ],
+      [
+       1.45,
+       "risa"
+      ]
+     ],
+     "brazos": [
+      [
+       0,
+       "habla"
+      ],
+      [
+       1.45,
+       "saluda"
+      ]
+     ]
+    },
+    {
+     "quien": "paqui",
+     "x": 800,
+     "y": 1330,
+     "s": 200,
+     "mov": "baila",
+     "expr": "risa",
+     "sombra": false,
+     "z": 2
+    }
+   ],
+   "sfx": [
+    [
+     1.45,
+     "tada"
+    ]
+   ]
+  },
+  {
+   "tipo": "cta",
+   "dur": 3,
+   "transicion": "zoom"
+  }
+ ]
+}

@@ -18,6 +18,7 @@ import random
 from PIL import Image, ImageDraw, ImageFont
 
 import personajes as pj
+import noticiero as nt
 
 W, H = 1080, 1920
 SU = 1470
@@ -327,6 +328,18 @@ def _actor(L, e, a, lt):
     if quien == "mujer":                                               # brazos: abajo|sostiene|arriba|corta|cubre|aplaude; "obj": emoji en la mano
         _mujer(L, x, y + (-5 * abs(math.sin(lt * 12)) if habla else 0), s, lt, habla, expr, br, paso(a.get("obj", ""), lt), k, a.get("ropa"))
         return
+    if quien == "lucho":
+        nt.lucho(L, x, y + (-4 * abs(math.sin(lt * 12)) if habla else 0), s, lt, habla, expr, br, k, paso(a.get("acc", []), lt))
+        return
+    if quien == "vale":
+        nt.vale(L, x, y + (-4 * abs(math.sin(lt * 12)) if habla else 0), s, lt, habla, expr, br, k)
+        return
+    if quien == "jetito":
+        im = nt.jetito(L, x, y, s, lt, habla, expr, k, paso(a.get("dir", 1), lt), a.get("mic", True))
+        im = im.resize((max(1, int(im.width * sx)), max(1, int(im.height * sy))), Image.BILINEAR)
+        if a.get("sombra", False): pj.sombra(L, x, num(a.get("y", SU), lt) + s * 1.2, s * 2)
+        pegar_centro(L, im, x, y, ang + (6 * math.sin(lt * 9) if habla else 0))
+        return
     if quien == "maleta":
         if a.get("sombra", True): pj.sombra(L, x, y - 6, s * 1.3)
         _maleta(L, x, y + (-6 * abs(math.sin(lt * 12)) if habla else 0), s, lt, habla, expr)
@@ -614,9 +627,12 @@ PROPS = {"emoji": _p_emoji, "texto": _p_texto, "cartel": _p_cartel, "burbuja": _
          "destello": _p_destello, "ventana": _p_ventana}
 
 
+PROPS.update(nt.PROPS)
+
+
 def _props(L, e, lt, capa):
     for p in e.get("props", []):
-        cap = p.get("capa", "frente" if p["tipo"] in ("cajas_caen", "destello", "escritorio") else "atras")
+        cap = p.get("capa", "frente" if p["tipo"] in ("cajas_caen", "destello", "escritorio") + nt.FRENTE else "atras")
         if cap != capa: continue
         desde, hasta = p.get("desde", 0), p.get("hasta", 999)
         if desde <= lt < hasta:
@@ -697,7 +713,8 @@ def sfx_wav(lista, total, ruta, sr=44100):
         elif tipo == "risas":
             w = np.concatenate([tono(420 + 40 * (j % 2), 380, 0.13, dec=8, vol=0.35) for j in range(6)])
         else:
-            continue
+            w = nt.sfx(tipo, tono, ruido, sr, np)
+            if w is None: continue
         i = int(t0 * sr); j = min(len(out), i + len(w)); out[i:j] += w[: j - i]
     out = np.clip(out, -0.98, 0.98)
     wavfile.write(ruta, sr, (out * 32767).astype(np.int16))

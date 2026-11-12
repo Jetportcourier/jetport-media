@@ -1089,7 +1089,7 @@ def _a_aplastado(L, e, lt):
 ANIMACIONES["aplastado"] = _a_aplastado
 
 # --- subtítulos cortos estilo TikTok: 1 a 3 palabras a la vez, palabra clave entre *asteriscos* en amarillo ---
-_COLOR_QUIEN = {"paqui": (255, 170, 60), "amigo": (120, 200, 255), "copito": (140, 255, 170), "clienta": (255, 120, 200), "maleta": (210, 160, 255), "abuelita": (255, 150, 150), "operaria": (255, 200, 90)}
+_COLOR_QUIEN = {"paqui": (255, 170, 60), "amigo": (120, 200, 255), "copito": (140, 255, 170), "clienta": (255, 120, 200), "maleta": (210, 160, 255), "abuelita": (255, 150, 150), "operaria": (255, 200, 90), "lucho": (255, 214, 64), "jetito": (120, 220, 255), "vale": (255, 150, 90)}
 
 def _trozos(frase):
     palabras = limpiar(frase).split()
@@ -1123,7 +1123,7 @@ def _subt_corto(L, quien, frase, t, dur, a):
     f = font("Black", int(118 * z))
     while sum(f.getlength(w.strip("*") + " ") for w in tr) > W - 120 and f.size > 60:
         f = font("Black", f.size - 6)
-    nombre = {"paqui": "PAQUI", "amigo": "SU AMIGO", "copito": "COPITO", "clienta": "LA CLIENTA", "maleta": "LA MALETA", "abuelita": "LA ABUELITA", "operaria": "JETPORT"}.get(quien, quien.upper())
+    nombre = {"paqui": "PAQUI", "amigo": "SU AMIGO", "copito": "COPITO", "clienta": "LA CLIENTA", "maleta": "LA MALETA", "abuelita": "LA ABUELITA", "operaria": "JETPORT", "lucho": "DON LUCHO", "jetito": "JETITO", "vale": "VALE"}.get(quien, quien.upper())
     texto_borde(L, (W / 2, 300), nombre, font("Black", 50), _COLOR_QUIEN.get(quien, (255, 255, 255)), a, borde=7)
     anchos = [f.getlength(w.strip("*")) for w in tr]; esp = f.getlength(" ")
     x = W / 2 - (sum(anchos) + esp * (len(tr) - 1)) / 2

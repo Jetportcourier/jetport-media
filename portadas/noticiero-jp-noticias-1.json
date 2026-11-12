@@ -1,0 +1,5 @@
+{"titulo": [["¡ÚLTIMO MINUTO!", "rojo"], ["¿TUS COMPRAS", "blanco"], ["PAGAN IMPUESTOS?", "amarillo"]],
+ "abajo": ["JP NOTICIAS #1", "naranja"],
+ "ocultar": ["zocalo", "ticker"],
+ "t": 0.4,
+ "guion": "guiones/muestra_noticiero-jp-noticias-1.json", "escena_n": 0}
