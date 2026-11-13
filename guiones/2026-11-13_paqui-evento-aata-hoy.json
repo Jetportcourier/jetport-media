@@ -1,0 +1,647 @@
+{
+ "musica_semilla": 91,
+ "logo": "tarjeta",
+ "escenas": [
+  {
+   "tipo": "anim",
+   "escena": "show",
+   "dur": 5.8,
+   "transicion": "ninguna",
+   "subt_cortos": true,
+   "voces": [
+    [
+     0.3,
+     "material/voces/aata-hoy/h1a.mp3"
+    ]
+   ],
+   "lineas": [
+    [
+     0.34,
+     0.9,
+     "paqui",
+     "¡Es *hoy*!"
+    ],
+    [
+     1.2,
+     1.72,
+     "paqui",
+     "¡es *hoy*!"
+    ],
+    [
+     2.06,
+     2.88,
+     "paqui",
+     "Hoy es el *evento*"
+    ],
+    [
+     2.92,
+     4.1,
+     "paqui",
+     "de la *Asociación* de Agentes"
+    ],
+    [
+     4.16,
+     5.28,
+     "paqui",
+     "*Titulados* de Aduana"
+    ]
+   ],
+   "props": [
+    {
+     "tipo": "fondo_gala",
+     "imagen": "material/evento-aata/afiche.webp",
+     "capa": "atras"
+    },
+    {
+     "tipo": "texto",
+     "texto": "¡RECORDATORIO!",
+     "x": 540,
+     "y": 380,
+     "tam": 118,
+     "pop": false,
+     "hasta": 0.34,
+     "tiembla": true,
+     "color": [
+      255,
+      214,
+      120
+     ]
+    },
+    {
+     "tipo": "texto",
+     "texto": "¡ES HOY!",
+     "x": 540,
+     "y": 820,
+     "tam": 170,
+     "estilo": "sello",
+     "color": [
+      255,
+      90,
+      90
+     ],
+     "pop": false,
+     "ang": -8,
+     "hasta": 2.0
+    },
+    {
+     "tipo": "emoji",
+     "e": "⏰",
+     "x": 230,
+     "y": 1130,
+     "r": 190,
+     "anim": "late",
+     "desde": -1,
+     "hasta": 2.0
+    },
+    {
+     "tipo": "emoji",
+     "e": "🔔",
+     "x": 850,
+     "y": 1130,
+     "r": 170,
+     "anim": "late",
+     "desde": -1,
+     "hasta": 2.0
+    },
+    {
+     "tipo": "destello",
+     "desde": 2.0,
+     "dur": 0.3
+    },
+    {
+     "tipo": "imagen",
+     "src": "material/evento-aata/afiche.webp",
+     "recorte": [
+      318,
+      42,
+      676,
+      222
+     ],
+     "radio": 34,
+     "x": 540,
+     "y": 760,
+     "w": 660,
+     "anim": "zoom",
+     "desde": 2.0,
+     "brillo": true
+    },
+    {
+     "tipo": "cinta",
+     "texto": "HOY · VIERNES 13 DE NOVIEMBRE",
+     "y": 1060,
+     "tam": 52,
+     "fondo": [
+      220,
+      40,
+      50
+     ],
+     "color": [
+      255,
+      255,
+      255
+     ],
+     "desde": 2.2
+    }
+   ],
+   "actores": [
+    {
+     "quien": "paqui",
+     "x": 540,
+     "y": 1660,
+     "s": 240,
+     "expr": [
+      [
+       0,
+       "panico"
+      ],
+      [
+       1.6,
+       "feliz"
+      ]
+     ],
+     "brazos": [
+      [
+       0,
+       "agita"
+      ],
+      [
+       1.8,
+       "habla"
+      ]
+     ],
+     "mov": [
+      [
+       0,
+       "salta"
+      ],
+      [
+       2.0,
+       "quieto"
+      ]
+     ]
+    }
+   ],
+   "sacudir": [
+    [
+     0,
+     0.6,
+     16
+    ],
+    [
+     1.1,
+     1.5,
+     10
+    ]
+   ],
+   "sfx": [
+    [
+     0.02,
+     "sirena"
+    ],
+    [
+     0.05,
+     "sello"
+    ],
+    [
+     2.0,
+     "swish"
+    ]
+   ]
+  },
+  {
+   "tipo": "anim",
+   "escena": "show",
+   "dur": 11.6,
+   "transicion": "barrido",
+   "subt_cortos": true,
+   "voces": [
+    [
+     0.3,
+     "material/voces/aata-hoy/h2a.mp3"
+    ]
+   ],
+   "lineas": [
+    [
+     0.29,
+     1.03,
+     "paqui",
+     "*Hoy* viernes"
+    ],
+    [
+     1.19,
+     2.31,
+     "paqui",
+     "a las *6* de la tarde"
+    ],
+    [
+     2.49,
+     3.77,
+     "paqui",
+     "en modalidad *virtual*"
+    ],
+    [
+     4.11,
+     5.23,
+     "paqui",
+     "*Inmovilizaciones*"
+    ],
+    [
+     5.45,
+     6.37,
+     "paqui",
+     "*incautaciones*"
+    ],
+    [
+     6.55,
+     8.51,
+     "paqui",
+     "y el impacto en el *despacho aduanero*"
+    ],
+    [
+     8.91,
+     10.03,
+     "paqui",
+     "Con *Irma Augusto*"
+    ],
+    [
+     10.17,
+     11.15,
+     "paqui",
+     "y *Nurry Mendez*"
+    ]
+   ],
+   "props": [
+    {
+     "tipo": "fondo_gala",
+     "imagen": "material/evento-aata/afiche.webp",
+     "capa": "atras"
+    },
+    {
+     "tipo": "tarjeta",
+     "titulo": "HOY · VIERNES 13",
+     "icono": "⏰",
+     "x": 540,
+     "y": 880,
+     "w": 900,
+     "anim": "pop",
+     "hasta": 4.0,
+     "lineas": [
+      [
+       1.1,
+       "6:00 p. m.",
+       120,
+       [
+        255,
+        214,
+        120
+       ],
+       "Black"
+      ],
+      [
+       1.6,
+       "a 7:30 p. m.",
+       72,
+       null,
+       "Black"
+      ],
+      [
+       2.45,
+       "Modalidad: Virtual",
+       60,
+       [
+        200,
+        215,
+        240
+       ],
+       "Bold"
+      ]
+     ]
+    },
+    {
+     "tipo": "tarjeta",
+     "titulo": "TEMA DE HOY",
+     "icono": "⚖️",
+     "x": 540,
+     "y": 900,
+     "w": 940,
+     "anim": "sube",
+     "desde": 4.0,
+     "hasta": 8.8,
+     "lineas": [
+      [
+       0.05,
+       "Inmovilizaciones,",
+       76,
+       null,
+       "Black"
+      ],
+      [
+       1.4,
+       "incautaciones y el",
+       76,
+       null,
+       "Black"
+      ],
+      [
+       2.5,
+       "impacto en el",
+       76,
+       null,
+       "Black"
+      ],
+      [
+       3.0,
+       "despacho aduanero",
+       76,
+       [
+        255,
+        214,
+        120
+       ],
+       "Black"
+      ]
+     ]
+    },
+    {
+     "tipo": "imagen",
+     "src": "material/evento-aata/afiche.webp",
+     "recorte": [
+      683,
+      407,
+      909,
+      633
+     ],
+     "circulo": true,
+     "marco": "oro",
+     "x": 320,
+     "y": 800,
+     "w": 380,
+     "anim": "izq",
+     "desde": 8.75
+    },
+    {
+     "tipo": "texto",
+     "texto": "IRMA AUGUSTO",
+     "x": 320,
+     "y": 1035,
+     "tam": 52,
+     "color": [
+      255,
+      255,
+      255
+     ],
+     "desde": 8.9
+    },
+    {
+     "tipo": "imagen",
+     "src": "material/evento-aata/afiche.webp",
+     "recorte": [
+      617,
+      744,
+      843,
+      970
+     ],
+     "circulo": true,
+     "marco": "oro",
+     "x": 760,
+     "y": 1180,
+     "w": 380,
+     "anim": "der",
+     "desde": 10.1
+    },
+    {
+     "tipo": "texto",
+     "texto": "NURRY MENDEZ",
+     "x": 760,
+     "y": 1415,
+     "tam": 52,
+     "color": [
+      255,
+      255,
+      255
+     ],
+     "desde": 10.2
+    }
+   ],
+   "actores": [
+    {
+     "quien": "paqui",
+     "x": [
+      [
+       0,
+       880
+      ],
+      [
+       8.7,
+       880
+      ],
+      [
+       9.0,
+       230
+      ]
+     ],
+     "y": [
+      [
+       0,
+       1700
+      ],
+      [
+       8.7,
+       1700
+      ],
+      [
+       9.0,
+       1640
+      ]
+     ],
+     "s": 160,
+     "expr": "feliz",
+     "brazos": [
+      [
+       0,
+       "habla"
+      ],
+      [
+       4.0,
+       "senala_izq"
+      ],
+      [
+       9.0,
+       "arriba"
+      ]
+     ],
+     "mov": "quieto"
+    }
+   ],
+   "sfx": [
+    [
+     0.3,
+     "pop"
+    ],
+    [
+     1.2,
+     "ding"
+    ],
+    [
+     4.0,
+     "swish"
+    ],
+    [
+     8.75,
+     "swish"
+    ],
+    [
+     10.1,
+     "swish"
+    ]
+   ]
+  },
+  {
+   "tipo": "anim",
+   "escena": "show",
+   "dur": 11.0,
+   "transicion": "zoom",
+   "subt_cortos": true,
+   "voces": [
+    [
+     0.3,
+     "material/voces/aata-hoy/h3a.mp3"
+    ]
+   ],
+   "lineas": [
+    [
+     0.4,
+     1.72,
+     "paqui",
+     "¿Todavía no te *inscribes*?"
+    ],
+    [
+     2.1,
+     3.56,
+     "paqui",
+     "¡Escanea el *código QR*!"
+    ],
+    [
+     3.84,
+     4.72,
+     "paqui",
+     "*ahora mismo*"
+    ],
+    [
+     5.16,
+     6.22,
+     "paqui",
+     "¡No te lo *pierdas*!"
+    ]
+   ],
+   "props": [
+    {
+     "tipo": "fondo_gala",
+     "imagen": "material/evento-aata/afiche.webp",
+     "capa": "atras"
+    },
+    {
+     "tipo": "qr",
+     "src": "material/evento-aata/qr_inscripcion.png",
+     "x": 540,
+     "y": 1000,
+     "w": 600,
+     "titulo": "AÚN ESTÁS A TIEMPO",
+     "sub": "INSCRÍBETE",
+     "desde": 0.1,
+     "laser_hasta": 3.0
+    },
+    {
+     "tipo": "texto",
+     "texto": "HOY · 6:00 p. m.",
+     "x": 540,
+     "y": 400,
+     "tam": 104,
+     "color": [
+      255,
+      214,
+      120
+     ],
+     "desde": 6.4
+    },
+    {
+     "tipo": "cinta",
+     "texto": "EVENTO AATA · VIRTUAL",
+     "y": 1500,
+     "tam": 46,
+     "fondo": [
+      220,
+      40,
+      50
+     ],
+     "color": [
+      255,
+      255,
+      255
+     ],
+     "desde": 0.5
+    }
+   ],
+   "actores": [
+    {
+     "quien": "paqui",
+     "x": 540,
+     "y": 1745,
+     "s": 130,
+     "expr": [
+      [
+       0,
+       "sorpresa"
+      ],
+      [
+       2.0,
+       "feliz"
+      ]
+     ],
+     "brazos": [
+      [
+       0,
+       "cintura"
+      ],
+      [
+       2.0,
+       "arriba"
+      ],
+      [
+       5.1,
+       "agita"
+      ]
+     ],
+     "mov": [
+      [
+       0,
+       "quieto"
+      ],
+      [
+       5.1,
+       "salta"
+      ],
+      [
+       5.8,
+       "quieto"
+      ]
+     ]
+    }
+   ],
+   "sfx": [
+    [
+     0.1,
+     "pop"
+    ],
+    [
+     2.1,
+     "beep"
+    ],
+    [
+     5.1,
+     "tada"
+    ]
+   ]
+  }
+ ]
+}

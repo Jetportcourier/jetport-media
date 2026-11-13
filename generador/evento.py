@@ -238,6 +238,7 @@ def p_qr(L, p, lt, k):
     qr = Image.open(p["src"]).convert("RGBA").resize((int(w), int(w)), Image.NEAREST)
     pad = 34; f1 = _font("Black", 62); f2 = _font("Black", 76)
     cab = 175
+    while f1.getlength(p.get("titulo", "ESCANEA Y")) > w + 2 * pad - 70 and f1.size > 30: f1 = _font("Black", f1.size - 2)
     card = Image.new("RGBA", (int(w + 2 * pad + 60), int(w + 2 * pad + cab + 60)), (0, 0, 0, 0)); d = ImageDraw.Draw(card)
     cw, ch = w + 2 * pad, w + 2 * pad + cab
     sm = Image.new("L", card.size, 0); ImageDraw.Draw(sm).rounded_rectangle([30, 46, 30 + cw, 46 + ch], 44, fill=190)
