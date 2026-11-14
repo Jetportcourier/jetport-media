@@ -1,0 +1,662 @@
+{
+ "musica_semilla": 84,
+ "escenas": [
+  {
+   "tipo": "anim",
+   "escena": "show",
+   "dur": 4.3,
+   "transicion": "ninguna",
+   "subt_cortos": true,
+   "voces": [
+    [
+     0.15,
+     "material/voces/faa/q1.mp3"
+    ]
+   ],
+   "lineas": [
+    [
+     0.15,
+     1.5,
+     "paqui",
+     "¡*Alerta*, alerta!"
+    ],
+    [
+     1.6,
+     3.85,
+     "paqui",
+     "¡*Última hora* desde Estados Unidos!"
+    ]
+   ],
+   "props": [
+    {
+     "tipo": "estudio"
+    },
+    {
+     "tipo": "pantalla",
+     "e": "🚨",
+     "titulo": "ÚLTIMA",
+     "sub": "HORA",
+     "fondo": [
+      190,
+      20,
+      40
+     ],
+     "fondo2": [
+      70,
+      5,
+      20
+     ]
+    },
+    {
+     "tipo": "mesa"
+    },
+    {
+     "tipo": "zocalo",
+     "tag": "ÚLTIMA HORA",
+     "texto": "Estados Unidos · 13 de noviembre",
+     "desde": 0.3
+    },
+    {
+     "tipo": "sirena"
+    },
+    {
+     "tipo": "ticker",
+     "textos": [
+      "ÚLTIMA HORA: FALLA EN EL CONTROL AÉREO DE EE.UU.",
+      "LA PARADA DE DESPEGUES YA SE LEVANTÓ",
+      "MILES DE VUELOS CANCELADOS O RETRASADOS",
+      "ENVÍOS DESDE MIAMI: POSIBLES DÍAS DE RETRASO",
+      "SÍGUENOS: @JETPORTCOURIER"
+     ]
+    }
+   ],
+   "actores": [
+    {
+     "quien": "paqui",
+     "x": 540,
+     "y": 1330,
+     "s": 250,
+     "mov": [
+      [
+       0,
+       "pop"
+      ],
+      [
+       0.4,
+       "tiembla"
+      ],
+      [
+       1.6,
+       "quieto"
+      ]
+     ],
+     "expr": [
+      [
+       0,
+       "panico"
+      ],
+      [
+       1.6,
+       "sorpresa"
+      ]
+     ],
+     "brazos": [
+      [
+       0,
+       "agita"
+      ],
+      [
+       1.6,
+       "habla"
+      ]
+     ],
+     "sombra": false,
+     "z": 2
+    }
+   ],
+   "sfx": [
+    [
+     0,
+     "sirena"
+    ],
+    [
+     0.2,
+     "sello"
+    ],
+    [
+     1.6,
+     "beep"
+    ]
+   ],
+   "sacudir": [
+    [
+     0,
+     0.8,
+     20
+    ],
+    [
+     1.6,
+     2.0,
+     10
+    ]
+   ]
+  },
+  {
+   "tipo": "anim",
+   "escena": "show",
+   "dur": 6.1,
+   "transicion": "barrido",
+   "subt_cortos": true,
+   "voces": [
+    [
+     0.15,
+     "material/voces/faa/q2.mp3"
+    ]
+   ],
+   "lineas": [
+    [
+     0.15,
+     2.65,
+     "paqui",
+     "Una falla en el *control aéreo*"
+    ],
+    [
+     2.8,
+     5.8,
+     "paqui",
+     "detuvo por horas *todos los despegues* en EE.UU."
+    ]
+   ],
+   "props": [
+    {
+     "tipo": "estudio"
+    },
+    {
+     "tipo": "pantalla",
+     "e": "✈️",
+     "titulo": "DESPEGUES",
+     "sub": "DETENIDOS",
+     "tam": 90,
+     "fondo": [
+      190,
+      20,
+      40
+     ],
+     "fondo2": [
+      70,
+      5,
+      20
+     ]
+    },
+    {
+     "tipo": "mesa"
+    },
+    {
+     "tipo": "zocalo",
+     "tag": "ÚLTIMA HORA",
+     "texto": "La FAA detuvo los despegues en todo EE.UU.",
+     "desde": 0.3
+    },
+    {
+     "tipo": "sirena",
+     "hasta": 0.8
+    },
+    {
+     "tipo": "ticker",
+     "textos": [
+      "ÚLTIMA HORA: FALLA EN EL CONTROL AÉREO DE EE.UU.",
+      "LA PARADA DE DESPEGUES YA SE LEVANTÓ",
+      "MILES DE VUELOS CANCELADOS O RETRASADOS",
+      "ENVÍOS DESDE MIAMI: POSIBLES DÍAS DE RETRASO",
+      "SÍGUENOS: @JETPORTCOURIER"
+     ]
+    }
+   ],
+   "actores": [
+    {
+     "quien": "paqui",
+     "x": 540,
+     "y": 1330,
+     "s": 250,
+     "mov": [
+      [
+       0,
+       "quieto"
+      ],
+      [
+       2.8,
+       "vibra"
+      ],
+      [
+       3.6,
+       "quieto"
+      ]
+     ],
+     "expr": [
+      [
+       0,
+       "nervioso"
+      ],
+      [
+       2.8,
+       "sorpresa"
+      ]
+     ],
+     "brazos": [
+      [
+       0,
+       "habla"
+      ],
+      [
+       2.8,
+       "arriba"
+      ],
+      [
+       3.6,
+       "habla"
+      ]
+     ],
+     "sombra": false,
+     "z": 2
+    }
+   ],
+   "sfx": [
+    [
+     0.1,
+     "swish"
+    ],
+    [
+     2.8,
+     "beep"
+    ]
+   ]
+  },
+  {
+   "tipo": "anim",
+   "escena": "show",
+   "dur": 5.9,
+   "transicion": "zoom",
+   "subt_cortos": true,
+   "voces": [
+    [
+     0.15,
+     "material/voces/faa/q3.mp3"
+    ]
+   ],
+   "lineas": [
+    [
+     0.15,
+     1.8,
+     "paqui",
+     "Ya se *levantó* la orden..."
+    ],
+    [
+     2.1,
+     5.5,
+     "paqui",
+     "pero *miles de vuelos* se cancelaron o se retrasaron."
+    ]
+   ],
+   "props": [
+    {
+     "tipo": "estudio"
+    },
+    {
+     "tipo": "pantalla",
+     "e": "✅",
+     "titulo": "VUELOS",
+     "sub": "REANUDADOS",
+     "fondo": [
+      20,
+      150,
+      70
+     ],
+     "fondo2": [
+      5,
+      60,
+      30
+     ],
+     "hasta": 2.05
+    },
+    {
+     "tipo": "pantalla",
+     "e": "⏰",
+     "titulo": "MILES",
+     "sub": "cancelados o retrasados",
+     "desde": 2.05,
+     "fondo": [
+      230,
+      110,
+      20
+     ],
+     "fondo2": [
+      120,
+      40,
+      5
+     ]
+    },
+    {
+     "tipo": "mesa"
+    },
+    {
+     "tipo": "zocalo",
+     "tag": "AEROPUERTOS",
+     "texto": "Miles de vuelos cancelados o retrasados",
+     "desde": 0.3
+    },
+    {
+     "tipo": "ticker",
+     "textos": [
+      "ÚLTIMA HORA: FALLA EN EL CONTROL AÉREO DE EE.UU.",
+      "LA PARADA DE DESPEGUES YA SE LEVANTÓ",
+      "MILES DE VUELOS CANCELADOS O RETRASADOS",
+      "ENVÍOS DESDE MIAMI: POSIBLES DÍAS DE RETRASO",
+      "SÍGUENOS: @JETPORTCOURIER"
+     ]
+    }
+   ],
+   "actores": [
+    {
+     "quien": "paqui",
+     "x": 540,
+     "y": 1330,
+     "s": 250,
+     "mov": [
+      [
+       0,
+       "salta"
+      ],
+      [
+       1.0,
+       "quieto"
+      ]
+     ],
+     "expr": [
+      [
+       0,
+       "alivio"
+      ],
+      [
+       2.1,
+       "nervioso"
+      ]
+     ],
+     "brazos": [
+      [
+       0,
+       "arriba"
+      ],
+      [
+       1.0,
+       "habla"
+      ]
+     ],
+     "sombra": false,
+     "z": 2
+    }
+   ],
+   "sfx": [
+    [
+     0.1,
+     "ding"
+    ],
+    [
+     2.1,
+     "swish"
+    ]
+   ]
+  },
+  {
+   "tipo": "anim",
+   "escena": "show",
+   "dur": 5.2,
+   "transicion": "deslizar",
+   "subt_cortos": true,
+   "voces": [
+    [
+     0.15,
+     "material/voces/faa/q4.mp3"
+    ]
+   ],
+   "lineas": [
+    [
+     0.15,
+     0.8,
+     "paqui",
+     "Por eso,"
+    ],
+    [
+     0.9,
+     4.85,
+     "paqui",
+     "tus envíos desde *Miami* podrían tener *algunos días de retraso*."
+    ]
+   ],
+   "props": [
+    {
+     "tipo": "estudio"
+    },
+    {
+     "tipo": "pantalla",
+     "e": "📦",
+     "titulo": "MIAMI",
+     "sub": "posibles días de retraso",
+     "fondo": [
+      230,
+      110,
+      20
+     ],
+     "fondo2": [
+      120,
+      40,
+      5
+     ]
+    },
+    {
+     "tipo": "emoji",
+     "e": "⏳",
+     "x": 160,
+     "y": 1180,
+     "r": 120,
+     "anim": "late",
+     "desde": 0.9,
+     "capa": "frente"
+    },
+    {
+     "tipo": "mesa"
+    },
+    {
+     "tipo": "zocalo",
+     "tag": "TUS ENVÍOS",
+     "texto": "Desde Miami: posibles días de retraso",
+     "desde": 0.3
+    },
+    {
+     "tipo": "ticker",
+     "textos": [
+      "ÚLTIMA HORA: FALLA EN EL CONTROL AÉREO DE EE.UU.",
+      "LA PARADA DE DESPEGUES YA SE LEVANTÓ",
+      "MILES DE VUELOS CANCELADOS O RETRASADOS",
+      "ENVÍOS DESDE MIAMI: POSIBLES DÍAS DE RETRASO",
+      "SÍGUENOS: @JETPORTCOURIER"
+     ]
+    }
+   ],
+   "actores": [
+    {
+     "quien": "paqui",
+     "x": 540,
+     "y": 1330,
+     "s": 250,
+     "mov": "quieto",
+     "expr": [
+      [
+       0,
+       "nervioso"
+      ]
+     ],
+     "brazos": [
+      [
+       0,
+       "senala_izq"
+      ],
+      [
+       0.9,
+       "habla"
+      ]
+     ],
+     "sombra": false,
+     "z": 2
+    }
+   ],
+   "sfx": [
+    [
+     0.1,
+     "swish"
+    ],
+    [
+     0.9,
+     "beep"
+    ]
+   ]
+  },
+  {
+   "tipo": "anim",
+   "escena": "show",
+   "dur": 5.4,
+   "transicion": "barrido",
+   "subt_cortos": true,
+   "voces": [
+    [
+     0.15,
+     "material/voces/faa/q5.mp3"
+    ]
+   ],
+   "lineas": [
+    [
+     0.15,
+     1.3,
+     "paqui",
+     "¡Pero *tranquilo*!"
+    ],
+    [
+     1.35,
+     3.95,
+     "paqui",
+     "Te mantenemos *informado* de cada paquete."
+    ],
+    [
+     4.15,
+     5.15,
+     "paqui",
+     "¡*Síguenos*!"
+    ]
+   ],
+   "props": [
+    {
+     "tipo": "estudio"
+    },
+    {
+     "tipo": "pantalla",
+     "e": "🔔",
+     "titulo": "AVISOS",
+     "sub": "de cada paquete",
+     "tam": 100,
+     "hasta": 4.1
+    },
+    {
+     "tipo": "pantalla",
+     "e": "📲",
+     "titulo": "SÍGUENOS",
+     "sub": "@jetportcourier",
+     "tam": 100,
+     "desde": 4.1
+    },
+    {
+     "tipo": "mesa"
+    },
+    {
+     "tipo": "zocalo",
+     "tag": "JP NOTICIAS",
+     "texto": "Paqui te mantiene informado",
+     "color_tag": [
+      255,
+      122,
+      26
+     ],
+     "parpadea": false,
+     "desde": 0.3
+    },
+    {
+     "tipo": "ticker",
+     "textos": [
+      "ÚLTIMA HORA: FALLA EN EL CONTROL AÉREO DE EE.UU.",
+      "LA PARADA DE DESPEGUES YA SE LEVANTÓ",
+      "MILES DE VUELOS CANCELADOS O RETRASADOS",
+      "ENVÍOS DESDE MIAMI: POSIBLES DÍAS DE RETRASO",
+      "SÍGUENOS: @JETPORTCOURIER"
+     ]
+    }
+   ],
+   "actores": [
+    {
+     "quien": "paqui",
+     "x": 540,
+     "y": 1330,
+     "s": 250,
+     "mov": [
+      [
+       0,
+       "quieto"
+      ],
+      [
+       4.1,
+       "baila"
+      ]
+     ],
+     "expr": [
+      [
+       0,
+       "feliz"
+      ],
+      [
+       4.1,
+       "risa"
+      ]
+     ],
+     "brazos": [
+      [
+       0,
+       "cintura"
+      ],
+      [
+       1.35,
+       "habla"
+      ],
+      [
+       4.1,
+       "arriba"
+      ]
+     ],
+     "sombra": false,
+     "z": 2
+    }
+   ],
+   "sfx": [
+    [
+     0.1,
+     "pop"
+    ],
+    [
+     4.15,
+     "tada"
+    ]
+   ]
+  },
+  {
+   "tipo": "cta",
+   "dur": 3,
+   "transicion": "zoom"
+  }
+ ]
+}
