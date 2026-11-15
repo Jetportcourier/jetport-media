@@ -31,6 +31,12 @@
 | 2026-11-11 19:07 | Corto real: "11.11 en China: Día del Soltero" | corto real zoom/Polaroid | 96 (electro-pop) | círculo | foto_camion_sacos_11 (paneo); foto_camion_sacos_13 (Polaroid); camion_sacos_07 3–5,6; foto_almacen_05 | PROGRAMADO |
 | 2026-11-12 19:07 | Didáctico con Paqui presentador: "Checklist Black Friday" | didáctico animado | 95 (tropical) | persiana | ninguno (animación) | PROGRAMADO |
 | 2026-11-13 19:07 | Corto real: "Viernes 13: ¿y si mi paquete no llega?" | corto real zoom/Polaroid | 97 (dembow) | barrido | foto_uhaul_02 (diagonal); carga_van_03 4–6,6; foto_companero_desempaca_15 (Polaroid) | PROGRAMADO |
+| 2026-11-16 19:07 | Corto real: "Yo: este Black Friday NO compro nada" | corto real Polaroid (12 s + cta + cierre) | 81 (dembow) | círculo | foto_balanza_04 (Polaroid); piso_paquetes_09 1–3,6; paquetes_uhaul_01 2–4,4; foto_companero_desempaca_14 (Polaroid) | PROGRAMADO |
+| 2026-11-17 19:07 | Didáctico guardable: "Tu primera compra en Amazon, paso a paso" | didáctico | 82 (house) | barrido | ninguno | PROGRAMADO |
+| 2026-11-18 19:07 | Paqui animado: "La caja de al lado ¡GIGANTE!" (nervios → ¡Todo en regla!) | corto animado | 80 (electro-pop) | persiana | ninguno (animación) | PROGRAMADO |
+| 2026-11-19 19:07 | Didáctico con Paqui presentador: "El viaje de tu compra en 5 paradas" | didáctico animado | 79 (tropical) | barrido | ninguno (animación) | PROGRAMADO |
+| 2026-11-20 19:07 | Corto real: "POV: trabajas en un courier en Black Friday" | corto real zoom/Polaroid | 77 (dembow) | persiana | paquetes_almacen_02 1–3,4; foto_camion_sacos_12 (paneo); piso_paquetes_11 2–4,4; foto_paquetes_piso_16 (Polaroid) | PROGRAMADO |
+| 2026-11-21 12:07 | JP Noticias #2: faltan 6 días para Black Friday; SUNAT: envíos online se triplicarían (RPP 21/04/2026); hasta US$200 sin impuestos cumpliendo condiciones (Infobae 14/10/2026); Vale en aduana, Jetito en Miami, Paqui | noticiero animado, sin voces (subtítulos) | 86 (house) | persiana | ninguno | PROGRAMADO |
 | 2026-11-03 12:07 | Extra animado: "Hola, soy tu paquete" (Paqui) | corto animado (11 s + cta + cierre) | 118 (house) | persiana | ninguno (animación) | PROGRAMADO |
 | 2026-11-07 12:07 | Extra fotos con zoom: "Lo que vive tu paquete" | corto real zoom/Polaroid (12,2 s + cta + cierre) | 116 (electro-pop) | barrido | foto_uhaul_02, foto_van_cargada_09, foto_camion_sacos_12, foto_companero_desempaca_14, foto_balanza_04 | PROGRAMADO |
 Pruebas iniciales (no publicadas): videos/jetport_anuncio_1.mp4 (con tarifas, descartado: etapa sin precios) y

@@ -1,0 +1,51 @@
+{
+  "musica_semilla": 81,
+  "escenas": [
+    {
+      "tipo": "clip",
+      "dur": 2.5,
+      "archivo": "material/foto_balanza_04.jpg",
+      "texto": "Yo: este Black Friday NO compro nada",
+      "posicion": "arriba",
+      "transicion": "ninguna",
+      "estilo": "polaroid",
+      "angulo": -4,
+      "pie": "Modo ahorro"
+    },
+    {
+      "tipo": "clip",
+      "dur": 2.6,
+      "archivo": "material/piso_paquetes_09.mp4",
+      "inicio": 1.0,
+      "texto": "Mi casillero el 27:",
+      "posicion": "arriba",
+      "transicion": "sacudida"
+    },
+    {
+      "tipo": "clip",
+      "dur": 2.4,
+      "archivo": "material/paquetes_uhaul_01.mp4",
+      "inicio": 2.0,
+      "texto": "Yo: eran ofertas",
+      "resaltado": "¡No podía dejarlas!",
+      "posicion": "arriba",
+      "transicion": "glitch"
+    },
+    {
+      "tipo": "clip",
+      "dur": 2.4,
+      "archivo": "material/foto_companero_desempaca_14.jpg",
+      "estilo": "polaroid",
+      "angulo": 4,
+      "pie": "Todo llegó",
+      "texto": "Igual llega todo",
+      "posicion": "arriba",
+      "transicion": "destello"
+    },
+    {
+      "tipo": "cta",
+      "dur": 3,
+      "transicion": "destello"
+    }
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "musica_semilla": 79,
+  "fondos": ["ciudad", "patron", "rayos", "burbujas", "confeti", "puntos"],
+  "escenas": [
+    {"tipo": "anim", "escena": "hola", "dur": 3.2, "estilo_fondo": "rayos", "transicion": "ninguna", "texto": "¿Dónde está mi compra AHORA?", "resaltado": "¡Hola, soy Paqui!"},
+    {"tipo": "punto", "dur": 4.4, "numero": "1", "etiqueta": "PARADA", "titulo": "La tienda", "texto": "Compras en Amazon u otra tienda y la envías a tu casillero.", "fondo": "tienda"},
+    {"tipo": "punto", "dur": 4.4, "numero": "2", "etiqueta": "PARADA", "titulo": "Casillero en Miami", "texto": "Tu paquete llega al almacén y queda registrado.", "fondo": "cajas"},
+    {"tipo": "anim", "escena": "vuelo", "dur": 2.8, "estilo_fondo": "degradado", "transicion": "barrido", "texto": "Parada 3:", "resaltado": "¡en avión a Perú!"},
+    {"tipo": "anim", "escena": "aduana", "dur": 3.2, "estilo_fondo": "puntos", "transicion": "zoom", "texto": "Parada 4: aduana en Lima", "cambio": 1.8, "texto_despues": "¡Todo en regla!"},
+    {"tipo": "anim", "escena": "llegada", "dur": 2.8, "estilo_fondo": "confeti", "transicion": "destello", "texto": "Parada 5:", "resaltado": "¡en tus manos!"},
+    {"tipo": "cta", "dur": 4.5}
+  ]
+}

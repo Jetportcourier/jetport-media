@@ -1,0 +1,13 @@
+{
+  "musica_semilla": 82,
+  "fondos": ["confeti", "patron", "ciudad", "rayos", "burbujas", "puntos"],
+  "escenas": [
+    {"tipo": "titulo", "dur": 3.8, "arriba": "¿TU PRIMERA COMPRA EN AMAZON?", "lineas": ["Hazla así,", "paso a paso"], "sub": "Guárdalo para tu próxima compra", "fondo": "tienda"},
+    {"tipo": "punto", "dur": 4.8, "numero": "1", "etiqueta": "PASO", "titulo": "Crea tu casillero", "texto": "Te da una dirección en Miami para tus compras de USA."},
+    {"tipo": "punto", "dur": 4.8, "numero": "2", "etiqueta": "PASO", "titulo": "Copia la dirección tal cual", "texto": "Ponla en Amazon como dirección de envío, con tu nombre y tu código.", "fondo": "tienda"},
+    {"tipo": "punto", "dur": 4.8, "numero": "3", "etiqueta": "PASO", "titulo": "Guarda tu factura", "texto": "Descárgala apenas compres: muestra el valor real de tu compra.", "fondo": "cajas"},
+    {"tipo": "punto", "dur": 4.8, "numero": "4", "etiqueta": "PASO", "titulo": "Sigue tu paquete", "texto": "Con el número de seguimiento ves cuándo llega al casillero.", "fondo": "ruta"},
+    {"tipo": "anim", "escena": "llegada", "dur": 2.8, "estilo_fondo": "confeti", "transicion": "destello", "texto": "¡Y llega a tu casa!", "resaltado": "Así de fácil"},
+    {"tipo": "cta", "dur": 4.5, "modo": "escribenos"}
+  ]
+}

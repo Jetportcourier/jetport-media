@@ -13,7 +13,7 @@ Registro de clips (qué se ve y segundos útiles):
 | presentadora_almacen_04.mp4 | Chica del equipo de pie frente a pared de cajas, hablando a cámara (5,2 s, audio fuerte: voz o música, sin revisar) | 0–5. Usar sin su audio salvo que el dueño confirme qué dice |
 | presentadora_almacen_05.mp4 | Igual que 04, otra toma (5,9 s) | 0–5,9. Mismo aviso de audio |
 | foto_uhaul_02.jpg | Pasillo de cajas U-Haul hasta el techo | foto |
-| foto_almacen_03.jpg | Cajas U-Haul apiladas junto a banner de la marca | foto |
+| foto_almacen_03.jpg | Cajas U-Haul apiladas junto a banner de la marca | NO USAR (15/11): una etiqueta muestra el NOMBRE de una clienta legible a pantalla completa |
 | foto_balanza_04.jpg | Cajas U-Haul junto a la balanza | foto |
 | foto_almacen_05.jpg | Pared de cajas azules "S" | foto |
 | foto_camion_07.jpg | Camión cargado de cajas al aire libre | foto |

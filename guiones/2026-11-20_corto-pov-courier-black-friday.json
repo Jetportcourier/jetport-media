@@ -1,0 +1,50 @@
+{
+  "musica_semilla": 77,
+  "escenas": [
+    {
+      "tipo": "clip",
+      "dur": 2.4,
+      "archivo": "material/paquetes_almacen_02.mp4",
+      "inicio": 1.0,
+      "texto": "POV: trabajas en un courier",
+      "resaltado": "en Black Friday",
+      "posicion": "arriba",
+      "transicion": "ninguna"
+    },
+    {
+      "tipo": "clip",
+      "dur": 2.4,
+      "archivo": "material/foto_camion_sacos_12.jpg",
+      "camara": "paneo_der",
+      "texto": "Llega el primer camión...",
+      "posicion": "arriba",
+      "transicion": "zoom"
+    },
+    {
+      "tipo": "clip",
+      "dur": 2.4,
+      "archivo": "material/piso_paquetes_11.mp4",
+      "inicio": 2.0,
+      "texto": "...y el segundo",
+      "posicion": "arriba",
+      "transicion": "sacudida"
+    },
+    {
+      "tipo": "clip",
+      "dur": 2.4,
+      "archivo": "material/foto_paquetes_piso_16.jpg",
+      "estilo": "polaroid",
+      "angulo": -4,
+      "pie": "Listo para salir",
+      "texto": "Y aun así:",
+      "resaltado": "¡todo llega a su dueño!",
+      "posicion": "arriba",
+      "transicion": "destello"
+    },
+    {
+      "tipo": "cta",
+      "dur": 3,
+      "transicion": "destello"
+    }
+  ]
+}

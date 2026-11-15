@@ -1,0 +1,11 @@
+{
+  "musica_semilla": 80,
+  "escenas": [
+    {"tipo": "anim", "escena": "fila", "dur": 3.0, "estilo_fondo": "rayos", "transicion": "ninguna", "texto": "La caja de al lado:", "resaltado": "¡GIGANTE!"},
+    {"tipo": "anim", "escena": "lupa", "dur": 2.8, "estilo_fondo": "puntos", "transicion": "zoom", "texto": "Yo, chiquito:", "resaltado": "¿y a mí me revisan más?"},
+    {"tipo": "anim", "escena": "aduana", "dur": 3.4, "estilo_fondo": "burbujas", "transicion": "barrido", "texto": "No estés nervioso, no estés nervioso...", "cambio": 2.0, "texto_despues": "¡Todo en regla!"},
+    {"tipo": "anim", "escena": "sello", "dur": 2.6, "estilo_fondo": "confeti", "transicion": "destello", "texto": "Grande o chiquito:", "sello": "OK"},
+    {"tipo": "anim", "escena": "llegada", "dur": 2.6, "estilo_fondo": "ciudad", "transicion": "zoom", "texto": "Si está bien declarado,", "resaltado": "¡llega igualito!"},
+    {"tipo": "cta", "dur": 3, "transicion": "zoom"}
+  ]
+}
